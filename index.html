@@ -3,23 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English.studio - Framer Pastel Master Edition</title>
+    <title>English.studio - Clean Galaxy Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-main: #f8fafc;
             --sidebar-bg: #ffffff;
             --card-bg: #ffffff;
-            --primary-pastel: #e0e7ff;
-            --primary-accent: #4f46e5;
-            --mint-green: #d1fae5;
-            --mint-dark: #047857;
-            --pastel-pink: #fce7f3;
-            --pink-accent: #db2777;
+            --galaxy-blue: #1e1b4b;
+            --galaxy-accent: #3b82f6;
+            --primary-pastel: #e0f2fe;
             --text-dark: #0f172a;
             --text-muted: #64748b;
             --border-color: #f1f5f9;
-            --shadow-subtle: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+            --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
             --sans-font: 'Plus Jakarta Sans', sans-serif;
             --pixel-font: 'Press Start 2P', monospace;
         }
@@ -34,12 +31,11 @@
             min-height: 100vh;
         }
 
-        /* SIDEBAR - FRAMER STYLE */
         aside {
-            width: 280px;
+            width: 270px;
             background: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
-            padding: 28px 20px;
+            padding: 24px 16px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -57,169 +53,156 @@
         }
 
         .brand-logo {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary-accent), var(--pink-accent));
-            border-radius: 12px;
+            width: 38px;
+            height: 38px;
+            background: var(--galaxy-blue);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 18px;
+            font-size: 16px;
             color: #ffffff;
         }
 
-        .brand-title span:first-child { font-weight: 800; font-size: 15px; color: var(--text-dark); display: block; }
-        .brand-title span:last-child { font-size: 9px; font-weight: 700; color: var(--pink-accent); letter-spacing: 0.5px; }
+        .brand-title span:first-child { font-weight: 800; font-size: 14px; color: var(--text-dark); display: block; }
+        .brand-title span:last-child { font-size: 9px; font-weight: 700; color: var(--galaxy-accent); letter-spacing: 0.5px; }
 
-        nav { display: flex; flex-direction: column; gap: 6px; overflow-y: auto; max-height: calc(100vh - 190px); padding-right: 4px; }
+        nav { display: flex; flex-direction: column; gap: 4px; overflow-y: auto; max-height: calc(100vh - 180px); }
 
         .nav-btn {
             background: transparent;
             border: none;
             color: var(--text-muted);
-            padding: 12px 16px;
-            border-radius: 12px;
+            padding: 12px 14px;
+            border-radius: 10px;
             font-weight: 700;
             font-size: 13px;
             text-align: left;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            transition: all 0.2s;
         }
 
         .nav-btn:hover { background: #f8fafc; color: var(--text-dark); }
         .nav-btn.active {
             background: var(--primary-pastel);
-            color: var(--primary-accent);
+            color: var(--galaxy-blue);
         }
 
         .timer-box {
             background: #f8fafc;
             border: 1px solid var(--border-color);
-            padding: 12px;
-            border-radius: 14px;
+            padding: 10px;
+            border-radius: 12px;
             text-align: center;
         }
 
-        .timer-box span { font-size: 10px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 2px; }
-        .timer-display { font-family: var(--pixel-font); font-size: 11px; color: var(--primary-accent); }
+        .timer-box span { font-size: 9px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 2px; }
+        .timer-display { font-family: var(--pixel-font); font-size: 11px; color: var(--galaxy-accent); }
 
-        /* MAIN CONTENT */
         main {
-            margin-left: 280px;
+            margin-left: 270px;
             flex-grow: 1;
-            padding: 40px;
-            max-width: calc(100vw - 280px);
+            padding: 36px;
+            max-width: calc(100vw - 270px);
             overflow-y: auto;
             height: 100vh;
         }
 
-        .tab-content { display: none; animation: fadeIn 0.3s ease; }
+        .tab-content { display: none; }
         .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-        .card-framer {
+        .card-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 30px;
-            margin-bottom: 24px;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 20px;
             box-shadow: var(--shadow-subtle);
         }
 
         .grid-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 14px;
             max-height: 520px;
             overflow-y: auto;
-            padding-right: 6px;
+            padding-right: 4px;
         }
 
         .item-card {
             background: #ffffff;
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 20px;
+            border-radius: 14px;
+            padding: 16px;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+            transition: all 0.2s;
         }
-        .item-card:hover { border-color: var(--primary-accent); transform: translateY(-3px); box-shadow: var(--shadow-subtle); }
+        .item-card:hover { border-color: var(--galaxy-accent); transform: translateY(-2px); }
 
-        .char-avatar {
-            width: 52px; height: 52px; border-radius: 14px; object-fit: cover; border: 2px solid #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        .btn-framer {
-            background: var(--primary-accent);
+        .btn-galaxy {
+            background: var(--galaxy-blue);
             color: #ffffff;
             border: none;
-            padding: 12px 20px;
-            border-radius: 14px;
+            padding: 10px 18px;
+            border-radius: 12px;
             font-weight: 700;
             font-size: 13px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.2s;
+            transition: opacity 0.2s;
         }
-        .btn-framer:hover { opacity: 0.92; transform: translateY(-1px); }
+        .btn-galaxy:hover { opacity: 0.9; }
 
         .game-box {
             background: white;
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 28px;
-            margin-top: 16px;
-            box-shadow: var(--shadow-subtle);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 14px;
         }
 
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 16px;
         }
 
         .opt-btn {
             background: #f8fafc;
             border: 1px solid var(--border-color);
-            padding: 16px;
-            border-radius: 14px;
+            padding: 14px;
+            border-radius: 12px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             text-align: left;
             transition: all 0.2s;
         }
-        .opt-btn:hover { background: var(--primary-pastel); border-color: var(--primary-accent); color: var(--primary-accent); }
+        .opt-btn:hover { background: var(--primary-pastel); border-color: var(--galaxy-accent); color: var(--galaxy-blue); }
     </style>
 </head>
 <body>
 
-    <!-- SIDEBAR -->
     <aside>
         <div>
             <div class="brand">
                 <div class="brand-logo">E</div>
                 <div class="brand-title">
                     <span>English.studio</span>
-                    <span>PASTEL EDITION</span>
+                    <span>GALAXY EDITION</span>
                 </div>
             </div>
             <nav>
-                <button class="nav-btn active" onclick="switchTab('tab-1', this)">🏠 1. Tổng Quan</button>
-                <button class="nav-btn" onclick="switchTab('tab-2', this)">⭐ 2. Nhiệm Vụ Hằng Ngày</button>
-                <button class="nav-btn" onclick="switchTab('tab-3', this)">📚 3. Kho Từ Vựng (60 Units)</button>
-                <button class="nav-btn" onclick="switchTab('tab-4', this)">📖 4. Ngữ Pháp (100 Chuyên Đề)</button>
-                <button class="nav-btn" onclick="switchTab('tab-5', this)">🎮 5. Mini Game</button>
-                <button class="nav-btn" onclick="switchTab('tab-6', this)">🔥 6. Chuỗi Học Tập</button>
+                <button class="nav-btn active" onclick="switchTab('tab-1', this)">1. Tổng Quan</button>
+                <button class="nav-btn" onclick="switchTab('tab-2', this)">2. Nhiệm Vụ Hằng Ngày</button>
+                <button class="nav-btn" onclick="switchTab('tab-3', this)">3. Kho Từ Vựng (60 Units)</button>
+                <button class="nav-btn" onclick="switchTab('tab-4', this)">4. Ngữ Pháp (100 Chuyên Đề)</button>
+                <button class="nav-btn" onclick="switchTab('tab-5', this)">5. Mini Game</button>
             </nav>
         </div>
         <div class="timer-box">
@@ -228,162 +211,108 @@
         </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
     <main>
-
-        <!-- TAB 1: TỔNG QUAN -->
         <section id="tab-1" class="tab-content active">
-            <div class="card-framer" style="background: linear-gradient(135deg, #ffffff, #f0fdf4); border-color: var(--mint-green);">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                    <div>
-                        <h2 style="font-size:24px; font-weight:800; margin-bottom:6px;">Xin chào, Ethan! Chúc bạn ngày mới học tập hiệu quả.</h2>
-                        <p style="color:var(--text-muted); font-size:14px;">Hành trình giải cứu đảo Lizzert chống lại Quỷ vương Anward đang diễn ra vô cùng sôi nổi.</p>
-                    </div>
-                    <div style="display:flex; gap:10px;">
-                        <div style="text-align:center;"><img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Ethan" class="char-avatar"><br><span style="font-size:11px; font-weight:800; margin-top:4px; display:block;">Ethan</span></div>
-                        <div style="text-align:center;"><img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Maxber" class="char-avatar"><br><span style="font-size:11px; font-weight:800; margin-top:4px; display:block;">Maxber</span></div>
-                        <div style="text-align:center;"><img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=UliamMale" class="char-avatar"><br><span style="font-size:11px; font-weight:800; margin-top:4px; display:block;">Uliam (Nam)</span></div>
-                        <div style="text-align:center;"><img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=AnwardBoss" class="char-avatar"><br><span style="font-size:11px; font-weight:800; margin-top:4px; display:block;">Anward</span></div>
-                    </div>
-                </div>
-                <button class="btn-framer" style="background: var(--mint-dark);" onclick="playIntroVoice()">🔊 Nghe Lời Chào & Cốt Truyện</button>
+            <div class="card-box" style="background: linear-gradient(135deg, #ffffff, #f8fafc);">
+                <h2 style="font-size:22px; font-weight:800; margin-bottom:6px;">Xin chào, Ethan! Chúc bạn học tập hiệu quả.</h2>
+                <p style="color:var(--text-muted); font-size:13px; margin-bottom:16px;">Hệ thống học tập chuyên sâu tiếng Anh theo chuẩn dữ liệu Oxford.</p>
+                <button class="btn-galaxy" onclick="playIntroVoice()">Nghe Lời Chào Giọng Tiếng Việt</button>
             </div>
 
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
-                <div class="card-framer">
-                    <h3 style="font-size:16px; font-weight:800; margin-bottom:8px;">Tiến Độ Học Tập Tổng Quan</h3>
-                    <p style="color:var(--text-muted); font-size:13px; margin-bottom:12px;">Hoàn thành nhiệm vụ để nâng cấp kỹ năng.</p>
-                    <div style="background:#f1f5f9; border-radius:10px; height:12px; overflow:hidden;">
-                        <div id="overall-progress" style="background:var(--primary-accent); width:25%; height:100%; transition: width 0.3s;"></div>
-                    </div>
-                </div>
-                <div class="card-framer">
-                    <h3 style="font-size:16px; font-weight:800; margin-bottom:8px;">Chuỗi Học Tập Liên Tiếp</h3>
-                    <div style="display:flex; align-items:center; gap:14px; margin-top:8px;">
-                        <span style="font-size:36px;">🔥</span>
-                        <div>
-                            <h2 style="color:var(--pink-accent); font-size:22px; font-weight:800;">5 Ngày Streak</h2>
-                            <p style="font-size:13px; color:var(--text-muted);">Phong độ cực kỳ xuất sắc!</p>
-                        </div>
-                    </div>
+            <div class="card-box">
+                <h3 style="font-size:15px; font-weight:800; margin-bottom:6px;">Tiến Độ Tổng Quan</h3>
+                <div style="background:#f1f5f9; border-radius:8px; height:10px; overflow:hidden; margin-top:10px;">
+                    <div id="overall-progress" style="background:var(--galaxy-accent); width:20%; height:100%;"></div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 2: NHIỆM VỤ HẰNG NGÀY -->
         <section id="tab-2" class="tab-content">
-            <div class="card-framer">
-                <h2 style="font-size:20px; font-weight:800; margin-bottom:6px;">Nhiệm Vụ Hằng Ngày</h2>
-                <p style="color:var(--text-muted); font-size:13px;">Hoàn thành danh sách nhiệm vụ hôm nay để nhận phần thưởng tích lũy.</p>
-                <div style="display:flex; flex-direction:column; gap:12px; margin-top:20px;">
-                    <label style="background:#f8fafc; border:1px solid var(--border-color); padding:16px; border-radius:14px; display:flex; align-items:center; gap:14px; cursor:pointer; font-weight:600;">
-                        <input type="checkbox" onchange="updateDailyProgress()" class="task-check" style="width:20px; height:20px; accent-color: var(--primary-accent);">
-                        <b>Học ít nhất 1 Unit từ vựng Oxford mới</b>
+            <div class="card-box">
+                <h2>Nhiệm Vụ Hằng Ngày</h2>
+                <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px;">
+                    <label style="background:#f8fafc; border:1px solid var(--border-color); padding:14px; border-radius:10px; display:flex; align-items:center; gap:12px; cursor:pointer; font-size:13px; font-weight:600;">
+                        <input type="checkbox" onchange="updateDailyProgress()" class="task-check" style="width:16px; height:16px; accent-color:var(--galaxy-blue);">
+                        <b>Hoàn thành học 1 Unit từ vựng Oxford</b>
                     </label>
-                    <label style="background:#f8fafc; border:1px solid var(--border-color); padding:16px; border-radius:14px; display:flex; align-items:center; gap:14px; cursor:pointer; font-weight:600;">
-                        <input type="checkbox" onchange="updateDailyProgress()" class="task-check" style="width:20px; height:20px; accent-color: var(--primary-accent);">
-                        <b>Ôn tập 1 Chuyên đề Ngữ pháp</b>
-                    </label>
-                    <label style="background:#f8fafc; border:1px solid var(--border-color); padding:16px; border-radius:14px; display:flex; align-items:center; gap:14px; cursor:pointer; font-weight:600;">
-                        <input type="checkbox" onchange="updateDailyProgress()" class="task-check" style="width:20px; height:20px; accent-color: var(--primary-accent);">
-                        <b>Tham gia vượt ải Mini Game chiến đấu</b>
+                    <label style="background:#f8fafc; border:1px solid var(--border-color); padding:14px; border-radius:10px; display:flex; align-items:center; gap:12px; cursor:pointer; font-size:13px; font-weight:600;">
+                        <input type="checkbox" onchange="updateDailyProgress()" class="task-check" style="width:16px; height:16px; accent-color:var(--galaxy-blue);">
+                        <b>Ôn tập 1 chuyên đề Ngữ pháp</b>
                     </label>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 3: KHO TỪ VỰNG -->
         <section id="tab-3" class="tab-content">
-            <div class="card-framer">
-                <h2 style="font-size:20px; font-weight:800; margin-bottom:6px;">Kho Từ Vựng Oxford (Trọn Bộ 60 Units Chi Tiết)[cite: 232]</h2>
-                <p style="color:var(--text-muted); font-size:13px;">Bấm vào từng Unit để tra cứu danh sách từ vựng chi tiết, phiên âm và ví dụ thực tế[cite: 232].</p>
+            <div class="card-box">
+                <h2>Kho Từ Vựng Oxford (Trọn Bộ 60 Units)</h2>
+                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Bấm vào từng Unit để xem danh sách từ vựng kèm theo từ loại chính xác.</p>
                 <div class="grid-list" id="vocab-units-container"></div>
             </div>
         </section>
 
-        <!-- TAB 4: NGỮ PHÁP -->
         <section id="tab-4" class="tab-content">
-            <div class="card-framer">
-                <h2 style="font-size:20px; font-weight:800; margin-bottom:6px;">100 Chuyên Đề Ngữ Pháp Chuyên Sâu</h2>
-                <p style="color:var(--text-muted); font-size:13px;">Hệ thống cấu trúc từ cơ bản đến nâng cao, giải thích quy tắc và sửa lỗi sai.</p>
+            <div class="card-box">
+                <h2>100 Chuyên Đề Ngữ Pháp Chuyên Sâu</h2>
+                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Hệ thống toàn bộ cấu trúc ngữ pháp và bài tập sửa lỗi sai.</p>
                 <div class="grid-list" id="grammar-units-container"></div>
             </div>
         </section>
 
-        <!-- TAB 5: MINI GAME -->
         <section id="tab-5" class="tab-content">
-            <div class="card-framer">
-                <h2 style="font-size:20px; font-weight:800; margin-bottom:12px;">Khu Vực Mini Game Luyện Tập</h2>
-                <div style="display:flex; gap:10px; margin-bottom:16px;">
-                    <button class="btn-framer" onclick="switchGame(1)">1. Khám phá đảo Lizzert</button>
-                    <button class="btn-framer" style="background:#475569;" onclick="switchGame(2)">2. Điền từ còn thiếu</button>
-                    <button class="btn-framer" style="background:#0f172a;" onclick="switchGame(3)">3. Nối từ Anh - Việt</button>
+            <div class="card-box">
+                <h2>Khu Vực Mini Game Luyện Tập</h2>
+                <div style="display:flex; gap:8px; margin:14px 0;">
+                    <button class="btn-galaxy" onclick="switchGame(1)">1. Khám phá đảo Lizzert</button>
+                    <button class="btn-galaxy" style="background:#475569;" onclick="switchGame(2)">2. Điền từ còn thiếu</button>
+                    <button class="btn-galaxy" style="background:#334155;" onclick="switchGame(3)">3. Nối từ Anh - Việt</button>
                 </div>
 
-                <!-- Trò 1: Khám phá đảo Lizzert (Có thanh cốt truyện giọng đọc Anh & Việt) -->
                 <div id="subgame-1" class="game-box">
-                    <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:14px;">
-                        <span>TRÒ CHƠI 1: KHÁM PHÁ ĐẢO LIZZERT (3 MẠNG)</span>
+                    <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:12px; font-size:13px;">
+                        <span>TRÒ CHƠI 1: KHÁM PHÁ ĐẢO LIZZERT</span>
                         <span id="g1-hearts" style="color:#ef4444;">❤️❤️❤️</span>
                     </div>
 
-                    <!-- THANH CỐT TRUYỆN SONG NGỮ ANH - VIỆT -->
-                    <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:16px; padding:16px; margin-bottom:18px;">
-                        <div style="display:flex; align-items:center; justify-content:between; margin-bottom:8px;">
-                            <span style="font-size:13px; font-weight:800; color:var(--primary-accent);">🎧 Thanh Cốt Truyện Song Ngữ (English & Tiếng Việt)</span>
-                        </div>
-                        <audio controls style="width:100%; border-radius:10px;">
+                    <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:12px; padding:14px; margin-bottom:16px;">
+                        <p style="font-size:12px; font-weight:700; color:var(--galaxy-blue); margin-bottom:6px;">Lồng Tiếng Cốt Truyện Song Ngữ (English & Tiếng Việt):</p>
+                        <audio controls style="width:100%;">
                             <source src="https://cdn.yupvox.com/tts/5622-141693-1791903133828.mp3" type="audio/mpeg">
                             Trình duyệt không hỗ trợ thẻ audio.
                         </audio>
-                        <p style="font-size:12px; color:var(--text-muted); margin-top:8px; line-height:1.5;">
-                            <b>Nội dung:</b> Ethan và chiến binh Uliam bắt đầu hành trình băng qua làng Ordan. Hãy lắng nghe đoạn ghi âm song ngữ để nắm bắt gợi ý vượt qua thử thách bên dưới!
-                        </p>
+                        <p style="font-size:11px; color:var(--text-muted); margin-top:6px;">Nghe đoạn audio lồng tiếng cốt truyện kết hợp song ngữ trước khi trả lời câu hỏi dưới đây!</p>
                     </div>
 
-                    <h3 id="g1-q" style="font-size:16px; font-weight:700; margin-bottom:16px;">Nghĩa chính xác của từ "Textbook" trong bài học là gì?[cite: 237]</h3>
+                    <h3 style="font-size:14px; font-weight:700; margin-bottom:12px;">Nghĩa của từ "Textbook" trong bài học là gì?</h3>
                     <div class="options-grid">
-                        <button class="opt-btn" onclick="answerGame1(0)">A. Sách giáo khoa[cite: 237]</button>
+                        <button class="opt-btn" onclick="answerGame1(0)">A. Sách giáo khoa</button>
                         <button class="opt-btn" onclick="answerGame1(1)">B. Vở chép</button>
                         <button class="opt-btn" onclick="answerGame1(2)">C. Thước kẻ</button>
                         <button class="opt-btn" onclick="answerGame1(3)">D. Bút mực</button>
                     </div>
                 </div>
 
-                <!-- Trò 2: Điền từ còn thiếu -->
                 <div id="subgame-2" class="game-box" style="display:none;">
-                    <h3 style="font-size:18px; font-weight:800; margin-bottom:8px;">TRÒ CHƠI 2: ĐIỀN TỪ CÒN THIẾU</h3>
-                    <p style="color:var(--text-muted); font-size:13px; margin:8px 0;">Gợi ý nghĩa: Sách giáo khoa[cite: 237]</p>
-                    <h2 style="letter-spacing:6px; color:var(--primary-accent); margin:16px 0; font-size:24px;">T _ x t b _ o k[cite: 237]</h2>
-                    <input type="text" placeholder="Nhập từ hoàn chỉnh..." style="padding:12px 16px; border-radius:12px; border:1px solid var(--border-color); width:280px; font-size:14px; outline:none;">
-                    <button class="btn-framer" onclick="alert('Đã kiểm tra kết quả!')" style="margin-left:8px;">Kiểm tra ngay</button>
+                    <h3>TRÒ CHƠI 2: ĐIỀN TỪ CÒN THIẾU</h3>
+                    <p style="color:var(--text-muted); font-size:12px; margin:8px 0;">Gợi ý: Sách giáo khoa</p>
+                    <h2 style="letter-spacing:4px; color:var(--galaxy-accent); margin:12px 0; font-size:20px;">T _ x t b _ o k</h2>
+                    <input type="text" placeholder="Nhập từ..." style="padding:10px; border-radius:8px; border:1px solid var(--border-color); width:240px; font-size:13px; outline:none;">
+                    <button class="btn-galaxy" onclick="alert('Đã kiểm tra!')" style="margin-left:6px;">Kiểm tra</button>
                 </div>
 
-                <!-- Trò 3: Nối từ Anh - Việt -->
                 <div id="subgame-3" class="game-box" style="display:none;">
-                    <h3 style="font-size:18px; font-weight:800; margin-bottom:8px;">TRÒ CHƠI 3: NỐI TỪ ANH - VIỆT</h3>
-                    <p style="color:var(--text-muted); font-size:13px; margin-top:8px;">Ghép nối các thẻ từ vựng tiếng Anh với nghĩa tiếng Việt tương ứng để mở khóa con đường đi tiếp.</p>
+                    <h3>TRÒ CHƠI 3: NỐI TỪ ANH - VIỆT</h3>
+                    <p style="color:var(--text-muted); font-size:12px; margin-top:6px;">Ghép nối các từ vựng tương ứng để tiếp tục hành trình.</p>
                 </div>
             </div>
         </section>
-
-        <!-- TAB 6: CHUỖI HỌC TẬP -->
-        <section id="tab-6" class="tab-content">
-            <div class="card-framer" style="text-align:center; padding:50px 30px;">
-                <span style="font-size:64px;">🌟</span>
-                <h2 style="font-size:24px; font-weight:800; margin:16px 0;">Bảng Thành Tích Chuỗi Học Tập (Streak)</h2>
-                <p style="color:var(--text-muted); font-size:14px; max-width:500px; margin:0 auto; line-height:1.6;">Duy trì đều đặn mỗi ngày để tích lũy điểm kinh nghiệm, mở khóa vật phẩm đặc biệt và sát cánh cùng Ethan, Maxber, Uliam (Nam) đánh bại Quỷ vương Anward!</p>
-            </div>
-        </section>
-
     </main>
 
-    <!-- MODAL CHI TIẾT TỪ VỰNG & NGỮ PHÁP -->
-    <div id="detail-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index:1000; justify-content:center; align-items:center;">
-        <div style="background:white; border-radius:24px; padding:32px; width:90%; max-width:650px; max-height:80vh; overflow-y:auto; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-            <h2 id="modal-title" style="color:var(--primary-accent); font-size:20px; font-weight:800; margin-bottom:12px;">Chi Tiết Dữ Liệu</h2>
-            <div id="modal-content" style="font-size:14px; line-height:1.6; color:var(--text-dark);"></div>
-            <button class="btn-framer" onclick="closeModal()" style="margin-top:24px; background:#fee2e2; color:#ef4444;">Đóng Cửa Sổ</button>
+    <div id="detail-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.3); backdrop-filter:blur(3px); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background:white; border-radius:18px; padding:26px; width:90%; max-width:600px; max-height:80vh; overflow-y:auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <h2 id="modal-title" style="color:var(--galaxy-blue); font-size:18px; font-weight:800; margin-bottom:10px;">Chi Tiết</h2>
+            <div id="modal-content" style="font-size:13px; line-height:1.6; color:var(--text-dark);"></div>
+            <button class="btn-galaxy" onclick="closeModal()" style="margin-top:18px; background:#fee2e2; color:#ef4444;">Đóng</button>
         </div>
     </div>
 
@@ -411,100 +340,97 @@
         }, 1000);
 
         function playIntroVoice() {
-            let text = "Xin chào Ethan! Chúc bạn một ngày học tập tuyệt vời. Hãy cùng Maxber và chiến binh nam Uliam vượt qua các thử thách từ vựng và ngữ pháp để giải cứu hòn đảo Lizzert khỏi Quỷ vương Anward!";
-            let msg = new SpeechSynthesisUtterance(text);
+            let msg = new SpeechSynthesisUtterance("Xin chào Ethan! Chúc bạn một ngày học tập từ vựng và ngữ pháp hiệu quả.");
             msg.lang = 'vi-VN';
             window.speechSynthesis.speak(msg);
         }
 
-        // Trọn bộ 60 Units từ vựng chuẩn từ tài liệu đính kèm
         const vocabUnitsData = [
-            { id: 1, name: "Unit 1: Learning vocabulary (Học từ vựng)", words: "Textbook (n) /'tekst.buk/ - Sách giáo khoa[cite: 237], Stapler (n) /'stei.plər/ - Đồ dập ghim[cite: 237], Ruler (n) /'ru:.lər/ - Thước[cite: 237]" },
-            { id: 2, name: "Unit 2: Keeping a vocabulary notebook (Ghi sổ tay từ vựng)", words: "Notebook (n) /'naut.buk/ - Cuốn sổ, vở[cite: 238], Pen (n) /pen/ - Bút mực[cite: 238]" },
-            { id: 3, name: "Unit 3: Using a dictionary (Dùng từ điển)", words: "Dictionary (adj) /dık.fən.ər.i/ - Từ điển[cite: 239], Index card (n. phr) - Phiếu làm mục lục[cite: 238]" },
-            { id: 4, name: "Unit 4: English language words (Từ ngữ về tiếng Anh)", words: "Grammar, Vocabulary, Pronunciation, Accent" },
-            { id: 5, name: "Unit 5: Country, nationality and language", words: "England[cite: 325], France[cite: 325], Japan[cite: 325], America[cite: 325]" },
-            { id: 6, name: "Unit 6: The physical world (Thế giới tự nhiên)", words: "Sea[cite: 246], Ocean[cite: 246], Island[cite: 246], Mountain[cite: 272]" },
-            { id: 7, name: "Unit 7: Weather (Thời tiết)", words: "Rain[cite: 305], Snow[cite: 305], Wind[cite: 305], Storm[cite: 332]" },
-            { id: 8, name: "Unit 8: Animals and insects (Động vật và côn trùng)", words: "Dog[cite: 319], Cat[cite: 319], Tiger[cite: 320], Lion[cite: 320]" },
-            { id: 9, name: "Unit 9: The body and movement (Cơ thể và chuyển động)", words: "Head[cite: 309], Arm[cite: 309], Leg[cite: 310], Hand[cite: 310]" },
-            { id: 10, name: "Unit 10: Describing appearance (Miêu tả ngoại hình)", words: "Tall, Short, Slim, Fat, Handsome" },
-            { id: 11, name: "Unit 11: Describing character (Miêu tả tính cách)", words: "Kind[cite: 287], Generous[cite: 287], Honest[cite: 287], Stubborn[cite: 287]" },
-            { id: 12, name: "Unit 12: Feelings (Cảm xúc)", words: "Happy[cite: 286], Sad[cite: 286], Angry[cite: 286], Excited" },
-            { id: 13, name: "Unit 13: Family and friends (Gia đình và bạn bè)", words: "Father[cite: 314], Mother[cite: 314], Brother[cite: 314], Friend[cite: 253]" },
-            { id: 14, name: "Unit 14: Growing up (Quá trình trưởng thành)", words: "Childhood, teenager, adult, elderly" },
-            { id: 15, name: "Unit 15: Romance, marriage and divorce", words: "Bride[cite: 274], Groom[cite: 274], Wedding[cite: 274], Divorce" },
-            { id: 16, name: "Unit 16: Daily routines (Sinh hoạt hàng ngày)", words: "Get up[cite: 243], Brush your teeth[cite: 243], Have breakfast[cite: 243]" },
-            { id: 17, name: "Unit 17: The place where you live", words: "House[cite: 273], Apartment, Village[cite: 272], City" },
-            { id: 18, name: "Unit 18: Around the home (Trong nhà)", words: "Bed[cite: 251], Lamp[cite: 251], Sofa[cite: 258], Table" },
-            { id: 19, name: "Unit 19: Money (Tiền bạc)", words: "Cash[cite: 249], Credit card[cite: 249], Wallet[cite: 249], Rich" },
-            { id: 20, name: "Unit 20: Health (Sức khỏe)", words: "Fever[cite: 277], Cough[cite: 277], Headache[cite: 277], Doctor[cite: 260]" },
-            { id: 21, name: "Unit 21: Clothes (Quần áo)", words: "Shirt[cite: 307], Trousers, Shoes, Jacket[cite: 307]" },
-            { id: 22, name: "Unit 22: Fashion and buying clothes", words: "Size[cite: 308], Try on[cite: 308], Fashion, Style" },
-            { id: 23, name: "Unit 23: Shopping (Mua sắm)", words: "Customer[cite: 249], Cheap[cite: 249], Expensive[cite: 249], Shop[cite: 250]" },
-            { id: 24, name: "Unit 24: Food (Đồ ăn)", words: "Beef[cite: 295], Pork[cite: 295], Bread[cite: 295], Rice" },
-            { id: 25, name: "Unit 25: Cooking (Nấu ăn)", words: "Boil, Fry, Bake, Stove[cite: 254], Pan[cite: 255]" },
-            { id: 26, name: "Unit 26: City life (Cuộc sống thành thị)", words: "Traffic[cite: 283], Building, Subway, Street" },
-            { id: 27, name: "Unit 27: Life in the country", words: "Field[cite: 272], River[cite: 272], Cow[cite: 319], Farm[cite: 272]" },
-            { id: 28, name: "Unit 28: Transport (Giao thông)", words: "Bus, Train, Plane, Car[cite: 283]" },
-            { id: 29, name: "Unit 29: On the road (Trên đường)", words: "Motorway[cite: 283], Roundabout[cite: 284], Driver[cite: 285]" },
-            { id: 30, name: "Unit 30: Notices and warnings", words: "Danger, Warning[cite: 283], Caution, Stop[cite: 242]" },
-            { id: 31, name: "Unit 31: Classroom language", words: "Teacher[cite: 302], Student[cite: 302], Board[cite: 239], Lesson[cite: 303]" },
-            { id: 32, name: "Unit 32: School education", words: "Primary school[cite: 302], High school[cite: 302], Exam[cite: 312]" },
-            { id: 33, name: "Unit 33: Studying English and taking exams", words: "Pass[cite: 303], Fail[cite: 303], Revise, Test[cite: 313]" },
-            { id: 34, name: "Unit 34: University education", words: "Degree[cite: 303], Professor[cite: 311], Lecture[cite: 311]" },
-            { id: 35, name: "Unit 35: Jobs (Nghề nghiệp)", words: "Engineer[cite: 329], Doctor[cite: 330], Teacher[cite: 330], Nurse[cite: 330]" },
-            { id: 36, name: "Unit 36: Talking about your work", words: "Salary, Boss, Colleague[cite: 253], Office" },
-            { id: 37, name: "Unit 37: Making a career", words: "Promotion, Experience, Skill, Apply" },
-            { id: 38, name: "Unit 38: Working in an office", words: "Computer[cite: 262], Printer[cite: 262], Files[cite: 263]" },
-            { id: 39, name: "Unit 39: Running a company", words: "Manager[cite: 249], Director[cite: 291], Company, Profit" },
-            { id: 40, name: "Unit 40: Business and finance", words: "Bank[cite: 338], Investment[cite: 338], Tax, Budget[cite: 340]" },
-            { id: 41, name: "Unit 41: Sport and leisure", words: "Football[cite: 270], Tennis[cite: 270], Swimming[cite: 270]" },
-            { id: 42, name: "Unit 42: Competitive sport", words: "Match, Referee[cite: 271], Winner, Score" },
-            { id: 43, name: "Unit 43: Books and films", words: "Actor[cite: 291], Director[cite: 291], Script[cite: 291], Novel" },
-            { id: 44, name: "Unit 44: Music (Âm nhạc)", words: "Song[cite: 297], Guitar[cite: 297], Piano[cite: 297], Singer[cite: 298]" },
-            { id: 45, name: "Unit 45: Special events", words: "Party[cite: 274], Festival[cite: 269], Celebration" },
-            { id: 46, name: "Unit 46: Travel bookings", words: "Ticket[cite: 267], Reservation[cite: 301], Flight[cite: 267]" },
-            { id: 47, name: "Unit 47: Air travel (Đi máy bay)", words: "Airport, Pilot[cite: 328], Passenger[cite: 284], Luggage[cite: 267]" },
-            { id: 48, name: "Unit 48: Hotels and restaurants", words: "Reception[cite: 301], Menu[cite: 300], Waiter[cite: 300], Tip[cite: 334]" },
-            { id: 49, name: "Unit 49: Cafes", words: "Coffee[cite: 289], Tea[cite: 289], Cake[cite: 295], Table" },
-            { id: 50, name: "Unit 50: Sightseeing holidays", words: "Tourist[cite: 267], Guide, Camera, Souvenir[cite: 267]" },
-            { id: 51, name: "Unit 51: Holidays by the sea", words: "Beach[cite: 246], Sand[cite: 273], Swim[cite: 242], Shell" },
-            { id: 52, name: "Unit 52: Newspapers and television", words: "News, Journalist[cite: 328], Channel, Advert" },
-            { id: 53, name: "Unit 53: Phoning and texting", words: "Call[cite: 335], Message[cite: 335], Smartphone, Ring" },
-            { id: 54, name: "Unit 54: Computers (Máy tính)", words: "Screen[cite: 263], Mouse[cite: 263], Keyboard[cite: 263], Software[cite: 262]" },
-            { id: 55, name: "Unit 55: Email and the Internet", words: "Website, Browser, Download, Attachment" },
-            { id: 56, name: "Unit 56: Crime (Tội phạm)", words: "Police[cite: 329], Thief, Prison, Fine" },
-            { id: 57, name: "Unit 57: Politics (Chính trị)", words: "Government, Election, President, Vote" },
-            { id: 58, name: "Unit 58: Climate change", words: "Global warming[cite: 257], Pollution[cite: 257], Carbon" },
-            { id: 59, name: "Unit 59: War and violence", words: "Army, Soldier, Weapon, Peace" },
-            { id: 60, name: "Unit 60: Time (Thời gian)", words: "Second[cite: 282], Minute[cite: 282], Hour[cite: 282], Century[cite: 282]" }
+            { id: 1, name: "Unit 1: Learning vocabulary", words: "Watercolour (n) /'wɔ:tə kal.ər/ - Màu nước, Thumbtack (n) /'θʌm.tæk/ - Đinh ghim, Textbook (n) /'tekst.buk/ - Sách giáo khoa, Stapler (n) /'stei.plər/ - Đồ dập ghim, Ruler (n) /'ru:.lər/ - Thước" },
+            { id: 2, name: "Unit 2: Keeping a vocabulary notebook", words: "Notebook (n) /'naut.buk/ - Cuốn sổ, vở, Pen (n) /pen/ - Bút mực" },
+            { id: 3, name: "Unit 3: Using a dictionary", words: "Dictionary (n) /dık.fən.ər.i/ - Từ điển, Index card (n.phr) - Phiếu làm mục lục" },
+            { id: 4, name: "Unit 4: English language words", words: "Grammar (n), Vocabulary (n), Pronunciation (n), Accent (n)" },
+            { id: 5, name: "Unit 5: Country, nationality and language", words: "England (n), France (n), Japan (n), America (n)" },
+            { id: 6, name: "Unit 6: The physical world", words: "Sea (n), Ocean (n), Island (n), Mountain (n)" },
+            { id: 7, name: "Unit 7: Weather", words: "Rain (n/v), Snow (n/v), Wind (n), Storm (n)" },
+            { id: 8, name: "Unit 8: Animals and insects", words: "Dog (n), Cat (n), Tiger (n), Lion (n)" },
+            { id: 9, name: "Unit 9: The body and movement", words: "Head (n), Arm (n), Leg (n), Hand (n)" },
+            { id: 10, name: "Unit 10: Describing appearance", words: "Tall (adj), Short (adj), Slim (adj), Fat (adj), Handsome (adj)" },
+            { id: 11, name: "Unit 11: Describing character", words: "Kind (adj), Generous (adj), Honest (adj), Stubborn (adj)" },
+            { id: 12, name: "Unit 12: Feelings", words: "Happy (adj), Sad (adj), Angry (adj), Excited (adj)" },
+            { id: 13, name: "Unit 13: Family and friends", words: "Father (n), Mother (n), Brother (n), Friend (n)" },
+            { id: 14, name: "Unit 14: Growing up", words: "Childhood (n), Teenager (n), Adult (n), Elderly (adj)" },
+            { id: 15, name: "Unit 15: Romance, marriage and divorce", words: "Bride (n), Groom (n), Wedding (n), Divorce (n/v)" },
+            { id: 16, name: "Unit 16: Daily routines", words: "Get up (v.phr), Brush (v), Breakfast (n)" },
+            { id: 17, name: "Unit 17: The place where you live", words: "House (n), Apartment (n), Village (n), City (n)" },
+            { id: 18, name: "Unit 18: Around the home", words: "Bed (n), Lamp (n), Sofa (n), Table (n)" },
+            { id: 19, name: "Unit 19: Money", words: "Cash (n), Wallet (n), Rich (adj), Poor (adj)" },
+            { id: 20, name: "Unit 20: Health", words: "Fever (n), Cough (n/v), Headache (n), Doctor (n)" },
+            { id: 21, name: "Unit 21: Clothes", words: "Shirt (n), Trousers (n), Shoes (n), Jacket (n)" },
+            { id: 22, name: "Unit 22: Fashion and buying clothes", words: "Size (n), Fashion (n), Style (n)" },
+            { id: 23, name: "Unit 23: Shopping", words: "Customer (n), Cheap (adj), Expensive (adj), Shop (n)" },
+            { id: 24, name: "Unit 24: Food", words: "Beef (n), Pork (n), Bread (n), Rice (n)" },
+            { id: 25, name: "Unit 25: Cooking", words: "Boil (v), Fry (v), Bake (v), Stove (n)" },
+            { id: 26, name: "Unit 26: City life", words: "Traffic (n), Building (n), Subway (n), Street (n)" },
+            { id: 27, name: "Unit 27: Life in the country", words: "Field (n), River (n), Cow (n), Farm (n)" },
+            { id: 28, name: "Unit 28: Transport", words: "Bus (n), Train (n), Plane (n), Car (n)" },
+            { id: 29, name: "Unit 29: On the road", words: "Motorway (n), Driver (n), Road (n)" },
+            { id: 30, name: "Unit 30: Notices and warnings", words: "Danger (n), Warning (n), Caution (n), Stop (v/n)" },
+            { id: 31, name: "Unit 31: Classroom language", words: "Teacher (n), Student (n), Board (n), Lesson (n)" },
+            { id: 32, name: "Unit 32: School education", words: "Primary (adj), High school (n), Exam (n)" },
+            { id: 33, name: "Unit 33: Studying English and taking exams", words: "Pass (v), Fail (v), Revise (v), Test (n)" },
+            { id: 34, name: "Unit 34: University education", words: "Degree (n), Professor (n), Lecture (n)" },
+            { id: 35, name: "Unit 35: Jobs", words: "Engineer (n), Doctor (n), Teacher (n), Nurse (n)" },
+            { id: 36, name: "Unit 36: Talking about your work", words: "Salary (n), Boss (n), Colleague (n), Office (n)" },
+            { id: 37, name: "Unit 37: Making a career", words: "Promotion (n), Experience (n), Skill (n)" },
+            { id: 38, name: "Unit 38: Working in an office", words: "Computer (n), Printer (n), File (n)" },
+            { id: 39, name: "Unit 39: Running a company", words: "Manager (n), Director (n), Company (n)" },
+            { id: 40, name: "Unit 40: Business and finance", words: "Bank (n), Investment (n), Tax (n), Budget (n)" },
+            { id: 41, name: "Unit 41: Sport and leisure", words: "Football (n), Tennis (n), Swimming (n)" },
+            { id: 42, name: "Unit 42: Competitive sport", words: "Match (n), Referee (n), Winner (n), Score (n/v)" },
+            { id: 43, name: "Unit 43: Books and films", words: "Actor (n), Director (n), Script (n), Novel (n)" },
+            { id: 44, name: "Unit 44: Music", words: "Song (n), Guitar (n), Piano (n), Singer (n)" },
+            { id: 45, name: "Unit 45: Special events", words: "Party (n), Festival (n), Celebration (n)" },
+            { id: 46, name: "Unit 46: Travel bookings", words: "Ticket (n), Reservation (n), Flight (n)" },
+            { id: 47, name: "Unit 47: Air travel", words: "Airport (n), Pilot (n), Passenger (n), Luggage (n)" },
+            { id: 48, name: "Unit 48: Hotels and restaurants", words: "Reception (n), Menu (n), Waiter (n), Tip (n)" },
+            { id: 49, name: "Unit 49: Cafes", words: "Coffee (n), Tea (n), Cake (n), Table (n)" },
+            { id: 50, name: "Unit 50: Sightseeing holidays", words: "Tourist (n), Guide (n), Camera (n), Souvenir (n)" },
+            { id: 51, name: "Unit 51: Holidays by the sea", words: "Beach (n), Sand (n), Swim (v), Shell (n)" },
+            { id: 52, name: "Unit 52: Newspapers and television", words: "News (n), Journalist (n), Channel (n), Advert (n)" },
+            { id: 53, name: "Unit 53: Phoning and texting", words: "Call (n/v), Message (n), Smartphone (n)" },
+            { id: 54, name: "Unit 54: Computers", words: "Screen (n), Mouse (n), Keyboard (n), Software (n)" },
+            { id: 55, name: "Unit 55: Email and the Internet", words: "Website (n), Browser (n), Download (v)" },
+            { id: 56, name: "Unit 56: Crime", words: "Police (n), Thief (n), Prison (n), Fine (n)" },
+            { id: 57, name: "Unit 57: Politics", words: "Government (n), Election (n), President (n)" },
+            { id: 58, name: "Unit 58: Climate change", words: "Pollution (n), Carbon (n)" },
+            { id: 59, name: "Unit 59: War and violence", words: "Army (n), Soldier (n), Weapon (n), Peace (n)" },
+            { id: 60, name: "Unit 60: Time", words: "Second (n), Minute (n), Hour (n), Century (n)" }
         ];
 
         const vocabContainer = document.getElementById('vocab-units-container');
         vocabUnitsData.forEach(item => {
             vocabContainer.innerHTML += `<div class="item-card" onclick="openVocabDetail(${item.id}, '${item.name}', '${item.words}')">
-                <h4 style="font-size:14px; margin-bottom:4px; font-weight:700;">${item.name}</h4>
-                <p style="font-size:12px; color:var(--text-muted);">Học từ vựng chi tiết kèm phiên âm & ý nghĩa</p>
-                <span style="font-size:11px; color:var(--primary-accent); font-weight:800; display:inline-block; margin-top:8px;">Mở bài học →</span>
+                <h4 style="font-size:13px; font-weight:700; margin-bottom:4px;">${item.name}</h4>
+                <p style="font-size:11px; color:var(--text-muted);">Xem chi tiết từ vựng kèm từ loại</p>
+                <span style="font-size:11px; color:var(--galaxy-accent); font-weight:700; display:inline-block; margin-top:6px;">Mở bài học →</span>
             </div>`;
         });
 
         const grammarContainer = document.getElementById('grammar-units-container');
         for(let i=1; i<=100; i++) {
             grammarContainer.innerHTML += `<div class="item-card" onclick="openGrammarDetail(${i})">
-                <h4 style="font-size:14px; margin-bottom:4px; font-weight:700;">Chuyên Đề Ngữ Pháp ${i}</h4>
-                <p style="font-size:12px; color:var(--text-muted);">Cấu trúc trọng tâm, quy tắc & bài tập sửa lỗi sai</p>
-                <span style="font-size:11px; color:var(--pink-accent); font-weight:800; display:inline-block; margin-top:8px;">Xem chi tiết →</span>
+                <h4 style="font-size:13px; font-weight:700; margin-bottom:4px;">Chuyên Đề Ngữ Pháp ${i}</h4>
+                <p style="font-size:11px; color:var(--text-muted);">Quy tắc cấu trúc & bài tập sửa lỗi</p>
+                <span style="font-size:11px; color:var(--galaxy-accent); font-weight:700; display:inline-block; margin-top:6px;">Xem chi tiết →</span>
             </div>`;
         }
 
         function openVocabDetail(id, title, words) {
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-content').innerHTML = `
-                <p style="font-weight:700; margin-bottom:8px;">Danh sách mục từ vựng trọng tâm:</p>
-                <p style="background:#f8fafc; padding:14px; border-radius:12px; border:1px solid var(--border-color); line-height:1.6;">${words}</p>
-                <p style="margin-top:15px; color:var(--text-muted); font-size:12px;">Được biên soạn đầy đủ từ tài liệu Oxford chuẩn quốc tế.</p>
+                <p style="font-weight:700; margin-bottom:6px;">Danh sách mục từ vựng (kèm từ loại):</p>
+                <p style="background:#f8fafc; padding:12px; border-radius:10px; border:1px solid var(--border-color); line-height:1.6;">${words}</p>
             `;
             document.getElementById('detail-modal').style.display = 'flex';
         }
@@ -512,11 +438,8 @@
         function openGrammarDetail(unitNum) {
             document.getElementById('modal-title').innerText = `Chuyên Đề Ngữ Pháp Số ${unitNum}`;
             document.getElementById('modal-content').innerHTML = `
-                <p style="font-weight:700; margin-bottom:8px;">Lý thuyết trọng tâm & Quy tắc:</p>
-                <p>Chuyên đề số ${unitNum} cung cấp hệ thống cấu trúc câu, cách phân biệt các thì, dạng thức từ loại và phương pháp sửa lỗi sai phổ biến.</p>
-                <div style="background:#f8fafc; padding:14px; border-radius:12px; margin-top:12px; border:1px solid var(--border-color);">
-                    <p><b>Ví dụ minh họa:</b> She enjoys learning English every day. (Lưu ý động từ theo sau 'enjoy' luôn ở dạng V-ing).</p>
-                </div>
+                <p style="font-weight:700; margin-bottom:6px;">Lý thuyết trọng tâm:</p>
+                <p>Cung cấp cấu trúc câu chuẩn, giải thích chi tiết quy tắc ngữ pháp và ví dụ sửa lỗi sai thực tế cho chuyên đề ${unitNum}.</p>
             `;
             document.getElementById('detail-modal').style.display = 'flex';
         }
@@ -528,7 +451,7 @@
         let livesG1 = 3;
         function answerGame1(choiceIndex) {
             if(choiceIndex === 0) {
-                alert("Chính xác! Ethan và Uliam tiêu diệt quái vật Lizzert thành công.");
+                alert("Chính xác! Bạn đã vượt qua thử thách.");
             } else {
                 livesG1--;
                 let hStr = "";
@@ -536,11 +459,11 @@
                 for(let i=livesG1; i<3; i++) hStr += "🖤";
                 document.getElementById('g1-hearts').innerText = hStr;
                 if(livesG1 <= 0) {
-                    alert("Bạn đã hết mạng! Trò chơi kết thúc, hãy thử lại.");
+                    alert("Hết mạng! Thử lại nhé.");
                     livesG1 = 3;
                     document.getElementById('g1-hearts').innerText = "❤️❤️❤️";
                 } else {
-                    alert("Sai rồi! Bạn mất 1 mạng.");
+                    alert("Sai rồi! Mất 1 mạng.");
                 }
             }
         }
@@ -555,3 +478,4 @@
     </script>
 </body>
 </html>
+           
