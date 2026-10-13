@@ -309,7 +309,7 @@
             box-shadow: var(--shadow-sm);
         }
 
-        /* RESPONSIVE DESIGN CHO ĐIỆN THOẠI (MOBILE OPTIMIZED) */
+        /* RESPONSIVE DESIGN CHO ĐIỆN THOẠI */
         @media (max-width: 768px) {
             .mobile-header { display: flex; }
             aside {
@@ -711,11 +711,14 @@
             document.getElementById('overall-progress').style.width = Math.max(15, pct) + '%';
         }
 
+        // ================= KHO TỪ VỰNG SẠCH 100% KHÔNG DẤU/KÝ TỰ SỐ THỪA =================
         const topicWordDatabase = {
             "Animals and insects": [
                 ["Lion", "n", "/ˈlaɪ.ən/", "Con sư tử"], ["Tiger", "n", "/ˈtaɪ.ɡər/", "Con hổ"], ["Elephant", "n", "/ˈel.ɪ.fənt/", "Con voi"],
                 ["Monkey", "n", "/ˈmʌŋ.ki/", "Con khỉ"], ["Butterfly", "n", "/ˈbʌt.ə.flaɪ/", "Con bướm"], ["Mosquito", "n", "/məˈskiː.təʊ/", "Con muỗi"],
-                ["Dragonfly", "n", "/ˈdræɡ.ən.flaɪ/", "Con chuồn chuồn"], ["Ant", "n", "/ænt/", "Con kiến"], ["Bee", "n", "/biː/", "Con ong"]
+                ["Dragonfly", "n", "/ˈdræɡ.ən.flaɪ/", "Con chuồn chuồn"], ["Ant", "n", "/ænt/", "Con kiến"], ["Bee", "n", "/biː/", "Con ong"],
+                ["Giraffe", "n", "/dʒɪˈrɑːf/", "Hươu cao cổ"], ["Dolphin", "n", "/ˈdɒl.fɪn/", "Cá heo"], ["Eagle", "n", "/ˈiː.ɡəl/", "Chim đại bàng"],
+                ["Penguin", "n", "/ˈpeŋ.ɡwɪn/", "Chim cánh cụt"], ["Kangaroo", "n", "/ˌkæŋ.ɡərˈuː/", "Chuột túi"], ["Crocodile", "n", "/ˈkrɒk.ə.daɪl/", "Con cá sấu"]
             ],
             "Weather": [
                 ["Sunny", "adj", "/ˈsʌn.i/", "Nắng ấm"], ["Rainy", "adj", "/ˈreɪ.ni/", "Có mưa"], ["Cloudy", "adj", "/ˈklaʊ.di/", "Nhiều mây"],
@@ -753,7 +756,10 @@
             let wordsArr = [];
             for(let i = 0; i < 30; i++) {
                 let base = wordList[i % wordList.length];
-                wordsArr.push(`${base[0]} (${base[1]}) ${base[2]} - ${base[3]}`);
+                // Xử lý làm sạch hoàn toàn ký tự số/gạch nối nếu có
+                let cleanWord = base[0].replace(/[\d_]/g, '');
+                let cleanMeaning = base[3].replace(/[\d_]/g, '');
+                wordsArr.push(`${cleanWord} (${base[1]}) ${base[2]} - ${cleanMeaning}`);
             }
             return wordsArr.join(", ");
         }
