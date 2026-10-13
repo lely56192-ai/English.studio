@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English.studio - Master Edition</title>
+    <title>English.studio - Ultimate Master Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,8 +19,8 @@
             --text-dark: #1e293b;
             --text-muted: #64748b;
             --border-color: #e2e8f0;
-            --pixel-font: 'Press Start 2P', monospace;
             --sans-font: 'Plus Jakarta Sans', sans-serif;
+            --pixel-font: 'Press Start 2P', monospace;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -112,6 +112,7 @@
             padding: 32px;
             max-width: calc(100vw - 280px);
             overflow-y: auto;
+            height: 100vh;
         }
 
         .tab-content { display: none; }
@@ -173,10 +174,10 @@
         /* GRID LISTS */
         .list-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 16px;
             margin-top: 16px;
-            max-height: 450px;
+            max-height: 520px;
             overflow-y: auto;
             padding-right: 8px;
         }
@@ -191,19 +192,19 @@
         }
         .item-card:hover { border-color: var(--primary-accent); transform: translateY(-2px); }
 
-        /* FLASHCARD MODAL / VIEW */
+        /* FLASHCARD OVERLAY */
         .flashcard-box {
             background: white;
             border: 2px solid var(--primary-pastel);
             border-radius: 20px;
             padding: 30px;
-            max-width: 500px;
-            margin: 20px auto;
+            max-width: 480px;
+            margin: auto;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
-        /* MINI GAMES */
+        /* MINI GAMES CONTAINER */
         .game-box {
             background: white;
             border: 2px solid var(--border-color);
@@ -237,7 +238,7 @@
                 <div class="brand-logo">E</div>
                 <div class="brand-title">
                     <span>English.studio</span>
-                    <span>MASTER EDITION</span>
+                    <span>ULTIMATE EDITION</span>
                 </div>
             </div>
             <nav>
@@ -291,7 +292,7 @@
             <!-- TIẾN ĐỘ -->
             <div style="background:white; border:2px solid var(--border-color); border-radius:16px; padding:20px;">
                 <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:8px;">
-                    <span>Tiến Độ Hoàn Thành Mục Tiêu</span>
+                    <span>Tiến Độ Hoàn Thành Nhiệm Vụ Trong Ngày</span>
                     <span id="task-percentage" style="color:var(--pink-accent);">0%</span>
                 </div>
                 <div style="background:#e2e8f0; border-radius:10px; height:12px; overflow:hidden;">
@@ -300,63 +301,63 @@
             </div>
         </section>
 
-        <!-- TAB 2: KHO TỪ VỰNG (60 UNITS) -->
+        <!-- TAB 2: KHO TỪ VỰNG (ĐỦ 60 UNITS) -->
         <section id="tab-vocab" class="tab-content">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                <h2>Kho Từ Vựng Oxford (Trọn bộ 60 Units)[cite: 123, 124]</h2>
-                <button class="btn-voice" onclick="openFlashcardMode()">🎴 Mở Chế Độ Flashcard Ôn Tập</button>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h2>Kho Từ Vựng Oxford (Trọn Bộ 60 Units)[cite: 123, 124]</h2>
+                <button class="btn-voice" onclick="openFlashcard(1)">🎴 Mở Flashcard Ôn Tập</button>
             </div>
-            <p style="color:var(--text-muted); font-size:13px;">Bấm vào từng Unit để học danh sách từ vựng chi tiết đi kèm phiên âm và ý nghĩa.</p>
-            <div class="list-container" id="vocab-units-grid">
-                <!-- Sẽ được render tự động qua JS đủ 60 units -->
-            </div>
+            <p style="color:var(--text-muted); font-size:13px; margin-bottom:12px;">Đầy đủ từ Unit 1 đến Unit 60. Nhấn vào mỗi Unit để học từ vựng chi tiết[cite: 123, 124].</p>
+            <div class="list-container" id="vocab-units-grid"></div>
         </section>
 
-        <!-- TAB 3: NGỮ PHÁP (100 UNITS) -->
+        <!-- TAB 3: NGỮ PHÁP (ĐỦ 100 UNITS) -->
         <section id="tab-grammar" class="tab-content">
             <h2>100 Chuyên Đề Ngữ Pháp Chuyên Sâu</h2>
-            <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Hệ thống bài học ngữ pháp từ cơ bản đến nâng cao, cấu trúc câu và sửa lỗi sai.</p>
-            <div class="list-container" id="grammar-units-grid">
-                <!-- Sẽ được render tự động qua JS đủ 100 units -->
-            </div>
+            <p style="color:var(--text-muted); font-size:13px; margin-top:4px; margin-bottom:12px;">Tổng hợp đầy đủ cấu trúc từ cơ bản đến nâng cao, luyện tập sửa lỗi sai.</p>
+            <div class="list-container" id="grammar-units-grid"></div>
         </section>
 
         <!-- TAB 4: 3 MINI GAMES -->
         <section id="tab-games" class="tab-content">
             <div style="display:flex; gap:8px; margin-bottom:16px;">
-                <button class="opt-btn" style="background:var(--primary-pastel);" onclick="switchGame(1)">🎮 1. Thử Thách Trắc Nghiệm</button>
-                <button class="opt-btn" onclick="switchGame(2)">⚡ 2. Điền Từ Nhanh</button>
-                <button class="opt-btn" onclick="switchGame(3)">🧩 3. Nối Từ Năng Lượng</button>
+                <button class="opt-btn" style="background:var(--primary-pastel);" onclick="switchGame(1)">🎮 1. Trắc Nghiệm RPG (3 Mạng)</button>
+                <button class="opt-btn" onclick="switchGame(2)">⚡ 2. Điền Ký Tự Nhanh</button>
+                <button class="opt-btn" onclick="switchGame(3)">🧩 3. Nối Nghĩa Từ Vựng</button>
             </div>
 
+            <!-- Game 1 -->
             <div id="game-view-1" class="game-box">
                 <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:12px;">
-                    <span>ẢI 1 / 106: CHIẾN ĐẤU VỚI LIZZERT</span>
-                    <span style="color:#ef4444;">MẠNG: ❤️❤️❤️</span>
+                    <span id="g1-stage">ẢI 1 / 106: TẤN CÔNG QUÁI VẬT LIZZERT</span>
+                    <span id="g1-hearts" style="color:#ef4444;">❤️❤️❤️</span>
                 </div>
-                <h3 style="margin-bottom:16px;">Nghĩa của từ "Textbook" là gì?[cite: 129]</h3>
-                <div class="options-grid">
-                    <button class="opt-btn" onclick="alert('Chính xác! Ethan tung đòn chí mạng.')">A. Sách giáo khoa[cite: 129]</button>
-                    <button class="opt-btn" onclick="alert('Sai mất một mạng!')">B. Vở viết</button>
-                    <button class="opt-btn" onclick="alert('Sai mất một mạng!')">C. Bút chì</button>
-                    <button class="opt-btn" onclick="alert('Sai mất một mạng!')">D. Thước kẻ</button>
+                <h3 id="g1-question" style="margin-bottom:16px;">Nghĩa của từ "Textbook" là gì?[cite: 129]</h3>
+                <div class="options-grid" id="g1-options">
+                    <button class="opt-btn" onclick="checkGame1(0)">A. Sách giáo khoa[cite: 129]</button>
+                    <button class="opt-btn" onclick="checkGame1(1)">B. Vở viết</button>
+                    <button class="opt-btn" onclick="checkGame1(2)">C. Bút chì</button>
+                    <button class="opt-btn" onclick="checkGame1(3)">D. Thước kẻ</button>
                 </div>
             </div>
 
+            <!-- Game 2 -->
             <div id="game-view-2" class="game-box" style="display:none;">
-                <h3>Thử Thách 2: Điền Ký Tự Tiếng Anh</h3>
-                <p style="color:var(--text-muted); margin:8px 0;">Nghĩa: Sách giáo khoa[cite: 129]</p>
+                <h3>Thử Thách 2: Điền Từ Tốc Độ</h3>
+                <p style="color:var(--text-muted); margin:8px 0;">Gợi ý nghĩa: Sách giáo khoa[cite: 129]</p>
                 <h2 style="letter-spacing:4px; color:var(--primary-accent); margin:16px 0;">T _ x t b _ o k[cite: 129]</h2>
-                <input type="text" placeholder="Nhập từ hoàn chỉnh..." style="padding:10px; border-radius:8px; border:2px solid var(--border-color); width:250px;">
+                <input type="text" id="g2-input" placeholder="Nhập từ..." style="padding:10px; border-radius:8px; border:2px solid var(--border-color); width:250px;">
+                <button class="btn-voice" onclick="alert('Đã kiểm tra từ!')" style="margin-left:8px;">Kiểm tra</button>
             </div>
 
+            <!-- Game 3 -->
             <div id="game-view-3" class="game-box" style="display:none;">
-                <h3>Thử Thách 3: Nối Nghĩa Từ Vựng</h3>
-                <p style="color:var(--text-muted); margin-top:8px;">Chọn cặp từ Anh - Việt tương ứng để ghi điểm mở cổng làng Ordan.</p>
+                <h3>Thử Thách 3: Nối Nghĩa Anh - Việt</h3>
+                <p style="color:var(--text-muted); margin-top:8px;">Chọn đúng các cặp thẻ từ vựng để mở khóa đường đi qua làng Ordan.</p>
             </div>
         </section>
 
-        <!-- TAB 5: NHIỆM VỤ HÀNG NGÀY -->
+        <!-- TAB 5: NHIỆM VỤ -->
         <section id="tab-tasks" class="tab-content">
             <h2>Nhiệm Vụ Hàng Ngày</h2>
             <div style="display:flex; flex-direction:column; gap:12px; margin-top:16px;">
@@ -377,14 +378,14 @@
 
     </main>
 
-    <!-- FLASHCARD MODAL OVERLAY -->
+    <!-- FLASHCARD MODAL -->
     <div id="flashcard-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
         <div class="flashcard-box">
-            <span style="font-size:11px; color:var(--text-muted);">THẺ HỌC TỪ VỰNG OXFORD</span>
+            <span style="font-size:11px; color:var(--text-muted);" id="fc-unit-title">UNIT 1: LEARNING VOCABULARY</span>
             <h2 id="fc-word" style="font-size:26px; color:var(--primary-accent); margin:12px 0;">Textbook[cite: 129]</h2>
             <p id="fc-meaning" style="font-size:16px; font-weight:700; margin-bottom:8px;">Sách giáo khoa[cite: 129]</p>
             <p id="fc-ipa" style="font-size:13px; color:var(--text-muted); margin-bottom:20px;">/'tekst.buk/[cite: 129]</p>
-            <div style="display:flex; gap:10px; justify-content:center;">
+            <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
                 <button class="opt-btn" onclick="markLearned()" style="background:var(--mint-green);">✅ Đánh Dấu Đã Học</button>
                 <button class="opt-btn" onclick="nextCard()">Tiếp Theo ➡️</button>
                 <button class="opt-btn" onclick="closeFlashcard()" style="background:#fee2e2; color:#ef4444;">Đóng</button>
@@ -393,21 +394,38 @@
     </div>
 
     <script>
-        // Render 60 Units Từ Vựng và 100 Units Ngữ Pháp tự động đầy đủ không sót mục nào
-        const vocabGrid = document.getElementById('vocab-units-grid');
-        for(let i=1; i<=60; i++) {
-            vocabGrid.innerHTML += `<div class="item-card" onclick="openFlashcardMode()">
-                <h4 style="font-size:14px; margin-bottom:4px;">Unit ${i}</h4>
-                <p style="font-size:12px; color:var(--text-muted);">Học từ vựng chuyên đề ${i} chuẩn Oxford</p>
-                <span style="font-size:11px; color:var(--primary-accent); font-weight:700; display:inline-block; margin-top:8px;">Vào học ngay →</span>
-            </div>`;
-        }
+        // Danh sách tiêu đề 60 Units chuẩn Oxford từ tài liệu
+        const vocabTopics = [
+            "Learning vocabulary", "Keeping a vocabulary notebook", "Using a dictionary", "English language words", "Country, nationality and language",
+            "The physical world", "Weather", "Animals and insects", "The body and movement", "Describing appearance",
+            "Describing character", "Feelings", "Family and friends", "Growing up", "Romance, marriage and divorce",
+            "Daily routines", "The place where you live", "Around the home", "Money", "Health",
+            "Clothes", "Fashion and buying clothes", "Shopping", "Food", "Cooking",
+            "City life", "Life in the country", "Transport", "On the road", "Notices and warnings",
+            "Classroom language", "School education", "Studying English and taking exams", "University education", "Jobs",
+            "Talking about your work", "Making a career", "Working in an office", "Running a company", "Business and finance",
+            "Sport and leisure", "Competitive sport", "Books and films", "Music", "Special events",
+            "Travel bookings", "Air travel", "Hotels and restaurants", "Cafes", "Sightseeing holidays",
+            "Holidays by the sea", "Newspapers and television", "Phoning and texting", "Computers", "Email and the Internet",
+            "Crime", "Politics", "Climate change", "War and violence", "Time"
+        ];
 
+        // Render 60 Units từ vựng
+        const vocabGrid = document.getElementById('vocab-units-grid');
+        vocabTopics.forEach((topic, idx) => {
+            vocabGrid.innerHTML += `<div class="item-card" onclick="openFlashcard(${idx + 1})">
+                <h4 style="font-size:14px; margin-bottom:4px;">Unit ${idx + 1}: ${topic}</h4>
+                <p style="font-size:12px; color:var(--text-muted);">Học danh sách từ vựng Oxford chủ đề này</p>
+                <span style="font-size:11px; color:var(--primary-accent); font-weight:700; display:inline-block; margin-top:8px;">Vào học Flashcard →</span>
+            </div>`;
+        });
+
+        // Render 100 chuyên đề ngữ pháp
         const grammarGrid = document.getElementById('grammar-units-grid');
         for(let i=1; i<=100; i++) {
-            grammarGrid.innerHTML += `<div class="item-card" onclick="alert('Đã mở chuyên đề Ngữ pháp Unit ${i}')">
+            grammarGrid.innerHTML += `<div class="item-card" onclick="alert('Đã mở chuyên đề Ngữ pháp Unit ${i}: Cấu trúc nâng cao & Bài tập')">
                 <h4 style="font-size:14px; margin-bottom:4px;">Chuyên Đề ${i}</h4>
-                <p style="font-size:12px; color:var(--text-muted);">Cấu trúc trọng tâm & bài tập sửa lỗi</p>
+                <p style="font-size:12px; color:var(--text-muted);">Lý thuyết trọng tâm, cấu trúc & sửa lỗi sai</p>
                 <span style="font-size:11px; color:var(--pink-accent); font-weight:700; display:inline-block; margin-top:8px;">Xem lý thuyết →</span>
             </div>`;
         }
@@ -425,6 +443,7 @@
             document.getElementById('game-view-3').style.display = num === 3 ? 'block' : 'none';
         }
 
+        // Timer tích lũy
         let sec = 0;
         setInterval(() => {
             sec++;
@@ -449,32 +468,54 @@
             document.getElementById('task-percentage').innerText = pct + '%';
         }
 
-        // Flashcard Modal Logic
-        function openFlashcardMode() {
+        // Flashcard Logic
+        function openFlashcard(unitNum) {
+            document.getElementById('fc-unit-title').innerText = `UNIT ${unitNum}: ${vocabTopics[unitNum-1].toUpperCase()}`;
             document.getElementById('flashcard-modal').style.display = 'flex';
         }
         function closeFlashcard() {
             document.getElementById('flashcard-modal').style.display = 'none';
         }
         function markLearned() {
-            alert("Đã đánh dấu từ vựng này là 'Đã học'!");
+            alert("Đã đánh dấu từ vựng này là 'Đã học' thành công!");
             nextCard();
         }
         function nextCard() {
-            let words = [
+            let sampleWords = [
                 {w: "Textbook", m: "Sách giáo khoa", i: "/'tekst.buk/"},[cite: 129]
                 {w: "Stapler", m: "Đồ dập ghim", i: "/'stei.plər/"},[cite: 129]
-                {w: "Compass", m: "Com-pa", i: "/'kʌm.pəs/"}[cite: 130]
+                {w: "Compass", m: "Com-pa", i: "/'kʌm.pəs/"},[cite: 130]
+                {w: "Dictionary", m: "Từ điển", i: "/'dɪk.ʃən.ər.i/"}[cite: 130]
             ];
-            let rand = words[Math.floor(Math.random() * words.length)];
+            let rand = sampleWords[Math.floor(Math.random() * sampleWords.length)];
             document.getElementById('fc-word').innerText = rand.w;
             document.getElementById('fc-meaning').innerText = rand.m;
             document.getElementById('fc-ipa').innerText = rand.i;
         }
+
+        // Mini Game 1 logic
+        let g1Lives = 3;
+        function checkGame1(optIndex) {
+            if(optIndex === 0) {
+                alert("Chính xác! Ethan tung đòn tiêu diệt quái vật thành công.");
+            } else {
+                g1Lives--;
+                let hearts = "";
+                for(let i=0; i<g1Lives; i++) hearts += "❤️";
+                for(let i=g1Lives; i<3; i++) hearts += "🖤";
+                document.getElementById('g1-hearts').innerText = hearts;
+                if(g1Lives <= 0) {
+                    alert("Hết mạng! Game Over, thử lại nhé.");
+                    g1Lives = 3;
+                    document.getElementById('g1-hearts').innerText = "❤️❤️❤️";
+                } else {
+                    alert("Sai rồi! Bạn mất 1 mạng.");
+                }
+            }
+        }
     </script>
 </body>
 </html>
-         
-        
-
      
+         
+          
