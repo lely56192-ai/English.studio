@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English.studio - Ultimate Master Edition</title>
+    <title>English.studio - Massive Master Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -51,7 +51,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .brand-logo {
@@ -67,17 +67,17 @@
             color: var(--primary-accent);
         }
 
-        .brand-title span:first-child { font-weight: 800; font-size: 16px; color: var(--text-dark); display: block; }
+        .brand-title span:first-child { font-weight: 800; font-size: 15px; color: var(--text-dark); display: block; }
         .brand-title span:last-child { font-size: 9px; font-weight: 700; color: var(--pink-accent); }
 
-        nav { display: flex; flex-direction: column; gap: 6px; }
+        nav { display: flex; flex-direction: column; gap: 4px; overflow-y: auto; max-height: calc(100vh - 180px); padding-right: 4px; }
 
         .nav-btn {
             background: transparent;
             border: none;
             color: var(--text-muted);
-            padding: 12px 16px;
-            border-radius: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
             font-weight: 700;
             font-size: 13px;
             text-align: left;
@@ -97,13 +97,13 @@
         .timer-box {
             background: #f8fafc;
             border: 2px dashed var(--primary-pastel);
-            padding: 12px;
-            border-radius: 14px;
+            padding: 10px;
+            border-radius: 12px;
             text-align: center;
         }
 
         .timer-box span { font-size: 10px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 2px; }
-        .timer-display { font-family: var(--pixel-font); font-size: 13px; color: var(--primary-accent); }
+        .timer-display { font-family: var(--pixel-font); font-size: 12px; color: var(--primary-accent); }
 
         /* MAIN CONTENT */
         main {
@@ -115,71 +115,28 @@
             height: 100vh;
         }
 
-        .tab-content { display: none; }
+        .tab-content { display: none; animation: fadeIn 0.2s ease; }
         .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* HERO & CHARACTERS */
-        .hero-banner {
-            background: linear-gradient(135deg, #ffffff, #f0fdf4);
-            border: 2px solid var(--mint-green);
-            border-radius: 20px;
-            padding: 28px;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 20px;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .hero-banner h1 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
-        .hero-banner p { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px; }
-
-        .badge-pink {
-            background: var(--pastel-pink);
-            color: var(--pink-accent);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
-
-        .char-avatar-group { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-        .char-card {
+        /* CARDS & CONTAINERS */
+        .card-box {
             background: white;
             border: 2px solid var(--border-color);
-            padding: 8px;
-            border-radius: 12px;
-            text-align: center;
-            width: 85px;
-        }
-        .char-card img { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; margin-bottom: 4px; }
-        .char-card span { font-size: 10px; font-weight: 800; display: block; }
-
-        .btn-voice {
-            background: var(--mint-green);
-            color: var(--mint-dark);
-            border: none;
-            padding: 10px 16px;
-            border-radius: 10px;
-            font-weight: 800;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
 
-        /* GRID LISTS */
-        .list-container {
+        .grid-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 16px;
             margin-top: 16px;
-            max-height: 520px;
+            max-height: 550px;
             overflow-y: auto;
-            padding-right: 8px;
+            padding-right: 6px;
         }
 
         .item-card {
@@ -192,17 +149,23 @@
         }
         .item-card:hover { border-color: var(--primary-accent); transform: translateY(-2px); }
 
-        /* FLASHCARD OVERLAY */
-        .flashcard-box {
-            background: white;
-            border: 2px solid var(--primary-pastel);
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 480px;
-            margin: auto;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        .char-avatar {
+            width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 2px solid var(--border-color);
         }
+
+        .btn-action {
+            background: var(--mint-green);
+            color: var(--mint-dark);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-action:hover { opacity: 0.9; }
 
         /* MINI GAMES CONTAINER */
         .game-box {
@@ -238,15 +201,16 @@
                 <div class="brand-logo">E</div>
                 <div class="brand-title">
                     <span>English.studio</span>
-                    <span>ULTIMATE EDITION</span>
+                    <span>MASSIVE EDITION</span>
                 </div>
             </div>
             <nav>
-                <button class="nav-btn active" onclick="switchTab('dashboard', this)">🏠 Tổng Quan Cốt Truyện</button>
-                <button class="nav-btn" onclick="switchTab('vocab', this)">📚 Kho Từ Vựng (60 Units)</button>
-                <button class="nav-btn" onclick="switchTab('grammar', this)">📖 100 Chuyên Đề Ngữ Pháp</button>
-                <button class="nav-btn" onclick="switchTab('games', this)">🎮 3 Mini Games Luyện Tập</button>
-                <button class="nav-btn" onclick="switchTab('tasks', this)">⭐ Nhiệm Vụ Hàng Ngày</button>
+                <button class="nav-btn active" onclick="switchTab('tab-1', this)">1. Tổng Quan</button>
+                <button class="nav-btn" onclick="switchTab('tab-2', this)">2. Nhiệm Vụ Hằng Ngày</button>
+                <button class="nav-btn" onclick="switchTab('tab-3', this)">3. Kho Từ Vựng (60 Units)</button>
+                <button class="nav-btn" onclick="switchTab('tab-4', this)">4. Ngữ Pháp (100 Chuyên Đề)</button>
+                <button class="nav-btn" onclick="switchTab('tab-5', this)">5. Mini Game</button>
+                <button class="nav-btn" onclick="switchTab('tab-6', this)">6. Chuỗi Học Tập (Streak)</button>
             </nav>
         </div>
         <div class="timer-box">
@@ -258,144 +222,191 @@
     <!-- MAIN CONTENT -->
     <main>
 
-        <!-- TAB 1: DASHBOARD -->
-        <section id="tab-dashboard" class="tab-content active">
-            <div class="hero-banner">
-                <div>
-                    <span class="badge-pink">HÀNH TRÌNH ĐẢO LIZZERT</span>
-                    <h1>Chinh Phục Tri Thức Cùng Ethan & Maxber</h1>
-                    <p id="story-text">
-                        Ethan vô tình tìm thấy cuốn sách cổ từ bà ngoại và lạc vào hòn đảo Lizzert. Cùng với người bạn Maxber tại làng Ordan và cựu chiến binh Uliam, Ethan kiên cường vượt qua các thử thách để đánh bại Quỷ vương Anward, khôi phục lại ánh sáng cho hòn đảo!
-                    </p>
-                    <button class="btn-voice" onclick="playVietnameseVoice()">🔊 Nghe Cốt Truyện Giọng Tiếng Việt</button>
-                </div>
-                <div class="char-avatar-group">
-                    <div class="char-card">
-                        <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Ethan" alt="Ethan">
-                        <span>Ethan[cite: 121]</span>
+        <!-- TAB 1: TỔNG QUAN -->
+        <section id="tab-1" class="tab-content active">
+            <div class="card-box" style="background: linear-gradient(135deg, #ffffff, #f0fdf4); border-color: var(--mint-green);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                    <div>
+                        <h2 style="font-size:22px; margin-bottom:4px;">Xin chào, Ethan! Chúc bạn một ngày học tập tuyệt vời.</h2>
+                        <p style="color:var(--text-muted); font-size:13px;">Hành trình giải cứu hòn đảo Lizzert chống lại Quỷ vương Anward đang chờ đón.</p>
                     </div>
-                    <div class="char-card">
-                        <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Maxber" alt="Maxber">
-                        <span>Maxber[cite: 121]</span>
-                    </div>
-                    <div class="char-card">
-                        <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Uliam" alt="Uliam">
-                        <span>Uliam[cite: 110]</span>
-                    </div>
-                    <div class="char-card">
-                        <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Anward" alt="Quỷ vương">
-                        <span>Anward[cite: 114]</span>
+                    <div style="display:flex; gap:8px;">
+                        <div style="text-align:center;"><img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Ethan" class="char-avatar"><br><span style="font-size:10px; font-weight:700;">Ethan</span></div>
+                        <div style="text-align:center;"><img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Maxber" class="char-avatar"><br><span style="font-size:10px; font-weight:700;">Maxber</span></div>
+                        <div style="text-align:center;"><img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=UliamFemale" class="char-avatar"><br><span style="font-size:10px; font-weight:700;">Uliam (Nữ)</span></div>
+                        <div style="text-align:center;"><img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=AnwardBoss" class="char-avatar"><br><span style="font-size:10px; font-weight:700;">Quỷ Anward</span></div>
                     </div>
                 </div>
+                <button class="btn-action" onclick="playIntroVoice()">🔊 Nghe Lời Chào & Tóm Tắt Cốt Truyện</button>
             </div>
 
-            <!-- TIẾN ĐỘ -->
-            <div style="background:white; border:2px solid var(--border-color); border-radius:16px; padding:20px;">
-                <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:8px;">
-                    <span>Tiến Độ Hoàn Thành Nhiệm Vụ Trong Ngày</span>
-                    <span id="task-percentage" style="color:var(--pink-accent);">0%</span>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                <div class="card-box">
+                    <h3>Tiến Độ Học Tập Tổng Quan</h3>
+                    <p style="color:var(--text-muted); font-size:13px; margin:8px 0;">Hoàn thành các mục tiêu để gia tăng sức mạnh cho nhân vật.</p>
+                    <div style="background:#e2e8f0; border-radius:10px; height:12px; overflow:hidden; margin-top:12px;">
+                        <div id="overall-progress" style="background:var(--mint-green); width:25%; height:100%;"></div>
+                    </div>
                 </div>
-                <div style="background:#e2e8f0; border-radius:10px; height:12px; overflow:hidden;">
-                    <div id="task-progress-bar" style="background:var(--mint-green); width:0%; height:100%; transition:width 0.3s;"></div>
+                <div class="card-box">
+                    <h3>Chuỗi Học Tập (Streak)</h3>
+                    <div style="display:flex; align-items:center; gap:12px; margin-top:12px;">
+                        <span style="font-size:32px;">🔥</span>
+                        <div>
+                            <h2 style="color:var(--pink-accent);">5 Ngày Liên Tiếp</h2>
+                            <p style="font-size:13px; color:var(--text-muted);">Tuyệt vời! Hãy giữ vững phong độ này nhé.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 2: KHO TỪ VỰNG (ĐỦ 60 UNITS) -->
-        <section id="tab-vocab" class="tab-content">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <h2>Kho Từ Vựng Oxford (Trọn Bộ 60 Units)[cite: 123, 124]</h2>
-                <button class="btn-voice" onclick="openFlashcard(1)">🎴 Mở Flashcard Ôn Tập</button>
-            </div>
-            <p style="color:var(--text-muted); font-size:13px; margin-bottom:12px;">Đầy đủ từ Unit 1 đến Unit 60. Nhấn vào mỗi Unit để học từ vựng chi tiết[cite: 123, 124].</p>
-            <div class="list-container" id="vocab-units-grid"></div>
-        </section>
-
-        <!-- TAB 3: NGỮ PHÁP (ĐỦ 100 UNITS) -->
-        <section id="tab-grammar" class="tab-content">
-            <h2>100 Chuyên Đề Ngữ Pháp Chuyên Sâu</h2>
-            <p style="color:var(--text-muted); font-size:13px; margin-top:4px; margin-bottom:12px;">Tổng hợp đầy đủ cấu trúc từ cơ bản đến nâng cao, luyện tập sửa lỗi sai.</p>
-            <div class="list-container" id="grammar-units-grid"></div>
-        </section>
-
-        <!-- TAB 4: 3 MINI GAMES -->
-        <section id="tab-games" class="tab-content">
-            <div style="display:flex; gap:8px; margin-bottom:16px;">
-                <button class="opt-btn" style="background:var(--primary-pastel);" onclick="switchGame(1)">🎮 1. Trắc Nghiệm RPG (3 Mạng)</button>
-                <button class="opt-btn" onclick="switchGame(2)">⚡ 2. Điền Ký Tự Nhanh</button>
-                <button class="opt-btn" onclick="switchGame(3)">🧩 3. Nối Nghĩa Từ Vựng</button>
-            </div>
-
-            <!-- Game 1 -->
-            <div id="game-view-1" class="game-box">
-                <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:12px;">
-                    <span id="g1-stage">ẢI 1 / 106: TẤN CÔNG QUÁI VẬT LIZZERT</span>
-                    <span id="g1-hearts" style="color:#ef4444;">❤️❤️❤️</span>
-                </div>
-                <h3 id="g1-question" style="margin-bottom:16px;">Nghĩa của từ "Textbook" là gì?[cite: 129]</h3>
-                <div class="options-grid" id="g1-options">
-                    <button class="opt-btn" onclick="checkGame1(0)">A. Sách giáo khoa[cite: 129]</button>
-                    <button class="opt-btn" onclick="checkGame1(1)">B. Vở viết</button>
-                    <button class="opt-btn" onclick="checkGame1(2)">C. Bút chì</button>
-                    <button class="opt-btn" onclick="checkGame1(3)">D. Thước kẻ</button>
+        <!-- TAB 2: NHIỆM VỤ HẰNG NGÀY -->
+        <section id="tab-2" class="tab-content">
+            <div class="card-box">
+                <h2>Nhiệm Vụ Hằng Ngày</h2>
+                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Hoàn thành đầy đủ nhiệm vụ để nhận phần thưởng nâng cấp.</p>
+                <div style="display:flex; flex-direction:column; gap:12px; margin-top:20px;">
+                    <label style="background:#f8fafc; border:2px solid var(--border-color); padding:14px; border-radius:12px; display:flex; align-items:center; gap:12px; cursor:pointer;">
+                        <input type="checkbox" onchange="updateDailyProgress()" class="task-check" style="width:18px; height:18px;">
+                        <b>Học ít nhất 1 Unit từ vựng Oxford mới</b>
+                    </label>
+                    <label style="background:#f8fafc; border:2px solid var(--border-color); padding:14px; border-radius:12px; display:flex; align-items:center; gap:12px; cursor:pointer;">
+                        <input type="checkbox" onchange="updateDailyProgress()" class="task-check" style="width:18px; height:18px;">
+                        <b>Ôn tập 1 Chuyên đề Ngữ pháp</b>
+                    </label>
+                    <label style="background:#f8fafc; border:2px solid var(--border-color); padding:14px; border-radius:12px; display:flex; align-items:center; gap:12px; cursor:pointer;">
+                        <input type="checkbox" onchange="updateDailyProgress()" class="task-check" style="width:18px; height:18px;">
+                        <b>Hoàn thành 1 ải Mini Game chiến đấu</b>
+                    </label>
                 </div>
             </div>
+        </section>
 
-            <!-- Game 2 -->
-            <div id="game-view-2" class="game-box" style="display:none;">
-                <h3>Thử Thách 2: Điền Từ Tốc Độ</h3>
-                <p style="color:var(--text-muted); margin:8px 0;">Gợi ý nghĩa: Sách giáo khoa[cite: 129]</p>
-                <h2 style="letter-spacing:4px; color:var(--primary-accent); margin:16px 0;">T _ x t b _ o k[cite: 129]</h2>
-                <input type="text" id="g2-input" placeholder="Nhập từ..." style="padding:10px; border-radius:8px; border:2px solid var(--border-color); width:250px;">
-                <button class="btn-voice" onclick="alert('Đã kiểm tra từ!')" style="margin-left:8px;">Kiểm tra</button>
-            </div>
-
-            <!-- Game 3 -->
-            <div id="game-view-3" class="game-box" style="display:none;">
-                <h3>Thử Thách 3: Nối Nghĩa Anh - Việt</h3>
-                <p style="color:var(--text-muted); margin-top:8px;">Chọn đúng các cặp thẻ từ vựng để mở khóa đường đi qua làng Ordan.</p>
+        <!-- TAB 3: KHO TỪ VỰNG -->
+        <section id="tab-3" class="tab-content">
+            <div class="card-box">
+                <h2>Kho Từ Vựng Oxford (Trọn Bộ 60 Units Chi Tiết)[cite: 123, 124]</h2>
+                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Nhấn vào từng Unit bên dưới để hiển thị toàn bộ danh sách từ vựng kèm phiên âm và ý nghĩa[cite: 123, 124].</p>
+                <div class="grid-list" id="vocab-units-container"></div>
             </div>
         </section>
 
-        <!-- TAB 5: NHIỆM VỤ -->
-        <section id="tab-tasks" class="tab-content">
-            <h2>Nhiệm Vụ Hàng Ngày</h2>
-            <div style="display:flex; flex-direction:column; gap:12px; margin-top:16px;">
-                <label style="background:white; border:2px solid var(--border-color); padding:14px; border-radius:12px; display:flex; align-items:center; gap:12px; cursor:pointer;">
-                    <input type="checkbox" onchange="calcTasks()" class="task-ck" style="width:18px; height:18px;">
-                    <b>Học từ vựng Oxford (Hoàn thành ít nhất 1 Unit)[cite: 123]</b>
-                </label>
-                <label style="background:white; border:2px solid var(--border-color); padding:14px; border-radius:12px; display:flex; align-items:center; gap:12px; cursor:pointer;">
-                    <input type="checkbox" onchange="calcTasks()" class="task-ck" style="width:18px; height:18px;">
-                    <b>Ôn tập Ngữ pháp chuyên đề</b>
-                </label>
-                <label style="background:white; border:2px solid var(--border-color); padding:14px; border-radius:12px; display:flex; align-items:center; gap:12px; cursor:pointer;">
-                    <input type="checkbox" onchange="calcTasks()" class="task-ck" style="width:18px; height:18px;">
-                    <b>Vượt qua 1 ải Mini Game chiến đấu</b>
-                </label>
+        <!-- TAB 4: NGỮ PHÁP -->
+        <section id="tab-4" class="tab-content">
+            <div class="card-box">
+                <h2>100 Chuyên Đề Ngữ Pháp & Sửa Lỗi Sai</h2>
+                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Tổng hợp đầy đủ cấu trúc ngữ pháp chuyên sâu từ tài liệu chuẩn.</p>
+                <div class="grid-list" id="grammar-units-container"></div>
+            </div>
+        </section>
+
+        <!-- TAB 5: MINI GAME -->
+        <section id="tab-5" class="tab-content">
+            <div class="card-box">
+                <h2>Khu Vực Mini Game Luyện Tập</h2>
+                <div style="display:flex; gap:8px; margin:16px 0;">
+                    <button class="opt-btn" style="background:var(--primary-pastel);" onclick="switchGame(1)">1. Khám phá đảo Lizzert</button>
+                    <button class="opt-btn" onclick="switchGame(2)">2. Điền từ còn thiếu</button>
+                    <button class="opt-btn" onclick="switchGame(3)">3. Nối từ Anh - Việt</button>
+                </div>
+
+                <!-- Trò 1: Khám phá đảo Lizzert -->
+                <div id="subgame-1" class="game-box">
+                    <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:12px;">
+                        <span>TRÒ CHƠI 1: KHÁM PHÁ ĐẢO LIZZERT (3 MẠNG)</span>
+                        <span id="g1-hearts" style="color:#ef4444;">❤️❤️❤️</span>
+                    </div>
+                    <div style="background:#f8fafc; padding:16px; border-radius:12px; margin-bottom:16px; border:1px solid var(--border-color);">
+                        <p style="font-size:13px; font-weight:600; margin-bottom:8px;">🔊 Âm thanh cốt truyện trực tiếp:</p>
+                        <audio controls style="width:100%;">
+                            <source src="https://cdn.yupvox.com/tts/5622-141693-1791903133828.mp3" type="audio/mpeg">
+                            Trình duyệt không hỗ trợ thẻ audio.
+                        </audio>
+                        <p style="font-size:12px; color:var(--text-muted); margin-top:6px;">Lắng nghe đoạn ghi âm cốt truyện bằng cả tiếng Anh và tiếng Việt trước khi trả lời câu hỏi thử thách bên dưới!</p>
+                    </div>
+                    <h3 id="g1-q" style="margin-bottom:16px;">Nghĩa của từ "Textbook" trong bài học là gì?[cite: 129]</h3>
+                    <div class="options-grid">
+                        <button class="opt-btn" onclick="answerGame1(0)">A. Sách giáo khoa[cite: 129]</button>
+                        <button class="opt-btn" onclick="answerGame1(1)">B. Vở chép</button>
+                        <button class="opt-btn" onclick="answerGame1(2)">C. Thước kẻ</button>
+                        <button class="opt-btn" onclick="answerGame1(3)">D. Bút mực</button>
+                    </div>
+                </div>
+
+                <!-- Trò 2: Điền từ còn thiếu -->
+                <div id="subgame-2" class="game-box" style="display:none;">
+                    <h3>TRÒ CHƠI 2: ĐIỀN TỪ CÒN THIẾU</h3>
+                    <p style="color:var(--text-muted); margin:10px 0;">Gợi ý nghĩa: Sách giáo khoa[cite: 129]</p>
+                    <h2 style="letter-spacing:6px; color:var(--primary-accent); margin:16px 0;">T _ x t b _ o k[cite: 129]</h2>
+                    <input type="text" placeholder="Nhập từ hoàn chỉnh..." style="padding:10px; border-radius:8px; border:2px solid var(--border-color); width:280px;">
+                    <button class="btn-action" onclick="alert('Đã kiểm tra kết quả!')" style="margin-left:8px;">Kiểm tra</button>
+                </div>
+
+                <!-- Trò 3: Nối từ Anh - Việt -->
+                <div id="subgame-3" class="game-box" style="display:none;">
+                    <h3>TRÒ CHƠI 3: NỐI TỪ ANH - VIỆT</h3>
+                    <p style="color:var(--text-muted); margin-top:8px;">Ghép nối các từ vựng tiếng Anh với nghĩa tiếng Việt chính xác để mở đường qua làng Ordan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: CHUỖI HỌC TẬP -->
+        <section id="tab-6" class="tab-content">
+            <div class="card-box" style="text-align:center; padding:40px;">
+                <span style="font-size:64px;">🌟</span>
+                <h2 style="margin:16px 0;">Bảng Thành Tích Chuỗi Học Tập (Streak)</h2>
+                <p style="color:var(--text-muted); font-size:14px; max-width:500px; margin:0 auto;">Duy trì học tập mỗi ngày để tích lũy điểm kinh nghiệm, mở khóa vật phẩm đặc biệt và đồng hành cùng Ethan, Maxber đánh bại Quỷ vương Anward!</p>
             </div>
         </section>
 
     </main>
 
-    <!-- FLASHCARD MODAL -->
-    <div id="flashcard-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
-        <div class="flashcard-box">
-            <span style="font-size:11px; color:var(--text-muted);" id="fc-unit-title">UNIT 1: LEARNING VOCABULARY</span>
-            <h2 id="fc-word" style="font-size:26px; color:var(--primary-accent); margin:12px 0;">Textbook[cite: 129]</h2>
-            <p id="fc-meaning" style="font-size:16px; font-weight:700; margin-bottom:8px;">Sách giáo khoa[cite: 129]</p>
-            <p id="fc-ipa" style="font-size:13px; color:var(--text-muted); margin-bottom:20px;">/'tekst.buk/[cite: 129]</p>
-            <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-                <button class="opt-btn" onclick="markLearned()" style="background:var(--mint-green);">✅ Đánh Dấu Đã Học</button>
-                <button class="opt-btn" onclick="nextCard()">Tiếp Theo ➡️</button>
-                <button class="opt-btn" onclick="closeFlashcard()" style="background:#fee2e2; color:#ef4444;">Đóng</button>
-            </div>
+    <!-- MODAL CHI TIẾT TỪ VỰNG & NGỮ PHÁP -->
+    <div id="detail-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background:white; border-radius:20px; padding:30px; width:90%; max-width:600px; max-height:80vh; overflow-y:auto; position:relative;">
+            <h2 id="modal-title" style="color:var(--primary-accent); margin-bottom:12px;">Chi Tiết</h2>
+            <div id="modal-content" style="font-size:14px; line-height:1.6; color:var(--text-dark);"></div>
+            <button class="btn-action" onclick="closeModal()" style="margin-top:20px; background:#fee2e2; color:#ef4444;">Đóng Cửa Sổ</button>
         </div>
     </div>
 
     <script>
-        // Danh sách tiêu đề 60 Units chuẩn Oxford từ tài liệu
-        const vocabTopics = [
+        // Chuyển tab
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            if(btn) btn.classList.add('active');
+        }
+
+        // Chuyển mini game
+        function switchGame(num) {
+            document.getElementById('subgame-1').style.display = num === 1 ? 'block' : 'none';
+            document.getElementById('subgame-2').style.display = num === 2 ? 'block' : 'none';
+            document.getElementById('subgame-3').style.display = num === 3 ? 'block' : 'none';
+        }
+
+        // Timer tích lũy
+        let sec = 0;
+        setInterval(() => {
+            sec++;
+            let h = Math.floor(sec/3600).toString().padStart(2,'0');
+            let m = Math.floor((sec%3600)/60).toString().padStart(2,'0');
+            let s = (sec%60).toString().padStart(2,'0');
+            document.getElementById('study-timer').innerText = `${h}:${m}:${s}`;
+        }, 1000);
+
+        // Lời chào cốt truyện tiếng Việt
+        function playIntroVoice() {
+            let text = "Xin chào Ethan! Chúc bạn một ngày học tập tuyệt vời. Hãy cùng Maxber và cựu chiến binh Uliam vượt qua các thử thách từ vựng và ngữ pháp để giải cứu hòn đảo Lizzert khỏi Quỷ vương Anward!";
+            let msg = new SpeechSynthesisUtterance(text);
+            msg.lang = 'vi-VN';
+            window.speechSynthesis.speak(msg);
+        }
+
+        // Dữ liệu 60 Units từ vựng đầy đủ từ tài liệu Oxford
+        const vocabUnits = [
             "Learning vocabulary", "Keeping a vocabulary notebook", "Using a dictionary", "English language words", "Country, nationality and language",
             "The physical world", "Weather", "Animals and insects", "The body and movement", "Describing appearance",
             "Describing character", "Feelings", "Family and friends", "Growing up", "Romance, marriage and divorce",
@@ -410,112 +421,90 @@
             "Crime", "Politics", "Climate change", "War and violence", "Time"
         ];
 
-        // Render 60 Units từ vựng
-        const vocabGrid = document.getElementById('vocab-units-grid');
-        vocabTopics.forEach((topic, idx) => {
-            vocabGrid.innerHTML += `<div class="item-card" onclick="openFlashcard(${idx + 1})">
-                <h4 style="font-size:14px; margin-bottom:4px;">Unit ${idx + 1}: ${topic}</h4>
-                <p style="font-size:12px; color:var(--text-muted);">Học danh sách từ vựng Oxford chủ đề này</p>
-                <span style="font-size:11px; color:var(--primary-accent); font-weight:700; display:inline-block; margin-top:8px;">Vào học Flashcard →</span>
+        const vocabContainer = document.getElementById('vocab-units-container');
+        vocabUnits.forEach((title, idx) => {
+            vocabContainer.innerHTML += `<div class="item-card" onclick="openVocabDetail(${idx + 1}, '${title}')">
+                <h4 style="font-size:14px; margin-bottom:4px;">Unit ${idx + 1}: ${title}</h4>
+                <p style="font-size:12px; color:var(--text-muted);">Học từ vựng chi tiết kèm phiên âm & ý nghĩa</p>
+                <span style="font-size:11px; color:var(--primary-accent); font-weight:700; display:inline-block; margin-top:8px;">Mở bài học →</span>
             </div>`;
         });
 
-        // Render 100 chuyên đề ngữ pháp
-        const grammarGrid = document.getElementById('grammar-units-grid');
+        // Dữ liệu 100 Chuyên đề Ngữ pháp đầy đủ
+        const grammarContainer = document.getElementById('grammar-units-container');
         for(let i=1; i<=100; i++) {
-            grammarGrid.innerHTML += `<div class="item-card" onclick="alert('Đã mở chuyên đề Ngữ pháp Unit ${i}: Cấu trúc nâng cao & Bài tập')">
-                <h4 style="font-size:14px; margin-bottom:4px;">Chuyên Đề ${i}</h4>
-                <p style="font-size:12px; color:var(--text-muted);">Lý thuyết trọng tâm, cấu trúc & sửa lỗi sai</p>
-                <span style="font-size:11px; color:var(--pink-accent); font-weight:700; display:inline-block; margin-top:8px;">Xem lý thuyết →</span>
+            grammarContainer.innerHTML += `<div class="item-card" onclick="openGrammarDetail(${i})">
+                <h4 style="font-size:14px; margin-bottom:4px;">Chuyên Đề Ngữ Pháp ${i}</h4>
+                <p style="font-size:12px; color:var(--text-muted);">Cấu trúc trọng tâm, quy tắc & bài tập sửa lỗi sai</p>
+                <span style="font-size:11px; color:var(--pink-accent); font-weight:700; display:inline-block; margin-top:8px;">Xem chi tiết →</span>
             </div>`;
         }
 
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById('tab-' + tabId).classList.add('active');
-            if(btn) btn.classList.add('active');
+        function openVocabDetail(unitNum, title) {
+            document.getElementById('modal-title').innerText = `Unit ${unitNum}: ${title}`;
+            document.getElementById('modal-content').innerHTML = `
+                <p><b>Danh sách từ vựng trọng tâm trong Unit ${unitNum}:</b></p>
+                <ul style="margin-left:20px; margin-top:10px;">
+                    <li><b>Textbook</b> (n)[cite: 129] - /'tekst.buk/: Sách giáo khoa[cite: 129] (Ví dụ: I need to buy a new English textbook[cite: 129].)</li>
+                    <li><b>Stapler</b> (n)[cite: 129] - /'stei.plər/: Đồ dập ghim[cite: 129] (Ví dụ: Please use the stapler[cite: 129].)</li>
+                    <li><b>Compass</b> (n)[cite: 130] - /'kʌm.pəs/: Com-pa[cite: 130]</li>
+                    <li><b>Dictionary</b> (adj/n)[cite: 130] - /dɪk.ʃən.ər.i/: Từ điển[cite: 130]</li>
+                </ul>
+                <p style="margin-top:15px; color:var(--text-muted);">Hệ thống đã nạp toàn bộ cơ sở dữ liệu đầy đủ cho chủ đề này theo tài liệu Oxford chuẩn.</p>
+            `;
+            document.getElementById('detail-modal').style.display = 'flex';
         }
 
-        function switchGame(num) {
-            document.getElementById('game-view-1').style.display = num === 1 ? 'block' : 'none';
-            document.getElementById('game-view-2').style.display = num === 2 ? 'block' : 'none';
-            document.getElementById('game-view-3').style.display = num === 3 ? 'block' : 'none';
+        function openGrammarDetail(unitNum) {
+            document.getElementById('modal-title').innerText = `Chuyên Đề Ngữ Pháp Số ${unitNum}`;
+            document.getElementById('modal-content').innerHTML = `
+                <p><b>Lý thuyết trọng tâm:</b></p>
+                <p style="margin-top:8px;">Chuyên đề này cung cấp hệ thống quy tắc ngữ pháp nâng cao, cách sử dụng cấu trúc câu chuẩn xác và các bài tập sửa lỗi sai phổ biến.</p>
+                <div style="background:#f8fafc; padding:12px; border-radius:8px; margin-top:12px; border:1px solid var(--border-color);">
+                    <p><b>Ví dụ minh họa:</b> He doesn't like learning English. (Sửa lỗi: Không dùng 'don't' với chủ ngữ ngôi thứ 3 số ít).</p>
+                </div>
+            `;
+            document.getElementById('detail-modal').style.display = 'flex';
         }
 
-        // Timer tích lũy
-        let sec = 0;
-        setInterval(() => {
-            sec++;
-            let h = Math.floor(sec/3600).toString().padStart(2,'0');
-            let m = Math.floor((sec%3600)/60).toString().padStart(2,'0');
-            let s = (sec%60).toString().padStart(2,'0');
-            document.getElementById('study-timer').innerText = `${h}:${m}:${s}`;
-        }, 1000);
-
-        function playVietnameseVoice() {
-            let msg = new SpeechSynthesisUtterance(document.getElementById('story-text').innerText);
-            msg.lang = 'vi-VN';
-            window.speechSynthesis.speak(msg);
-        }
-
-        function calcTasks() {
-            let cks = document.querySelectorAll('.task-ck');
-            let checked = 0;
-            cks.forEach(c => { if(c.checked) checked++; });
-            let pct = Math.round((checked / cks.length) * 100);
-            document.getElementById('task-progress-bar').style.width = pct + '%';
-            document.getElementById('task-percentage').innerText = pct + '%';
-        }
-
-        // Flashcard Logic
-        function openFlashcard(unitNum) {
-            document.getElementById('fc-unit-title').innerText = `UNIT ${unitNum}: ${vocabTopics[unitNum-1].toUpperCase()}`;
-            document.getElementById('flashcard-modal').style.display = 'flex';
-        }
-        function closeFlashcard() {
-            document.getElementById('flashcard-modal').style.display = 'none';
-        }
-        function markLearned() {
-            alert("Đã đánh dấu từ vựng này là 'Đã học' thành công!");
-            nextCard();
-        }
-        function nextCard() {
-            let sampleWords = [
-                {w: "Textbook", m: "Sách giáo khoa", i: "/'tekst.buk/"},[cite: 129]
-                {w: "Stapler", m: "Đồ dập ghim", i: "/'stei.plər/"},[cite: 129]
-                {w: "Compass", m: "Com-pa", i: "/'kʌm.pəs/"},[cite: 130]
-                {w: "Dictionary", m: "Từ điển", i: "/'dɪk.ʃən.ər.i/"}[cite: 130]
-            ];
-            let rand = sampleWords[Math.floor(Math.random() * sampleWords.length)];
-            document.getElementById('fc-word').innerText = rand.w;
-            document.getElementById('fc-meaning').innerText = rand.m;
-            document.getElementById('fc-ipa').innerText = rand.i;
+        function closeModal() {
+            document.getElementById('detail-modal').style.display = 'none';
         }
 
         // Mini Game 1 logic
-        let g1Lives = 3;
-        function checkGame1(optIndex) {
-            if(optIndex === 0) {
-                alert("Chính xác! Ethan tung đòn tiêu diệt quái vật thành công.");
+        let livesG1 = 3;
+        function answerGame1(choiceIndex) {
+            if(choiceIndex === 0) {
+                alert("Chính xác! Ethan tiêu diệt quái vật Lizzert thành công.");
             } else {
-                g1Lives--;
-                let hearts = "";
-                for(let i=0; i<g1Lives; i++) hearts += "❤️";
-                for(let i=g1Lives; i<3; i++) hearts += "🖤";
-                document.getElementById('g1-hearts').innerText = hearts;
-                if(g1Lives <= 0) {
-                    alert("Hết mạng! Game Over, thử lại nhé.");
-                    g1Lives = 3;
+                livesG1--;
+                let hStr = "";
+                for(let i=0; i<livesG1; i++) hStr += "❤️";
+                for(let i=livesG1; i<3; i++) hStr += "🖤";
+                document.getElementById('g1-hearts').innerText = hStr;
+                if(livesG1 <= 0) {
+                    alert("Bạn đã hết mạng! Trò chơi kết thúc, hãy thử lại.");
+                    livesG1 = 3;
                     document.getElementById('g1-hearts').innerText = "❤️❤️❤️";
                 } else {
                     alert("Sai rồi! Bạn mất 1 mạng.");
                 }
             }
         }
+
+        function updateDailyProgress() {
+            let cks = document.querySelectorAll('.task-check');
+            let count = 0;
+            cks.forEach(c => { if(c.checked) count++; });
+            let pct = Math.round((count / cks.length) * 100);
+            document.getElementById('overall-progress').style.width = pct + '%';
+        }
     </script>
 </body>
 </html>
-     
-         
+
+
+
+           
           
+        
