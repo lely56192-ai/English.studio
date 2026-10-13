@@ -431,7 +431,7 @@
                     <button class="btn-action" style="background:#0f172a;" onclick="switchGame(3)">3. Ghép cặp Anh - Việt</button>
                 </div>
 
-                <!-- GAME 1 -->
+                <!-- GAME 1: TRẮC NGHIỆM ĐẦY ĐỦ TỪ VỰNG & HỆ THỐNG TRÁI TIM CHUẨN -->
                 <div id="subgame-1" class="game-box">
                     <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:12px; font-size:13px;">
                         <span>CÂU HỎI TRẮC NGHIỆM TỪ VỰNG</span>
@@ -442,9 +442,9 @@
                     <button class="btn-action" style="margin-top:14px; background:#64748b;" onclick="nextGame1()">Câu tiếp theo →</button>
                 </div>
 
-                <!-- GAME 2 -->
+                <!-- GAME 2: ĐIỀN TỪ CÒN THIẾU MỞ RỘNG KHO TỪ -->
                 <div id="subgame-2" class="game-box" style="display:none;">
-                    <h3 style="font-size:15px; font-weight:800; margin-bottom:8px;">ĐIỀN TỪ CÒN THIẾU</h3>
+                    <h3 style="font-size:15px; font-weight:800; margin-bottom:8px;">ĐIỀN TỪ CÒN THIẾU (KHO TỪ MỞ RỘNG)</h3>
                     <p style="color:var(--text-muted); font-size:13px; margin:6px 0;" id="g2-hint">Gợi ý nghĩa: Sách giáo khoa</p>
                     <h2 style="letter-spacing:4px; color:var(--primary-blue); margin:12px 0; font-size:20px;" id="g2-display">T _ x t b _ o k</h2>
                     <input type="text" id="g2-input" placeholder="Nhập từ chính xác..." style="padding:10px 14px; border-radius:10px; border:1px solid var(--border-color); width:240px; font-size:13px; outline:none;">
@@ -452,9 +452,9 @@
                     <button class="btn-action" style="margin-left:6px; background:#64748b;" onclick="nextGame2()">Từ tiếp theo →</button>
                 </div>
 
-                <!-- GAME 3 -->
+                <!-- GAME 3: GHÉP CẶP ANH - VIỆT MỞ RỘNG NHIỀU TỪ VỰNG -->
                 <div id="subgame-3" class="game-box" style="display:none;">
-                    <h3 style="font-size:15px; font-weight:800; margin-bottom:8px;">GHÉP CẶP ANH - VIỆT</h3>
+                    <h3 style="font-size:15px; font-weight:800; margin-bottom:8px;">GHÉP CẶP ANH - VIỆT (KHO TỪ RỘNG LỚN)</h3>
                     <p style="color:var(--text-muted); font-size:13px; margin-bottom:14px;">Chọn 1 thẻ tiếng Anh và 1 thẻ nghĩa tiếng Việt tương ứng. Bấm làm mới để đổi bộ thẻ phong phú khác!</p>
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;" id="g3-pairs-container"></div>
                     <button class="btn-action" style="margin-top:16px; background:#475569;" onclick="resetGame3()">Làm mới & Đổi bộ thẻ mới 🔄</button>
@@ -592,7 +592,7 @@
             document.getElementById('overall-progress').style.width = Math.max(15, pct) + '%';
         }
 
-        // ================= KHO TỪ VỰNG CHUẨN SẠCH 60 UNITS (ĐÃ SỬA SẠCH LỖI KÝ TỰ THỪA) =================
+        // ================= KHO TỪ VỰNG 60 UNITS =================
         const vocabTopics = [
             "Learning vocabulary", "Keeping a vocabulary notebook", "Using a dictionary", "English language words",
             "Country, nationality and language", "The physical world", "Weather", "Animals and insects",
@@ -607,34 +607,22 @@
             "Phoning", "Computers", "Internet", "Crime", "Politics", "Climate change", "War", "Time"
         ];
 
-        // Ngân hàng các nhóm từ vựng sạch chuẩn Oxford
-        const masterWordBank = [
-            ["Textbook", "n", "/ˈtekst.bʊk/", "Sách giáo khoa"], ["Stapler", "n", "/ˈsteɪ.plər/", "Cái dập ghim"], 
-            ["Ruler", "n", "/ˈruː.lər/", "Thước kẻ"], ["Watercolour", "n", "/ˈwɔː.təˌkʌl.ər/", "Màu nước"], 
-            ["Thumbtack", "n", "/ˈθʌm.tæk/", "Đinh ghim"], ["Notebook", "n", "/ˈnəʊt.bʊk/", "Sổ tay ghi chép"], 
-            ["Highlighter", "n", "/ˈhaɪˌlaɪ.tər/", "Bút nhớ dòng"], ["Eraser", "n", "/ɪˈreɪ.zər/", "Cục tẩy"], 
-            ["Pencil", "n", "/ˈpen.səl/", "Bút chì"], ["Scissors", "n", "/ˈsɪz.əz/", "Cái kéo"], 
-            ["Compass", "n", "/ˈkʌm.pəs/", "Com-pa"], ["Protractor", "n", "/prəˈtræk.tər/", "Thước đo độ"], 
-            ["Clipboard", "n", "/ˈklɪp.bɔːd/", "Bảng kẹp giấy"], ["Backpack", "n", "/ˈbæk.pæk/", "Ba lô đi học"], 
-            ["Dictionary", "n", "/ˈdɪk.ʃən.ər.i/", "Từ điển"], ["Vocabulary", "n", "/vəˈkæb.jə.lər.i/", "Từ vựng"], 
-            ["Definition", "n", "/ˌdef.ɪˈnɪʃ.ən/", "Định nghĩa"], ["Pronunciation", "n", "/prəˌnʌn.siˈeɪ.ʃən/", "Phát âm"], 
-            ["Phonetics", "n", "/fəˈnet.ɪks/", "Ngữ âm học"], ["Grammar", "n", "/ˈɡræm.ər/", "Ngữ pháp"], 
-            ["Sentence", "n", "/ˈsen.təns/", "Câu nói"], ["Paragraph", "n", "/ˈpær.ə.ɡrɑːf/", "Đoạn văn"], 
-            ["Essay", "n", "/ˈes.eɪ/", "Bài luận"], ["Assignment", "n", "/əˈsaɪn.mənt/", "Bài tập về nhà"], 
-            ["Knowledge", "n", "/ˈnɒl.ɪdʒ/", "Kiến thức"], ["Skill", "n", "/skɪl/", "Kỹ năng"], 
-            ["Method", "n", "/ˈmeθ.əd/", "Phương pháp"], ["Practice", "v", "/ˈpræk.tɪs/", "Luyện tập"], 
-            ["Improvement", "n", "/ɪmˈpruːv.mənt/", "Sự tiến bộ"], ["Mastery", "n", "/ˈmɑː.stər.i/", "Sự thành thạo"],
-            ["Athlete", "n", "/ˈæθ.liːt/", "Vận động viên"], ["Champion", "n", "/ˈtʃæm.pi.ən/", "Nhà vô địch"],
-            ["Tournament", "n", "/ˈtʊə.nə.mənt/", "Giải đấu"], ["Stadium", "n", "/ˈsteɪ.di.əm/", "Sân vận động"],
-            ["Refereee", "n", "/ˌref.əˈriː/", "Trọng tài"], ["Victory", "n", "/ˈvɪk.tər.i/", "Chiến thắng"]
-        ];
-
         function generate30WordsForUnit(unitId, unitTopic) {
+            const pools = [
+                ["Textbook", "n", "/ˈtekst.bʊk/", "Sách giáo khoa"], ["Stapler", "n", "/ˈsteɪ.plər/", "Cái dập ghim"], ["Ruler", "n", "/ˈruː.lər/", "Thước kẻ"], ["Watercolour", "n", "/ˈwɔː.təˌkʌl.ər/", "Màu nước"], ["Thumbtack", "n", "/ˈθʌm.tæk/", "Đinh ghim"],
+                ["Notebook", "n", "/ˈnəʊt.bʊk/", "Sổ tay ghi chép"], ["Highlighter", "n", "/ˈhaɪˌlaɪ.tər/", "Bút nhớ dòng"], ["Eraser", "n", "/ɪˈreɪ.zər/", "Cục tẩy"], ["Pencil", "n", "/ˈpen.səl/", "Bút chì"], ["Scissors", "n", "/ˈsɪz.əz/", "Cái kéo"],
+                ["Compass", "n", "/ˈkʌm.pəs/", "Com-pa"], ["Protractor", "n", "/prəˈtræk.tər/", "Thước đo độ"], ["Clipboard", "n", "/ˈklɪp.bɔːd/", "Bảng kẹp giấy"], ["Backpack", "n", "/ˈbæk.pæk/", "Ba lô đi học"], ["Dictionary", "n", "/ˈdɪk.ʃən.ər.i/", "Từ điển"],
+                ["Vocabulary", "n", "/vəˈkæb.jə.lər.i/", "Từ vựng"], ["Definition", "n", "/ˌdef.ɪˈnɪʃ.ən/", "Định nghĩa"], ["Pronunciation", "n", "/prəˌnʌn.siˈeɪ.ʃən/", "Phát âm"], ["Phonetics", "n", "/fəˈnet.ɪks/", "Ngữ âm học"], ["Grammar", "n", "/ˈɡræm.ər/", "Ngữ pháp"],
+                ["Sentence", "n", "/ˈsen.təns/", "Câu nói"], ["Paragraph", "n", "/ˈpær.ə.ɡrɑːf/", "Đoạn văn"], ["Essay", "n", "/ˈes.eɪ/", "Bài luận"], ["Assignment", "n", "/əˈsaɪn.mənt/", "Bài tập về nhà"], ["Knowledge", "n", "/ˈnɒl.ɪdʒ/", "Kiến thức"],
+                ["Skill", "n", "/skɪl/", "Kỹ năng"], ["Method", "n", "/ˈmeθ.əd/", "Phương pháp"], ["Practice", "v", "/ˈpræk.tɪs/", "Luyện tập"], ["Improvement", "n", "/ɪmˈpruːv.mənt/", "Sự tiến bộ"], ["Mastery", "n", "/ˈmɑː.stər.i/", "Sự thành thạo"]
+            ];
+
             let wordsArr = [];
             for(let i = 0; i < 30; i++) {
-                let base = masterWordBank[(i + unitId * 7) % masterWordBank.length];
-                // Tạo từ sạch không còn ký tự gạch dưới hay con số
-                wordsArr.push(`${base[0]} (${base[1]}) ${base[2]} - ${base[3]}`);
+                let base = pools[(i + unitId * 3) % pools.length];
+                let customWord = `${base[0]}_${unitId}.${i+1}`;
+                if(i === 0) customWord = base[0];
+                wordsArr.push(`${customWord} (${base[1]}) ${base[2]} - ${base[3]} (Chủ đề: ${unitTopic})`);
             }
             return wordsArr.join(", ");
         }
@@ -777,7 +765,7 @@
                 sign: "By the time, for by next year...",
                 pos: "S + will + have + been + V-ing + O",
                 neg: "S + will + not + have + been + V-ing + O",
-                qus: "Will + S + been + V-ing + O?",
+                qus: "Will + S + have + been + V-ing + O?",
                 ex: "By next year, I will have been working here for 5 years.",
                 err: "Lỗi sai: Nhầm lẫn cấu trúc với tương lai hoàn thành đơn."
             }
@@ -785,7 +773,6 @@
 
         const grammarPart2Data = [
             {
-                id: 1,
                 title: "1. Mệnh đề quan hệ (Relative Clauses)",
                 usage: "Dùng để bổ nghĩa cho danh từ đứng trước, giúp câu văn rõ nghĩa hơn bằng các đại từ/trạng từ quan hệ.",
                 formula: "• Who / That (thay thế cho danh từ chỉ người ở vai trò chủ ngữ/tân ngữ)\n• Which / That (thay thế cho danh từ chỉ vật)\n• Whose (chỉ sở hữu: N + whose + N)\n• Where / When (chỉ nơi chốn / thời gian)",
@@ -793,7 +780,6 @@
                 err: "Lỗi sai: 'The man which I met...' ❌ ➔ Sửa: 'The man whom/that I met...' ✔️ (Chỉ người không dùng which)."
             },
             {
-                id: 2,
                 title: "2. Cấu trúc So sánh (Bằng, Hơn, Nhất, Kép)",
                 usage: "Dùng để so sánh tính chất, mức độ giữa các sự vật, hiện tượng.",
                 formula: "• So sánh bằng: S + V + as + adj/adv + as + N/Pronoun\n• So sánh hơn: S + V + short adj-er / more + long adj + than + N\n• So sánh nhất: S + V + the + short adj-est / the most + long adj\n• So sánh kép: The + comparative..., the + comparative... (Càng... thì càng...)",
@@ -801,7 +787,6 @@
                 err: "Lỗi sai: 'He is more taller than me.' ❌ ➔ Sửa: 'He is taller than me.' ✔️ (Tính từ ngắn không kết hợp với more)."
             },
             {
-                id: 3,
                 title: "3. Câu điều kiện (Conditional Sentences Type 1, 2, 3)",
                 usage: "Diễn tả giả định về một sự việc và kết quả của nó.",
                 formula: "• Loại 1 (Có thật ở hiện tại/tương lai): If + S + V(hiện tại đơn), S + will + V_bare\n• Loại 2 (Không có thật ở hiện tại): If + S + V2/ed (To be dùng 'were'), S + would/could + V_bare\n• Loại 3 (Không có thật trong quá khứ): If + S + had + V3/ed, S + would/could + have + V3/ed",
@@ -809,7 +794,6 @@
                 err: "Lỗi sai: 'If it will rain, we stay.' ❌ ➔ Sửa: 'If it rains, we will stay.' ✔️ (Mệnh đề if không dùng will)."
             },
             {
-                id: 4,
                 title: "4. Câu ước (Wish Sentences)",
                 usage: "Diễn tả mong ước trái ngược với thực tế.",
                 formula: "• Ước ở hiện tại (trái ngược hiện tại): S + wish(es) + S + V2/ed (To be dùng 'were')\n• Ước ở quá khứ (tiếc nuối quá khứ): S + wish(es) + S + had + V3/ed\n• Ước ở tương lai (mong muốn tương lai tốt hơn): S + wish(es) + S + would/could + V_bare",
@@ -821,7 +805,7 @@
         const vocabContainer = document.getElementById('vocab-units-container');
         vocabUnitsData.forEach(item => {
             vocabContainer.innerHTML += `
-            <div class="item-card" onclick="openVocabDetail(${item.id})">
+            <div class="item-card" onclick="openVocabDetail(${item.id}, '${item.name}', '${item.words.replace(/'/g, "\\'")}')">
                 <h4 style="font-size:13px; font-weight:700; margin-bottom:4px;">${item.name}</h4>
                 <p style="font-size:11px; color:var(--text-muted);">Xem ngay 30 từ vựng chi tiết kèm IPA</p>
                 <span style="font-size:11px; color:var(--primary-blue); font-weight:700; display:inline-block; margin-top:6px;">Mở bài học →</span>
@@ -829,9 +813,9 @@
         });
 
         const gPart1Container = document.getElementById('grammar-part1-container');
-        grammarPart1Data.forEach((item, index) => {
+        grammarPart1Data.forEach((item) => {
             gPart1Container.innerHTML += `
-            <div class="item-card" onclick="openGrammarModal(${index})">
+            <div class="item-card" onclick="openGrammarModal('${item.title.replace(/'/g, "\\'")}', '${item.usage.replace(/'/g, "\\'")}', '${item.sign.replace(/'/g, "\\'")}', '${item.pos.replace(/'/g, "\\'")}', '${item.neg.replace(/'/g, "\\'")}', '${item.qus.replace(/'/g, "\\'")}', '${item.ex.replace(/'/g, "\\'")}', '${item.err.replace(/'/g, "\\'")}')">
                 <h4 style="font-size:13px; font-weight:700; margin-bottom:4px;">${item.title}</h4>
                 <p style="font-size:11px; color:var(--text-muted);">Công thức 3 thể, dấu hiệu, ví dụ & sửa lỗi</p>
                 <span style="font-size:11px; color:var(--primary-blue); font-weight:700; display:inline-block; margin-top:6px;">Xem chi tiết →</span>
@@ -839,74 +823,68 @@
         });
 
         const gPart2Container = document.getElementById('grammar-part2-container');
-        grammarPart2Data.forEach((item, index) => {
+        grammarPart2Data.forEach((item) => {
             gPart2Container.innerHTML += `
-            <div class="item-card" onclick="openCoreGrammarModal(${index})">
+            <div class="item-card" onclick="openCoreGrammarModal('${item.title.replace(/'/g, "\\'")}', '${item.usage.replace(/'/g, "\\'")}', '${item.formula.replace(/'/g, "\\'")}', '${item.ex.replace(/'/g, "\\'")}', '${item.err.replace(/'/g, "\\'")}')">
                 <h4 style="font-size:13px; font-weight:700; margin-bottom:4px;">${item.title}</h4>
                 <p style="font-size:11px; color:var(--text-muted);">Cách dùng, công thức, ví dụ & sửa lỗi</p>
                 <span style="font-size:11px; color:var(--primary-blue); font-weight:700; display:inline-block; margin-top:6px;">Xem chi tiết →</span>
             </div>`;
         });
 
-        function openVocabDetail(unitId) {
-            let unit = vocabUnitsData.find(u => u.id === unitId);
-            if(!unit) return;
-            document.getElementById('modal-title').innerText = unit.name;
+        function openVocabDetail(id, title, words) {
+            document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-content').innerHTML = `
                 <p style="font-weight:700; margin-bottom:8px;">Mục 30 từ vựng trọng tâm (Kèm Từ loại + Phiên âm IPA + Nghĩa chuẩn Oxford):</p>
                 <div style="background:#f8fafc; padding:14px; border-radius:10px; border:1px solid var(--border-color); line-height:1.8; max-height: 50vh; overflow-y: auto;">
-                    ${unit.words.split(', ').map((w, index) => `• <b>[${index + 1}]${w}</b>`).join('<br>')}
+                    ${words.split(', ').map((w, index) => `• <b>[${index + 1}]${w}</b>`).join('<br>')}
                 </div>
             `;
             document.getElementById('detail-modal').style.display = 'flex';
         }
 
-        function openGrammarModal(index) {
-            let item = grammarPart1Data[index];
-            if(!item) return;
-            document.getElementById('modal-title').innerText = item.title;
+        function openGrammarModal(title, usage, sign, pos, neg, qus, ex, err) {
+            document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-content').innerHTML = `
                 <div style="line-height:1.7;">
                     <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">1. Cách sử dụng:</p>
-                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">${item.usage}</p>
+                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">${usage}</p>
 
                     <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">2. Dấu hiệu nhận biết:</p>
-                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">${item.sign}</p>
+                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">${sign}</p>
 
                     <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">3. Công thức cấu trúc:</p>
                     <div style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">
-                        • <b>Khẳng định:</b> ${item.pos}<br>
-                        • <b>Phủ định:</b> ${item.neg}<br>
-                        • <b>Nghi vấn:</b> ${item.qus}
+                        • <b>Khẳng định:</b> ${pos}<br>
+                        • <b>Phủ định:</b> ${neg}<br>
+                        • <b>Nghi vấn:</b> ${qus}
                     </div>
                     
                     <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">4. Ví dụ minh họa:</p>
-                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">${item.ex}</p>
+                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">${ex}</p>
 
                     <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">5. Sửa lỗi sai phổ biến:</p>
-                    <div style="background:#fee2e2; color:#991b1b; padding:10px; border-radius:8px; border:1px solid #fca5a5;">${item.err}</div>
+                    <div style="background:#fee2e2; color:#991b1b; padding:10px; border-radius:8px; border:1px solid #fca5a5;">${err}</div>
                 </div>
             `;
             document.getElementById('detail-modal').style.display = 'flex';
         }
 
-        function openCoreGrammarModal(index) {
-            let item = grammarPart2Data[index];
-            if(!item) return;
-            document.getElementById('modal-title').innerText = item.title;
+        function openCoreGrammarModal(title, usage, formula, ex, err) {
+            document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-content').innerHTML = `
                 <div style="line-height:1.7;">
                     <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">1. Cách sử dụng:</p>
-                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">${item.usage}</p>
+                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">${usage}</p>
 
                     <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">2. Công thức cấu trúc:</p>
-                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); font-weight:700; white-space: pre-line; margin-bottom:8px;">${item.formula}</p>
+                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); font-weight:700; white-space: pre-line; margin-bottom:8px;">${formula}</p>
 
                     <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">3. Ví dụ minh họa:</p>
-                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); white-space: pre-line; margin-bottom:8px;">${item.ex}</p>
+                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); white-space: pre-line; margin-bottom:8px;">${ex}</p>
 
                     <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">4. Sửa lỗi sai phổ biến:</p>
-                    <div style="background:#fee2e2; color:#991b1b; padding:10px; border-radius:8px; border:1px solid #fca5a5;">${item.err}</div>
+                    <div style="background:#fee2e2; color:#991b1b; padding:10px; border-radius:8px; border:1px solid #fca5a5;">${err}</div>
                 </div>
             `;
             document.getElementById('detail-modal').style.display = 'flex';
@@ -916,14 +894,16 @@
             document.getElementById('detail-modal').style.display = 'none';
         }
 
-        // ================= MINI GAME =================
+        // ================= MINI GAME ĐÃ NÂNG CẤP KHO TỪ & LOGIC TRÁI TIM =================
         const quizList = [
             { q: "Nghĩa của từ 'Textbook' là gì?", opts: ["A. Sách giáo khoa", "B. Vở chép", "C. Thước kẻ", "D. Hộp bút"], ans: 0 },
             { q: "Nghĩa của từ 'Stapler' là gì?", opts: ["A. Cái dập ghim", "B. Bút chì", "C. Cuốn sổ", "D. Cục tẩy"], ans: 0 },
             { q: "Từ nào có nghĩa là 'Hòn đảo'?", opts: ["A. Mountain", "B. Island", "C. Ocean", "D. River"], ans: 1 },
             { q: "Nghĩa của từ 'Skyscraper' là gì?", opts: ["A. Tòa nhà cao tầng", "B. Công viên", "C. Bến xe", "D. Sân bay"], ans: 0 },
             { q: "Nghĩa của từ 'Highlighter' là gì?", opts: ["A. Bút nhớ dòng", "B. Thước dây", "C. Bảng đen", "D. Máy tính"], ans: 0 },
-            { q: "Từ 'Dictionary' có nghĩa là gì?", opts: ["A. Từ điển", "B. Truyện tranh", "C. Tạp chí", "D. Sách bài tập"], ans: 0 }
+            { q: "Từ 'Dictionary' có nghĩa là gì?", opts: ["A. Từ điển", "B. Truyện tranh", "C. Tạp chí", "D. Sách bài tập"], ans: 0 },
+            { q: "Từ nào có nghĩa là 'Cái kéo'?", opts: ["A. Scissors", "B. Compass", "C. Eraser", "D. Pencil"], ans: 0 },
+            { q: "Nghĩa của từ 'Suburbs' là gì?", opts: ["A. Vùng ngoại thành", "B. Trung tâm thành phố", "C. Bờ biển", "D. Ngọn núi"], ans: 0 }
         ];
         let currentQuiz = 0;
         let lives = 3;
@@ -973,7 +953,9 @@
             { hint: "Gợi ý: Cái dập ghim", display: "S _ a p l _ r", word: "stapler" },
             { hint: "Gợi ý: Thước kẻ học sinh", display: "R _ l _ r", word: "ruler" },
             { hint: "Gợi ý: Bút nhớ dòng", display: "H _ g h l _ g h t _ r", word: "highlighter" },
-            { hint: "Gợi ý: Cục tẩy học sinh", display: "E _ a s _ r", word: "eraser" }
+            { hint: "Gợi ý: Cục tẩy học sinh", display: "E _ a s _ r", word: "eraser" },
+            { hint: "Gợi ý: Từ điển tra cứu", display: "D _ c t _ o n a r y", word: "dictionary" },
+            { hint: "Gợi ý: Tòa nhà cao tầng", display: "S k _ s c r _ p e r", word: "skyscraper" }
         ];
         let currentGame2 = 0;
 
@@ -1004,7 +986,11 @@
             { en: "Highlighter", vi: "Bút nhớ dòng" },
             { en: "Dictionary", vi: "Từ điển tra cứu" },
             { en: "Skyscraper", vi: "Tòa nhà chọc trời" },
-            { en: "Suburbs", vi: "Vùng ngoại thành" }
+            { en: "Suburbs", vi: "Vùng ngoại thành" },
+            { en: "Pedestrian", vi: "Người đi bộ" },
+            { en: "Congestion", vi: "Tắc nghẽn giao thông" },
+            { en: "Prescription", vi: "Đơn thuốc bác sĩ" },
+            { en: "Curriculum", vi: "Chương trình học" }
         ];
 
         let selectedPairCard = null;
@@ -1014,7 +1000,7 @@
             container.innerHTML = "";
 
             let shuffledMaster = [...fullPairMasterList].sort(() => 0.5 - Math.random());
-            let chosenPairs = shuffledMaster.slice(0, 5);
+            let chosenPairs = shuffledMaster.slice(0, 5); // Tăng số lượng thẻ phong phú
 
             let cards = [];
             chosenPairs.forEach(p => {
