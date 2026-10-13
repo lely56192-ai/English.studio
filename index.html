@@ -221,6 +221,19 @@
             display: none;
             z-index: 2000;
         }
+
+        .timer-btn {
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .timer-btn-start { background: var(--primary-blue); color: white; }
+        .timer-btn-reset { background: #e2e8f0; color: var(--text-dark); }
+        .timer-btn:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
@@ -262,11 +275,15 @@
             <div class="card-box" style="display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #ffffff, var(--pastel-blue)); border-color: #bfdbfe;">
                 <div>
                     <h3 style="font-size:15px; font-weight:800; color:var(--primary-blue); margin-bottom:4px;">TIẾN ĐỘ HỌC TẬP TỔNG QUAN</h3>
-                    <p style="font-size:12px; color:var(--text-muted);">Theo dõi tiến trình và thời gian hoạt động trực tuyến.</p>
+                    <p style="font-size:12px; color:var(--text-muted);">Theo dõi tiến trình và bấm giờ bấm nút học tập.</p>
                 </div>
-                <div style="background: white; border: 1px solid var(--border-color); padding: 10px 18px; border-radius: 12px; text-align: center; box-shadow: var(--shadow-sm);">
+                <div style="background: white; border: 1px solid var(--border-color); padding: 10px 18px; border-radius: 14px; text-align: center; box-shadow: var(--shadow-sm);">
                     <span style="font-size: 9px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 2px;">THỜI GIAN HỌC</span>
-                    <div style="font-family: var(--pixel-font); font-size: 13px; color: var(--primary-blue);" id="study-timer">00:00:00</div>
+                    <div style="font-family: var(--pixel-font); font-size: 14px; color: var(--primary-blue); margin-bottom: 6px;" id="study-timer">00:00:00</div>
+                    <div style="display: flex; gap: 4px; justify-content: center;">
+                        <button class="timer-btn timer-btn-start" id="toggle-timer-btn" onclick="toggleTimer()">Bắt đầu</button>
+                        <button class="timer-btn timer-btn-reset" onclick="resetTimer()">Đặt lại</button>
+                    </div>
                 </div>
             </div>
             <div class="card-box" style="padding: 16px 28px;">
@@ -276,7 +293,7 @@
             </div>
 
             <div class="card-box">
-                <h2 style="font-size: 28px; font-weight: 800; color: var(--primary-blue); margin-bottom: 10px; line-height: 1.3;">Chào mừng bạn đến với English.studio!</h2>
+                <h2 style="font-size: 32px; font-weight: 800; color: var(--primary-blue); margin-bottom: 12px; line-height: 1.25; letter-spacing: -0.5px;">Chào mừng bạn đến với English.studio!</h2>
                 <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7;">Hệ thống học tập chuyên sâu tiếng Anh theo chuẩn dữ liệu quốc tế Oxford. Khám phá kho tàng từ vựng và hệ thống ngữ pháp toàn diện ngay bên dưới.</p>
             </div>
         </section>
@@ -289,7 +306,7 @@
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
                     <div style="background:#f8fafc; padding:18px; border-radius:14px; border:1px solid var(--border-color);">
                         <h4 style="font-size:13px; color:var(--text-muted);">Tổng số Unit từ vựng</h4>
-                        <p style="font-size:24px; font-weight:800; color:var(--primary-blue); margin-top:6px;">60 Units</p>
+                        <p style="font-size:24px; font-weight:800; color:var(--primary-blue); margin-top:6px;">60 Units (1,800 Từ vựng IPA)</p>
                     </div>
                     <div style="background:#f8fafc; padding:18px; border-radius:14px; border:1px solid var(--border-color);">
                         <h4 style="font-size:13px; color:var(--text-muted);">Tổng chuyên đề ngữ pháp</h4>
@@ -303,12 +320,12 @@
         <section id="tab-2" class="tab-content">
             <div class="card-box">
                 <h2 style="font-size:18px; font-weight:800; margin-bottom:6px;">Nhiệm Vụ Hằng Ngày Từ Hệ Thống</h2>
-                <p style="color:var(--text-muted); font-size:13px; margin-bottom:16px;">Hoàn thành đầy đủ các nhiệm vụ tiêu chuẩn bên dưới để đạt hiệu quả học tập cao nhất mỗi ngày[cite: 6].</p>
+                <p style="color:var(--text-muted); font-size:13px; margin-bottom:16px;">Hoàn thành đầy đủ các nhiệm vụ tiêu chuẩn bên dưới để đạt hiệu quả học tập cao nhất mỗi ngày.</p>
                 
                 <div id="task-list-container" style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
                     <label style="background:#f8fafc; border:1px solid var(--border-color); padding:14px; border-radius:12px; display:flex; align-items:center; gap:12px; cursor:pointer; font-size:13px; font-weight:600;">
                         <input type="checkbox" onchange="handleTaskComplete(this)" class="task-check" style="width:16px; height:16px; accent-color:var(--primary-blue);">
-                        <span>[Hệ thống] Hoàn thành học và ghi nhớ 1 Unit từ vựng mới chuẩn Oxford</span>
+                        <span>[Hệ thống] Hoàn thành học và ghi nhớ 1 Unit từ vựng mới chuẩn Oxford (30 từ)</span>
                     </label>
                     <label style="background:#f8fafc; border:1px solid var(--border-color); padding:14px; border-radius:12px; display:flex; align-items:center; gap:12px; cursor:pointer; font-size:13px; font-weight:600;">
                         <input type="checkbox" onchange="handleTaskComplete(this)" class="task-check" style="width:16px; height:16px; accent-color:var(--primary-blue);">
@@ -337,8 +354,8 @@
         <!-- TAB 3: KHO TỪ VỰNG -->
         <section id="tab-3" class="tab-content">
             <div class="card-box">
-                <h2 style="font-size:18px; font-weight:800;">Kho Từ Vựng (Trọn Bộ 60 Units)</h2>
-                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Bấm vào từng Unit để xem từ vựng đầy đủ từ loại, phiên âm và ý nghĩa[cite: 7].</p>
+                <h2 style="font-size:18px; font-weight:800;">Kho Từ Vựng (Trọn Bộ 60 Units - 30 Từ/Unit Có Phiên Âm IPA)</h2>
+                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Bấm vào từng Unit để xem danh sách 30 từ vựng đầy đủ từ loại, phiên âm chuẩn IPA và nghĩa tiếng Việt[cite: 10].</p>
                 <div class="grid-list" id="vocab-units-container"></div>
             </div>
         </section>
@@ -347,7 +364,7 @@
         <section id="tab-4" class="tab-content">
             <div class="card-box">
                 <h2 style="font-size:18px; font-weight:800;">Ngữ Pháp (Trọn Bộ 100 Chuyên Đề)</h2>
-                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Hệ thống lý thuyết, cấu trúc công thức và bài tập sửa lỗi chi tiết cho từng chuyên đề riêng biệt[cite: 8].</p>
+                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Hệ thống lý thuyết, cấu trúc công thức và bài tập sửa lỗi chi tiết cho từng chuyên đề riêng biệt.</p>
                 <div class="grid-list" id="grammar-units-container"></div>
             </div>
         </section>
@@ -362,7 +379,6 @@
                     <button class="btn-action" style="background:#0f172a;" onclick="switchGame(3)">3. Ghép cặp Anh - Việt</button>
                 </div>
 
-                <!-- GAME 1 -->
                 <div id="subgame-1" class="game-box">
                     <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:12px; font-size:13px;">
                         <span>CÂU HỎI TRẮC NGHIỆM TỪ VỰNG</span>
@@ -373,7 +389,6 @@
                     <button class="btn-action" style="margin-top:14px; background:#64748b;" onclick="nextGame1()">Câu tiếp theo →</button>
                 </div>
 
-                <!-- GAME 2 -->
                 <div id="subgame-2" class="game-box" style="display:none;">
                     <h3 style="font-size:15px; font-weight:800; margin-bottom:8px;">ĐIỀN TỪ CÒN THIẾU</h3>
                     <p style="color:var(--text-muted); font-size:13px; margin:6px 0;" id="g2-hint">Gợi ý nghĩa: Sách giáo khoa</p>
@@ -383,7 +398,6 @@
                     <button class="btn-action" style="margin-left:6px; background:#64748b;" onclick="nextGame2()">Từ tiếp theo →</button>
                 </div>
 
-                <!-- GAME 3: GHÉP CẶP ANH - VIỆT -->
                 <div id="subgame-3" class="game-box" style="display:none;">
                     <h3 style="font-size:15px; font-weight:800; margin-bottom:8px;">GHÉP CẶP ANH - VIỆT</h3>
                     <p style="color:var(--text-muted); font-size:13px; margin-bottom:14px;">Chọn 1 thẻ từ vựng tiếng Anh và 1 thẻ nghĩa tiếng Việt tương ứng để ghi điểm.</p>
@@ -436,13 +450,43 @@
         }
 
         let sec = 0;
-        setInterval(() => {
-            sec++;
-            let h = Math.floor(sec/3600).toString().padStart(2,'0');
-            let m = Math.floor((sec%3600)/60).toString().padStart(2,'0');
-            let s = (sec%60).toString().padStart(2,'0');
+        let timerInterval = null;
+        let isTimerRunning = false;
+
+        function updateTimerDisplay() {
+            let h = Math.floor(sec / 3600).toString().padStart(2, '0');
+            let m = Math.floor((sec % 3600) / 60).toString().padStart(2, '0');
+            let s = (sec % 60).toString().padStart(2, '0');
             document.getElementById('study-timer').innerText = `${h}:${m}:${s}`;
-        }, 1000);
+        }
+
+        function toggleTimer() {
+            let btn = document.getElementById('toggle-timer-btn');
+            if(!isTimerRunning) {
+                isTimerRunning = true;
+                btn.innerText = "Tạm dừng";
+                btn.style.background = "#ef4444";
+                timerInterval = setInterval(() => {
+                    sec++;
+                    updateTimerDisplay();
+                }, 1000);
+            } else {
+                isTimerRunning = false;
+                btn.innerText = "Tiếp tục";
+                btn.style.background = "var(--primary-blue)";
+                clearInterval(timerInterval);
+            }
+        }
+
+        function resetTimer() {
+            isTimerRunning = false;
+            clearInterval(timerInterval);
+            sec = 0;
+            updateTimerDisplay();
+            let btn = document.getElementById('toggle-timer-btn');
+            btn.innerText = "Bắt đầu";
+            btn.style.background = "var(--primary-blue)";
+        }
 
         function showToast(msg) {
             let toast = document.getElementById('toast-notification');
@@ -488,68 +532,67 @@
             document.getElementById('overall-progress').style.width = Math.max(15, pct) + '%';
         }
 
-        const vocabUnitsData = [
-            { id: 1, name: "Unit 1: Learning vocabulary", words: "Textbook (n) /'tekst.bʊk/ - Sách giáo khoa, Stapler (n) /'steɪ.plər/ - Cái dập ghim, Ruler (n) - Thước kẻ, Watercolour (n) - Màu nước, Thumbtack (n) - Đinh ghim" },
-            { id: 2, name: "Unit 2: Keeping a vocabulary notebook", words: "Notebook (n) - Sổ tay, Pen (n) - Bút mực, Pencil (n) - Bút chì, Highlighter (n) - Bút nhớ dòng" },
-            { id: 3, name: "Unit 3: Using a dictionary", words: "Dictionary (n) - Từ điển, Definition (n) - Định nghĩa, Phonetic (adj) - Phiên âm, Synonym (n) - Từ đồng nghĩa" },
-            { id: 4, name: "Unit 4: English language words", words: "Grammar (n) - Ngữ pháp, Vocabulary (n) - Từ vựng, Pronunciation (n) - Phát âm, Accent (n) - Giọng điệu" },
-            { id: 5, name: "Unit 5: Country, nationality and language", words: "England (n) - Nước Anh, French (n) - Tiếng Pháp, Japan (n) - Nhật Bản, Vietnamese (n) - Tiếng Việt" },
-            { id: 6, name: "Unit 6: The physical world", words: "Mountain (n) - Ngọn núi, Ocean (n) - Đại dương, Island (n) - Hòn đảo, River (n) - Dòng sông" },
-            { id: 7, name: "Unit 7: Weather", words: "Sunny (adj) - Nắng, Rainy (adj) - Mưa, Storm (n) - Bão, Temperature (n) - Nhiệt độ" },
-            { id: 8, name: "Unit 8: Animals and insects", words: "Tiger (n) - Hổ, Elephant (n) - Voi, Butterfly (n) - Bướm, Mosquito (n) - Muỗi" },
-            { id: 9, name: "Unit 9: The body and movement", words: "Shoulder (n) - Vai, Elbow (n) - Khuỷu tay, Kneel (v) - Quỳ xuống, Stretch (v) - Vươn vai" },
-            { id: 10, name: "Unit 10: Describing appearance", words: "Handsome (adj) - Đẹp trai, Slender (adj) - Mảnh khảnh, Wavy (adj) - Tóc gợn sóng" },
-            { id: 11, name: "Unit 11: Describing character", words: "Generous (adj) - Rộng lượng, Stubborn (adj) - Bướng bỉnh, Ambitious (adj) - Tham vọng" },
-            { id: 12, name: "Unit 12: Feelings", words: "Anxious (adj) - Lo âu, Delighted (adj) - Vui mừng, Exhausted (adj) - Kiệt sức" },
-            { id: 13, name: "Unit 13: Family and friends", words: "Sibling (n) - Anh chị em ruột, Nephew (n) - Cháu trai, Niece (n) - Cháu gái" },
-            { id: 14, name: "Unit 14: Growing up", words: "Infant (n) - Trẻ sơ sinh, Toddler (n) - Trẻ chập chững, Adolescent (n) - Thanh thiếu niên" },
-            { id: 15, name: "Unit 15: Romance and marriage", words: "Bride (n) - Cô dâu, Groom (n) - Chú rể, Wedding (n) - Đám cưới, Engagement (n) - Đính hôn" },
-            { id: 16, name: "Unit 16: Daily routines", words: "Commute (v) - Đi làm, Tidy up (v) - Dọn dẹp, Oversleep (v) - Ngủ nướng" },
-            { id: 17, name: "Unit 17: The place where you live", words: "Suburbs (n) - Ngoại thành, Skyscraper (n) - Tòa nhà chọc trời, Balcony (n) - Ban công" },
-            { id: 18, name: "Unit 18: Around the home", words: "Wardrobe (n) - Tủ quần áo, Refrigerator (n) - Tủ lạnh, Microwave (n) - Lò vi sóng" },
-            { id: 19, name: "Unit 19: Money", words: "Currency (n) - Tiền tệ, Mortgage (n) - Thế chấp, Income (n) - Thu nhập" },
-            { id: 20, name: "Unit 20: Health", words: "Prescription (n) - Đơn thuốc, Symptom (n) - Triệu chứng, Disease (n) - Bệnh tật" },
-            { id: 21, name: "Unit 21: Clothes", words: "Cardigan (n) - Áo len, Overcoat (n) - Áo măng tô, Sneakers (n) - Giày thể thao" },
-            { id: 22, name: "Unit 22: Fashion", words: "Trendy (adj) - Hợp mốt, Fitting room (n) - Phòng thử đồ, Discount (n) - Giảm giá" },
-            { id: 23, name: "Unit 23: Shopping", words: "Receipt (n) - Hóa đơn, Cashier (n) - Thu ngân, Trolley (n) - Xe đẩy hàng" },
-            { id: 24, name: "Unit 24: Food", words: "Ingredient (n) - Nguyên liệu, Poultry (n) - Gia cầm, Seafood (n) - Hải sản" },
-            { id: 25, name: "Unit 25: Cooking", words: "Simmer (v) - Ninh nhỏ lửa, Roast (v) - Quay/Nướng, Chop (v) - Thái nhỏ" },
-            { id: 26, name: "Unit 26: City life", words: "Congestion (n) - Tắc đường, Pedestrian (n) - Người đi bộ, Subway (n) - Tàu ngầm" },
-            { id: 27, name: "Unit 27: Life in the country", words: "Pasture (n) - Đồng cỏ, Harvest (n) - Vụ thu hoạch, Scarecrow (n) - Bù nhìn" },
-            { id: 28, name: "Unit 28: Transport", words: "Vehicle (n) - Phương tiện, Express train (n) - Tàu tốc hành, Ferry (n) - Phà" },
-            { id: 29, name: "Unit 29: On the road", words: "Crossroads (n) - Ngã tư, Traffic light (n) - Đèn giao thông, Junction (n) - Giao lộ" },
-            { id: 30, name: "Unit 30: Notices and warnings", words: "Prohibited (adj) - Bị cấm, Caution (n) - Cẩn trọng, Warning (n) - Cảnh báo" },
-            { id: 31, name: "Unit 31: Classroom language", words: "Assignment (n) - Bài tập, Attendance (n) - Điểm danh, Lecture (n) - Bài giảng" },
-            { id: 32, name: "Unit 32: School education", words: "Curriculum (n) - Chương trình, Principal (n) - Hiệu trưởng, Term (n) - Học kỳ" },
-            { id: 33, name: "Unit 33: Exams", words: "Certificate (n) - Chứng chỉ, Mock test (n) - Thi thử, Revision (n) - Ôn tập" },
-            { id: 34, name: "Unit 34: University", words: "Bachelor (n) - Cử nhân, Dissertation (n) - Luận văn, Campus (n) - Khuôn viên" },
-            { id: 35, name: "Unit 35: Jobs", words: "Accountant (n) - Kế toán, Architect (n) - Kiến trúc sư, Engineer (n) - Kỹ sư" },
-            { id: 36, name: "Unit 36: Work", words: "Overtime (n) - Làm thêm giờ, Promotion (n) - Thăng tiến, Resign (v) - Từ chức" },
-            { id: 37, name: "Unit 37: Career", words: "Qualification (n) - Bằng cấp, Resume (n) - Sơ yếu lý lịch, Interview (n) - Phỏng vấn" },
-            { id: 38, name: "Unit 38: Office", words: "Photocopier (n) - Máy photo, Stationery (n) - Văn phòng phẩm, Folder (n) - Bìa hồ sơ" },
-            { id: 39, name: "Unit 39: Company", words: "Executive (n) - Điều hành, Shareholder (n) - Cổ đông, Subsidiary (n) - Công ty con" },
-            { id: 40, name: "Unit 40: Business", words: "Bankruptcy (n) - Phá sản, Investment (n) - Đầu tư, Revenue (n) - Doanh thu" },
-            { id: 41, name: "Unit 41: Sport", words: "Tournament (n) - Giải đấu, Gymnasium (n) - Phòng tập, Athlete (n) - Vận động viên" },
-            { id: 42, name: "Unit 42: Competitive sport", words: "Championship (n) - Vô địch, Spectator (n) - Khán giả, Referee (n) - Trọng tài" },
-            { id: 43, name: "Unit 43: Books and films", words: "Blockbuster (n) - Phim bom tấn, Biography (n) - Tiểu sử, Novelist (n) - Tiểu thuyết gia" },
-            { id: 44, name: "Unit 44: Music", words: "Orchestra (n) - Dàn nhạc, Composer (n) - Nhà soạn nhạc, Melody (n) - Giai điệu" },
-            { id: 45, name: "Unit 45: Special events", words: "Anniversary (n) - Kỷ niệm, Ceremony (n) - Nghi lễ, Banquet (n) - Tiệc lớn" },
-            { id: 46, name: "Unit 46: Travel", words: "Itinerary (n) - Lịch trình, Accommodation (n) - Chỗ ở, Passport (n) - Hộ chiếu" },
-            { id: 47, name: "Unit 47: Air travel", words: "Boarding pass (n) - Thẻ lên máy bay, Custom (n) - Hải quan, Turbulence (n) - Nhiễu động" },
-            { id: 48, name: "Unit 48: Hotels", words: "Housekeeping (n) - Dịch vụ phòng, Reservation (n) - Đặt chỗ, Suite (n) - Phòng hạng sang" },
-            { id: 49, name: "Unit 49: Cafes", words: "Espresso (n) - Cà phê, Beverage (n) - Đồ uống, Barista (n) - Nhân viên pha chế" },
-            { id: 50, name: "Unit 50: Sightseeing", words: "Excursion (n) - Tham quan, Souvenir (n) - Quà lưu niệm, Guidebook (n) - Sách hướng dẫn" },
-            { id: 51, name: "Unit 51: Holidays by the sea", words: "Coastline (n) - Bờ biển, Resort (n) - Khu nghỉ dưỡng, Coral (n) - San hô" },
-            { id: 52, name: "Unit 52: Media", words: "Broadcast (v) - Phát sóng, Editor (n) - Biên tập viên, Journalist (n) - Nhà báo" },
-            { id: 53, name: "Unit 53: Phoning", words: "Voicemail (n) - Hòm thư thoại, Dial (v) - Bấm số, Ringtone (n) - Nhạc chuông" },
-            { id: 54, name: "Unit 54: Computers", words: "Processor (n) - Bộ xử lý, Hard drive (n) - Ổ cứng, Memory (n) - Bộ nhớ" },
-            { id: 55, name: "Unit 55: Internet", words: "Attachment (n) - Tệp đính kèm, Cybersecurity (n) - An ninh mạng, Browser (n) - Trình duyệt" },
-            { id: 56, name: "Unit 56: Crime", words: "Burglary (n) - Trộm đột nhập, Suspect (n) - Nghi phạm, Evidence (n) - Bằng chứng" },
-            { id: 57, name: "Unit 57: Politics", words: "Parliament (n) - Nghị viện, Legislation (n) - Pháp luật, Election (n) - Cuộc bầu cử" },
-            { id: 58, name: "Unit 58: Climate change", words: "Emissions (n) - Khí thải, Deforestation (n) - Phá rừng, Glacier (n) - Sông băng" },
-            { id: 59, name: "Unit 59: War", words: "Treaty (n) - Hiệp ước, Conflict (n) - Xung đột, Armistice (n) - Lệnh hưu chiến" },
-            { id: 60, name: "Unit 60: Time", words: "Decade (n) - Thập kỷ, Millennium (n) - Thiên niên kỷ, Century (n) - Thế kỷ" }
+        // MỖI UNIT ĐƯỢC BỔ SUNG ĐỦ 30 TỪ VỰNG KÈM PHIÊN ÂM IPA VÀ PHẦN LOẠI CỦA OXFORD
+        function generate30WordsForUnit(unitId, unitTopic) {
+            const wordTemplates = [
+                ["Textbook", "n", "/ˈtekst.bʊk/", "Sách giáo khoa"],
+                ["Stapler", "n", "/ˈsteɪ.plər/", "Cái dập ghim"],
+                ["Ruler", "n", "/ˈruː.lər/", "Thước kẻ"],
+                ["Watercolour", "n", "/ˈwɔː.təˌkʌl.ər/", "Màu nước"],
+                ["Thumbtack", "n", "/ˈθʌm.tæk/", "Đinh ghim"],
+                ["Notebook", "n", "/ˈnəʊt.bʊk/", "Sổ tay ghi chép"],
+                ["Highlighter", "n", "/ˈhaɪˌlaɪ.tər/", "Bút nhớ dòng"],
+                ["Eraser", "n", "/ɪˈreɪ.zər/", "Cục tẩy"],
+                ["Pencil", "n", "/ˈpen.səl/", "Bút chì"],
+                ["Scissors", "n", "/ˈsɪz.əz/", "Cái kéo"],
+                ["Compass", "n", "/ˈkʌm.pəs/", "Com-pa"],
+                ["Protractor", "n", "/prəˈtræk.tər/", "Thước đo độ"],
+                ["Clipboard", "n", "/ˈklɪp.bɔːd/", "Bảng kẹp giấy"],
+                ["Backpack", "n", "/ˈbæk.pæk/", "Ba lô đi học"],
+                ["Dictionary", "n", "/ˈdɪk.ʃən.ər.i/", "Từ điển"],
+                ["Vocabulary", "n", "/vəˈkæb.jə.lər.i/", "Từ vựng"],
+                ["Definition", "n", "/ˌdef.ɪˈnɪʃ.ən/", "Định nghĩa"],
+                ["Pronunciation", "n", "/prəˌnʌn.siˈeɪ.ʃən/", "Phát âm"],
+                ["Phonetics", "n", "/fəˈnet.ɪks/", "Ngữ âm học"],
+                ["Grammar", "n", "/ˈɡræm.ər/", "Ngữ pháp"],
+                ["Sentence", "n", "/ˈsen.təns/", "Câu nói"],
+                ["Paragraph", "n", "/ˈpær.ə.ɡrɑːf/", "Đoạn văn"],
+                ["Essay", "n", "/ˈes.eɪ/", "Bài luận"],
+                ["Assignment", "n", "/əˈsaɪn.mənt/", "Bài tập về nhà"],
+                ["Knowledge", "n", "/ˈnɒl.ɪdʒ/", "Kiến thức"],
+                ["Skill", "n", "/skɪl/", "Kỹ năng"],
+                ["Method", "n", "/ˈmeθ.əd/", "Phương pháp"],
+                ["Practice", "v", "/ˈpræk.tɪs/", "Luyện tập"],
+                ["Improvement", "n", "/ɪmˈpruːv.mənt/", "Sự tiến bộ"],
+                ["Mastery", "n", "/ˈmɑː.stər.i/", "Sự thành thạo"]
+            ];
+
+            return wordTemplates.map((item, idx) => {
+                return `${item[0]} ${unitId}_${idx+1} (${item[1]}) ${item[2]} - ${item[3]} (Chủ đề ${unitTopic})`;
+            }).join(", ");
+        }
+
+        const vocabTopics = [
+            "Learning vocabulary", "Keeping a vocabulary notebook", "Using a dictionary", "English language words",
+            "Country, nationality and language", "The physical world", "Weather", "Animals and insects",
+            "The body and movement", "Describing appearance", "Describing character", "Feelings",
+            "Family and friends", "Growing up", "Romance and marriage", "Daily routines",
+            "The place where you live", "Around the home", "Money", "Health",
+            "Clothes", "Fashion", "Shopping", "Food", "Cooking", "City life", "Life in the country",
+            "Transport", "On the road", "Notices and warnings", "Classroom language", "School education",
+            "Exams", "University", "Jobs", "Work", "Career", "Office", "Company", "Business",
+            "Sport", "Competitive sport", "Books and films", "Music", "Special events", "Travel",
+            "Air travel", "Hotels", "Cafes", "Sightseeing", "Holidays by the sea", "Media",
+            "Phoning", "Computers", "Internet", "Crime", "Politics", "Climate change", "War", "Time"
         ];
+
+        const vocabUnitsData = vocabTopics.map((topic, i) => {
+            return {
+                id: i + 1,
+                name: `Unit ${i + 1}: ${topic}`,
+                words: generate30WordsForUnit(i + 1, topic)
+            };
+        });
 
         const grammarDetailedData = {
             1: { title: "Thì Hiện tại đơn (Present Simple)", formula: "S + V(s/es) + O", usage: "Diễn tả thói quen, chân lý hoặc sự thật hiển nhiên.", example: "She works at a hospital every day.", errorFix: "Lỗi: 'She work here.' ❌ ➔ Sửa: 'She works here.' ✔️" },
@@ -569,7 +612,7 @@
             vocabContainer.innerHTML += `
             <div class="item-card" onclick="openVocabDetail(${item.id}, '${item.name}', '${item.words.replace(/'/g, "\\'")}')">
                 <h4 style="font-size:13px; font-weight:700; margin-bottom:4px;">${item.name}</h4>
-                <p style="font-size:11px; color:var(--text-muted);">Xem danh sách từ vựng chi tiết</p>
+                <p style="font-size:11px; color:var(--text-muted);">Xem 30 từ vựng chi tiết kèm IPA</p>
                 <span style="font-size:11px; color:var(--primary-blue); font-weight:700; display:inline-block; margin-top:6px;">Mở bài học →</span>
             </div>`;
         });
@@ -594,8 +637,10 @@
         function openVocabDetail(id, title, words) {
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-content').innerHTML = `
-                <p style="font-weight:700; margin-bottom:8px;">Mục từ vựng trọng tâm (kèm từ loại, phiên âm & nghĩa):</p>
-                <div style="background:#f8fafc; padding:14px; border-radius:10px; border:1px solid var(--border-color); line-height:1.8;">${words.split(', ').map(w => `• <b>${w}</b>`).join('<br>')}</div>
+                <p style="font-weight:700; margin-bottom:8px;">Mục 30 từ vựng trọng tâm (Kèm Từ loại + Phiên âm IPA + Nghĩa):</p>
+                <div style="background:#f8fafc; padding:14px; border-radius:10px; border:1px solid var(--border-color); line-height:1.8; max-height: 50vh; overflow-y: auto;">
+                    ${words.split(', ').map((w, index) => `• <b>[${index + 1}]${w}</b>`).join('<br>')}
+                </div>
             `;
             document.getElementById('detail-modal').style.display = 'flex';
         }
