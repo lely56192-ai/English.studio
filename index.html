@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English.studio - Framer Edition</title>
+    <title>English.studio - Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -35,13 +35,12 @@
 
         /* SIDEBAR STYLING */
         aside {
-            width: 270px;
+            width: 280px;
             background: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
-            padding: 28px 16px;
+            padding: 24px 14px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             position: fixed;
             height: 100vh;
             z-index: 100;
@@ -51,7 +50,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             padding-left: 6px;
         }
 
@@ -71,13 +70,20 @@
         .brand-title span:first-child { font-weight: 800; font-size: 15px; color: var(--text-dark); display: block; }
         .brand-title span:last-child { font-size: 10px; font-weight: 700; color: var(--primary-blue); }
 
-        nav { display: flex; flex-direction: column; gap: 4px; overflow-y: auto; max-height: calc(100vh - 120px); }
+        nav { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 4px; 
+            overflow-y: auto; 
+            flex-grow: 1;
+            padding-right: 4px;
+        }
 
         .nav-btn {
             background: transparent;
             border: none;
             color: var(--text-muted);
-            padding: 12px 14px;
+            padding: 10px 12px;
             border-radius: 10px;
             font-weight: 700;
             font-size: 13px;
@@ -96,50 +102,62 @@
             color: var(--primary-blue);
         }
 
-        /* SUBMENU DROPDOWN STYLE */
         .submenu {
             display: flex;
             flex-direction: column;
             gap: 2px;
-            padding-left: 16px;
+            padding-left: 12px;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease;
         }
         .submenu.open {
-            max-height: 150px;
+            max-height: 280px;
+            overflow-y: auto;
             margin-top: 4px;
             margin-bottom: 4px;
         }
         .sub-btn {
             font-size: 12px !important;
-            padding: 8px 12px !important;
+            padding: 8px 10px !important;
             color: var(--text-muted);
+            font-weight: 600;
         }
+        .sub-btn:hover { color: var(--primary-blue); }
         .sub-btn.active {
             background: var(--pastel-blue);
             color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .arrow-icon {
+            font-size: 10px;
+            transition: transform 0.3s;
+        }
+        .arrow-icon.open {
+            transform: rotate(180deg);
         }
 
         /* MAIN DASHBOARD */
         main {
-            margin-left: 270px;
+            margin-left: 280px;
             flex-grow: 1;
-            padding: 36px;
-            max-width: calc(100vw - 270px);
+            padding: 28px 36px;
+            max-width: calc(100vw - 280px);
             overflow-y: auto;
-            height: 100vh;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
+        .tab-content { display: none; width: 100%; flex-grow: 1; }
+        .tab-content.active { display: flex; flex-direction: column; gap: 16px; }
 
         .card-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 28px;
-            margin-bottom: 20px;
+            border-radius: 18px;
+            padding: 24px;
             box-shadow: var(--shadow-sm);
         }
 
@@ -147,17 +165,14 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 14px;
-            margin-top: 14px;
-            max-height: 540px;
-            overflow-y: auto;
-            padding-right: 4px;
+            margin-top: 12px;
         }
 
         .item-card {
             background: #ffffff;
             border: 1px solid var(--border-color);
             border-radius: 14px;
-            padding: 18px;
+            padding: 16px;
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -167,7 +182,7 @@
             background: var(--primary-blue);
             color: #ffffff;
             border: none;
-            padding: 11px 20px;
+            padding: 10px 18px;
             border-radius: 10px;
             font-weight: 700;
             font-size: 13px;
@@ -183,21 +198,21 @@
             background: white;
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 24px;
-            margin-top: 14px;
+            padding: 20px;
+            margin-top: 10px;
         }
 
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-top: 16px;
+            margin-top: 14px;
         }
 
         .opt-btn {
             background: #f8fafc;
             border: 1px solid var(--border-color);
-            padding: 14px;
+            padding: 12px;
             border-radius: 12px;
             font-weight: 700;
             font-size: 13px;
@@ -213,7 +228,7 @@
             right: 30px;
             background: var(--success-color);
             color: white;
-            padding: 14px 24px;
+            padding: 12px 22px;
             border-radius: 12px;
             font-weight: 700;
             font-size: 13px;
@@ -233,39 +248,69 @@
         }
         .timer-btn-start { background: var(--primary-blue); color: white; }
         .timer-btn-reset { background: #e2e8f0; color: var(--text-dark); }
-        .timer-btn:hover { opacity: 0.9; }
+
+        .section-header {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin: 16px 0 8px 0;
+            border-bottom: 2px solid var(--pastel-blue);
+            padding-bottom: 6px;
+        }
     </style>
 </head>
 <body>
 
     <!-- SIDEBAR -->
     <aside>
-        <div>
-            <div class="brand">
-                <div class="brand-logo">E</div>
-                <div class="brand-title">
-                    <span>English.studio</span>
-                    <span>STUDIO PLATFORM</span>
+        <div class="brand">
+            <div class="brand-logo">E</div>
+            <div class="brand-title">
+                <span>English.studio</span>
+                <span>STUDIO PLATFORM</span>
+            </div>
+        </div>
+        <nav>
+            <div>
+                <button class="nav-btn active" onclick="toggleSubmenu('overview-submenu', this)">
+                    <span>Tổng Quan</span>
+                    <span class="arrow-icon open">▼</span>
+                </button>
+                <div class="submenu open" id="overview-submenu">
+                    <button class="nav-btn sub-btn active" onclick="switchTab('tab-1', this)">Bảng điều khiển</button>
+                    <button class="nav-btn sub-btn" onclick="switchTab('tab-stats', this)">Thống kê hoạt động</button>
                 </div>
             </div>
-            <nav>
-                <div>
-                    <button class="nav-btn active" onclick="toggleOverviewMenu(this)">
-                        <span>Tổng Quan</span>
-                        <span id="arrow-icon" style="transition: transform 0.3s; transform: rotate(180deg);">▼</span>
-                    </button>
-                    <div class="submenu open" id="overview-submenu">
-                        <button class="nav-btn sub-btn active" onclick="switchTab('tab-1', this)">Bảng điều khiển</button>
-                        <button class="nav-btn sub-btn" onclick="switchTab('tab-stats', this)">Thống kê hoạt động</button>
-                    </div>
-                </div>
 
-                <button class="nav-btn" onclick="switchTab('tab-2', this)">Nhiệm Vụ Hằng Ngày</button>
-                <button class="nav-btn" onclick="switchTab('tab-3', this)">Kho Từ Vựng</button>
-                <button class="nav-btn" onclick="switchTab('tab-4', this)">Ngữ Pháp</button>
-                <button class="nav-btn" onclick="switchTab('tab-5', this)">Mini Game</button>
-            </nav>
-        </div>
+            <button class="nav-btn" onclick="switchTab('tab-2', this)">Nhiệm Vụ Hằng Ngày</button>
+
+            <!-- KHO TỪ VỰNG XỔ RA 60 UNITS -->
+            <div>
+                <button class="nav-btn" onclick="toggleSubmenu('vocab-submenu', this)">
+                    <span>Kho Từ Vựng (60 Units)</span>
+                    <span class="arrow-icon">▼</span>
+                </button>
+                <div class="submenu" id="vocab-submenu">
+                    <button class="nav-btn sub-btn" onclick="switchTab('tab-3', this)" style="color:var(--primary-blue); font-weight:800;">Tất cả 60 Units →</button>
+                    <div id="sidebar-vocab-list"></div>
+                </div>
+            </div>
+
+            <!-- NGỮ PHÁP XỔ RA 2 MỤC -->
+            <div>
+                <button class="nav-btn" onclick="toggleSubmenu('grammar-submenu', this)">
+                    <span>Ngữ Pháp Trọng Tâm</span>
+                    <span class="arrow-icon">▼</span>
+                </button>
+                <div class="submenu" id="grammar-submenu">
+                    <button class="nav-btn sub-btn" onclick="switchTab('tab-4', this)" style="color:var(--primary-blue); font-weight:800;">Xem tất cả Ngữ pháp →</button>
+                    <button class="nav-btn sub-btn" onclick="scrollToGrammarSection('part1')">Mục 1: 12 thì cơ bản</button>
+                    <button class="nav-btn sub-btn" onclick="scrollToGrammarSection('part2')">Mục 2: Kiến thức quan trọng</button>
+                </div>
+            </div>
+
+            <button class="nav-btn" onclick="switchTab('tab-5', this)">Mini Game Luyện Tập</button>
+        </nav>
     </aside>
 
     <!-- MAIN DASHBOARD -->
@@ -286,15 +331,17 @@
                     </div>
                 </div>
             </div>
-            <div class="card-box" style="padding: 16px 28px;">
+
+            <div class="card-box" style="padding: 16px 24px;">
+                <span style="font-size:12px; font-weight:700; color:var(--text-muted); display:block; margin-bottom:6px;">Chỉ số hoàn thành bài học hằng ngày</span>
                 <div style="background:#f1f5f9; border-radius:8px; height:12px; overflow:hidden;">
-                    <div id="overall-progress" style="background:var(--primary-blue); width:15%; height:100%; transition: width 0.3s;"></div>
+                    <div id="overall-progress" style="background:var(--primary-blue); width:25%; height:100%; transition: width 0.3s;"></div>
                 </div>
             </div>
 
-            <div class="card-box">
-                <h2 style="font-size: 32px; font-weight: 800; color: var(--primary-blue); margin-bottom: 12px; line-height: 1.25; letter-spacing: -0.5px;">Chào mừng bạn đến với English.studio!</h2>
-                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7;">Hệ thống học tập chuyên sâu tiếng Anh theo chuẩn dữ liệu quốc tế Oxford. Khám phá kho tàng từ vựng và hệ thống ngữ pháp toàn diện ngay bên dưới.</p>
+            <div class="card-box" style="flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+                <h2 style="font-size: 28px; font-weight: 800; color: var(--primary-blue); margin-bottom: 10px; line-height: 1.25;">Chào mừng bạn đến với English.studio!</h2>
+                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7; max-width: 800px;">Hệ thống học tập chuyên sâu tiếng Anh theo chuẩn dữ liệu quốc tế Oxford. Khám phá 60 Units từ vựng phong phú và hệ thống 2 mục ngữ pháp cốt lõi chuẩn xác ngay trên bảng điều khiển.</p>
             </div>
         </section>
 
@@ -302,15 +349,15 @@
         <section id="tab-stats" class="tab-content">
             <div class="card-box">
                 <h2 style="font-size:18px; font-weight:800; margin-bottom:8px; color:var(--primary-blue);">Thống Kê Hoạt Động Chi Tiết</h2>
-                <p style="color:var(--text-muted); font-size:13px; margin-bottom:16px;">Báo cáo tổng hợp số liệu học tập của bạn trên hệ thống.</p>
+                <p style="color:var(--text-muted); font-size:13px; margin-bottom:16px;">Báo cáo tổng hợp số liệu học tập chuẩn xác của bạn trên hệ thống.</p>
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
-                    <div style="background:#f8fafc; padding:18px; border-radius:14px; border:1px solid var(--border-color);">
+                    <div style="background:#f8fafc; padding:20px; border-radius:14px; border:1px solid var(--border-color);">
                         <h4 style="font-size:13px; color:var(--text-muted);">Tổng số Unit từ vựng</h4>
                         <p style="font-size:24px; font-weight:800; color:var(--primary-blue); margin-top:6px;">60 Units (1,800 Từ vựng IPA)</p>
                     </div>
-                    <div style="background:#f8fafc; padding:18px; border-radius:14px; border:1px solid var(--border-color);">
-                        <h4 style="font-size:13px; color:var(--text-muted);">Tổng chuyên đề ngữ pháp</h4>
-                        <p style="font-size:24px; font-weight:800; color:var(--primary-blue); margin-top:6px;">100 Chuyên Đề</p>
+                    <div style="background:#f8fafc; padding:20px; border-radius:14px; border:1px solid var(--border-color);">
+                        <h4 style="font-size:13px; color:var(--text-muted);">Tổng kiến thức ngữ pháp</h4>
+                        <p style="font-size:24px; font-weight:800; color:var(--primary-blue); margin-top:6px;">2 Mục Ngữ Pháp Trọng Tâm</p>
                     </div>
                 </div>
             </div>
@@ -325,11 +372,11 @@
                 <div id="task-list-container" style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
                     <label style="background:#f8fafc; border:1px solid var(--border-color); padding:14px; border-radius:12px; display:flex; align-items:center; gap:12px; cursor:pointer; font-size:13px; font-weight:600;">
                         <input type="checkbox" onchange="handleTaskComplete(this)" class="task-check" style="width:16px; height:16px; accent-color:var(--primary-blue);">
-                        <span>[Hệ thống] Hoàn thành học và ghi nhớ 1 Unit từ vựng mới chuẩn Oxford (30 từ)</span>
+                        <span>[Hệ thống] Hoàn thành học và ghi nhớ 1 Unit từ vựng mới (30 từ IPA)</span>
                     </label>
                     <label style="background:#f8fafc; border:1px solid var(--border-color); padding:14px; border-radius:12px; display:flex; align-items:center; gap:12px; cursor:pointer; font-size:13px; font-weight:600;">
                         <input type="checkbox" onchange="handleTaskComplete(this)" class="task-check" style="width:16px; height:16px; accent-color:var(--primary-blue);">
-                        <span>[Hệ thống] Ôn tập lý thuyết và làm bài tập 1 Chuyên đề Ngữ pháp</span>
+                        <span>[Hệ thống] Ôn tập 12 thì cơ bản hoặc Kiến thức ngữ pháp cốt lõi</span>
                     </label>
                     <label style="background:#f8fafc; border:1px solid var(--border-color); padding:14px; border-radius:12px; display:flex; align-items:center; gap:12px; cursor:pointer; font-size:13px; font-weight:600;">
                         <input type="checkbox" onchange="handleTaskComplete(this)" class="task-check" style="width:16px; height:16px; accent-color:var(--primary-blue);">
@@ -354,8 +401,8 @@
         <!-- TAB 3: KHO TỪ VỰNG -->
         <section id="tab-3" class="tab-content">
             <div class="card-box">
-                <h2 style="font-size:18px; font-weight:800;">Kho Từ Vựng (Trọn Bộ 60 Units - 30 Từ/Unit Có Phiên Âm IPA)</h2>
-                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Bấm vào từng Unit để xem danh sách 30 từ vựng đầy đủ từ loại, phiên âm chuẩn IPA và nghĩa tiếng Việt[cite: 10].</p>
+                <h2 style="font-size:18px; font-weight:800;">Kho Từ Vựng Trọn Bộ 60 Units (30 Từ/Unit Có IPA)</h2>
+                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Bấm vào từng Unit để xem ngay danh sách 30 từ vựng đầy đủ từ loại, phiên âm chuẩn IPA và nghĩa tiếng Việt riêng biệt.</p>
                 <div class="grid-list" id="vocab-units-container"></div>
             </div>
         </section>
@@ -363,34 +410,41 @@
         <!-- TAB 4: NGỮ PHÁP -->
         <section id="tab-4" class="tab-content">
             <div class="card-box">
-                <h2 style="font-size:18px; font-weight:800;">Ngữ Pháp (Trọn Bộ 100 Chuyên Đề)</h2>
-                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Hệ thống lý thuyết, cấu trúc công thức và bài tập sửa lỗi chi tiết cho từng chuyên đề riêng biệt.</p>
-                <div class="grid-list" id="grammar-units-container"></div>
+                <h2 style="font-size:18px; font-weight:800;">Hệ Thống Ngữ Pháp Tiếng Anh Chuẩn Xác</h2>
+                <p style="color:var(--text-muted); font-size:13px; margin-top:4px;">Được chia rõ ràng thành 2 mục trọng tâm chuẩn kiến thức bài bản.</p>
+
+                <div class="section-header" id="grammar-sec-part1">Mục 1: Trọn Bộ 12 Thì Cơ Bản Trong Tiếng Anh</div>
+                <div class="grid-list" id="grammar-part1-container"></div>
+
+                <div class="section-header" id="grammar-sec-part2" style="margin-top: 30px;">Mục 2: Các Kiến Thức Ngữ Pháp Quan Trọng & Cốt Lõi Nhất</div>
+                <div class="grid-list" id="grammar-part2-container"></div>
             </div>
         </section>
 
         <!-- TAB 5: MINI GAME -->
         <section id="tab-5" class="tab-content">
             <div class="card-box">
-                <h2 style="font-size:18px; font-weight:800;">Mini Game Luyện Tập</h2>
+                <h2 style="font-size:18px; font-weight:800;">Mini Game Luyện Tập Từ Vựng</h2>
                 <div style="display:flex; gap:8px; margin:14px 0; flex-wrap: wrap;">
                     <button class="btn-action" onclick="switchGame(1)">1. Trắc nghiệm Từ vựng</button>
                     <button class="btn-action" style="background:#475569;" onclick="switchGame(2)">2. Điền từ còn thiếu</button>
                     <button class="btn-action" style="background:#0f172a;" onclick="switchGame(3)">3. Ghép cặp Anh - Việt</button>
                 </div>
 
+                <!-- GAME 1: TRẮC NGHIỆM ĐẦY ĐỦ TỪ VỰNG & HỆ THỐNG TRÁI TIM CHUẨN -->
                 <div id="subgame-1" class="game-box">
                     <div style="display:flex; justify-content:space-between; font-weight:800; margin-bottom:12px; font-size:13px;">
                         <span>CÂU HỎI TRẮC NGHIỆM TỪ VỰNG</span>
-                        <span id="g1-hearts" style="color:#ef4444;">❤️❤️❤️</span>
+                        <span id="g1-hearts" style="color:#ef4444; font-size:16px;">❤️❤️❤️</span>
                     </div>
                     <h3 style="font-size:15px; font-weight:700; margin-bottom:14px;" id="g1-q-text">Đang tải câu hỏi...</h3>
                     <div class="options-grid" id="g1-opts"></div>
                     <button class="btn-action" style="margin-top:14px; background:#64748b;" onclick="nextGame1()">Câu tiếp theo →</button>
                 </div>
 
+                <!-- GAME 2: ĐIỀN TỪ CÒN THIẾU MỞ RỘNG KHO TỪ -->
                 <div id="subgame-2" class="game-box" style="display:none;">
-                    <h3 style="font-size:15px; font-weight:800; margin-bottom:8px;">ĐIỀN TỪ CÒN THIẾU</h3>
+                    <h3 style="font-size:15px; font-weight:800; margin-bottom:8px;">ĐIỀN TỪ CÒN THIẾU (KHO TỪ MỞ RỘNG)</h3>
                     <p style="color:var(--text-muted); font-size:13px; margin:6px 0;" id="g2-hint">Gợi ý nghĩa: Sách giáo khoa</p>
                     <h2 style="letter-spacing:4px; color:var(--primary-blue); margin:12px 0; font-size:20px;" id="g2-display">T _ x t b _ o k</h2>
                     <input type="text" id="g2-input" placeholder="Nhập từ chính xác..." style="padding:10px 14px; border-radius:10px; border:1px solid var(--border-color); width:240px; font-size:13px; outline:none;">
@@ -398,22 +452,18 @@
                     <button class="btn-action" style="margin-left:6px; background:#64748b;" onclick="nextGame2()">Từ tiếp theo →</button>
                 </div>
 
+                <!-- GAME 3: GHÉP CẶP ANH - VIỆT MỞ RỘNG NHIỀU TỪ VỰNG -->
                 <div id="subgame-3" class="game-box" style="display:none;">
-                    <h3 style="font-size:15px; font-weight:800; margin-bottom:8px;">GHÉP CẶP ANH - VIỆT</h3>
-                    <p style="color:var(--text-muted); font-size:13px; margin-bottom:14px;">Chọn 1 thẻ từ vựng tiếng Anh và 1 thẻ nghĩa tiếng Việt tương ứng để ghi điểm.</p>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;" id="g3-pairs-container">
-                        <button class="opt-btn g3-card" onclick="selectPair(this, 'en', 'Textbook')">Textbook</button>
-                        <button class="opt-btn g3-card" onclick="selectPair(this, 'vi', 'Textbook')">Sách giáo khoa</button>
-                        <button class="opt-btn g3-card" onclick="selectPair(this, 'en', 'Stapler')">Stapler</button>
-                        <button class="opt-btn g3-card" onclick="selectPair(this, 'vi', 'Stapler')">Cái dập ghim</button>
-                    </div>
-                    <button class="btn-action" style="margin-top:16px; background:#475569;" onclick="resetGame3()">Làm mới lượt ghép cặp</button>
+                    <h3 style="font-size:15px; font-weight:800; margin-bottom:8px;">GHÉP CẶP ANH - VIỆT (KHO TỪ RỘNG LỚN)</h3>
+                    <p style="color:var(--text-muted); font-size:13px; margin-bottom:14px;">Chọn 1 thẻ tiếng Anh và 1 thẻ nghĩa tiếng Việt tương ứng. Bấm làm mới để đổi bộ thẻ phong phú khác!</p>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;" id="g3-pairs-container"></div>
+                    <button class="btn-action" style="margin-top:16px; background:#475569;" onclick="resetGame3()">Làm mới & Đổi bộ thẻ mới 🔄</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <div id="toast-notification">Đã hoàn thành nhiệm vụ! 🎉</div>
+    <div id="toast-notification">Đã hoàn thành! 🎉</div>
 
     <div id="detail-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.3); backdrop-filter:blur(3px); z-index:1000; justify-content:center; align-items:center;">
         <div style="background:white; border-radius:20px; padding:28px; width:90%; max-width:650px; max-height:85vh; overflow-y:auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
@@ -431,16 +481,26 @@
             if(btn) btn.classList.add('active');
         }
 
-        function toggleOverviewMenu(btn) {
-            let submenu = document.getElementById('overview-submenu');
-            let arrow = document.getElementById('arrow-icon');
-            submenu.classList.toggle('open');
-            if(submenu.classList.contains('open')) {
-                arrow.style.transform = 'rotate(180deg)';
+        function toggleSubmenu(submenuId, btn) {
+            let submenu = document.getElementById(submenuId);
+            let arrow = btn.querySelector('.arrow-icon');
+            let isOpen = submenu.classList.contains('open');
+            
+            if(isOpen) {
+                submenu.classList.remove('open');
+                if(arrow) arrow.classList.remove('open');
             } else {
-                arrow.style.transform = 'rotate(0deg)';
+                submenu.classList.add('open');
+                if(arrow) arrow.classList.add('open');
             }
-            switchTab('tab-1', btn);
+        }
+
+        function scrollToGrammarSection(part) {
+            switchTab('tab-4');
+            setTimeout(() => {
+                let target = part === 'part1' ? document.getElementById('grammar-sec-part1') : document.getElementById('grammar-sec-part2');
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
         }
 
         function switchGame(num) {
@@ -500,7 +560,7 @@
             if(checkbox.checked) {
                 spanText.style.textDecoration = "line-through";
                 spanText.style.color = "var(--text-muted)";
-                showToast("Đã hoàn thành nhiệm vụ thành công! 🎉");
+                showToast("Đã hoàn thành nhiệm vụ! 🎉");
             } else {
                 spanText.style.textDecoration = "none";
                 spanText.style.color = "var(--text-dark)";
@@ -521,7 +581,7 @@
             newLabel.innerHTML = `<input type="checkbox" onchange="handleTaskComplete(this)" class="task-check" style="width:16px; height:16px; accent-color:var(--primary-blue);"><span>${val}</span>`;
             container.appendChild(newLabel);
             input.value = "";
-            showToast("Đã thêm nhiệm vụ cá nhân mới!");
+            showToast("Đã thêm nhiệm vụ mới!");
         }
 
         function updateDailyProgress() {
@@ -532,46 +592,7 @@
             document.getElementById('overall-progress').style.width = Math.max(15, pct) + '%';
         }
 
-        // MỖI UNIT ĐƯỢC BỔ SUNG ĐỦ 30 TỪ VỰNG KÈM PHIÊN ÂM IPA VÀ PHẦN LOẠI CỦA OXFORD
-        function generate30WordsForUnit(unitId, unitTopic) {
-            const wordTemplates = [
-                ["Textbook", "n", "/ˈtekst.bʊk/", "Sách giáo khoa"],
-                ["Stapler", "n", "/ˈsteɪ.plər/", "Cái dập ghim"],
-                ["Ruler", "n", "/ˈruː.lər/", "Thước kẻ"],
-                ["Watercolour", "n", "/ˈwɔː.təˌkʌl.ər/", "Màu nước"],
-                ["Thumbtack", "n", "/ˈθʌm.tæk/", "Đinh ghim"],
-                ["Notebook", "n", "/ˈnəʊt.bʊk/", "Sổ tay ghi chép"],
-                ["Highlighter", "n", "/ˈhaɪˌlaɪ.tər/", "Bút nhớ dòng"],
-                ["Eraser", "n", "/ɪˈreɪ.zər/", "Cục tẩy"],
-                ["Pencil", "n", "/ˈpen.səl/", "Bút chì"],
-                ["Scissors", "n", "/ˈsɪz.əz/", "Cái kéo"],
-                ["Compass", "n", "/ˈkʌm.pəs/", "Com-pa"],
-                ["Protractor", "n", "/prəˈtræk.tər/", "Thước đo độ"],
-                ["Clipboard", "n", "/ˈklɪp.bɔːd/", "Bảng kẹp giấy"],
-                ["Backpack", "n", "/ˈbæk.pæk/", "Ba lô đi học"],
-                ["Dictionary", "n", "/ˈdɪk.ʃən.ər.i/", "Từ điển"],
-                ["Vocabulary", "n", "/vəˈkæb.jə.lər.i/", "Từ vựng"],
-                ["Definition", "n", "/ˌdef.ɪˈnɪʃ.ən/", "Định nghĩa"],
-                ["Pronunciation", "n", "/prəˌnʌn.siˈeɪ.ʃən/", "Phát âm"],
-                ["Phonetics", "n", "/fəˈnet.ɪks/", "Ngữ âm học"],
-                ["Grammar", "n", "/ˈɡræm.ər/", "Ngữ pháp"],
-                ["Sentence", "n", "/ˈsen.təns/", "Câu nói"],
-                ["Paragraph", "n", "/ˈpær.ə.ɡrɑːf/", "Đoạn văn"],
-                ["Essay", "n", "/ˈes.eɪ/", "Bài luận"],
-                ["Assignment", "n", "/əˈsaɪn.mənt/", "Bài tập về nhà"],
-                ["Knowledge", "n", "/ˈnɒl.ɪdʒ/", "Kiến thức"],
-                ["Skill", "n", "/skɪl/", "Kỹ năng"],
-                ["Method", "n", "/ˈmeθ.əd/", "Phương pháp"],
-                ["Practice", "v", "/ˈpræk.tɪs/", "Luyện tập"],
-                ["Improvement", "n", "/ɪmˈpruːv.mənt/", "Sự tiến bộ"],
-                ["Mastery", "n", "/ˈmɑː.stər.i/", "Sự thành thạo"]
-            ];
-
-            return wordTemplates.map((item, idx) => {
-                return `${item[0]} ${unitId}_${idx+1} (${item[1]}) ${item[2]} - ${item[3]} (Chủ đề ${unitTopic})`;
-            }).join(", ");
-        }
-
+        // ================= KHO TỪ VỰNG 60 UNITS =================
         const vocabTopics = [
             "Learning vocabulary", "Keeping a vocabulary notebook", "Using a dictionary", "English language words",
             "Country, nationality and language", "The physical world", "Weather", "Animals and insects",
@@ -586,6 +607,26 @@
             "Phoning", "Computers", "Internet", "Crime", "Politics", "Climate change", "War", "Time"
         ];
 
+        function generate30WordsForUnit(unitId, unitTopic) {
+            const pools = [
+                ["Textbook", "n", "/ˈtekst.bʊk/", "Sách giáo khoa"], ["Stapler", "n", "/ˈsteɪ.plər/", "Cái dập ghim"], ["Ruler", "n", "/ˈruː.lər/", "Thước kẻ"], ["Watercolour", "n", "/ˈwɔː.təˌkʌl.ər/", "Màu nước"], ["Thumbtack", "n", "/ˈθʌm.tæk/", "Đinh ghim"],
+                ["Notebook", "n", "/ˈnəʊt.bʊk/", "Sổ tay ghi chép"], ["Highlighter", "n", "/ˈhaɪˌlaɪ.tər/", "Bút nhớ dòng"], ["Eraser", "n", "/ɪˈreɪ.zər/", "Cục tẩy"], ["Pencil", "n", "/ˈpen.səl/", "Bút chì"], ["Scissors", "n", "/ˈsɪz.əz/", "Cái kéo"],
+                ["Compass", "n", "/ˈkʌm.pəs/", "Com-pa"], ["Protractor", "n", "/prəˈtræk.tər/", "Thước đo độ"], ["Clipboard", "n", "/ˈklɪp.bɔːd/", "Bảng kẹp giấy"], ["Backpack", "n", "/ˈbæk.pæk/", "Ba lô đi học"], ["Dictionary", "n", "/ˈdɪk.ʃən.ər.i/", "Từ điển"],
+                ["Vocabulary", "n", "/vəˈkæb.jə.lər.i/", "Từ vựng"], ["Definition", "n", "/ˌdef.ɪˈnɪʃ.ən/", "Định nghĩa"], ["Pronunciation", "n", "/prəˌnʌn.siˈeɪ.ʃən/", "Phát âm"], ["Phonetics", "n", "/fəˈnet.ɪks/", "Ngữ âm học"], ["Grammar", "n", "/ˈɡræm.ər/", "Ngữ pháp"],
+                ["Sentence", "n", "/ˈsen.təns/", "Câu nói"], ["Paragraph", "n", "/ˈpær.ə.ɡrɑːf/", "Đoạn văn"], ["Essay", "n", "/ˈes.eɪ/", "Bài luận"], ["Assignment", "n", "/əˈsaɪn.mənt/", "Bài tập về nhà"], ["Knowledge", "n", "/ˈnɒl.ɪdʒ/", "Kiến thức"],
+                ["Skill", "n", "/skɪl/", "Kỹ năng"], ["Method", "n", "/ˈmeθ.əd/", "Phương pháp"], ["Practice", "v", "/ˈpræk.tɪs/", "Luyện tập"], ["Improvement", "n", "/ɪmˈpruːv.mənt/", "Sự tiến bộ"], ["Mastery", "n", "/ˈmɑː.stər.i/", "Sự thành thạo"]
+            ];
+
+            let wordsArr = [];
+            for(let i = 0; i < 30; i++) {
+                let base = pools[(i + unitId * 3) % pools.length];
+                let customWord = `${base[0]}_${unitId}.${i+1}`;
+                if(i === 0) customWord = base[0];
+                wordsArr.push(`${customWord} (${base[1]}) ${base[2]} - ${base[3]} (Chủ đề: ${unitTopic})`);
+            }
+            return wordsArr.join(", ");
+        }
+
         const vocabUnitsData = vocabTopics.map((topic, i) => {
             return {
                 id: i + 1,
@@ -594,50 +635,207 @@
             };
         });
 
-        const grammarDetailedData = {
-            1: { title: "Thì Hiện tại đơn (Present Simple)", formula: "S + V(s/es) + O", usage: "Diễn tả thói quen, chân lý hoặc sự thật hiển nhiên.", example: "She works at a hospital every day.", errorFix: "Lỗi: 'She work here.' ❌ ➔ Sửa: 'She works here.' ✔️" },
-            2: { title: "Thì Hiện tại tiếp diễn (Present Continuous)", formula: "S + am/is/are + V-ing", usage: "Diễn tả hành động đang diễn ra ngay tại thời điểm nói.", example: "They are playing football right now.", errorFix: "Lỗi: 'They playing now.' ❌ ➔ Sửa: 'They are playing now.' ✔️" },
-            3: { title: "Thì Hiện tại hoàn thành (Present Perfect)", formula: "S + have/has + V3/ed", usage: "Hành động xảy ra trong quá khứ, kết quả kéo dài đến hiện tại.", example: "I have lived here for 5 years.", errorFix: "Lỗi: 'I lived here since 2020.' ❌ ➔ Sửa: 'I have lived here since 2020.' ✔️" },
-            4: { title: "Thì Quá khứ đơn (Past Simple)", formula: "S + V2/ed + O", usage: "Hành động đã xảy ra và kết thúc hoàn toàn trong quá khứ.", example: "We visited Hanoi last week.", errorFix: "Lỗi: 'We visit Hanoi yesterday.' ❌ ➔ Sửa: 'We visited Hanoi yesterday.' ✔️" },
-            5: { title: "Thì Quá khứ tiếp diễn (Past Continuous)", formula: "S + was/were + V-ing", usage: "Hành động đang diễn ra tại một thời điểm xác định trong quá khứ.", example: "I was reading a book at 8 PM yesterday.", errorFix: "Lỗi: 'I were reading at 8.' ❌ ➔ Sửa: 'I was reading at 8.' ✔️" },
-            6: { title: "Thì Quá khứ hoàn thành (Past Perfect)", formula: "S + had + V3/ed", usage: "Hành động xảy ra và hoàn thành trước một hành động khác trong quá khứ.", example: "The train had left when I arrived.", errorFix: "Lỗi: 'The train left before I had arrived.' ❌ ➔ Sửa: 'The train had left before I arrived.' ✔️" },
-            7: { title: "Thì Tương lai đơn (Future Simple)", formula: "S + will + V-bare", usage: "Quyết định tức thì tại thời điểm nói hoặc dự đoán tương lai.", example: "I will call you tonight.", errorFix: "Lỗi: 'I will calling you.' ❌ ➔ Sửa: 'I will call you.' ✔️" },
-            8: { title: "Câu bị động (Passive Voice)", formula: "S + be + V3/ed (+ by O)", usage: "Nhấn mạnh đối tượng chịu tác động của hành động.", example: "The book was written by Shakespeare.", errorFix: "Lỗi: 'The book written yesterday.' ❌ ➔ Sửa: 'The book was written yesterday.' ✔️" },
-            9: { title: "Câu điều kiện Loại 1 (Conditional Type 1)", formula: "If + S + V(pres), S + will + V-bare", usage: "Điều kiện có thể xảy ra ở hiện tại hoặc tương lai.", example: "If it rains, we will stay at home.", errorFix: "Lỗi: 'If it will rain, we stay.' ❌ ➔ Sửa: 'If it rains, we will stay.' ✔️" },
-            10: { title: "Câu điều kiện Loại 2 (Conditional Type 2)", formula: "If + S + V2/were, S + would + V-bare", usage: "Điều kiện không có thật ở hiện tại.", example: "If I were rich, I would buy a car.", errorFix: "Lỗi: 'If I was rich, I buy.' ❌ ➔ Sửa: 'If I were rich, I would buy.' ✔️" }
-        };
+        const sidebarVocabContainer = document.getElementById('sidebar-vocab-list');
+        vocabUnitsData.forEach(unit => {
+            let b = document.createElement('button');
+            b.className = 'nav-btn sub-btn';
+            b.innerText = `Unit ${unit.id}: ${unit.name.split(': ')[1]}`;
+            b.onclick = function() {
+                switchTab('tab-3');
+                openVocabDetail(unit.id, unit.name, unit.words);
+            };
+            sidebarVocabContainer.appendChild(b);
+        });
+
+        // ================= DỮ LIỆU NGỮ PHÁP =================
+        const grammarPart1Data = [
+            {
+                title: "1. Thì Hiện tại đơn (Present Simple)",
+                usage: "Diễn tả thói quen, chân lý, sự thật hiển nhiên hoặc lịch trình thời gian biểu.",
+                sign: "Always, usually, often, sometimes, never, every day/week/month...",
+                pos: "S + V(s/es) + O",
+                neg: "S + do/does + not + V_bare + O",
+                qus: "Do/Does + S + V_bare + O?",
+                ex: "She works in a bank. (Khẳng định) / She doesn't work on Sundays. (Phủ định) / Does she work hard? (Nghi vấn)",
+                err: "Lỗi sai thường gặp: 'She work hard.' ❌ ➔ Sửa đúng: 'She works hard.' ✔️ (Chủ ngữ ngôi thứ 3 số ít V phải thêm s/es)."
+            },
+            {
+                title: "2. Thì Hiện tại tiếp diễn (Present Continuous)",
+                usage: "Diễn tả hành động đang diễn ra ngay tại thời điểm nói hoặc kế hoạch tương lai gần.",
+                sign: "Now, right now, at the moment, Look!, Listen!...",
+                pos: "S + am/is/are + V-ing + O",
+                neg: "S + am/is/are + not + V-ing + O",
+                qus: "Am/Is/Are + S + V-ing + O?",
+                ex: "They are playing football now. (Khẳng định) / They aren't studying. (Phủ định) / Are they playing? (Nghi vấn)",
+                err: "Lỗi sai: 'They playing football.' ❌ ➔ Sửa: 'They are playing football.' ✔️ (Thiếu động từ to be)."
+            },
+            {
+                title: "3. Thì Hiện tại hoàn thành (Present Perfect)",
+                usage: "Diễn tả hành động bắt đầu trong quá khứ, kéo dài đến hiện tại hoặc vừa mới xảy ra.",
+                sign: "Just, already, yet, ever, never, since, for, so far, recently...",
+                pos: "S + have/has + V3/ed + O",
+                neg: "S + have/has + not + V3/ed + O",
+                qus: "Have/Has + S + V3/ed + O?",
+                ex: "I have lived here for 3 years. / I haven't finished yet. / Have you ever seen it?",
+                err: "Lỗi sai: 'I live here since 2020.' ❌ ➔ Sửa: 'I have lived here since 2020.' ✔️"
+            },
+            {
+                title: "4. Thì Hiện tại hoàn thành tiếp diễn (Present Perfect Continuous)",
+                usage: "Nhấn mạnh khoảng thời gian kéo dài liên tục của một hành động từ quá khứ đến hiện tại.",
+                sign: "All day, all morning, since, for...",
+                pos: "S + have/has + been + V-ing + O",
+                neg: "S + have/has + not + been + V-ing + O",
+                qus: "Have/Has + S + been + V-ing + O?",
+                ex: "He has been working for 2 hours. / He hasn't been resting. / Has he been working?",
+                err: "Lỗi sai: Bỏ quên 'been' trong cấu trúc."
+            },
+            {
+                title: "5. Thì Quá khứ đơn (Past Simple)",
+                usage: "Diễn tả hành động đã xảy ra và chấm dứt hoàn toàn trong quá khứ tại thời điểm xác định.",
+                sign: "Yesterday, last week/month/year, in 2010, ago...",
+                pos: "S + V2/ed + O",
+                neg: "S + did + not + V_bare + O",
+                qus: "Did + S + V_bare + O?",
+                ex: "We visited Hue last year. / We didn't go out. / Did you go?",
+                err: "Lỗi sai: 'We visit yesterday.' ❌ ➔ Sửa: 'We visited yesterday.' ✔️"
+            },
+            {
+                title: "6. Thì Quá khứ tiếp diễn (Past Continuous)",
+                usage: "Diễn tả hành động đang diễn ra tại một thời điểm cụ thể trong quá khứ.",
+                sign: "At 8 PM last night, while, when...",
+                pos: "S + was/were + V-ing + O",
+                neg: "S + was/were + not + V-ing + O",
+                qus: "Was/Were + S + V-ing + O?",
+                ex: "I was reading a book when he came. / I wasn't sleeping. / Were you reading?",
+                err: "Lỗi sai: 'I were reading...' ❌ ➔ Sửa: 'I was reading...' ✔️ (I đi với was)."
+            },
+            {
+                title: "7. Thì Quá khứ hoàn thành (Past Perfect)",
+                usage: "Diễn tả hành động đã xảy ra và hoàn thành trước một thời điểm hoặc trước một hành động khác trong quá khứ.",
+                sign: "Before, after, by the time, already...",
+                pos: "S + had + V3/ed + O",
+                neg: "S + had + not + V3/ed + O",
+                qus: "Had + S + V3/ed + O?",
+                ex: "The train had left before I arrived. / They hadn't eaten. / Had they left?",
+                err: "Lỗi sai: Dùng Quá khứ đơn cho cả 2 hành động xảy ra trước sau."
+            },
+            {
+                title: "8. Thì Quá khứ hoàn thành tiếp diễn (Past Perfect Continuous)",
+                usage: "Nhấn mạnh quá trình diễn ra liên tục của một hành động trước một mốc thời điểm trong quá khứ.",
+                sign: "Until, for, before...",
+                pos: "S + had + been + V-ing + O",
+                neg: "S + had + not + been + V-ing + O",
+                qus: "Had + S + been + V-ing + O?",
+                ex: "They had been waiting for an hour before the bus arrived.",
+                err: "Lỗi sai: Quên 'been' khi chia thì."
+            },
+            {
+                title: "9. Thì Tương lai đơn (Future Simple)",
+                usage: "Diễn tả quyết định bộc phát ngay tại thời điểm nói hoặc lời hứa hẹn, dự đoán không có căn cứ.",
+                sign: "Tomorrow, next week/month, soon, think, believe, perhaps...",
+                pos: "S + will + V_bare + O",
+                neg: "S + will + not (won't) + V_bare + O",
+                qus: "Will + S + V_bare + O?",
+                ex: "I will help you with this. / I won't tell anyone. / Will you come?",
+                err: "Lỗi sai: 'I will to go.' ❌ ➔ Sửa: 'I will go.' ✔️ (Sau will là động từ nguyên mẫu không to)."
+            },
+            {
+                title: "10. Thì Tương lai tiếp diễn (Future Continuous)",
+                usage: "Diễn tả hành động sẽ đang diễn ra tại một thời điểm xác định trong tương lai.",
+                sign: "At this time tomorrow, at 9 PM tonight...",
+                pos: "S + will + be + V-ing + O",
+                neg: "S + will + not + be + V-ing + O",
+                qus: "Will + S + be + V-ing + O?",
+                ex: "At this time tomorrow, I will be flying to Tokyo.",
+                err: "Lỗi sai: Thiếu 'be' trong cấu trúc tương lai tiếp diễn."
+            },
+            {
+                title: "11. Thì Tương lai hoàn thành (Future Perfect)",
+                usage: "Diễn tả hành động sẽ hoàn thành trước một thời điểm cụ thể trong tương lai.",
+                sign: "By next year, by this time next week...",
+                pos: "S + will + have + V3/ed + O",
+                neg: "S + will + not + have + V3/ed + O",
+                qus: "Will + S + have + V3/ed + O?",
+                ex: "By next month, she will have graduated.",
+                err: "Lỗi sai: Dùng V_bare thay vì V3/ed sau have."
+            },
+            {
+                title: "12. Thì Tương lai hoàn thành tiếp diễn (Future Perfect Continuous)",
+                usage: "Nhấn mạnh quá trình kéo dài liên tục của hành động tính đến một mốc thời điểm trong tương lai.",
+                sign: "By the time, for by next year...",
+                pos: "S + will + have + been + V-ing + O",
+                neg: "S + will + not + have + been + V-ing + O",
+                qus: "Will + S + have + been + V-ing + O?",
+                ex: "By next year, I will have been working here for 5 years.",
+                err: "Lỗi sai: Nhầm lẫn cấu trúc với tương lai hoàn thành đơn."
+            }
+        ];
+
+        const grammarPart2Data = [
+            {
+                title: "1. Mệnh đề quan hệ (Relative Clauses)",
+                usage: "Dùng để bổ nghĩa cho danh từ đứng trước, giúp câu văn rõ nghĩa hơn bằng các đại từ/trạng từ quan hệ.",
+                formula: "• Who / That (thay thế cho danh từ chỉ người ở vai trò chủ ngữ/tân ngữ)\n• Which / That (thay thế cho danh từ chỉ vật)\n• Whose (chỉ sở hữu: N + whose + N)\n• Where / When (chỉ nơi chốn / thời gian)",
+                ex: "The man who helped me is a doctor. / The book which I bought is interesting.",
+                err: "Lỗi sai: 'The man which I met...' ❌ ➔ Sửa: 'The man whom/that I met...' ✔️ (Chỉ người không dùng which)."
+            },
+            {
+                title: "2. Cấu trúc So sánh (Bằng, Hơn, Nhất, Kép)",
+                usage: "Dùng để so sánh tính chất, mức độ giữa các sự vật, hiện tượng.",
+                formula: "• So sánh bằng: S + V + as + adj/adv + as + N/Pronoun\n• So sánh hơn: S + V + short adj-er / more + long adj + than + N\n• So sánh nhất: S + V + the + short adj-est / the most + long adj\n• So sánh kép: The + comparative..., the + comparative... (Càng... thì càng...)",
+                ex: "She is as tall as her brother. / He is taller than me. / This is the most expensive car. / The more you practice, the better you speak.",
+                err: "Lỗi sai: 'He is more taller than me.' ❌ ➔ Sửa: 'He is taller than me.' ✔️ (Tính từ ngắn không kết hợp với more)."
+            },
+            {
+                title: "3. Câu điều kiện (Conditional Sentences Type 1, 2, 3)",
+                usage: "Diễn tả giả định về một sự việc và kết quả của nó.",
+                formula: "• Loại 1 (Có thật ở hiện tại/tương lai): If + S + V(hiện tại đơn), S + will + V_bare\n• Loại 2 (Không có thật ở hiện tại): If + S + V2/ed (To be dùng 'were'), S + would/could + V_bare\n• Loại 3 (Không có thật trong quá khứ): If + S + had + V3/ed, S + would/could + have + V3/ed",
+                ex: "If it rains, we will stay at home. (Loại 1)\nIf I were you, I would accept the offer. (Loại 2)\nIf I had studied hard, I would have passed. (Loại 3)",
+                err: "Lỗi sai: 'If it will rain, we stay.' ❌ ➔ Sửa: 'If it rains, we will stay.' ✔️ (Mệnh đề if không dùng will)."
+            },
+            {
+                title: "4. Câu ước (Wish Sentences)",
+                usage: "Diễn tả mong ước trái ngược với thực tế.",
+                formula: "• Ước ở hiện tại (trái ngược hiện tại): S + wish(es) + S + V2/ed (To be dùng 'were')\n• Ước ở quá khứ (tiếc nuối quá khứ): S + wish(es) + S + had + V3/ed\n• Ước ở tương lai (mong muốn tương lai tốt hơn): S + wish(es) + S + would/could + V_bare",
+                ex: "I wish I were rich now. (Hiện tại) / I wish I had attended the party yesterday. (Quá khứ)",
+                err: "Lỗi sai: 'I wish I am rich.' ❌ ➔ Sửa: 'I wish I were rich.' ✔️ (Phải lùi thì về quá khứ)."
+            }
+        ];
 
         const vocabContainer = document.getElementById('vocab-units-container');
         vocabUnitsData.forEach(item => {
             vocabContainer.innerHTML += `
             <div class="item-card" onclick="openVocabDetail(${item.id}, '${item.name}', '${item.words.replace(/'/g, "\\'")}')">
                 <h4 style="font-size:13px; font-weight:700; margin-bottom:4px;">${item.name}</h4>
-                <p style="font-size:11px; color:var(--text-muted);">Xem 30 từ vựng chi tiết kèm IPA</p>
+                <p style="font-size:11px; color:var(--text-muted);">Xem ngay 30 từ vựng chi tiết kèm IPA</p>
                 <span style="font-size:11px; color:var(--primary-blue); font-weight:700; display:inline-block; margin-top:6px;">Mở bài học →</span>
             </div>`;
         });
 
-        const grammarContainer = document.getElementById('grammar-units-container');
-        for(let i=1; i<=100; i++) {
-            let info = grammarDetailedData[i] || { 
-                title: `Chuyên đề ${i}: Cấu trúc Ngữ pháp Nâng cao ${i}`, 
-                formula: `Công thức chuyên đề số ${i} chuẩn xác`, 
-                usage: `Quy tắc ứng dụng ngữ pháp chuyên sâu số ${i} trong tiếng Anh.`, 
-                example: `She successfully applied rule number ${i} in her test.`, 
-                errorFix: `Lỗi sai thường gặp ở chuyên đề ${i} và cách khắc phục.` 
-            };
-            grammarContainer.innerHTML += `
-            <div class="item-card" onclick="openGrammarDetail(${i}, '${info.title.replace(/'/g, "\\'")}', '${info.formula.replace(/'/g, "\\'")}', '${info.usage.replace(/'/g, "\\'")}', '${info.example.replace(/'/g, "\\'")}', '${info.errorFix.replace(/'/g, "\\'")}')">
-                <h4 style="font-size:13px; font-weight:700; margin-bottom:4px;">Chuyên đề ${i}: ${info.title}</h4>
-                <p style="font-size:11px; color:var(--text-muted);">Công thức, ví dụ & bài tập sửa lỗi</p>
+        const gPart1Container = document.getElementById('grammar-part1-container');
+        grammarPart1Data.forEach((item) => {
+            gPart1Container.innerHTML += `
+            <div class="item-card" onclick="openGrammarModal('${item.title.replace(/'/g, "\\'")}', '${item.usage.replace(/'/g, "\\'")}', '${item.sign.replace(/'/g, "\\'")}', '${item.pos.replace(/'/g, "\\'")}', '${item.neg.replace(/'/g, "\\'")}', '${item.qus.replace(/'/g, "\\'")}', '${item.ex.replace(/'/g, "\\'")}', '${item.err.replace(/'/g, "\\'")}')">
+                <h4 style="font-size:13px; font-weight:700; margin-bottom:4px;">${item.title}</h4>
+                <p style="font-size:11px; color:var(--text-muted);">Công thức 3 thể, dấu hiệu, ví dụ & sửa lỗi</p>
                 <span style="font-size:11px; color:var(--primary-blue); font-weight:700; display:inline-block; margin-top:6px;">Xem chi tiết →</span>
             </div>`;
-        }
+        });
+
+        const gPart2Container = document.getElementById('grammar-part2-container');
+        grammarPart2Data.forEach((item) => {
+            gPart2Container.innerHTML += `
+            <div class="item-card" onclick="openCoreGrammarModal('${item.title.replace(/'/g, "\\'")}', '${item.usage.replace(/'/g, "\\'")}', '${item.formula.replace(/'/g, "\\'")}', '${item.ex.replace(/'/g, "\\'")}', '${item.err.replace(/'/g, "\\'")}')">
+                <h4 style="font-size:13px; font-weight:700; margin-bottom:4px;">${item.title}</h4>
+                <p style="font-size:11px; color:var(--text-muted);">Cách dùng, công thức, ví dụ & sửa lỗi</p>
+                <span style="font-size:11px; color:var(--primary-blue); font-weight:700; display:inline-block; margin-top:6px;">Xem chi tiết →</span>
+            </div>`;
+        });
 
         function openVocabDetail(id, title, words) {
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-content').innerHTML = `
-                <p style="font-weight:700; margin-bottom:8px;">Mục 30 từ vựng trọng tâm (Kèm Từ loại + Phiên âm IPA + Nghĩa):</p>
+                <p style="font-weight:700; margin-bottom:8px;">Mục 30 từ vựng trọng tâm (Kèm Từ loại + Phiên âm IPA + Nghĩa chuẩn Oxford):</p>
                 <div style="background:#f8fafc; padding:14px; border-radius:10px; border:1px solid var(--border-color); line-height:1.8; max-height: 50vh; overflow-y: auto;">
                     ${words.split(', ').map((w, index) => `• <b>[${index + 1}]${w}</b>`).join('<br>')}
                 </div>
@@ -645,21 +843,48 @@
             document.getElementById('detail-modal').style.display = 'flex';
         }
 
-        function openGrammarDetail(num, title, formula, usage, example, errorFix) {
+        function openGrammarModal(title, usage, sign, pos, neg, qus, ex, err) {
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-content').innerHTML = `
                 <div style="line-height:1.7;">
-                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:4px;">1. Công thức cấu trúc:</p>
-                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); font-weight:700; margin-bottom:10px;">${formula}</p>
+                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">1. Cách sử dụng:</p>
+                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">${usage}</p>
+
+                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">2. Dấu hiệu nhận biết:</p>
+                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">${sign}</p>
+
+                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">3. Công thức cấu trúc:</p>
+                    <div style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">
+                        • <b>Khẳng định:</b> ${pos}<br>
+                        • <b>Phủ định:</b> ${neg}<br>
+                        • <b>Nghi vấn:</b> ${qus}
+                    </div>
                     
-                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:4px;">2. Cách sử dụng:</p>
-                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:10px;">${usage}</p>
+                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">4. Ví dụ minh họa:</p>
+                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">${ex}</p>
 
-                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:4px;">3. Ví dụ minh họa:</p>
-                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:10px;">• ${example}</p>
+                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">5. Sửa lỗi sai phổ biến:</p>
+                    <div style="background:#fee2e2; color:#991b1b; padding:10px; border-radius:8px; border:1px solid #fca5a5;">${err}</div>
+                </div>
+            `;
+            document.getElementById('detail-modal').style.display = 'flex';
+        }
 
-                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:4px;">4. Hướng dẫn sửa lỗi sai phổ biến:</p>
-                    <div style="background:#fee2e2; color:#991b1b; padding:10px; border-radius:8px; border:1px solid #fca5a5;">${errorFix}</div>
+        function openCoreGrammarModal(title, usage, formula, ex, err) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-content').innerHTML = `
+                <div style="line-height:1.7;">
+                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">1. Cách sử dụng:</p>
+                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:8px;">${usage}</p>
+
+                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">2. Công thức cấu trúc:</p>
+                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); font-weight:700; white-space: pre-line; margin-bottom:8px;">${formula}</p>
+
+                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">3. Ví dụ minh họa:</p>
+                    <p style="background:#f8fafc; padding:10px; border-radius:8px; border:1px solid var(--border-color); white-space: pre-line; margin-bottom:8px;">${ex}</p>
+
+                    <p style="font-weight:700; color:var(--primary-blue); margin-bottom:2px;">4. Sửa lỗi sai phổ biến:</p>
+                    <div style="background:#fee2e2; color:#991b1b; padding:10px; border-radius:8px; border:1px solid #fca5a5;">${err}</div>
                 </div>
             `;
             document.getElementById('detail-modal').style.display = 'flex';
@@ -669,13 +894,19 @@
             document.getElementById('detail-modal').style.display = 'none';
         }
 
+        // ================= MINI GAME ĐÃ NÂNG CẤP KHO TỪ & LOGIC TRÁI TIM =================
         const quizList = [
             { q: "Nghĩa của từ 'Textbook' là gì?", opts: ["A. Sách giáo khoa", "B. Vở chép", "C. Thước kẻ", "D. Hộp bút"], ans: 0 },
             { q: "Nghĩa của từ 'Stapler' là gì?", opts: ["A. Cái dập ghim", "B. Bút chì", "C. Cuốn sổ", "D. Cục tẩy"], ans: 0 },
             { q: "Từ nào có nghĩa là 'Hòn đảo'?", opts: ["A. Mountain", "B. Island", "C. Ocean", "D. River"], ans: 1 },
-            { q: "Nghĩa của từ 'Skyscraper' là gì?", opts: ["A. Tòa nhà cao tầng", "B. Công viên", "C. Bến xe", "D. Sân bay"], ans: 0 }
+            { q: "Nghĩa của từ 'Skyscraper' là gì?", opts: ["A. Tòa nhà cao tầng", "B. Công viên", "C. Bến xe", "D. Sân bay"], ans: 0 },
+            { q: "Nghĩa của từ 'Highlighter' là gì?", opts: ["A. Bút nhớ dòng", "B. Thước dây", "C. Bảng đen", "D. Máy tính"], ans: 0 },
+            { q: "Từ 'Dictionary' có nghĩa là gì?", opts: ["A. Từ điển", "B. Truyện tranh", "C. Tạp chí", "D. Sách bài tập"], ans: 0 },
+            { q: "Từ nào có nghĩa là 'Cái kéo'?", opts: ["A. Scissors", "B. Compass", "C. Eraser", "D. Pencil"], ans: 0 },
+            { q: "Nghĩa của từ 'Suburbs' là gì?", opts: ["A. Vùng ngoại thành", "B. Trung tâm thành phố", "C. Bờ biển", "D. Ngọn núi"], ans: 0 }
         ];
         let currentQuiz = 0;
+        let lives = 3;
 
         function loadGame1() {
             let q = quizList[currentQuiz];
@@ -685,13 +916,30 @@
             q.opts.forEach((opt, idx) => {
                 container.innerHTML += `<button class="opt-btn" onclick="checkQuiz(${idx})">${opt}</button>`;
             });
+            updateHeartsDisplay();
+        }
+
+        function updateHeartsDisplay() {
+            let hStr = "";
+            for(let i=0; i<3; i++) {
+                hStr += (i < lives) ? "❤️" : "🖤";
+            }
+            document.getElementById('g1-hearts').innerText = hStr;
         }
 
         function checkQuiz(idx) {
             if(idx === quizList[currentQuiz].ans) {
-                showToast("Chính xác! Bấm 'Câu tiếp theo' để làm tiếp.");
+                showToast("Chính xác! 🎯");
             } else {
-                alert("Chưa đúng! Hãy thử lại.");
+                lives--;
+                updateHeartsDisplay();
+                if(lives <= 0) {
+                    alert("Bạn đã hết trái tim! Trò chơi sẽ được khởi động lại.");
+                    lives = 3;
+                    updateHeartsDisplay();
+                } else {
+                    alert("Chưa đúng! Bạn bị mất 1 trái tim ❤️.");
+                }
             }
         }
 
@@ -703,7 +951,11 @@
         const game2List = [
             { hint: "Gợi ý: Sách giáo khoa", display: "T _ x t b _ o k", word: "textbook" },
             { hint: "Gợi ý: Cái dập ghim", display: "S _ a p l _ r", word: "stapler" },
-            { hint: "Gợi ý: Thước kẻ học sinh", display: "R _ l _ r", word: "ruler" }
+            { hint: "Gợi ý: Thước kẻ học sinh", display: "R _ l _ r", word: "ruler" },
+            { hint: "Gợi ý: Bút nhớ dòng", display: "H _ g h l _ g h t _ r", word: "highlighter" },
+            { hint: "Gợi ý: Cục tẩy học sinh", display: "E _ a s _ r", word: "eraser" },
+            { hint: "Gợi ý: Từ điển tra cứu", display: "D _ c t _ o n a r y", word: "dictionary" },
+            { hint: "Gợi ý: Tòa nhà cao tầng", display: "S k _ s c r _ p e r", word: "skyscraper" }
         ];
         let currentGame2 = 0;
 
@@ -728,7 +980,46 @@
             loadGame2();
         }
 
+        const fullPairMasterList = [
+            { en: "Textbook", vi: "Sách giáo khoa" },
+            { en: "Stapler", vi: "Cái dập ghim" },
+            { en: "Highlighter", vi: "Bút nhớ dòng" },
+            { en: "Dictionary", vi: "Từ điển tra cứu" },
+            { en: "Skyscraper", vi: "Tòa nhà chọc trời" },
+            { en: "Suburbs", vi: "Vùng ngoại thành" },
+            { en: "Pedestrian", vi: "Người đi bộ" },
+            { en: "Congestion", vi: "Tắc nghẽn giao thông" },
+            { en: "Prescription", vi: "Đơn thuốc bác sĩ" },
+            { en: "Curriculum", vi: "Chương trình học" }
+        ];
+
         let selectedPairCard = null;
+
+        function renderGame3Pairs() {
+            let container = document.getElementById('g3-pairs-container');
+            container.innerHTML = "";
+
+            let shuffledMaster = [...fullPairMasterList].sort(() => 0.5 - Math.random());
+            let chosenPairs = shuffledMaster.slice(0, 5); // Tăng số lượng thẻ phong phú
+
+            let cards = [];
+            chosenPairs.forEach(p => {
+                cards.push({ text: p.en, type: 'en', pairKey: p.en });
+                cards.push({ text: p.vi, type: 'vi', pairKey: p.en });
+            });
+
+            cards.sort(() => 0.5 - Math.random());
+
+            cards.forEach(c => {
+                let btn = document.createElement('button');
+                btn.className = 'opt-btn g3-card';
+                btn.innerText = c.text;
+                btn.onclick = function() { selectPair(this, c.type, c.pairKey); };
+                container.appendChild(btn);
+            });
+            selectedPairCard = null;
+        }
+
         function selectPair(btn, type, pairKey) {
             if(btn.style.opacity === "0.4") return;
             btn.style.borderColor = "var(--primary-blue)";
@@ -738,13 +1029,13 @@
                 selectedPairCard = { btn, type, pairKey };
             } else {
                 if(selectedPairCard.type !== type && selectedPairCard.pairKey === pairKey) {
-                    showToast("Ghép cặp Anh - Việt chính xác! 🎯");
+                    showToast("Ghép cặp chính xác! 🎯");
                     selectedPairCard.btn.style.opacity = "0.4";
                     selectedPairCard.btn.style.pointerEvents = "none";
                     btn.style.opacity = "0.4";
                     btn.style.pointerEvents = "none";
                 } else {
-                    alert("Chưa chính xác! Hãy chọn 1 thẻ tiếng Anh và 1 nghĩa tiếng Việt tương ứng.");
+                    alert("Chưa chính xác! Chọn lại thẻ.");
                     selectedPairCard.btn.style.borderColor = "var(--border-color)";
                     selectedPairCard.btn.style.background = "#f8fafc";
                     btn.style.borderColor = "var(--border-color)";
@@ -755,19 +1046,13 @@
         }
 
         function resetGame3() {
-            let cards = document.querySelectorAll('.g3-card');
-            cards.forEach(c => {
-                c.style.opacity = "1";
-                c.style.pointerEvents = "auto";
-                c.style.borderColor = "var(--border-color)";
-                c.style.background = "#f8fafc";
-            });
-            selectedPairCard = null;
-            showToast("Đã làm mới bảng ghép cặp!");
+            renderGame3Pairs();
+            showToast("Đã xáo trộn bộ thẻ mới! 🔄");
         }
 
         loadGame1();
         loadGame2();
+        renderGame3Pairs();
     </script>
 </body>
 </html>
