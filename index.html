@@ -3,277 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Studio - Siêu Phẩm Học Tiếng Anh KHKT</title>
+    <title>English Studio - KHKT Project</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #0f172a; }
-        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); border: 1px solid #e2e8f0; border-radius: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); }
-        .nav-item { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .nav-item.active { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3); }
-        @keyframes pulseGlow { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(59,130,246,0.5)); } 50% { transform: scale(1.03); filter: drop-shadow(0 0 25px rgba(147,51,234,0.8)); } }
-        .animate-glow { animation: pulseGlow 3s infinite; }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f1f5f9; color: #0f172a; }
+        .card-box { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1.25rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .nav-btn { transition: all 0.2s ease; border-radius: 0.75rem; font-weight: 600; }
+        .nav-btn.active { background-color: #2563eb; color: #ffffff; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); }
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
 </head>
-<body class="h-full flex flex-col md:flex-row overflow-hidden">
+<body class="min-h-screen flex flex-col md:flex-row">
 
     <!-- SIDEBAR NAVIGATION -->
-    <aside class="w-full md:w-72 bg-white border-r border-slate-200 p-6 flex flex-col justify-between shrink-0 z-20 shadow-sm">
-        <div class="space-y-8">
-            <!-- Brand Logo -->
-            <div class="flex items-center gap-3">
-                <div class="w-11 h-11 bg-gradient-to-tr from-blue-600 to-indigo-600 text-white rounded-2xl flex items-center justify-center font-black text-2xl shadow-lg shadow-blue-500/30">E</div>
+    <aside class="w-full md:w-72 bg-white border-r border-slate-200 p-6 flex flex-col justify-between shrink-0 shadow-sm space-y-6">
+        <div class="space-y-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-extrabold text-xl shadow-md">E</div>
                 <div>
-                    <h1 class="font-extrabold text-lg text-slate-900 tracking-tight">English Studio</h1>
-                    <span class="text-[10px] bg-blue-50 text-blue-600 font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">KHKT Project</span>
+                    <span class="font-extrabold text-base text-slate-800 block">English.studio</span>
+                    <span class="text-[9px] text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full font-bold">KHKT PROJECT</span>
                 </div>
             </div>
-
-            <!-- Menu Links -->
-            <nav class="space-y-2">
-                <button onclick="switchTab('overview')" id="ntab-overview" class="nav-item active w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-sm text-left">
-                    <i class="fa-solid fa-chart-pie w-5 text-base"></i> Tổng quan
+            
+            <nav class="space-y-1.5">
+                <button onclick="switchTab('overview')" id="ntab-overview" class="nav-btn active w-full text-left px-4 py-3 text-sm flex items-center gap-3">
+                    <i class="fa-solid fa-chart-pie w-5"></i> Tổng quan
                 </button>
-                <button onclick="switchTab('tasks')" id="ntab-tasks" class="nav-item w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-sm text-slate-600 hover:bg-slate-100 text-left">
-                    <i class="fa-solid fa-list-check w-5 text-base"></i> Nhiệm vụ & Nhắc nhở
+                <button onclick="switchTab('tasks')" id="ntab-tasks" class="nav-btn w-full text-left px-4 py-3 text-sm text-slate-600 hover:bg-slate-100 flex items-center gap-3">
+                    <i class="fa-solid fa-list-check w-5"></i> Nhiệm vụ
                 </button>
-                <button onclick="switchTab('vocab')" id="ntab-vocab" class="nav-item w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-sm text-slate-600 hover:bg-slate-100 text-left">
-                    <i class="fa-solid fa-book-bookmark w-5 text-base"></i> Kho Từ Vựng (3000+)
+                <button onclick="switchTab('vocab')" id="ntab-vocab" class="nav-btn w-full text-left px-4 py-3 text-sm text-slate-600 hover:bg-slate-100 flex items-center gap-3">
+                    <i class="fa-solid fa-book-bookmark w-5"></i> Kho Từ Vựng
                 </button>
-                <button onclick="switchTab('grammar')" id="ntab-grammar" class="nav-item w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-sm text-slate-600 hover:bg-slate-100 text-left">
-                    <i class="fa-solid fa-spell-check w-5 text-base"></i> Ngữ Pháp & Bài Tập
+                <button onclick="switchTab('grammar')" id="ntab-grammar" class="nav-btn w-full text-left px-4 py-3 text-sm text-slate-600 hover:bg-slate-100 flex items-center gap-3">
+                    <i class="fa-solid fa-spell-check w-5"></i> Ngữ Pháp & Sửa Lỗi
                 </button>
-                <button onclick="switchTab('games')" id="ntab-games" class="nav-item w-full flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-sm text-slate-600 hover:bg-slate-100 text-left">
-                    <i class="fa-solid fa-gamepad w-5 text-base"></i> Khu Mini Games
+                <button onclick="switchTab('games')" id="ntab-games" class="nav-btn w-full text-left px-4 py-3 text-sm text-slate-600 hover:bg-slate-100 flex items-center gap-3">
+                    <i class="fa-solid fa-gamepad w-5"></i> Mini Games Lizzert
                 </button>
             </nav>
         </div>
 
-        <!-- Timer Card Footer -->
-        <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-5 rounded-2xl shadow-xl space-y-3">
-            <div class="flex justify-between items-center text-xs text-slate-400 font-bold uppercase tracking-wider">
-                <span>Thời gian tích lũy</span>
-                <i class="fa-solid fa-clock text-blue-400"></i>
-            </div>
-            <div id="timer-display" class="text-3xl font-black text-white tracking-tight">00:00:00</div>
-            <button onclick="toggleTimer()" id="timer-btn" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow-lg transition">Bắt đầu học</button>
+        <!-- Timer Widget (Fixed Layout, No Overlap) -->
+        <div class="card-box p-4 text-center space-y-2 bg-slate-50">
+            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Thời gian tích lũy</span>
+            <div id="timer-display" class="text-2xl font-black text-blue-600">00:00:00</div>
+            <button onclick="toggleTimer()" id="timer-btn" class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow transition">Bắt đầu học</button>
         </div>
     </aside>
 
-    <!-- MAIN WORKSPACE -->
-    <main class="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-10 space-y-8">
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 p-6 md:p-8 overflow-y-auto custom-scroll space-y-6">
 
         <!-- TAB 1: TỔNG QUAN -->
-        <section id="tab-overview" class="space-y-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                    <h2 class="text-3xl font-black text-slate-900 tracking-tight">Xin chào, Chúc bạn học tốt!</h2>
-                    <p class="text-sm text-slate-500 font-medium">Hệ thống học tập thông minh tích hợp từ vựng A2-C2, ngữ pháp nâng cao và game nhập vai.</p>
+        <section id="tab-overview" class="space-y-6">
+            <div>
+                <h2 class="text-2xl font-black text-slate-900">Bảng Học Tập Tiếng Anh Cá Nhân</h2>
+                <p class="text-xs text-slate-500 font-medium">Theo dõi tiến độ, ôn tập từ vựng, ngữ pháp và tham gia mini-game diệt quái vật.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="card-box p-4">
+                    <span class="text-xs font-semibold text-slate-400">Nhiệm vụ hoàn thành</span>
+                    <div id="stat-tasks" class="text-xl font-black text-slate-900 mt-1">0/0</div>
                 </div>
-                <div class="flex items-center gap-3">
-                    <span class="bg-emerald-50 text-emerald-600 border border-emerald-200 px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2">
-                        <i class="fa-solid fa-circle-check"></i> Trạng thái: Hoạt động tốt
-                    </span>
+                <div class="card-box p-4">
+                    <span class="text-xs font-semibold text-slate-400">Từ vựng đã nạp</span>
+                    <div class="text-xl font-black text-slate-900 mt-1">1,250+</div>
+                </div>
+                <div class="card-box p-4">
+                    <span class="text-xs font-semibold text-slate-400">Điểm Mini Game</span>
+                    <div id="stat-score" class="text-xl font-black text-blue-600 mt-1">0</div>
+                </div>
+                <div class="card-box p-4">
+                    <span class="text-xs font-semibold text-slate-400">Cấu trúc ngữ pháp</span>
+                    <div class="text-xl font-black text-slate-900 mt-1">100 Trọng tâm</div>
                 </div>
             </div>
 
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-                <div class="glass-card p-6 space-y-2">
-                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Tiến độ Nhiệm vụ</span>
-                    <div id="stat-tasks" class="text-3xl font-black text-slate-900">0/0</div>
-                    <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                        <div id="task-progress-bar" class="bg-blue-600 h-full w-0 transition-all duration-500"></div>
-                    </div>
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 md:p-8 rounded-2xl shadow-xl flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="space-y-2">
+                    <span class="bg-white/20 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">KHKT Project Showcase</span>
+                    <h3 class="text-xl font-extrabold">Chào mừng bạn quay lại — Học tập thông minh cùng Ethan!</h3>
+                    <p class="text-xs text-blue-100">Khám phá kho từ vựng từ cơ bản đến nâng cao, cấu trúc ngữ pháp kèm bài tập sửa lỗi sai và game Lizzert đặc sắc.</p>
                 </div>
-                <div class="glass-card p-6 space-y-2">
-                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Từ Vựng (A2-C2)</span>
-                    <div class="text-3xl font-black text-slate-900">1,420 <span class="text-xs text-slate-400 font-bold">/ 3000</span></div>
-                    <span class="text-[11px] text-emerald-600 font-bold">↑ Cập nhật liên tục</span>
-                </div>
-                <div class="glass-card p-6 space-y-2">
-                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Điểm Mini Games</span>
-                    <div id="stat-score" class="text-3xl font-black text-blue-600">0</div>
-                    <span class="text-[11px] text-blue-600 font-bold">Xếp hạng: Tân binh</span>
-                </div>
-                <div class="glass-card p-6 space-y-2">
-                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Ngữ Pháp & Bài Tập</span>
-                    <div class="text-3xl font-black text-slate-900">100 <span class="text-xs text-slate-400 font-bold">/ 100 Cấu trúc</span></div>
-                    <span class="text-[11px] text-purple-600 font-bold">50+ Bài lỗi sai</span>
-                </div>
-            </div>
-
-            <!-- Hero Banner -->
-            <div class="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white p-8 md:p-10 rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="space-y-3 z-10 max-w-xl">
-                    <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">CHIẾN DỊCH HỌC TẬP KHKT</span>
-                    <h3 class="text-2xl md:text-3xl font-black">Khám phá Vũ trụ Tiếng Anh cùng Ethan & Lizzert</h3>
-                    <p class="text-sm text-blue-100">Chinh phục 3000 từ vựng đỉnh cao, mài giũa ngữ pháp và tham gia trận chiến tiêu diệt quái vật để nhận phần thưởng điểm số hấp dẫn.</p>
-                    <div class="flex gap-3 pt-2">
-                        <button onclick="switchTab('games')" class="bg-white text-blue-600 font-extrabold text-xs px-6 py-3 rounded-xl shadow-lg hover:bg-slate-100 transition">Chiến ngay Mini Game</button>
-                        <button onclick="switchTab('vocab')" class="bg-blue-800 text-white font-extrabold text-xs px-6 py-3 rounded-xl hover:bg-blue-900 transition">Tra cứu Kho Từ Vựng</button>
-                    </div>
-                </div>
-                <div class="shrink-0 z-10 animate-glow">
-                    <img src="https://lh3.googleusercontent.com/d/1000011015.jpg" alt="Ethan" class="w-36 h-48 object-contain drop-shadow-2xl">
-                </div>
+                <button onclick="switchTab('games')" class="bg-white text-blue-600 px-5 py-3 rounded-xl font-bold text-xs shadow hover:bg-slate-100 transition shrink-0">Chiến Game Ngay</button>
             </div>
         </section>
 
-        <!-- TAB 2: NHIỆM VỤ & NHẮC NHỞ -->
+        <!-- TAB 2: NHIỆM VỤ -->
         <section id="tab-tasks" class="hidden space-y-6">
-            <div class="glass-card p-8 space-y-6">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                    <div>
-                        <h2 class="text-2xl font-black text-slate-900">Quản lý Nhiệm vụ Hàng Ngày</h2>
-                        <p class="text-sm text-slate-500">Thiết lập mục tiêu và nhận thông báo nhắc nhở khi hoàn thành.</p>
-                    </div>
-                    <div class="flex gap-3">
-                        <button onclick="checkDailyReminders()" class="bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs px-5 py-3 rounded-xl shadow-md flex items-center gap-2 transition">
-                            <i class="fa-solid fa-bell"></i> Kiểm tra & Thông báo
-                        </button>
-                    </div>
+            <div class="card-box p-6 space-y-4">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg font-bold text-slate-900">Quản lý Nhiệm vụ</h2>
+                    <button onclick="checkTaskReminders()" class="bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold px-3 py-2 rounded-lg shadow">Kiểm tra thông báo</button>
                 </div>
-                <div class="flex gap-3">
-                    <input type="text" id="task-input" placeholder="Nhập nhiệm vụ mới (VD: Học 50 từ vựng C1)..." class="flex-1 bg-slate-50 border border-slate-200 px-5 py-3.5 rounded-xl text-sm outline-none focus:border-blue-500">
-                    <button onclick="addNewTask()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition">Thêm nhiệm vụ</button>
+                <div class="flex gap-2">
+                    <input type="text" id="task-input" placeholder="Nhập nhiệm vụ học tập..." class="flex-1 text-xs border border-slate-200 px-4 py-3 rounded-xl outline-none focus:border-blue-500 bg-slate-50">
+                    <button onclick="addNewTask()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-5 py-3 rounded-xl font-bold shadow">Thêm</button>
                 </div>
-                <div id="task-list" class="space-y-3 pt-2"></div>
+                <div id="task-list" class="space-y-2"></div>
             </div>
         </section>
 
-        <!-- TAB 3: KHO TỪ VỰNG 3000+ (A2-C2) -->
+        <!-- TAB 3: KHO TỪ VỰNG -->
         <section id="tab-vocab" class="hidden space-y-6">
-            <div class="glass-card p-8 space-y-6">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="card-box p-6 space-y-4">
+                <div class="flex justify-between items-center flex-wrap gap-3">
                     <div>
-                        <h2 class="text-2xl font-black text-slate-900">Kho Từ Vựng Chuyên Sâu (3000+ từ, A2 - C2)</h2>
-                        <p class="text-sm text-slate-500">Đầy đủ từ loại, phiên âm chuẩn IPA, nghĩa tiếng Việt và ví dụ minh họa.</p>
+                        <h2 class="text-lg font-bold text-slate-900">Kho Từ Vựng (Bao gồm từ cơ bản đến nâng cao)</h2>
+                        <p class="text-xs text-slate-500">Đầy đủ từ loại, phiên âm chuẩn IPA, nghĩa tiếng Việt và ví dụ minh họa.</p>
                     </div>
-                    <div class="flex gap-3 w-full md:w-auto">
-                        <select id="vocab-level-filter" onchange="filterVocabData()" class="bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-xs font-bold outline-none">
-                            <option value="ALL">Tất cả Levels (A2-C2)</option>
-                            <option value="A2">Level A2</option>
-                            <option value="B1">Level B1</option>
-                            <option value="B2">Level B2</option>
-                            <option value="C1">Level C1</option>
-                            <option value="C2">Level C2</option>
-                        </select>
-                        <input type="text" id="vocab-search" oninput="filterVocabData()" placeholder="Tìm từ vựng..." class="bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-xs outline-none w-full md:w-64">
-                    </div>
+                    <input type="text" id="vocab-search" oninput="filterVocab()" placeholder="Tìm kiếm từ vựng..." class="text-xs border border-slate-200 px-4 py-2.5 rounded-xl outline-none w-56 bg-slate-50">
                 </div>
-                <div id="vocab-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5 max-h-[600px] overflow-y-auto pr-2"></div>
+                <div id="vocab-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[500px] overflow-y-auto pr-1"></div>
             </div>
         </section>
 
-        <!-- TAB 4: NGỮ PHÁP & BÀI TẬP TÌM LỖI SAI -->
+        <!-- TAB 4: NGỮ PHÁP & SỬA LỖI -->
         <section id="tab-grammar" class="hidden space-y-6">
-            <div class="glass-card p-8 space-y-6">
+            <div class="card-box p-6 space-y-6">
                 <div>
-                    <h2 class="text-2xl font-black text-slate-900">100 Cấu trúc Ngữ Pháp & Bài Tập Tìm Lỗi Sai</h2>
-                    <p class="text-sm text-slate-500">Tổng hợp cấu trúc kèm giải thích chi tiết và hệ thống bài tập sửa lỗi sai nâng cao.</p>
+                    <h2 class="text-lg font-bold text-slate-900">Ngữ Pháp Trọng Tâm & Bài Tập Sửa Lỗi Sai</h2>
+                    <p class="text-xs text-slate-500">Tổng hợp các cấu trúc cơ bản và nâng cao kèm bài tập sửa lỗi sai phổ biến có giải thích chi tiết.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-4">
-                        <h3 class="font-extrabold text-blue-600 text-lg flex items-center gap-2"><i class="fa-solid fa-book"></i> Cấu trúc Ngữ Pháp Trọng Tâm</h3>
-                        <div id="grammar-list" class="space-y-4 max-h-[500px] overflow-y-auto pr-2"></div>
+                    <div class="space-y-3">
+                        <h3 class="font-bold text-blue-600 text-sm"><i class="fa-solid fa-book"></i> Cấu trúc Ngữ Pháp</h3>
+                        <div id="grammar-box" class="space-y-3 max-h-[400px] overflow-y-auto pr-1"></div>
                     </div>
-                    <div class="space-y-4">
-                        <h3 class="font-extrabold text-purple-600 text-lg flex items-center gap-2"><i class="fa-solid fa-pen-to-square"></i> Bài tập Tìm lỗi sai & Giải thích (50+ bài)</h3>
-                        <div id="exercise-list" class="space-y-4 max-h-[500px] overflow-y-auto pr-2"></div>
+                    <div class="space-y-3">
+                        <h3 class="font-bold text-purple-600 text-sm"><i class="fa-solid fa-pen-to-square"></i> Bài tập Sửa Lỗi Sai Cơ Bản</h3>
+                        <div id="exercise-box" class="space-y-3 max-h-[400px] overflow-y-auto pr-1"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 5: KHU MINI GAMES (3 TRÒ HOÀNH TRÁNG) -->
+        <!-- TAB 5: MINI GAMES LIZZERT -->
         <section id="tab-games" class="hidden space-y-6">
-            <div class="glass-card p-8 space-y-6">
-                <div class="flex justify-between items-center flex-wrap gap-4">
+            <div class="card-box p-6 space-y-6">
+                <div class="flex justify-between items-center flex-wrap gap-2">
                     <div>
-                        <h2 class="text-2xl font-black text-slate-900">Khu Vực Mini Games KHKT</h2>
-                        <p class="text-sm text-slate-500">Thử thách bản thân với 3 trò chơi học tập tương tác cao.</p>
+                        <h2 class="text-lg font-bold text-slate-900">Khu Vực Mini Games Lizzert</h2>
+                        <p class="text-xs text-slate-500">Trải nghiệm 3 trò chơi học tập tương tác với nhân vật Ethan và quái vật.</p>
                     </div>
-                    <span id="game-score-badge" class="bg-purple-100 text-purple-700 font-black px-5 py-2 rounded-2xl text-sm shadow-sm">Điểm số: 0</span>
+                    <span id="game-score-tag" class="bg-purple-100 text-purple-700 font-extrabold text-xs px-4 py-1.5 rounded-full">Điểm: 0</span>
                 </div>
 
-                <!-- Game Switcher Tabs -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <button onclick="switchGame(1)" id="gtab-1" class="p-4 rounded-2xl font-extrabold text-sm text-white bg-purple-600 shadow-lg flex items-center justify-center gap-2 transition">
-                        <i class="fa-solid fa-dragon"></i> Trò 1: Ethan & Cốt truyện Lizzert
+                <!-- 3 Game Select Buttons -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                    <button onclick="switchGameMode(1)" id="gbtn-1" class="p-3 bg-purple-600 text-white rounded-xl font-bold text-xs shadow flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-dragon"></i> Trò 1: Ethan Diệt Quái (Cốt truyện)
                     </button>
-                    <button onclick="switchGame(2)" id="gtab-2" class="p-4 rounded-2xl font-extrabold text-sm text-slate-700 bg-slate-100 hover:bg-slate-200 flex items-center justify-center gap-2 transition">
-                        <i class="fa-solid fa-puzzle-piece"></i> Trò 2: Điền chữ còn thiếu
+                    <button onclick="switchGameMode(2)" id="gbtn-2" class="p-3 bg-slate-100 text-slate-700 rounded-xl font-bold text-xs hover:bg-slate-200 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-puzzle-piece"></i> Trò 2: Điền Từ Còn Thiếu
                     </button>
-                    <button onclick="switchGame(3)" id="gtab-3" class="p-4 rounded-2xl font-extrabold text-sm text-slate-700 bg-slate-100 hover:bg-slate-200 flex items-center justify-center gap-2 transition">
-                        <i class="fa-solid fa-language"></i> Trò 3: Nối nghĩa Anh - Việt
+                    <button onclick="switchGameMode(3)" id="gbtn-3" class="p-3 bg-slate-100 text-slate-700 rounded-xl font-bold text-xs hover:bg-slate-200 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-language"></i> Trò 3: Nối Nghĩa Anh - Việt
                     </button>
                 </div>
 
-                <!-- GAME 1: ETHAN & CỐT TRUYỆN LIZZERT -->
-                <div id="game-box-1" class="space-y-6 animate-fadeIn">
-                    <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-3xl p-6 md:p-8 relative overflow-hidden shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div class="text-center md:text-left space-y-2 z-10">
-                            <span class="bg-blue-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">Nhân vật chính</span>
-                            <h4 class="text-xl font-black">Ethan</h4>
-                            <p class="text-xs text-slate-300 max-w-xs italic">"Hãy giúp tôi trả lời đúng các câu hỏi từ vựng để giáng đòn chí mạng tiêu diệt lũ quái vật Lizzert đang hoành hành!"</p>
+                <!-- GAME 1: ETHAN DIỆT QUÁI (CỐT TRUYỆN) -->
+                <div id="gmode-1" class="space-y-4">
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl">
+                        <div class="text-center md:text-left space-y-1">
+                            <span class="bg-blue-600 text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase">Cốt truyện Lizzert</span>
+                            <h4 class="text-sm font-bold text-blue-300">Ethan vs Quái vật</h4>
+                            <p class="text-[11px] text-slate-300 italic max-w-xs">"Hành tinh English Studio đang bị lũ quái vật Lizzert xâm chiếm. Hãy trả lời đúng từ vựng để Ethan giáng đòn tiêu diệt chúng!"</p>
                         </div>
-                        <div class="flex items-center gap-6 z-10">
+                        <div class="flex items-center gap-4 shrink-0">
                             <div class="text-center">
-                                <img src="https://lh3.googleusercontent.com/d/1000011015.jpg" class="w-24 h-32 object-contain drop-shadow-[0_0_20px_rgba(59,130,246,0.6)]">
-                                <span class="text-xs font-bold text-blue-400">Ethan</span>
+                                <img src="https://lh3.googleusercontent.com/d/1000011015.jpg" class="w-16 h-24 object-contain">
+                                <span class="text-[10px] font-bold text-blue-400">Ethan</span>
                             </div>
-                            <span class="text-3xl font-black text-amber-400 italic animate-pulse">VS</span>
+                            <span class="font-black text-amber-400 italic text-lg">VS</span>
                             <div class="text-center">
-                                <img id="monster-img" src="https://lh3.googleusercontent.com/d/1000011017.jpg" class="w-24 h-32 object-contain monster-img">
-                                <span id="monster-name" class="text-xs font-bold text-purple-400">Quái Càng Cua Blue</span>
+                                <img id="g1-monster-img" src="https://lh3.googleusercontent.com/d/1000011017.jpg" class="w-16 h-24 object-contain">
+                                <span id="g1-monster-name" class="text-[10px] font-bold text-purple-400">Quái Càng Cua</span>
                             </div>
                         </div>
                     </div>
-                    <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                        <div class="flex justify-between items-center">
-                            <span id="g1-level" class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">Level B2</span>
-                            <span id="g1-progress" class="text-xs font-bold text-slate-400">Trận chiến 1 / 5</span>
-                        </div>
-                        <p id="g1-question" class="text-base font-bold text-slate-900"></p>
-                        <div id="g1-options" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+                    <div class="p-4 border rounded-xl bg-slate-50 space-y-3">
+                        <p id="g1-q" class="font-bold text-xs text-slate-900"></p>
+                        <div id="g1-opts" class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs"></div>
                     </div>
                 </div>
 
-                <!-- GAME 2: ĐIỀN CHỮ CÒN THIẾU -->
-                <div id="game-box-2" class="hidden space-y-6 animate-fadeIn">
-                    <div class="bg-amber-500 text-white p-6 rounded-2xl flex items-center justify-between shadow-lg">
-                        <div>
-                            <span class="bg-white/20 text-xs font-extrabold px-3 py-1 rounded-full uppercase">Thử Thách Điền Từ</span>
-                            <h4 class="text-xl font-black mt-2">Điền ký tự còn thiếu vào từ vựng</h4>
-                        </div>
-                        <i class="fa-solid fa-puzzle-piece text-4xl opacity-80"></i>
+                <!-- GAME 2: ĐIỀN TỪ CÒN THIẾU -->
+                <div id="gmode-2" class="hidden space-y-4">
+                    <div class="p-4 bg-amber-500 text-white rounded-xl flex justify-between items-center">
+                        <span class="font-bold text-xs">Thử Thách: Điền ký tự bị thiếu vào ô trống của từ vựng cơ bản.</span>
+                        <i class="fa-solid fa-pen-nib text-xl"></i>
                     </div>
-                    <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl space-y-4 text-center">
-                        <p class="text-xs text-slate-500 font-semibold">Nghĩa của từ: <span id="g2-meaning" class="text-slate-900 font-bold"></span></p>
-                        <div id="g2-word-display" class="text-4xl font-black text-blue-600 tracking-widest my-4"></div>
-                        <div id="g2-options" class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-md mx-auto"></div>
+                    <div class="p-5 border rounded-xl bg-slate-50 space-y-3 text-center">
+                        <p class="text-xs text-slate-500 font-semibold">Nghĩa tiếng Việt: <span id="g2-meaning" class="text-slate-900 font-bold"></span></p>
+                        <div id="g2-word" class="text-3xl font-black text-blue-600 tracking-widest my-2"></div>
+                        <div id="g2-opts" class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs"></div>
                     </div>
                 </div>
 
                 <!-- GAME 3: NỐI NGHĨA ANH - VIỆT -->
-                <div id="game-box-3" class="hidden space-y-6 animate-fadeIn">
-                    <div class="bg-purple-600 text-white p-6 rounded-2xl flex items-center justify-between shadow-lg">
-                        <div>
-                            <span class="bg-white/20 text-xs font-extrabold px-3 py-1 rounded-full uppercase">Thử Thách Phản Xạ</span>
-                            <h4 class="text-xl font-black mt-2">Nối từ vựng Anh với nghĩa tiếng Việt chuẩn xác</h4>
-                        </div>
-                        <i class="fa-solid fa-language text-4xl opacity-80"></i>
+                <div id="gmode-3" class="hidden space-y-4">
+                    <div class="p-4 bg-purple-600 text-white rounded-xl flex justify-between items-center">
+                        <span class="font-bold text-xs">Thử Thách: Chọn nghĩa tiếng Việt chính xác cho từ vựng cho trước.</span>
+                        <i class="fa-solid fa-language text-xl"></i>
                     </div>
-                    <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                        <div class="text-center">
-                            <span class="text-xs font-bold text-slate-400 uppercase">Từ vựng cần tìm nghĩa:</span>
-                            <h3 id="g3-target-word" class="text-3xl font-black text-purple-700 mt-1"></h3>
-                        </div>
-                        <div id="g3-options" class="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-xl mx-auto"></div>
+                    <div class="p-5 border rounded-xl bg-slate-50 space-y-3 text-center">
+                        <span class="text-[11px] text-slate-400 font-bold uppercase">Từ vựng mục tiêu:</span>
+                        <h3 id="g3-word" class="text-2xl font-black text-purple-700"></h3>
+                        <div id="g3-opts" class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs"></div>
                     </div>
                 </div>
             </div>
@@ -282,65 +225,64 @@
     </main>
 
     <script>
-        // Tab Switcher
-        function switchTab(tabId) {
-            ['overview', 'tasks', 'vocab', 'grammar', 'games'].forEach(id => {
-                document.getElementById('tab-' + id).classList.add('hidden');
-                document.getElementById('ntab-' + id).classList.remove('active');
-                document.getElementById('ntab-' + id).classList.add('text-slate-600', 'hover:bg-slate-100');
+        // Tab switching
+        function switchTab(id) {
+            ['overview', 'tasks', 'vocab', 'grammar', 'games'].forEach(t => {
+                document.getElementById('tab-' + t).classList.add('hidden');
+                document.getElementById('ntab-' + t).classList.remove('active');
+                document.getElementById('ntab-' + t).classList.add('text-slate-600', 'hover:bg-slate-100');
             });
-            document.getElementById('tab-' + tabId).classList.remove('hidden');
-            document.getElementById('ntab-' + tabId).classList.add('active');
-            document.getElementById('ntab-' + tabId).classList.remove('text-slate-600', 'hover:bg-slate-100');
+            document.getElementById('tab-' + id).classList.remove('hidden');
+            document.getElementById('ntab-' + id).classList.add('active');
+            document.getElementById('ntab-' + id).classList.remove('text-slate-600', 'hover:bg-slate-100');
         }
 
-        // Timer
-        let seconds = 0, timerInterval = null;
+        // Timer logic
+        let sec = 0, timerObj = null;
         function toggleTimer() {
             const btn = document.getElementById('timer-btn');
-            if(timerInterval) {
-                clearInterval(timerInterval);
-                timerInterval = null;
+            if(timerObj) {
+                clearInterval(timerObj);
+                timerObj = null;
                 btn.innerText = 'Bắt đầu học';
-                btn.className = 'w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow-lg transition';
+                btn.className = 'w-full py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow transition';
             } else {
-                timerInterval = setInterval(() => {
-                    seconds++;
-                    let h = String(Math.floor(seconds / 3600)).padStart(2, '0');
-                    let m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-                    let s = String(seconds % 60).padStart(2, '0');
+                timerObj = setInterval(() => {
+                    sec++;
+                    let h = String(Math.floor(sec / 3600)).padStart(2, '0');
+                    let m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+                    let s = String(sec % 60).padStart(2, '0');
                     document.getElementById('timer-display').innerText = `${h}:${m}:${s}`;
                 }, 1000);
                 btn.innerText = 'Tạm dừng';
-                btn.className = 'w-full py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs rounded-xl shadow-lg transition';
+                btn.className = 'w-full py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-lg shadow transition';
             }
         }
 
-        // Tasks & Reminders
+        // Task Manager
         let tasks = JSON.parse(localStorage.getItem('studio_tasks')) || [
-            { text: 'Ôn tập 20 từ vựng cấp độ C1', done: false },
-            { text: 'Làm 5 bài tập tìm lỗi sai ngữ pháp', done: true },
-            { text: 'Chiến thắng 2 vòng Mini Game Ethan', done: false }
+            { text: 'Học 30 từ vựng cơ bản và nâng cao', done: false },
+            { text: 'Ôn tập 5 cấu trúc ngữ pháp trọng tâm', done: true },
+            { text: 'Chiến thắng Mini Game Lizzert', done: false }
         ];
 
         function renderTasks() {
             const list = document.getElementById('task-list');
             list.innerHTML = '';
-            let completed = 0;
+            let count = 0;
             tasks.forEach((t, i) => {
-                if(t.done) completed++;
+                if(t.done) count++;
                 list.innerHTML += `
-                    <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100/80 transition">
-                        <label class="flex items-center gap-3 cursor-pointer flex-1">
-                            <input type="checkbox" ${t.done?'checked':''} onchange="toggleTask(${i})" class="w-5 h-5 accent-blue-600 rounded">
-                            <span class="text-sm font-bold ${t.done?'line-through text-slate-400':'text-slate-800'}">${t.text}</span>
+                    <div class="flex items-center justify-between p-3 border rounded-xl bg-slate-50">
+                        <label class="flex items-center gap-2.5 cursor-pointer flex-1">
+                            <input type="checkbox" ${t.done?'checked':''} onchange="toggleTask(${i})" class="w-4 h-4 accent-blue-600 rounded">
+                            <span class="text-xs font-semibold ${t.done?'line-through text-slate-400':'text-slate-700'}">${t.text}</span>
                         </label>
-                        <button onclick="deleteTask(${i})" class="text-xs text-rose-500 font-bold hover:underline">Xóa</button>
+                        <button onclick="delTask(${i})" class="text-xs text-rose-500 font-bold hover:underline">Xóa</button>
                     </div>
                 `;
             });
-            document.getElementById('stat-tasks').innerText = `${completed}/${tasks.length}`;
-            document.getElementById('task-progress-bar').style.width = `${(completed/tasks.length)*100}%`;
+            document.getElementById('stat-tasks').innerText = `${count}/${tasks.length}`;
             localStorage.setItem('studio_tasks', JSON.stringify(tasks));
         }
 
@@ -349,84 +291,80 @@
             if(inp.value.trim()) { tasks.push({text: inp.value.trim(), done: false}); inp.value=''; renderTasks(); }
         }
         function toggleTask(i) { tasks[i].done = !tasks[i].done; renderTasks(); }
-        function deleteTask(i) { tasks.splice(i, 1); renderTasks(); }
-        function checkDailyReminders() {
-            const left = tasks.filter(t => !t.done).length;
-            if(left > 0) alert(`🔔 THÔNG BÁO NHẮC NHỞ:\nBạn còn ${left} nhiệm vụ chưa hoàn thành hôm nay. Hãy cố gắng hoàn thành để đạt mục tiêu KHKT nhé!`);
-            else alert(`🎉 XUẤT SẮC!\nBạn đã hoàn thành toàn bộ nhiệm vụ trong ngày! Tuyệt vời!`);
+        function delTask(i) { tasks.splice(i, 1); renderTasks(); }
+        function checkTaskReminders() {
+            const un = tasks.filter(t => !t.done).length;
+            if(un > 0) alert(`🔔 THÔNG BÁO NHẮC NHỞ:\nBạn vẫn còn ${un} nhiệm vụ chưa hoàn thành! Hãy cố gắng lên nhé!`);
+            else alert(`🎉 XUẤT SẮC!\nBạn đã hoàn thành tất cả nhiệm vụ trong ngày!`);
         }
 
-        // Vocabulary Database (A2 - C2)
-        const vocabDatabase = [
-            { word: "Abandon", level: "B2", type: "verb", ipa: "/əˈbæn.dən/", meaning: "Từ bỏ, ruồng bỏ", ex: "He decided to abandon the project." },
-            { word: "Abundant", level: "B2", type: "adj", ipa: "/əˈbʌn.dənt/", meaning: "Dồi dào, phong phú", ex: "Rainfall is abundant in the region." },
-            { word: "Acknowledge", level: "C1", type: "verb", ipa: "/əkˈnɒl.ɪdʒ/", meaning: "Công nhận, thừa nhận", ex: "She acknowledged her mistakes openly." },
-            { word: "Ambiguous", level: "C1", type: "adj", ipa: "/æmˈbɪɡ.ju.əs/", meaning: "Mơ hồ, lưỡng nghĩa", ex: "His reply was highly ambiguous." },
-            { word: "Benevolent", level: "C2", type: "adj", ipa: "/bəˈnev.əl.ənt/", meaning: "Nhân từ, rộng lượng", ex: "A benevolent donor paid for the hospital." },
-            { word: "Capacious", level: "C2", type: "adj", ipa: "/kəˈpeɪ.ʃəs/", meaning: "Rộng rãi, sức chứa lớn", ex: "She carried a capacious leather bag." },
-            { word: "Comprehensive", level: "B2", type: "adj", ipa: "/ˌkɒm.prɪˈhen.sɪv/", meaning: "Toàn diện, bao quát", ex: "A comprehensive study of the issue." },
-            { word: "Diligent", level: "B1", type: "adj", ipa: "/ˈdɪl.ɪ.dʒənt/", meaning: "Siêng năng, chăm chỉ", ex: "He is a diligent student." }
+        // Vocabulary Database (Từ cơ bản đến nâng cao đầy đủ)
+        const vocabList = [
+            { word: "Apple", type: "noun", ipa: "/ˈæp.əl/", meaning: "Quả táo", ex: "She is eating a red apple." },
+            { word: "Book", type: "noun", ipa: "/bʊk/", meaning: "Cuốn sách", ex: "I love reading interesting books." },
+            { word: "Computer", type: "noun", ipa: "/kəmˈpjuː.tər/", meaning: "Máy tính", ex: "He works on his computer all day." },
+            { word: "Develop", type: "verb", ipa: "/dɪˈvel.əp/", meaning: "Phát triển", ex: "We need to develop new software." },
+            { word: "Environment", type: "noun", ipa: "/ɪnˈvaɪ.rən.mənt/", meaning: "Môi trường", ex: "We must protect our environment." },
+            { word: "Acknowledge", type: "verb", ipa: "/əkˈnɒl.ɪdʒ/", meaning: "Thừa nhận, công nhận", ex: "He acknowledged his mistake." },
+            { word: "Substantial", type: "adj", ipa: "/səbˈstæn.ʃəl/", meaning: "Đáng kể, lớn", ex: "A substantial amount of money." },
+            { word: "Beneficial", type: "adj", ipa: "/ˌben.ɪˈfɪʃ.əl/", meaning: "Có lợi, ích lợi", ex: "Reading books is beneficial." }
         ];
 
-        function renderVocabGrid(data) {
+        function renderVocab(data) {
             const grid = document.getElementById('vocab-grid');
             grid.innerHTML = '';
             data.forEach(v => {
                 grid.innerHTML += `
-                    <div class="p-5 bg-slate-50 border border-slate-200 rounded-2xl hover:border-blue-500 transition space-y-2">
+                    <div class="p-4 border rounded-xl bg-slate-50 space-y-1">
                         <div class="flex justify-between items-center">
-                            <span class="font-extrabold text-slate-900 text-lg">${v.word}</span>
-                            <div class="flex gap-1">
-                                <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded">${v.level}</span>
-                                <span class="bg-purple-100 text-purple-700 text-[10px] font-bold px-2 py-0.5 rounded uppercase">${v.type}</span>
-                            </div>
+                            <span class="font-bold text-blue-600 text-sm">${v.word}</span>
+                            <span class="text-[9px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded font-bold uppercase">${v.type}</span>
                         </div>
-                        <p class="text-xs text-slate-400 italic">${v.ipa}</p>
-                        <p class="text-sm font-bold text-slate-800">${v.meaning}</p>
-                        <p class="text-xs text-slate-600 bg-white p-2.5 rounded-xl border">💡 <i>${v.ex}</i></p>
+                        <p class="text-[10px] text-slate-400 italic">${v.ipa}</p>
+                        <p class="text-xs font-semibold text-slate-800">${v.meaning}</p>
+                        <p class="text-[11px] text-slate-500 bg-white p-2 rounded border">💡 <i>${v.ex}</i></p>
                     </div>
                 `;
             });
         }
 
-        function filterVocabData() {
-            const lvl = document.getElementById('vocab-level-filter').value;
+        function filterVocab() {
             const q = document.getElementById('vocab-search').value.toLowerCase();
-            const res = vocabDatabase.filter(v => (lvl === 'ALL' || v.level === lvl) && (v.word.toLowerCase().includes(q) || v.meaning.toLowerCase().includes(q)));
-            renderVocabGrid(res);
+            const res = vocabList.filter(v => v.word.toLowerCase().includes(q) || v.meaning.toLowerCase().includes(q));
+            renderVocab(res);
         }
 
-        // Grammar & Error Correction Exercises
-        const grammarDatabase = [
-            { title: "1. Câu điều kiện Loại 3", formula: "If + S + had V3/ed, S + would/could have V3/ed", desc: "Diễn tả sự việc trái ngược với quá khứ." },
-            { title: "2. Mệnh đề quan hệ rút gọn", formula: "V-ing (chủ động) hoặc V3/ed (bị động)", desc: "Dùng để rút gọn mệnh đề dài trong câu." }
+        // Grammar & Error Corrections
+        const grammarList = [
+            { title: "1. Thì Hiện Tại Đơn (Present Simple)", form: "S + V(s/es)", note: "Dùng diễn tả thói quen hoặc sự thật hiển nhiên." },
+            { title: "2. Câu Điều Kiện Loại 2", form: "If + S + V-ed/were, S + would + V-bare", note: "Diễn tả giả định không có thật ở hiện tại." }
         ];
 
-        const exerciseDatabase = [
-            { q: "She suggest him to apply for the scholarship.", error: "suggest him to apply", fix: "suggest that he apply / suggest applying", explain: "Sau 'suggest' dùng V-ing hoặc mệnh đề 'that + S + V nguyên mẫu'." },
-            { q: "Neither of the boys have finished their homework.", error: "have finished", fix: "has finished", explain: "'Neither of + N số nhiều' đi với động từ số ít." }
+        const exerciseList = [
+            { q: "She go to school every day.", err: "go", fix: "goes", explain: "Chủ ngữ 'She' số ít ngôi thứ 3 nên động từ thêm 'es'." },
+            { q: "Neither of them are ready.", err: "are", fix: "is", explain: "'Neither of + N số nhiều' đi với động từ số ít." }
         ];
 
-        function renderGrammarAndExercises() {
-            const gBox = document.getElementById('grammar-list');
-            grammarDatabase.forEach(g => {
+        function renderGrammarSection() {
+            const gBox = document.getElementById('grammar-box');
+            grammarList.forEach(g => {
                 gBox.innerHTML += `
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
-                        <h4 class="font-extrabold text-blue-600 text-sm">${g.title}</h4>
-                        <p class="text-xs font-bold bg-blue-50 text-blue-900 p-2 rounded-lg">Công thức: ${g.formula}</p>
-                        <p class="text-xs text-slate-600">${g.desc}</p>
+                    <div class="p-3 border rounded-xl bg-slate-50 space-y-1">
+                        <h4 class="font-bold text-slate-900 text-xs">${g.title}</h4>
+                        <p class="text-[11px] font-bold text-blue-600 bg-blue-50 p-1.5 rounded">Công thức: ${g.form}</p>
+                        <p class="text-[11px] text-slate-600">${g.note}</p>
                     </div>
                 `;
             });
 
-            const eBox = document.getElementById('exercise-list');
-            exerciseDatabase.forEach((e, i) => {
+            const eBox = document.getElementById('exercise-box');
+            exerciseList.forEach((e, i) => {
                 eBox.innerHTML += `
-                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
-                        <span class="text-[10px] bg-purple-100 text-purple-700 font-bold px-2 py-0.5 rounded">Bài tập ${i+1}</span>
-                        <p class="text-xs font-bold text-slate-900">Lỗi sai trong câu: "${e.q}"</p>
-                        <p class="text-xs text-emerald-600 font-bold">Sửa đúng: ${e.fix}</p>
-                        <p class="text-xs text-slate-500 bg-white p-2 rounded border">💡 Giải thích: ${e.explain}</p>
+                    <div class="p-3 border rounded-xl bg-slate-50 space-y-1">
+                        <span class="text-[9px] bg-purple-100 text-purple-700 font-bold px-2 py-0.5 rounded">Bài lỗi sai ${i+1}</span>
+                        <p class="text-xs font-bold text-slate-800 mt-1">Câu sai: "${e.q}"</p>
+                        <p class="text-xs font-bold text-emerald-600">Sửa đúng: ${e.fix}</p>
+                        <p class="text-[11px] text-slate-500 bg-white p-2 rounded border">💡 Giải thích: ${e.explain}</p>
                     </div>
                 `;
             });
@@ -434,115 +372,101 @@
 
         // Mini Games Controller
         let score = 0;
-        function switchGame(gid) {
+        function switchGameMode(m) {
             [1, 2, 3].forEach(id => {
-                document.getElementById('game-box-' + id).classList.add('hidden');
-                document.getElementById('gtab-' + id).className = "p-4 rounded-2xl font-extrabold text-sm text-slate-700 bg-slate-100 hover:bg-slate-200 flex items-center justify-center gap-2 transition";
+                document.getElementById('gmode-' + id).classList.add('hidden');
+                document.getElementById('gbtn-' + id).className = "p-3 bg-slate-100 text-slate-700 rounded-xl font-bold text-xs hover:bg-slate-200 flex items-center justify-center gap-2";
             });
-            document.getElementById('game-box-' + gid).classList.remove('hidden');
-            document.getElementById('gtab-' + gid).className = "p-4 rounded-2xl font-extrabold text-sm text-white bg-purple-600 shadow-lg flex items-center justify-center gap-2 transition";
+            document.getElementById('gmode-' + m).classList.remove('hidden');
+            document.getElementById('gbtn-' + m).className = "p-3 bg-purple-600 text-white rounded-xl font-bold text-xs shadow flex items-center justify-center gap-2";
         }
 
-        // Game 1: Ethan & Monster
+        // Game 1
+        const monsters = [
+            { name: "Quái Càng Cua", img: "https://lh3.googleusercontent.com/d/1000011017.jpg" },
+            { name: "Quái Tím 4 Tay", img: "https://lh3.googleusercontent.com/d/1000011016.jpg" }
+        ];
         const g1Data = [
-            { monster: "Quái Càng Cua Blue", img: "https://lh3.googleusercontent.com/d/1000011017.jpg", q: "Từ 'Abandon' có nghĩa là gì?", opts: ["Từ bỏ", "Xây dựng", "Bảo vệ", "Phát triển"], correct: 0 },
-            { monster: "Quái Tím 4 Tay", img: "https://lh3.googleusercontent.com/d/1000011016.jpg", q: "Từ 'Ambiguous' có nghĩa là gì?", opts: ["Rõ ràng", "Mơ hồ", "Chính xác", "Đơn giản"], correct: 1 }
+            { q: "Từ 'Apple' có nghĩa là gì?", opts: ["Quả táo", "Quả cam", "Quả chuối", "Quả lê"], correct: 0 },
+            { q: "Từ 'Develop' có nghĩa là gì?", opts: ["Hủy diệt", "Phát triển", "Xây dựng lại", "Tạm dừng"], correct: 1 }
         ];
         let g1Idx = 0;
 
         function loadGame1() {
             const data = g1Data[g1Idx % g1Data.length];
-            document.getElementById('monster-name').innerText = data.monster;
-            document.getElementById('monster-img').src = data.img;
-            document.getElementById('g1-question').innerText = data.q;
-            const opts = document.getElementById('g1-options');
+            const m = monsters[g1Idx % monsters.length];
+            document.getElementById('g1-monster-name').innerText = m.name;
+            document.getElementById('g1-monster-img').src = m.img;
+            document.getElementById('g1-q').innerText = data.q;
+            const opts = document.getElementById('g1-opts');
             opts.innerHTML = '';
             data.opts.forEach((opt, idx) => {
-                opts.innerHTML += `<button onclick="ansGame1(${idx}, ${data.correct})" class="p-3.5 bg-white border border-slate-200 rounded-xl font-bold text-xs hover:border-blue-500 text-left transition">${String.fromCharCode(65+idx)}. ${opt}</button>`;
+                opts.innerHTML += `<button onclick="ansGame1(${idx}, ${data.correct})" class="p-2.5 bg-white border rounded-lg font-bold hover:bg-purple-50 text-left">${String.fromCharCode(65+idx)}. ${opt}</button>`;
             });
-            document.getElementById('g1-progress').innerText = `Trận chiến ${(g1Idx%g1Data.length)+1} / ${g1Data.length}`;
         }
 
         function ansGame1(chosen, correct) {
-            if(chosen === correct) {
-                score += 20;
-                alert('⚡ Ethan tung chiêu chí mạng! Tiêu diệt thành công quái vật! +20 điểm');
-            } else {
-                alert('❌ Chưa chính xác! Ethan bị phản đòn!');
-            }
-            g1Idx++;
-            updateScore();
-            loadGame1();
+            if(chosen === correct) { score += 10; alert('⚡ Ethan tung chiêu tiêu diệt quái vật! +10 điểm'); }
+            else { alert('❌ Sai rồi, Ethan bị phản đòn!'); }
+            g1Idx++; updateScore(); loadGame1();
         }
 
-        // Game 2: Fill in the blank
+        // Game 2
         const g2Data = [
-            { word: "ABANDON", hint: "A _ A N D O N", meaning: "Từ bỏ, ruồng bỏ", missing: "B" },
-            { word: "DILIGENT", hint: "D I L I _ E N T", meaning: "Siêng năng, chăm chỉ", missing: "G" }
+            { hint: "A _ P _ L E", missing: "PP", meaning: "Quả táo" },
+            { hint: "B _ O _ K", missing: "OO", meaning: "Cuốn sách" }
         ];
         let g2Idx = 0;
 
         function loadGame2() {
             const data = g2Data[g2Idx % g2Data.length];
             document.getElementById('g2-meaning').innerText = data.meaning;
-            document.getElementById('g2-word-display').innerText = data.hint;
-            const opts = document.getElementById('g2-options');
+            document.getElementById('g2-word').innerText = data.hint;
+            const opts = document.getElementById('g2-opts');
             opts.innerHTML = '';
-            ['A', 'B', 'G', 'X'].sort(()=>Math.random()-0.5).forEach(char => {
-                opts.innerHTML += `<button onclick="ansGame2('${char}', '${data.missing}')" class="p-3 bg-white border border-slate-200 rounded-xl font-black text-base hover:bg-blue-50 text-blue-600 transition">${char}</button>`;
+            ['PP', 'OO', 'AA', 'EE'].sort(()=>Math.random()-0.5).forEach(val => {
+                opts.innerHTML += `<button onclick="ansGame2('${val}', '${data.missing}')" class="p-2.5 bg-white border rounded-lg font-bold text-blue-600 hover:bg-blue-50">${val}</button>`;
             });
         }
 
         function ansGame2(chosen, correct) {
-            if(chosen === correct) {
-                score += 15;
-                alert('🎉 Điền từ chính xác! +15 điểm');
-            } else {
-                alert('❌ Sai rồi, thử lại nhé!');
-            }
-            g2Idx++;
-            updateScore();
-            loadGame2();
+            if(chosen === correct) { score += 10; alert('🎉 Chính xác! +10 điểm'); }
+            else { alert('❌ Chưa đúng!'); }
+            g2Idx++; updateScore(); loadGame2();
         }
 
-        // Game 3: Matching Meaning
+        // Game 3
         const g3Data = [
-            { word: "Benevolent", correct: "Nhân từ, rộng lượng", opts: ["Nhân từ, rộng lượng", "Keo kiệt, ích kỷ", "Nhanh nhẹn", "Lười biếng"] },
-            { word: "Capacious", correct: "Rộng rãi, sức chứa lớn", opts: ["Chật hẹp", "Rộng rãi, sức chứa lớn", "Cao cấp", "Tạm thời"] }
+            { word: "Computer", correct: "Máy tính", opts: ["Máy tính", "Điện thoại", "Đồng hồ", "Ti vi"] },
+            { word: "Environment", correct: "Môi trường", opts: ["Không gian", "Môi trường", "Thời tiết", "Khí hậu"] }
         ];
         let g3Idx = 0;
 
         function loadGame3() {
             const data = g3Data[g3Idx % g3Data.length];
-            document.getElementById('g3-target-word').innerText = data.word;
-            const opts = document.getElementById('g3-options');
+            document.getElementById('g3-word').innerText = data.word;
+            const opts = document.getElementById('g3-opts');
             opts.innerHTML = '';
             data.opts.forEach(opt => {
-                opts.innerHTML += `<button onclick="ansGame3('${opt}', '${data.correct}')" class="p-3.5 bg-white border border-slate-200 rounded-xl font-bold text-xs hover:border-purple-500 text-slate-800 text-left transition">${opt}</button>`;
+                opts.innerHTML += `<button onclick="ansGame3('${opt}', '${data.correct}')" class="p-3 bg-white border rounded-lg font-bold hover:bg-purple-50 text-slate-800 text-left">${opt}</button>`;
             });
         }
 
         function ansGame3(chosen, correct) {
-            if(chosen === correct) {
-                score += 15;
-                alert('🎯 Nối nghĩa chính xác! +15 điểm');
-            } else {
-                alert('❌ Chưa đúng nghĩa!');
-            }
-            g3Idx++;
-            updateScore();
-            loadGame3();
+            if(chosen === correct) { score += 10; alert('🎯 Nối nghĩa chính xác! +10 điểm'); }
+            else { alert('❌ Sai nghĩa rồi!'); }
+            g3Idx++; updateScore(); loadGame3();
         }
 
         function updateScore() {
             document.getElementById('stat-score').innerText = score;
-            document.getElementById('game-score-badge').innerText = `Điểm số: ${score}`;
+            document.getElementById('game-score-tag').innerText = `Điểm: ${score}`;
         }
 
-        // Initializer
+        // Init
         renderTasks();
-        renderVocabGrid(vocabDatabase);
-        renderGrammarAndExercises();
+        renderVocab(vocabList);
+        renderGrammarSection();
         loadGame1();
         loadGame2();
         loadGame3();
@@ -550,8 +474,5 @@
 </body>
 </html>
 
- 
-           
-
-            
-        
+               
+     
