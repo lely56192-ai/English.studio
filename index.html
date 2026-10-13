@@ -3,63 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Studio - KHKT Project</title>
+    <title>English Studio - Bảng học tập cá nhân</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, sans-serif; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
-        .tab-active { background-color: #3b82f6; color: white; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .card-box { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .tab-btn { transition: all 0.2s; border-radius: 0.5rem; font-weight: 500; }
+        .tab-btn.active { background-color: #2563eb; color: #ffffff; }
     </style>
 </head>
-<body class="min-h-screen pb-10">
-
-    <!-- Header -->
-    <header class="border-b border-slate-800 bg-slate-900/80 sticky top-0 z-40 backdrop-blur-md px-4 py-3">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white text-sm">E</div>
-                <div>
-                    <h1 class="font-bold text-xs">English.studio</h1>
-                    <p class="text-[9px] text-slate-400">KHKT Research Project</p>
+<body class="min-h-screen p-4 md:p-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
+        
+        <!-- Sidebar Menu -->
+        <aside class="md:col-span-1 space-y-4">
+            <div class="card-box p-4">
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold">E</div>
+                    <span class="font-bold text-lg text-slate-800">English.studio</span>
                 </div>
+                <nav class="space-y-1">
+                    <button onclick="switchTab('dash')" id="btn-dash" class="tab-btn active w-full text-left px-3 py-2.5 text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie w-5"></i> Tổng quan
+                    </button>
+                    <button onclick="switchTab('tasks')" id="btn-tasks" class="tab-btn w-full text-left px-3 py-2.5 text-sm text-slate-600 hover:bg-slate-100 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check w-5"></i> Lộ trình & Nhiệm vụ
+                    </button>
+                    <button onclick="switchTab('vocab')" id="btn-vocab" class="tab-btn w-full text-left px-3 py-2.5 text-sm text-slate-600 hover:bg-slate-100 flex items-center gap-2">
+                        <i class="fa-solid fa-book-open w-5"></i> Từ vựng Zim
+                    </button>
+                    <button onclick="switchTab('grammar')" id="btn-grammar" class="tab-btn w-full text-left px-3 py-2.5 text-sm text-slate-600 hover:bg-slate-100 flex items-center gap-2">
+                        <i class="fa-solid fa-spell-check w-5"></i> Ngữ pháp
+                    </button>
+                    <button onclick="switchTab('game')" id="btn-game" class="tab-btn w-full text-left px-3 py-2.5 text-sm text-slate-600 hover:bg-slate-100 flex items-center gap-2">
+                        <i class="fa-solid fa-gamepad w-5"></i> Game Lizzert
+                    </button>
+                </nav>
             </div>
-            <div class="glass px-3 py-1 rounded-lg text-xs flex items-center gap-2">
-                <span>⏱ <span id="timer" class="font-mono text-emerald-400 font-bold">00:00:00</span></span>
-                <span class="text-slate-500">|</span>
-                <span>Tiến độ: <b id="prog" class="text-blue-400">0%</b></span>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-4 mt-5 grid grid-cols-1 md:grid-cols-4 gap-4">
-        <!-- Sidebar Navigation -->
-        <aside class="space-y-2">
-            <div class="glass p-2 rounded-xl space-y-1 text-xs">
-                <button onclick="switchTab('dash')" class="tab-btn tab-active w-full text-left px-3 py-2 rounded-lg font-medium flex items-center gap-2"><i class="fa-solid fa-chart-pie"></i> Tổng quan</button>
-                <button onclick="switchTab('vocab')" class="tab-btn w-full text-left px-3 py-2 rounded-lg font-medium flex items-center gap-2 text-slate-400 hover:bg-slate-800"><i class="fa-solid fa-book"></i> Từ vựng Zim</button>
-                <button onclick="switchTab('grammar')" class="tab-btn w-full text-left px-3 py-2 rounded-lg font-medium flex items-center gap-2 text-slate-400 hover:bg-slate-800"><i class="fa-solid fa-graduation-cap"></i> Ngữ pháp</button>
-                <button onclick="switchTab('game')" class="tab-btn w-full text-left px-3 py-2 rounded-lg font-medium flex items-center gap-2 text-slate-400 hover:bg-slate-800"><i class="fa-solid fa-gamepad text-yellow-400"></i> Game Lizzert</button>
+            <!-- Timer Widget -->
+            <div class="card-box p-4 text-center">
+                <span class="text-xs text-slate-500 font-medium">Thời gian học tích lũy</span>
+                <div id="timer-display" class="text-2xl font-bold text-blue-600 my-1">00:00:00</div>
+                <button onclick="toggleTimer()" id="timer-btn" class="text-xs px-3 py-1.5 bg-blue-50 text-blue-600 font-semibold rounded-md border border-blue-200 hover:bg-blue-100">Bắt đầu học</button>
             </div>
         </aside>
 
-        <!-- Workspace -->
-        <section class="md:col-span-3 space-y-4">
-          <!-- TAB 1: DASHBOARD -->
-            <div id="tab-dash" class="tab-box space-y-3">
-                <div class="glass p-4 rounded-xl bg-gradient-to-r from-blue-900/30 to-indigo-900/30">
-                    <h2 class="font-bold text-xs mb-1">Chào mừng bạn quay lại — Học tập hiệu quả mỗi ngày!</h2>
-                    <p class="text-[11px] text-slate-300">Hệ thống tích hợp ôn luyện thông minh phục vụ dự án KHKT.</p>
+        <!-- Main Content Workspace -->
+        <main class="md:col-span-3 space-y-6">
+            
+            <!-- TAB 1: DASHBOARD -->
+            <div id="tab-dash" class="space-y-6">
+                <div>
+                    <h1 class="text-xl font-bold text-slate-800">Bảng học tập tiếng Anh cá nhân</h1>
+                    <p class="text-xs text-slate-500">Theo dõi lộ trình, thực hành ngữ pháp và chơi mini-game để nâng cao kiến thức.</p>
                 </div>
-                <div class="glass p-4 rounded-xl space-y-2">
-                    <h3 class="font-bold text-xs text-blue-400 flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Nhiệm vụ hôm nay</h3>
-                    <div id="task-list" class="space-y-2 text-xs"></div>
-                </div>
-            </div>
 
-            <!-- TAB 2: TỪ VỰNG ZIM -->
-            <div id="tab-vocab" class="tab-box hidden glass p-4 rounded-xl space-y-3">
-                <div class="flex justify-between items-center">
-                    <h3 class="font-bold text-xs text-emerald-400"><i class="fa-solid fa-book"></i> Từ vựng chuẩn Zim Academic</h3>
-                    <a href="
+                <!-- Stat Cards -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="card-box p-4">
+                        <span class="text-xs text-slate-500">Nhiệm vụ hoàn thành</span>
+                        <div id="stat-tasks" class="text-xl font-bold text-slate
+         
+                   
