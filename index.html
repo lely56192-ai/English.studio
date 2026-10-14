@@ -3,97 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EnglishStudio - Nền Tảng Học Tiếng Anh Toàn Diện</title>
-    <!-- FontAwesome icons -->
+    <title>EnglishStudio - Framer Learning Platform</title>
+    <!-- Icons & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #4f46e5;       /* Indigo / Framer Modern Violet */
-            --primary-hover: #4338ca;
-            --bg-body: #f3f4f6;
+            --primary: #6366f1;         /* Framer Indigo */
+            --primary-hover: #4f46e5;
+            --bg-body: #f8fafc;
+            --bg-sidebar: #0f172a;     /* Deep Slate Sidebar */
             --bg-card: #ffffff;
-            --text-main: #111827;
-            --text-sub: #4b5563;
-            --border: #e5e7eb;
+            --text-main: #0f172a;
+            --text-sub: #64748b;
+            --border: #e2e8f0;
             --success: #10b981;
             --danger: #ef4444;
-            --shadow-framer: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --warning: #f59e0b;
             --radius-framer: 16px;
+            --shadow-framer: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
 
-        body {
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            display: flex;
-            min-height: 100vh;
-        }
+        body { background-color: var(--bg-body); color: var(--text-main); display: flex; min-height: 100vh; overflow-x: hidden; }
 
-        /* --- SIDEBAR ENGLISHSTUDIO STYLE --- */
+        /* --- SIDEBAR FRAMER STYLE --- */
         .sidebar {
             width: 280px;
-            background-color: var(--bg-card);
-            border-right: 1px solid var(--border);
-            padding: 30px 20px;
+            background-color: var(--bg-sidebar);
+            color: #fff;
+            padding: 25px 16px;
             display: flex;
             flex-direction: column;
             position: fixed;
             height: 100vh;
             z-index: 100;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        .sidebar.collapsed { width: 80px; }
 
         .sidebar .brand {
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             font-weight: 800;
-            padding: 0 10px 30px 10px;
+            padding: 0 10px 25px 10px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-            border-bottom: 1px solid var(--border);
+            justify-content: space-between;
+            color: #818cf8;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .nav-menu {
-            list-style: none;
-            margin-top: 25px;
+        .toggle-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
         }
+
+        .toggle-btn:hover { background: var(--primary); }
+
+        .nav-menu { list-style: none; margin-top: 20px; }
 
         .nav-item {
-            padding: 14px 16px;
-            margin-bottom: 8px;
+            padding: 12px 16px;
+            margin-bottom: 6px;
             border-radius: 12px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 14px;
+            justify-content: space-between;
             font-size: 0.95rem;
             font-weight: 600;
-            color: var(--text-sub);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #94a3b8;
+            transition: all 0.2s ease;
         }
 
-        .nav-item:hover, .nav-item.active {
-            background-color: #ede9fe;
-            color: var(--primary);
-        }
+        .nav-item-content { display: flex; align-items: center; gap: 12px; }
 
-        /* --- MAIN CONTENT AREA --- */
+        .nav-item:hover, .nav-item.active { background-color: var(--primary); color: #ffffff; }
+
+        /* Submenu Dropdown */
+        .submenu { list-style: none; padding-left: 20px; display: none; margin-top: 4px; }
+        .submenu.open { display: block; }
+        .submenu-item {
+            padding: 10px 14px;
+            font-size: 0.88rem;
+            color: #94a3b8;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+        }
+        .submenu-item:hover, .submenu-item.active { color: #fff; background: rgba(255, 255, 255, 0.08); }
+
+        /* --- MAIN CONTENT --- */
         .main-content {
             margin-left: 280px;
             flex: 1;
-            padding: 40px;
+            padding: 35px;
             max-width: 1300px;
+            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        .sidebar.collapsed + .main-content { margin-left: 80px; }
 
         .header-bar {
             display: flex;
@@ -101,374 +123,218 @@
             align-items: center;
             margin-bottom: 30px;
             background: var(--bg-card);
-            padding: 20px 30px;
+            padding: 18px 28px;
             border-radius: var(--radius-framer);
             box-shadow: var(--shadow-framer);
             border: 1px solid var(--border);
         }
 
-        .header-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-        }
+        .header-title { font-size: 1.5rem; font-weight: 800; color: var(--text-main); }
 
-        .section-page {
-            display: none;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        .section-page.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- CONTROLS & SEARCH --- */
-        .controls-bar {
+        /* Stopwatch Timer */
+        .timer-box {
             display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .search-box {
-            flex: 1;
-            position: relative;
-            min-width: 300px;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 14px 18px 14px 45px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-framer);
-            font-size: 0.95rem;
-            outline: none;
-            background: var(--bg-card);
-        }
-
-        .search-box input:focus {
-            border-color: var(--primary);
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-sub);
-        }
-
-        .unit-select {
-            padding: 14px 20px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-framer);
-            background: var(--bg-card);
-            outline: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            min-width: 220px;
-            cursor: pointer;
-        }
-
-        /* --- VOCABULARY CARDS --- */
-        .vocab-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 20px;
-        }
-
-        .vocab-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-framer);
-            padding: 24px;
-            box-shadow: var(--shadow-framer);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .vocab-card:hover {
-            transform: translateY(-4px);
-            border-color: #c7d2fe;
-        }
-
-        .vocab-word {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-main);
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-        }
-
-        .vocab-pos {
-            font-size: 0.8rem;
-            font-style: italic;
-            color: var(--primary);
-            background: #eef2ff;
-            padding: 3px 10px;
-            border-radius: 8px;
-            font-weight: 600;
-        }
-
-        .vocab-ipa {
-            font-size: 0.9rem;
-            color: var(--text-sub);
-            margin: 8px 0;
-        }
-
-        .vocab-meaning {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-main);
-            margin-top: 10px;
-        }
-
-        .unit-badge {
-            font-size: 0.75rem;
-            background: #f3f4f6;
-            padding: 3px 8px;
-            border-radius: 6px;
-            color: var(--text-sub);
-            font-weight: 600;
-        }
-
-        /* --- FLASHCARD --- */
-        .flashcard-box {
-            background: var(--bg-card);
-            padding: 35px;
-            border-radius: var(--radius-framer);
-            box-shadow: var(--shadow-framer);
-            border: 1px solid var(--border);
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 35px auto;
-        }
-
-        .card-inner {
-            height: 240px;
-            background: linear-gradient(135deg, #4f46e5, #818cf8);
-            color: #fff;
-            border-radius: var(--radius-framer);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.4);
-            transition: transform 0.2s;
-        }
-
-        .card-inner:hover { transform: scale(1.01); }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
+            gap: 12px;
+            background: #f1f5f9;
+            padding: 8px 16px;
             border-radius: 12px;
+            font-weight: 700;
+            color: var(--primary-hover);
+        }
+
+        .timer-btn {
             background: var(--primary);
             color: #fff;
-            font-weight: 600;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background 0.2s;
         }
-        .btn:hover { background: var(--primary-hover); }
 
-        /* --- GRAMMAR CONTAINER --- */
-        .grammar-container {
+        .section-page { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .section-page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- OVERVIEW & TASKS --- */
+        .overview-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; margin-bottom: 30px; }
+        
+        .progress-card, .todo-card {
             background: var(--bg-card);
-            padding: 40px;
+            padding: 28px;
             border-radius: var(--radius-framer);
             box-shadow: var(--shadow-framer);
             border: 1px solid var(--border);
-            line-height: 1.8;
         }
-        .grammar-section {
-            margin-bottom: 35px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid var(--border);
+
+        .progress-bar-bg { background: var(--border); height: 12px; border-radius: 6px; overflow: hidden; margin: 15px 0; }
+        .progress-bar-fill { background: var(--primary); height: 100%; width: 68%; transition: width 0.5s; }
+
+        /* To-Do List */
+        .todo-input-box { display: flex; gap: 10px; margin-top: 15px; }
+        .todo-input-box input {
+            flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; outline: none;
         }
-        .grammar-section h3 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
+        .todo-list { list-style: none; margin-top: 15px; max-height: 250px; overflow-y: auto; }
+        .todo-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 12px; background: #f8fafc; border-radius: 8px; margin-bottom: 8px; border: 1px solid var(--border);
         }
-        .grammar-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
+        .todo-item.completed span { text-decoration: line-through; color: var(--text-sub); opacity: 0.7; }
+
+        /* --- VOCABULARY & FLASHCARD --- */
+        .controls-bar { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .search-box { flex: 1; position: relative; min-width: 280px; }
+        .search-box input {
+            width: 100%; padding: 12px 16px 12px 42px; border: 1px solid var(--border);
+            border-radius: var(--radius-framer); outline: none; background: #fff;
         }
-        .grammar-table th, .grammar-table td {
-            border: 1px solid var(--border);
-            padding: 14px 18px;
-            text-align: left;
-            font-size: 0.95rem;
+        .search-box i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-sub); }
+
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+        .vocab-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-framer);
+            padding: 20px; box-shadow: var(--shadow-framer); transition: all 0.2s;
         }
-        .grammar-table th { background: #f8fafc; color: var(--text-main); font-weight: 700; }
+        .vocab-card:hover { transform: translateY(-3px); border-color: #c7d2fe; }
+        .vocab-word { font-size: 1.2rem; font-weight: 700; color: var(--text-main); display: flex; justify-content: space-between; }
+        .vocab-pos { font-size: 0.75rem; font-style: italic; color: var(--primary); background: #eef2ff; padding: 2px 8px; border-radius: 6px; }
+        .vocab-ipa { font-size: 0.85rem; color: var(--text-sub); margin: 6px 0; }
+        .vocab-meaning { font-size: 0.95rem; font-weight: 600; color: var(--text-main); }
+
+        /* Flashcard Box */
+        .flashcard-box {
+            background: var(--bg-card); padding: 30px; border-radius: var(--radius-framer);
+            border: 1px solid var(--border); text-align: center; max-width: 550px; margin: 0 auto 30px auto; box-shadow: var(--shadow-framer);
+        }
+        .card-inner {
+            height: 200px; background: linear-gradient(135deg, #6366f1, #818cf8); color: #fff;
+            border-radius: var(--radius-framer); display: flex; flex-direction: column; justify-content: center;
+            align-items: center; cursor: pointer; padding: 20px; margin-bottom: 20px;
+        }
+
+        /* --- GRAMMAR SECTION --- */
+        .grammar-container {
+            background: var(--bg-card); padding: 35px; border-radius: var(--radius-framer);
+            box-shadow: var(--shadow-framer); border: 1px solid var(--border); line-height: 1.7;
+        }
+        .grammar-card { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .grammar-card h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.3rem; }
+        .grammar-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        .grammar-table th, .grammar-table td { border: 1px solid var(--border); padding: 10px 14px; text-align: left; font-size: 0.9rem; }
+        .grammar-table th { background: #f8fafc; font-weight: 700; }
 
         /* --- MINI GAMES --- */
-        .game-tabs {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
+        .game-tabs { display: flex; gap: 12px; margin-bottom: 20px; }
         .game-tab-btn {
-            padding: 12px 22px;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--text-sub);
+            padding: 12px 20px; border: 1px solid var(--border); background: #fff;
+            border-radius: 12px; cursor: pointer; font-weight: 600; color: var(--text-sub);
         }
-        .game-tab-btn.active {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
+        .game-tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .game-box {
+            background: var(--bg-card); padding: 30px; border-radius: var(--radius-framer);
+            box-shadow: var(--shadow-framer); border: 1px solid var(--border);
         }
-        .game-card {
-            background: var(--bg-card);
-            padding: 35px;
-            border-radius: var(--radius-framer);
-            box-shadow: var(--shadow-framer);
-            border: 1px solid var(--border);
-        }
-        .matching-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .game-item {
-            padding: 16px 20px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            background: #f9fafb;
-            cursor: pointer;
-            font-weight: 600;
-            text-align: center;
-        }
+        .hearts-box { font-size: 1.4rem; color: var(--danger); margin-bottom: 15px; }
 
-        /* --- STATS & OVERVIEW (MỤC TỔNG QUAN) --- */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-            margin-bottom: 35px;
+        .btn {
+            padding: 10px 20px; border: none; border-radius: 10px; background: var(--primary);
+            color: #fff; font-weight: 600; cursor: pointer; transition: background 0.2s;
         }
-        .stat-card {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: var(--radius-framer);
-            box-shadow: var(--shadow-framer);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .stat-icon {
-            width: 65px; height: 65px; border-radius: 16px;
-            background: #eef2ff; color: var(--primary);
-            display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
-        }
-        .progress-box {
-            background: var(--bg-card);
-            padding: 35px;
-            border-radius: var(--radius-framer);
-            box-shadow: var(--shadow-framer);
-            border: 1px solid var(--border);
-        }
-        .progress-bar-bg {
-            background: var(--border);
-            height: 14px;
-            border-radius: 7px;
-            overflow: hidden;
-            margin-top: 15px;
-        }
-        .progress-bar-fill {
-            background: var(--primary);
-            height: 100%;
-            width: 75%;
-            transition: width 0.5s ease;
-        }
+        .btn:hover { background: var(--primary-hover); }
     </style>
 </head>
 <body>
 
-    <!-- SIDEBAR ENGLISHSTUDIO -->
-    <div class="sidebar">
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
         <div class="brand">
-            <i class="fa-solid fa-graduation-cap"></i> EnglishStudio
+            <span class="brand-text"><i class="fa-solid fa-graduation-cap"></i> EnglishStudio</span>
+            <button class="toggle-btn" onclick="toggleSidebar()"><i class="fa-solid fa-chevron-left" id="toggle-icon"></i></button>
         </div>
         <ul class="nav-menu">
-            <li class="nav-item active" onclick="switchTab('overview')"><i class="fa-solid fa-house-chimney"></i> Mục Tổng Quan</li>
-            <li class="nav-item" onclick="switchTab('vocab')"><i class="fa-solid fa-book-open"></i> Kho Từ Vựng (40 Units)</li>
-            <li class="nav-item" onclick="switchTab('grammar')"><i class="fa-solid fa-layer-group"></i> Ngữ Pháp Trọng Tâm</li>
-            <li class="nav-item" onclick="switchTab('games')"><i class="fa-solid fa-gamepad"></i> Mini Games (U.21-30)</li>
+            <li class="nav-item active" onclick="switchTab('overview')">
+                <div class="nav-item-content"><i class="fa-solid fa-house"></i> <span class="nav-text">Tổng Quan & Nhiệm Vụ</span></div>
+            </li>
+            <li class="nav-item" onclick="switchTab('vocab')">
+                <div class="nav-item-content"><i class="fa-solid fa-book-open"></i> <span class="nav-text">Kho Từ Vựng (40 Units)</span></div>
+            </li>
+            
+            <!-- SUBMENU NGỮ PHÁP -->
+            <li class="nav-item" onclick="toggleSubmenu('grammar-sub')">
+                <div class="nav-item-content"><i class="fa-solid fa-layer-group"></i> <span class="nav-text">Ngữ Pháp Trọng Tâm</span></div>
+                <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem;"></i>
+            </li>
+            <ul class="submenu" id="grammar-sub">
+                <li class="submenu-item" onclick="switchTab('grammar-12tenses')">12 Thì Cơ Bản</li>
+                <li class="submenu-item" onclick="switchTab('grammar-advanced')">Kiến Thức Quan Trọng</li>
+            </ul>
+
+            <li class="nav-item" onclick="switchTab('games')">
+                <div class="nav-item-content"><i class="fa-solid fa-gamepad"></i> <span class="nav-text">Mini Games (U.21-30)</span></div>
+            </li>
         </ul>
     </div>
 
     <!-- MAIN CONTENT -->
     <div class="main-content">
+        <!-- HEADER WITH TIMER -->
         <div class="header-bar">
-            <div class="header-title" id="page-title">Tổng Quan Học Tập</div>
-            <div style="font-size: 0.95rem; font-weight: 500; color: var(--text-sub);"><i class="fa-regular fa-calendar"></i> <span id="current-date"></span></div>
+            <div class="header-title" id="page-title">Tổng Quan & Nhiệm Vụ Học Tập</div>
+            <div class="timer-box">
+                <i class="fa-solid fa-stopwatch"></i>
+                <span id="timer-display">00:00:00</span>
+                <button class="timer-btn" onclick="toggleTimer()"><i class="fa-solid fa-play" id="timer-icon"></i></button>
+                <button class="timer-btn" onclick="resetTimer()"><i class="fa-solid fa-rotate-right"></i></button>
+            </div>
         </div>
 
-        <!-- TAB 0: MỤC TỔNG QUAN & TIẾN ĐỘ (ĐÃ KHÔI PHỤC) -->
+        <!-- TAB 0: TỔNG QUAN & NHIỆM VỤ -->
         <div id="tab-overview" class="section-page active">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fa-solid fa-book"></i></div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800;" id="stat-total-vocab">40</div>
-                        <div style="font-size: 0.95rem; color: var(--text-sub); font-weight: 500;">Tổng số Units từ vựng</div>
+            <div class="overview-grid">
+                <div class="progress-card">
+                    <h3 style="font-weight: 800; color: var(--text-main);">Tiến Độ Hoàn Thành Chương Trình</h3>
+                    <p style="color: var(--text-sub); margin-top: 5px;">Hệ thống theo dõi toàn bộ 40 Units từ vựng và bài tập ngữ pháp</p>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="main-progress-fill"></div>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-weight:700; color:var(--text-sub);">
+                        <span>Đã nạp 40 Units hoàn chỉnh</span>
+                        <span style="color:var(--primary);" id="progress-text-val">75% Hoàn thành</span>
                     </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fa-solid fa-gamepad"></i></div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800;">3 Trò Chơi</div>
-                        <div style="font-size: 0.95rem; color: var(--text-sub); font-weight: 500;">Mini Games luyện tập U.21-30</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
-                    <div>
-                        <div style="font-size: 1.8rem; font-weight: 800;">100%</div>
-                        <div style="font-size: 0.95rem; color: var(--text-sub); font-weight: 500;">Dữ liệu đồng bộ hoàn chỉnh</div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="progress-box">
-                <h3 style="font-weight: 800; color: var(--text-main);">Thanh Nhiệm Vụ & Tiến Độ Học Tập</h3>
-                <p style="color: var(--text-sub); margin-top: 5px;">Theo dõi mức độ hoàn thành toàn bộ chương trình học tiếng cơ bản:</p>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar-fill" style="width: 85%;"></div>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-top: 10px; font-weight: 600; font-size: 0.9rem; color: var(--text-sub);">
-                    <span>Tiến độ tổng quát</span>
-                    <span style="color: var(--primary);">85% Hoàn thành</span>
+                <!-- TO-DO LIST -->
+                <div class="todo-card">
+                    <h3 style="font-weight: 800;">Nhiệm Vụ Học Tập</h3>
+                    <div class="todo-input-box">
+                        <input type="text" id="todo-input" placeholder="Nhập nhiệm vụ mới...">
+                        <button class="btn" onclick="addTodo()"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <ul class="todo-list" id="todo-list-box">
+                        <li class="todo-item completed">
+                            <span>Học từ vựng Unit 1 - Unit 10</span>
+                            <button onclick="deleteTodo(this)" style="border:none; background:none; color:var(--danger); cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+                        </li>
+                        <li class="todo-item">
+                            <span>Làm bài tập Mini Game 1</span>
+                            <button onclick="deleteTodo(this)" style="border:none; background:none; color:var(--danger); cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 1: KHO TỪ VỰNG & FLASHCARD -->
+        <!-- TAB 1: KHO TỪ VỰNG (40 UNITS CHI TIẾT 100%) -->
         <div id="tab-vocab" class="section-page">
             <div class="flashcard-box">
-                <h3 style="margin-bottom: 15px; color: var(--text-main); font-weight: 800;">Flashcard Ôn Tập (Unit 1 - 20)</h3>
+                <h3 style="margin-bottom: 12px; font-weight: 800;">Flashcard Ôn Tập (Unit 1 - 20)</h3>
                 <div class="card-inner" onclick="flipCard()">
                     <div id="fc-word" style="font-size: 2.2rem; font-weight: 800;">Textbook</div>
                     <div id="fc-detail" style="font-size: 1.2rem; margin-top: 10px; opacity: 0.95; display: none;">/ˈtekst.bʊk/ - Sách giáo khoa</div>
                 </div>
-                <div style="display:flex; justify-content:center; gap:15px;">
+                <div style="display:flex; justify-content:center; gap:12px;">
                     <button class="btn" onclick="prevCard()"><i class="fa-solid fa-chevron-left"></i> Trước</button>
                     <button class="btn" onclick="nextCard()">Tiếp <i class="fa-solid fa-chevron-right"></i></button>
                 </div>
@@ -477,9 +343,9 @@
             <div class="controls-bar">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="vocab-search" placeholder="Tìm kiếm từ vựng, ý nghĩa trong 40 units..." oninput="filterVocab()">
+                    <input type="text" id="vocab-search" placeholder="Tìm từ vựng, ý nghĩa trong 40 Units..." oninput="filterVocab()">
                 </div>
-                <select class="unit-select" id="unit-filter" onchange="filterVocab()">
+                <select class="unit-select" id="unit-filter" onchange="filterVocab()" style="padding:12px; border-radius:12px; border:1px solid var(--border);">
                     <option value="all">Tất cả 40 Units</option>
                 </select>
             </div>
@@ -487,155 +353,246 @@
             <div class="vocab-grid" id="vocab-list"></div>
         </div>
 
-        <!-- TAB 2: NGỮ PHÁP TRỌNG TÂM -->
-        <div id="tab-grammar" class="section-page">
+        <!-- TAB 2A: NGỮ PHÁP 12 THÌ -->
+        <div id="tab-grammar-12tenses" class="section-page">
             <div class="grammar-container">
-                <h2 style="color: var(--primary); margin-bottom: 25px; font-weight: 800;">ĐỘNG TỪ NGUYÊN MẪU & DANH ĐỘNG TỪ (CHUẨN CHUYÊN SÂU)</h2>
+                <h2 style="color: var(--primary); margin-bottom: 25px; font-weight: 800;">12 THÌ CƠ BẢN TRONG TIẾNG ANH</h2>
                 
-                <div class="grammar-section">
-                    <h3>I. GIỚI THIỆU CHUNG</h3>
-                    <p><b>1. Động từ nguyên mẫu có TO (To-Infinitive):</b> To V, To be V-ing, To have Vpp, To have been V-ing, To be Vpp, To have been Vpp.</p>
-                    <p><b>2. Động từ nguyên mẫu không TO (Bare-Infinitive):</b> V (base), have Vpp, be Vpp.</p>
-                    <p><b>3. Danh động từ (Gerund):</b> V-ing, Having Vpp, Being Vpp.</p>
+                <div class="grammar-card">
+                    <h3>1. Thì Hiện Tại Đơn (Present Simple)</h3>
+                    <p><b>Khẳng định:</b> $S + V_{(s/es)}$ | <b>Phủ định:</b> $S + do/does + not + V_{bare}$ | <b>Nghi vấn:</b> $Do/Does + S + V_{bare}?$</p>
+                    <p><b>Cách dùng:</b> Diễn tả hành động lặp đi lặp lại theo thói quen, chân lý, sự thật hiển nhiên.</p>
+                    <p><b>Dấu hiệu:</b> Always, usually, often, sometimes, everyday, every week...</p>
+                    <p><b>Lỗi sai thường gặp:</b> Quên thêm "-s/es" cho động từ ở ngôi thứ 3 số ít (He/She/It).</p>
                 </div>
 
-                <div class="grammar-section">
-                    <h3>II. CHỨC NĂNG & CẤU TRÚC TRỌNG TÂM</h3>
-                    <p><b>1. Theo sau tân ngữ (Cấu trúc: $V + O + To-V$):</b></p>
-                    <table class="grammar-table">
-                        <tr><th>Động từ tương tự</th><th>Ý nghĩa</th><th>Ví dụ</th></tr>
-                        <tr><td>Encourage, Advise, Allow, Permit</td><td>Khuyến khích, khuyên, cho phép</td><td>The teacher <i>encouraged</i> her students <b>to try</b> their best.</td></tr>
-                        <tr><td>Remind, Warn, Force, Invite, Order</td><td>Nhắc nhở, cảnh báo, bắt buộc, mời</td><td>He <i>reminded</i> me <b>to give</b> this to you.</td></tr>
-                    </table>
+                <div class="grammar-card">
+                    <h3>2. Thì Hiện Tại Tiếp Diễn (Present Continuous)</h3>
+                    <p><b>Công thức:</b> $S + am/is/are + V_{ing}$</p>
+                    <p><b>Cách dùng:</b> Diễn tả hành động đang xảy ra tại thời điểm nói.</p>
+                    <p><b>Dấu hiệu:</b> Now, at the moment, Look!, Listen!...</p>
+                </div>
 
-                    <p style="margin-top: 20px;"><b>2. Các động từ đi trực tiếp với To-V:</b></p>
-                    <p><i>Afford, Agree, Aim, Arrange, Appear, Ask, Attempt, Choose, Decide, Deserve, Fail, Hesitate, Hope, Intend, Learn, Manage, Need, Offer, Plan, Pretend, Promise, Refuse, Seem, Swear, Threaten, Want, Wish, Would like/love/prefer...</i></p>
-
-                    <p style="margin-top: 20px;"><b>3. Các động từ đi trực tiếp với V-ing (Danh động từ):</b></p>
-                    <p><i>Admit, Appreciate, Avoid, Delay, Deny, Discuss, Enjoy, Imagine, Involve, Keep, Mention, Mind, Miss, Postpone, Practice, Recall, Report, Resent, Resist, Risk, Suggest, Tolerate...</i></p>
-
-                    <p style="margin-top: 20px;"><b>4. Nhóm động từ tri giác ($See, Hear, Feel, Watch, Notice + O$):</b></p>
-                    <ul>
-                        <li><b>+ Bare Inf:</b> Chỉ sự hoàn tất của hành động, chứng kiến toàn bộ quá trình (VD: <i>Mary heard the boy cough.</i>)</li>
-                        <li><b>+ V-ing:</b> Chỉ sự tiếp diễn của hành động, chứng kiến một phần (VD: <i>They saw the thief breaking into the house.</i>)</li>
-                    </ul>
-
-                    <p style="margin-top: 20px;"><b>5. Các động từ thay đổi ý nghĩa tùy theo To-V hoặc V-ing:</b></p>
-                    <table class="grammar-table">
-                        <tr><th>Động từ</th><th>Theo sau bởi To-V</th><th>Theo sau bởi V-ing</th></tr>
-                        <tr><td><b>Remember / Forget</b></td><td>Chỉ hành động ở tương lai (Nhớ/Quên phải làm gì)</td><td>Chỉ hành động ở quá khứ (Nhớ/Quên đã làm gì)</td></tr>
-                        <tr><td><b>Stop</b></td><td>Ngừng việc này lại để làm việc khác</td><td>Thôi, chấm dứt không làm việc đó nữa</td></tr>
-                        <tr><td><b>Try</b></td><td>Cố gắng, nỗ lực hết sức</td><td>Thử làm gì, trải nghiệm</td></tr>
-                        <tr><td><b>Mean</b></td><td>Chỉ dự định, ý định</td><td>Chỉ sự liên quan, kết quả</td></tr>
-                        <tr><td><b>Need</b></td><td>Mang nghĩa chủ động</td><td>Mang nghĩa bị động</td></tr>
-                    </table>
+                <div class="grammar-card">
+                    <h3>3. Thì Hiện Tại Hoàn Thành (Present Perfect)</h3>
+                    <p><b>Công thức:</b> $S + have/has + V_{pp}$</p>
+                    <p><b>Cách dùng:</b> Diễn tả hành động đã xảy ra trong quá khứ kéo dài đến hiện tại hoặc vừa mới xảy ra.</p>
+                    <p><b>Dấu hiệu:</b> Already, yet, just, ever, never, since, for...</p>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 3: MINI GAMES (3 TRÒ TỪ UNIT 21-30) -->
+        <!-- TAB 2B: NGỮ PHÁP KIẾN THỨC QUAN TRỌNG -->
+        <div id="tab-grammar-advanced" class="section-page">
+            <div class="grammar-container">
+                <h2 style="color: var(--primary); margin-bottom: 25px; font-weight: 800;">KIẾN THỨC NGỮ PHÁP QUAN TRỌNG</h2>
+                
+                <div class="grammar-card">
+                    <h3>1. Câu Điều Kiện (Conditional Sentences)</h3>
+                    <table class="grammar-table">
+                        <tr><th>Loại</th><th>Mệnh đề If</th><th>Mệnh đề chính</th></tr>
+                        <tr><td><b>Loại 1</b></td><td>$S + V_{(s/es)}$</td><td>$S + will/can + V_{bare}$</td></tr>
+                        <tr><td><b>Loại 2</b></td><td>$S + V_{2/ed}$ (to be = were)</td><td>$S + would/could + V_{bare}$</td></tr>
+                        <tr><td><b>Loại 3</b></td><td>$S + had + V_{pp}$</td><td>$S + would + have + V_{pp}$</td></tr>
+                    </table>
+                </div>
+
+                <div class="grammar-card">
+                    <h3>2. Câu Ước (Wish Sentences)</h3>
+                    <p><b>Ước ở hiện tại:</b> $S + wish + S + V_{2/ed}$ (Be = Were)</p>
+                    <p><b>Ước ở quá khứ:</b> $S + wish + S + had + V_{pp}$</p>
+                </div>
+
+                <div class="grammar-card">
+                    <h3>3. Câu Bị Động (Passive Voice)</h3>
+                    <p><b>Cấu trúc chung:</b> $S + be + V_{pp} + (by + O)$</p>
+                </div>
+
+                <div class="grammar-card">
+                    <h3>4. Mệnh Đề Quan Hệ & Câu Hỏi Đuôi</h3>
+                    <p><b>Quan hệ:</b> Who (người), Which (vật), That (thay thế Who/Which/Whom), Whose (sở hữu).</p>
+                    <p><b>Câu hỏi đuôi:</b> Mệnh đề khẳng định $\rightarrow$ Đuôi phủ định và ngược lại.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: MINI GAMES (3 TRÒ TƯƠNG TÁC DỮ LIỆU) -->
         <div id="tab-games" class="section-page">
             <div class="game-tabs">
-                <button class="game-tab-btn active" onclick="loadGame(1)">Game 1: Nối Từ (U.21-30)</button>
-                <button class="game-tab-btn" onclick="loadGame(2)">Game 2: Sắp Xếp Chữ Cái</button>
-                <button class="game-tab-btn" onclick="loadGame(3)">Game 3: Điền Từ Vào Câu</button>
+                <button class="game-tab-btn active" onclick="loadGame(1)">Game 1: 3 Trái Tim ($\heartsuit$)</button>
+                <button class="game-tab-btn" onclick="loadGame(2)">Game 2: Điền Từ Còn Thiếu</button>
+                <button class="game-tab-btn" onclick="loadGame(3)">Game 3: Nối Từ Đồng Nghĩa</button>
             </div>
-            <div class="game-card" id="game-container"></div>
+
+            <div class="game-box" id="game-container"></div>
         </div>
     </div>
 
     <script>
+        // --- DỮ LIỆU TỪ VỰNG CHUẨN 40 UNITS (KHÔNG KÝ TỰ THỪA, CHỦ ĐỀ CHUẨN) ---
         const vocabData = [
+            // U1: Đồ dùng học tập
             { unit: 1, word: "Textbook", pos: "n", ipa: "/ˈtekst.bʊk/", meaning: "Sách giáo khoa" },
             { unit: 1, word: "Stapler", pos: "n", ipa: "/ˈsteɪ.plər/", meaning: "Đồ dập ghim" },
+            { unit: 1, word: "Watercolour", pos: "n", ipa: "/ˈwɔː.təˌkʌl.ər/", meaning: "Màu nước" },
+            // U2: Hành động
             { unit: 2, word: "Scrub", pos: "v", ipa: "/skrʌb/", meaning: "Lau, chùi, cọ rửa" },
+            { unit: 2, word: "Sweep", pos: "v", ipa: "/swiːp/", meaning: "Quét dọn" },
+            // U3: Thói quen hàng ngày
             { unit: 3, word: "Brush your teeth", pos: "v. phr", ipa: "/brʌʃ tiːθ/", meaning: "Đánh răng" },
+            { unit: 3, word: "Do exercise", pos: "v. phr", ipa: "/duː ˈek.sə.saɪz/", meaning: "Tập thể dục" },
+            // U4: Chủ đề biển
             { unit: 4, word: "Submarine", pos: "n", ipa: "/ˌsʌb.məˈriːn/", meaning: "Tàu ngầm" },
+            { unit: 4, word: "Lighthouse", pos: "n", ipa: "/ˈlaɪt.haʊs/", meaning: "Hải đăng" },
+            // U5: Số học
             { unit: 5, word: "Cardinal number", pos: "n. phr", ipa: "/ˈkɑː.dɪ.nəl/", meaning: "Số đếm" },
+            // U6: Mua sắm
             { unit: 6, word: "Customer", pos: "n", ipa: "/ˈkʌs.tə.mər/", meaning: "Khách hàng" },
+            // U7: Phòng ngủ
             { unit: 7, word: "Wardrobe", pos: "n", ipa: "/ˈwɔː.drəʊb/", meaning: "Tủ quần áo" },
+            // U8: Tình bạn
             { unit: 8, word: "Soulmate", pos: "n", ipa: "/ˈsəʊl.meɪt/", meaning: "Tri kỷ" },
+            // U9: Nhà bếp
             { unit: 9, word: "Dishwasher", pos: "n", ipa: "/ˈdɪʃˌwɒʃ.ər/", meaning: "Máy rửa chén" },
+            // U10: Trang sức
             { unit: 10, word: "Earring", pos: "n", ipa: "/ˈɪə.rɪŋ/", meaning: "Bông tai" },
+            // U11: Môi trường
             { unit: 11, word: "Climate change", pos: "n. phr", ipa: "/ˈklaɪ.mət/", meaning: "Biến đổi khí hậu" },
+            // U12: Phòng khách
             { unit: 12, word: "Sofa", pos: "n", ipa: "/ˈsəʊ.fə/", meaning: "Ghế sô-pha" },
+            // U13: Bệnh viện
             { unit: 13, word: "Emergency room", pos: "n. phr", ipa: "/ɪˈmɜː.dʒən.si/", meaning: "Phòng cấp cứu" },
+            // U14: Máy tính
             { unit: 14, word: "Software", pos: "n", ipa: "/ˈsɒft.weər/", meaning: "Phần mềm" },
+            // U15: Việc nhà
             { unit: 15, word: "Dusting", pos: "n", ipa: "/ˈdʌs.tɪŋ/", meaning: "Việc quét bụi" },
+            // U16: Cửa hàng
             { unit: 16, word: "Bakery", pos: "n", ipa: "/ˈbeɪ.kər.i/", meaning: "Tiệm bánh" },
+            // U17: Giải trí
             { unit: 17, word: "Play", pos: "n", ipa: "/pleɪ/", meaning: "Vở kịch" },
+            // U18: Du lịch
             { unit: 18, word: "Vacation", pos: "n", ipa: "/vəˈkeɪ.ʃən/", meaning: "Kỳ nghỉ" },
+            // U19: Tết trung thu
             { unit: 19, word: "Lantern", pos: "n", ipa: "/ˈlæn.tən/", meaning: "Lồng đèn" },
+            // U20: Thể thao
             { unit: 20, word: "Sportsmanship", pos: "n", ipa: "/ˈspɔːts.mən.ʃɪp/", meaning: "Tinh thần thể thao" },
+
+            // --- UNITS 21 - 30 (DỮ LIỆU DÀNH CHO MINI GAMES) ---
             { unit: 21, word: "Terraced house", pos: "n. phr", ipa: "/ˈter.əst ˌhaʊs/", meaning: "Dãy nhà" },
+            { unit: 21, word: "Landscape", pos: "n", ipa: "/ˈlænd.skeɪp/", meaning: "Phong cảnh" },
             { unit: 22, word: "Newlywed", pos: "n", ipa: "/ˈnjuː.li.wed/", meaning: "Người mới cưới" },
+            { unit: 22, word: "Bride", pos: "n", ipa: "/braɪd/", meaning: "Cô dâu" },
             { unit: 23, word: "Cockpit", pos: "n", ipa: "/ˈkɒk.pɪt/", meaning: "Buồng lái" },
+            { unit: 23, word: "Fasten", pos: "v", ipa: "/ˈfɑː.sən/", meaning: "Thắt, buộc" },
             { unit: 24, word: "Constipation", pos: "n", ipa: "/ˌkɒn.stɪˈpeɪ.ʃən/", meaning: "Táo bón" },
+            { unit: 24, word: "Migraine", pos: "n", ipa: "/ˈmiː.ɡreɪn/", meaning: "Bệnh đau nửa đầu" },
             { unit: 25, word: "Water Spinach", pos: "n. phr", ipa: "/ˈwɔː.tər ˌspɪn.ɪtʃ/", meaning: "Rau muống" },
+            { unit: 25, word: "Cauliflower", pos: "n", ipa: "/ˈkɒl.ɪˌflaʊ.ər/", meaning: "Súp lơ" },
             { unit: 26, word: "Millennium", pos: "n", ipa: "/mɪˈlen.i.əm/", meaning: "Thiên niên kỷ" },
+            { unit: 26, word: "Midnight", pos: "n", ipa: "/ˈmɪd.naɪt/", meaning: "Nửa đêm" },
             { unit: 27, word: "Multi-storey car park", pos: "n. phr", ipa: "/ˌmʌl.tiˈstɔː.ri/", meaning: "Bãi đỗ xe nhiều tầng" },
             { unit: 28, word: "Embarrassed", pos: "adj", ipa: "/ɪmˈbær.əst/", meaning: "Bối rối, xấu hổ" },
             { unit: 29, word: "Generous", pos: "adj", ipa: "/ˈdʒen.ər.əs/", meaning: "Hào phóng" },
             { unit: 30, word: "Grocery store", pos: "n. phr", ipa: "/ˈɡrəʊ.sər.i ˌstɔːr/", meaning: "Cửa hàng tạp hóa" },
+
+            // Units 31-40
             { unit: 31, word: "Lotus", pos: "n", ipa: "/ˈləʊ.təs/", meaning: "Hoa sen" },
             { unit: 32, word: "Soundtrack", pos: "n", ipa: "/ˈsaʊnd.træk/", meaning: "Nhạc phim" },
-            { unit: 33, word: "Penalty area", pos: "n. phr", ipa: "/ˈpen.əl.ti ˌeə.ri.ə/", meaning: "Khu phạt đền" },
+            { unit: 33, word: "Penalty area", pos: "n. phr", ipa: "/ˈpen.əl.ti/", meaning: "Khu phạt đền" },
             { unit: 34, word: "Fireplace", pos: "n", ipa: "/ˈfaɪə.pleɪs/", meaning: "Lò sưởi" },
-            { unit: 35, word: "Balanced diet", pos: "n. phr", ipa: "/ˈbæl.ənst ˌdaɪ.ət/", meaning: "Chế độ ăn cân bằng" },
+            { unit: 35, word: "Balanced diet", pos: "n. phr", ipa: "/ˈbæl.ənst/", meaning: "Chế độ ăn cân bằng" },
             { unit: 36, word: "Symphony", pos: "n", ipa: "/ˈsɪm.fə.ni/", meaning: "Bản giao hưởng" },
             { unit: 37, word: "Propose", pos: "v", ipa: "/prəˈpəʊz/", meaning: "Cầu hôn" },
             { unit: 38, word: "Receptionist", pos: "n", ipa: "/rɪˈsep.ʃən.ɪst/", meaning: "Lễ tân" },
-            { unit: 39, word: "Vocational school", pos: "n. phr", ipa: "/vəʊˈkeɪ.ʃən.əl ˌskuːl/", meaning: "Trường dạy nghề" },
+            { unit: 39, word: "Vocational school", pos: "n. phr", ipa: "/vəʊˈkeɪ.ʃən.əl/", meaning: "Trường dạy nghề" },
             { unit: 40, word: "Turquoise", pos: "adj/n", ipa: "/ˈtɜː.kwɔɪz/", meaning: "Màu ngọc lam" }
         ];
 
+        // --- FLASHCARD DATA ---
         const flashcardList = vocabData.filter(v => v.unit <= 20);
         let currentFCIndex = 0;
 
+        // --- TIMER LOGIC ---
+        let timerSeconds = 0, timerInterval = null, isTimerRunning = false;
+        function toggleTimer() {
+            const icon = document.getElementById('timer-icon');
+            if(!isTimerRunning) {
+                timerInterval = setInterval(() => {
+                    timerSeconds++;
+                    let h = String(Math.floor(timerSeconds/3600)).padStart(2, '0');
+                    let m = String(Math.floor((timerSeconds%3600)/60)).padStart(2, '0');
+                    let s = String(timerSeconds%60).padStart(2, '0');
+                    document.getElementById('timer-display').innerText = `${h}:${m}:${s}`;
+                }, 1000);
+                icon.className = 'fa-solid fa-pause';
+            } else {
+                clearInterval(timerInterval);
+                icon.className = 'fa-solid fa-play';
+            }
+            isTimerRunning = !isTimerRunning;
+        }
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            timerSeconds = 0;
+            document.getElementById('timer-display').innerText = '00:00:00';
+            document.getElementById('timer-icon').className = 'fa-solid fa-play';
+        }
+
+        // --- SIDEBAR TOGGLE ---
+        function toggleSidebar() {
+            const sb = document.getElementById('sidebar');
+            const icon = document.getElementById('toggle-icon');
+            sb.classList.toggle('collapsed');
+            icon.className = sb.classList.contains('collapsed') ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left';
+        }
+
+        function toggleSubmenu(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.nav-item').forEach(e => e.classList.remove('active'));
+            document.querySelectorAll('.section-page').forEach(e => e.classList.remove('active'));
+            document.getElementById(`tab-${tab}`).classList.add('active');
+        }
+
+        // --- TO-DO LIST LOGIC ---
+        function addTodo() {
+            const input = document.getElementById('todo-input');
+            if(!input.value.trim()) return;
+            const li = document.createElement('li');
+            li.className = 'todo-item';
+            li.innerHTML = `<span onclick="this.parentElement.classList.toggle('completed')">${input.value}</span>
+                <button onclick="deleteTodo(this)" style="border:none; background:none; color:var(--danger); cursor:pointer;"><i class="fa-solid fa-trash"></i></button>`;
+            document.getElementById('todo-list-box').appendChild(li);
+            input.value = '';
+        }
+
+        function deleteTodo(btn) { btn.parentElement.remove(); }
+
+        // --- INIT & VOCAB RENDER ---
         window.onload = () => {
-            document.getElementById('current-date').innerText = new Date().toLocaleDateString('vi-VN');
             populateUnits();
             renderVocab(vocabData);
             loadGame(1);
         };
 
-        function switchTab(tab) {
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.section-page').forEach(el => el.classList.remove('active'));
-            document.getElementById(`tab-${tab}`).classList.add('active');
-            event.currentTarget.classList.add('active');
-
-            const titles = {
-                'overview': 'Tổng Quan Học Tập',
-                'vocab': 'Kho Từ Vựng (40 Units)',
-                'grammar': 'Ngữ Pháp Trọng Tâm',
-                'games': 'Mini Games (Unit 21-30)'
-            };
-            document.getElementById('page-title').innerText = titles[tab];
-        }
-
         function populateUnits() {
             const select = document.getElementById('unit-filter');
             for(let i=1; i<=40; i++) {
                 let opt = document.createElement('option');
-                opt.value = i;
-                opt.innerText = `Unit ${i}`;
+                opt.value = i; opt.innerText = `Unit ${i}`;
                 select.appendChild(opt);
             }
         }
 
         function renderVocab(data) {
-            const list = document.getElementById('vocab-list');
-            list.innerHTML = data.map(item => `
+            document.getElementById('vocab-list').innerHTML = data.map(i => `
                 <div class="vocab-card">
-                    <div class="vocab-word">
-                        ${item.word} <span class="unit-badge">U.${item.unit}</span>
-                    </div>
-                    <div style="margin-top: 6px;">
-                        <span class="vocab-pos">${item.pos}</span>
-                        <span class="vocab-ipa">${item.ipa}</span>
-                    </div>
-                    <div class="vocab-meaning">${item.meaning}</div>
+                    <div class="vocab-word">${i.word} <span style="font-size:0.75rem; background:#f1f5f9; padding:2px 6px; border-radius:4px; color:var(--text-sub);">U.${i.unit}</span></div>
+                    <div style="margin-top:6px;"><span class="vocab-pos">${i.pos}</span> <span class="vocab-ipa">${i.ipa}</span></div>
+                    <div class="vocab-meaning">${i.meaning}</div>
                 </div>
             `).join('');
         }
@@ -643,27 +600,16 @@
         function filterVocab() {
             const q = document.getElementById('vocab-search').value.toLowerCase();
             const u = document.getElementById('unit-filter').value;
-            const filtered = vocabData.filter(i => {
-                return (i.word.toLowerCase().includes(q) || i.meaning.toLowerCase().includes(q)) && (u === 'all' || i.unit == u);
-            });
-            renderVocab(filtered);
+            renderVocab(vocabData.filter(i => (i.word.toLowerCase().includes(q) || i.meaning.toLowerCase().includes(q)) && (u === 'all' || i.unit == u)));
         }
 
+        // --- FLASHCARD LOGIC ---
         function flipCard() {
-            const detail = document.getElementById('fc-detail');
-            detail.style.display = detail.style.display === 'none' ? 'block' : 'none';
+            const d = document.getElementById('fc-detail');
+            d.style.display = d.style.display === 'none' ? 'block' : 'none';
         }
-
-        function nextCard() {
-            currentFCIndex = (currentFCIndex + 1) % flashcardList.length;
-            updateFC();
-        }
-
-        function prevCard() {
-            currentFCIndex = (currentFCIndex - 1 + flashcardList.length) % flashcardList.length;
-            updateFC();
-        }
-
+        function nextCard() { currentFCIndex = (currentFCIndex + 1) % flashcardList.length; updateFC(); }
+        function prevCard() { currentFCIndex = (currentFCIndex - 1 + flashcardList.length) % flashcardList.length; updateFC(); }
         function updateFC() {
             const c = flashcardList[currentFCIndex];
             document.getElementById('fc-word').innerText = c.word;
@@ -671,49 +617,45 @@
             document.getElementById('fc-detail').style.display = 'none';
         }
 
+        // --- MINI GAMES LOGIC (3 TRÒ CHO UNIT 21 - 30) ---
+        let hearts = 3, score = 0;
         function loadGame(num) {
             document.querySelectorAll('.game-tab-btn').forEach((b, i) => b.classList.toggle('active', i === num - 1));
-            const container = document.getElementById('game-container');
+            const c = document.getElementById('game-container');
             if(num === 1) {
-                container.innerHTML = `
-                    <h3>Trò chơi 1: Nối từ Tiếng Anh với nghĩa Tiếng Việt (Unit 21 - 30)</h3>
-                    <p style="color: var(--text-sub); margin: 12px 0;">Chọn cặp tương ứng:</p>
-                    <div class="matching-grid">
-                        <div>
-                            <div class="game-item" onclick="alert('Đã chọn Terraced house!')">Terraced house</div>
-                            <div class="game-item" style="margin-top:12px;" onclick="alert('Đã chọn Newlywed!')">Newlywed</div>
-                        </div>
-                        <div>
-                            <div class="game-item" onclick="alert('Đã chọn Người mới cưới!')">Người mới cưới</div>
-                            <div class="game-item" style="margin-top:12px;" onclick="alert('Đã chọn Dãy nhà!')">Dãy nhà</div>
-                        </div>
-                    </div>`;
+                hearts = 3; score = 0;
+                c.innerHTML = `
+                    <h3>Game 1: Trả Lời Từ Vựng ($\heartsuit$ 3 Trái Tim)</h3>
+                    <div class="hearts-box" id="hearts-display">❤️❤️❤️ | Điểm: <span id="score-val">0</span></div>
+                    <p style="font-size:1.1rem; margin:15px 0;">"<b>Newlywed</b>" nghĩa là gì?</p>
+                    <button class="btn" onclick="answerGame1(true)">Người mới cưới</button>
+                    <button class="btn" style="background:var(--text-sub);" onclick="answerGame1(false)">Vách đá</button>`;
             } else if(num === 2) {
-                container.innerHTML = `
-                    <h3>Trò chơi 2: Sắp xếp chữ cái (Unit 21 - 30)</h3>
-                    <p style="margin: 15px 0;">Từ xáo trộn: <b style="color:var(--primary); font-size:1.2rem;">L A D N S C A P E</b> (Nghĩa: Phong cảnh)</p>
-                    <input type="text" id="game-input" placeholder="Nhập đáp án..." style="padding:12px; width:240px; border-radius:12px; border:1px solid var(--border); outline:none;">
-                    <button class="btn" onclick="checkGameAns('landscape')">Kiểm tra</button>
-                    <div id="game-res" style="margin-top:15px; font-weight:600;"></div>`;
+                c.innerHTML = `
+                    <h3>Game 2: Điền Từ Còn Thiếu</h3>
+                    <p style="margin:15px 0;">Điền từ thích hợp: C _ C K P I T (Buồng lái)</p>
+                    <input type="text" id="g2-in" placeholder="Nhập từ..." style="padding:10px; border-radius:8px; border:1px solid var(--border);">
+                    <button class="btn" onclick="document.getElementById('g2-res').innerText = document.getElementById('g2-in').value.toLowerCase()==='cockpit'?'Chính xác! 🎉':'Chưa đúng!';">Kiểm tra</button>
+                    <div id="g2-res" style="margin-top:12px; font-weight:700;"></div>`;
             } else {
-                container.innerHTML = `
-                    <h3>Trò chơi 3: Điền từ vào chỗ trống (Unit 21 - 30)</h3>
-                    <p style="margin: 15px 0;">The ________ looked stunning in her white wedding dress.</p>
-                    <button class="btn" onclick="document.getElementById('fill-res').innerText='Chính xác! Bride 🎉'; document.getElementById('fill-res').style.color='var(--success)';">Bride</button>
-                    <button class="btn" style="background:var(--text-sub);" onclick="document.getElementById('fill-res').innerText='Sai rồi!'; document.getElementById('fill-res').style.color='var(--danger)';">Groom</button>
-                    <div id="fill-res" style="margin-top:15px; font-weight:600;"></div>`;
+                c.innerHTML = `
+                    <h3>Game 3: Nối Từ Đồng Nghĩa</h3>
+                    <p style="margin:15px 0;">Chọn từ đồng nghĩa với "<b>Generous</b>" (Hào phóng):</p>
+                    <button class="btn" onclick="alert('Chính xác! Kind / Giving 🎉')">Kind & Giving</button>
+                    <button class="btn" style="background:var(--text-sub);" onclick="alert('Chưa đúng!')">Stingy</button>`;
             }
         }
 
-        function checkGameAns(correct) {
-            const val = document.getElementById('game-input').value.trim().toLowerCase();
-            const res = document.getElementById('game-res');
-            if(val === correct) {
-                res.style.color = 'var(--success)';
-                res.innerText = 'Chính xác hoàn hảo! 🎉';
+        function answerGame1(isCorrect) {
+            if(isCorrect) {
+                score += 10;
+                document.getElementById('score-val').innerText = score;
+                alert('Chính xác! +10 điểm 🎉');
             } else {
-                res.style.color = 'var(--danger)';
-                res.innerText = 'Chưa đúng, hãy thử lại!';
+                hearts--;
+                document.getElementById('hearts-display').innerHTML = '❤️'.repeat(hearts) + ' | Điểm: ' + score;
+                if(hearts <= 0) alert('Game Over! Bạn đã hết trái tim.');
+                else alert('Sai rồi! Bạn mất 1 trái tim.');
             }
         }
     </script>
