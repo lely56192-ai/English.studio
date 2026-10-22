@@ -1,0 +1,529 @@
+import React, { useState, useEffect, useRef } from 'react';
+
+// ==========================================
+// 1. DỮ LIỆU KHO TỪ VỰNG & NGỮ PHÁP CHUẨN
+// ==========================================
+const VOCABULARY_UNITS = [
+  {
+    unit: 1,
+    title: "Unit 1: Đồ dùng học tập & Căn bản",
+    words: [
+      { word: "Textbook", ipa: "/ˈtekst.bʊk/", meaning: "Sách giáo khoa" },
+      { word: "Watercolour", ipa: "/ˈwɔː.təˌkʌl.ər/", meaning: "Màu nước" },
+      { word: "Notebook", ipa: "/ˈnəʊt.bʊk/", meaning: "Vở ghi chép" }
+    ]
+  },
+  {
+    unit: 2,
+    title: "Unit 2: Hành động hằng ngày",
+    words: [
+      { word: "Pack", ipa: "/pæk/", meaning: "Bó, gói đồ" },
+      { word: "Brush", ipa: "/brʌʃ/", meaning: "Chải, đánh răng" },
+      { word: "Clean", ipa: "/kliːn/", meaning: "Làm sạch" }
+    ]
+  },
+  {
+    unit: 3,
+    title: "Unit 3: Môi trường & Thiên nhiên",
+    words: [
+      { word: "Atmosphere", ipa: "/ˈæt.məs.fɪər/", meaning: "Khí quyển" },
+      { word: "Ecosystem", ipa: "/ˈiː.kəʊˌsɪs.təm/", meaning: "Hệ sinh thái" },
+      { word: "Climate", ipa: "/ˈklaɪ.mət/", meaning: "Khí hậu" }
+    ]
+  },
+  {
+    unit: 4,
+    title: "Unit 4: Cảm xúc & Tính cách",
+    words: [
+      { word: "Overwhelmed", ipa: "/ˌəʊ.vəˈwelmd/", meaning: "Choáng ngợp" },
+      { word: "Confident", ipa: "/ˈkɒn.fɪ.dənt/", meaning: "Tự tin" },
+      { word: "Generous", ipa: "/ˈdʒen.ər.əs/", meaning: "Hào phóng" }
+    ]
+  }
+];
+
+const GRAMMAR_CORRECTIONS = [
+  { error_sentence: "She go to school every day.", correct_sentence: "She goes to school every day.", explanation: "Chủ ngữ ngôi thứ 3 số ít 'She' ở thì hiện tại đơn phải thêm s/es cho động từ." },
+  { error_sentence: "They is playing football now.", correct_sentence: "They are playing football now.", explanation: "Chủ ngữ số nhiều 'They' đi với động từ to be là 'are'." },
+  { error_sentence: "I have lived here since 5 years.", correct_sentence: "I have lived here for 5 years.", explanation: "Dùng 'for' trước khoảng thời gian (5 years), 'since' dùng trước mốc thời gian cụ thể." }
+];
+
+const RPG_STORY = "Lizzert is a mysterious island shrouded in ancient secrets where humans long to explore for legendary treasures and defeat Arthur, the fierce Dragon Lord...";
+
+const RPG_QUESTS = [
+  { name: "Zombie Biến Dị", emoji: "🧟", q: "What is the meaning of 'Sibling'?", options: ["Anh em họ", "Anh chị em ruột", "Bố mẹ", "Con cái"], correct: 1 },
+  { name: "Goblin Tinh Nghịch", emoji: "🧌", q: "She ______ to school every day.", options: ["go", "goes", "going", "gone"], correct: 1 },
+  { name: "Troll Đá Khổng Lồ", emoji: "👹", q: "If it rains tomorrow, we ______ the picnic.", options: ["will cancel", "cancel", "would cancel", "cancelled"], correct: 0 },
+  { name: "CHÚA TỂ RỒNG ARTHUR", emoji: "🐉", q: "Hardly ______ the book when the lights went out.", options: ["had he opened", "he had opened", "did he open", "he opened"], correct: 0 }
+];
+
+export default function EnglishStudioApp() {
+  // --- STATE QUẢN LÝ ĐIỀU HƯỚNG & LOCALSTORAGE ---
+  const [activeTab, setActiveTab] = useState('dashboard');
+  
+  // Dữ liệu học tập lưu LocalStorage chống mất dữ liệu khi F5
+  const [savedData, setSavedData] = useState(() => {
+    const local = localStorage.getItem('english_studio_data');
+    return local ? JSON.parse(local) : {
+      studyTime: 0,
+      tasks: [
+        { id: 1, text: "Ôn tập 10 từ vựng cốt lõi Oxford", completed: false },
+        { id: 2, text: "Luyện tập 1 phiên Mini Game phản xạ", completed: false },
+        { id: 3, text: "Sửa 2 lỗi câu ngữ pháp cơ bản", completed: false }
+      ],
+      score: 120
+    };
+  });
+
+  useEffect(() => {
+    localStorage.setItem('english_studio_data', JSON.stringify(savedData));
+  }, [savedData]);
+
+  // --- TIMER TÍCH LŨY HẰNG NGÀY (CÓ PAUSE / RESUME) ---
+  const [isTimerRunning, setIsTimerRunning] = useState(true);
+  useEffect(() => {
+    let interval = null;
+    if (isTimerRunning) {
+      interval = setInterval(() => {
+        setSavedData(prev => ({ ...prev, studyTime: prev.studyTime + 1 }));
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isTimerRunning]);
+
+  const formatTime = (totalSeconds) => {
+    const h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
+    const m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
+    const s = (totalSeconds % 60).toString().padStart(2, '0');
+    return `${h}:${m}:${s}`;
+  };
+
+  // --- HÀM XỬ LÝ NHIỆM VỤ CHECKBOX ---
+  const toggleTask = (id) => {
+    setSavedData(prev => ({
+      ...prev,
+      tasks: prev.tasks.map(t => t.id === id ? { ...t, completed: !t.completed } : t)
+    }));
+  };
+
+  const completedTaskCount = savedData.tasks.filter(t => t.completed).length;
+
+  // --- MINI GAME 1 STATE (ĐIỀN TỪ / TRẮC NGHIỆM 3 TIM) ---
+  const [g1Index, setG1Index] = useState(0);
+  const [g1Hearts, setG1Hearts] = useState(3);
+  const [g1Message, setG1Message] = useState("");
+
+  const handleG1Answer = (selectedIdx) => {
+    if (selectedIdx === RPG_QUESTS[g1Index].correct) {
+      setG1Message("🎉 Chính xác! Làm rất tốt.");
+      setTimeout(() => {
+        setG1Message("");
+        setG1Index(prev => (prev + 1) % RPG_QUESTS.length);
+      }, 1000);
+    } else {
+      setG1Hearts(prev => {
+        const next = prev - 1;
+        if (next <= 0) alert("Hết trái tim! Game Over.");
+        return next;
+      });
+      setG1Message("❌ Sai rồi! Mất 1 trái tim.");
+    }
+  };
+
+  // --- MINI GAME 2 STATE (GHÉP CẶP ANH - VIỆT) ---
+  const [g2Pairs] = useState([
+    { id: 1, en: "Textbook", vi: "Sách giáo khoa" },
+    { id: 2, en: "Atmosphere", vi: "Khí quyển" },
+    { id: 3, en: "Confident", vi: "Tự tin" },
+    { id: 4, en: "Generous", vi: "Hào phóng" }
+  ]);
+  const [selectedEn, setSelectedEn] = useState(null);
+  const [selectedVi, setSelectedVi] = useState(null);
+  const [matchedIds, setMatchedIds] = useState([]);
+  const [mismatchState, setMismatchState] = useState(false);
+
+  const handleCardClick = (item, type) => {
+    if (mismatchState) return;
+    if (type === 'en') setSelectedEn(item);
+    if (type === 'vi') setSelectedVi(item);
+  };
+
+  useEffect(() => {
+    if (selectedEn && selectedVi) {
+      if (selectedEn.id === selectedVi.id) {
+        setMatchedIds(prev => [...prev, selectedEn.id]);
+        setSelectedEn(null);
+        setSelectedVi(null);
+      } else {
+        setMismatchState(true);
+        setTimeout(() => {
+          setSelectedEn(null);
+          setSelectedVi(null);
+          setMismatchState(false);
+        }, 1000); // Tự động reset sau 1 giây nếu nối sai
+      }
+    }
+  }, [selectedEn, selectedVi]);
+
+  // --- MINI GAME 3: ETHANE RPG STATE ---
+  const [rpgState, setRpgState] = useState('loading'); // loading -> story -> combat -> victory
+  const [loadPercent, setLoadPercent] = useState(1);
+  const [rpgIndex, setRpgIndex] = useState(0);
+  const [rpgHearts, setRpgHearts] = useState(3);
+  const [rpgLog, setRpgLog] = useState("Hành trình giải mã bắt đầu!");
+
+  useEffect(() => {
+    if (rpgState === 'loading') {
+      const timer = setInterval(() => {
+        setLoadPercent(prev => {
+          if (prev >= 100) {
+            clearInterval(timer);
+            setRpgState('story');
+            return 100;
+          }
+          return prev + 5;
+        });
+      }, 50);
+      return () => clearInterval(timer);
+    }
+  }, [rpgState]);
+
+  const handleRpgAnswer = (idx) => {
+    const currentQ = RPG_QUESTS[rpgIndex];
+    if (idx === currentQ.correct) {
+      setRpgLog(`⚔️ Chính xác! Đội quân Ethane tung đòn chí mạng tiêu diệt ${currentQ.name}.`);
+      setTimeout(() => {
+        if (rpgIndex < RPG_QUESTS.length - 1) {
+          setRpgIndex(prev => prev + 1);
+          setRpgLog("Quái vật tiếp theo xuất hiện!");
+        } else {
+          setRpgState('victory');
+        }
+      }, 1200);
+    } else {
+      setRpgHearts(prev => {
+        const next = prev - 1;
+        if (next <= 0) setRpgState('gameover');
+        return next;
+      });
+      setRpgLog(`💥 ${currentQ.name} phản công! Bạn mất 1 trái tim.`);
+    }
+  };
+
+  return (
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f0f4f2', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#2c3e50' }}>
+      
+      {/* ================= SIDEBAR ĐIỀU HƯỚNG ================= */}
+      <aside style={{ width: '280px', backgroundColor: '#99CDD8', borderRight: '2px solid #DAEBE3', padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px', boxShadow: '4px 0 20px rgba(0,0,0,0.03)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ width: '42px', height: '42px', backgroundColor: '#657166', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 'bold', fontSize: '20px' }}>E</div>
+          <div>
+            <h2 style={{ fontSize: '18px', fontWeight: '800', color: '#1e293b', margin: 0 }}>English.studio</h2>
+            <span style={{ fontSize: '11px', fontWeight: '700', color: '#657166' }}>PORTAL GIÁO DỤC 4.0</span>
+          </div>
+        </div>
+
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '10px' }}>
+          {[
+            { id: 'dashboard', label: '📊 Tổng quan & Tiến độ' },
+            { id: 'tasks', label: '✅ Nhiệm vụ hằng ngày' },
+            { id: 'vocab', label: '📖 Kho Từ Vựng (Oxford)' },
+            { id: 'grammar', label: '✍️ Sửa Lỗi Ngữ Pháp' },
+            { id: 'minigames', label: '🎮 Hệ thống 3 Mini Games' }
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              style={{
+                padding: '14px 18px',
+                borderRadius: '16px',
+                border: 'none',
+                textAlign: 'left',
+                fontWeight: '700',
+                fontSize: '13px',
+                cursor: 'pointer',
+                backgroundColor: activeTab === tab.id ? '#657166' : 'rgba(255, 255, 255, 0.4)',
+                color: activeTab === tab.id ? '#ffffff' : '#334155',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* ================= MAIN CONTENT ================= */}
+      <main style={{ flex: 1, padding: '36px', overflowY: 'auto' }}>
+        
+        {/* --- TAB 1: DASHBOARD --- */}
+        {activeTab === 'dashboard' && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#DAEBE3', padding: '24px 30px', borderRadius: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
+              <div>
+                <h1 style={{ fontSize: '24px', fontWeight: '800', color: '#1e293b', margin: '0 0 6px 0' }}>Xin chào bạn trở lại! ✨</h1>
+                <p style={{ fontSize: '13px', color: '#657166', margin: 0 }}>Hệ thống đã tự động lưu toàn bộ tiến độ của bạn vào LocalStorage.</p>
+              </div>
+              
+              {/* ĐỒNG HỒ TÍCH LŨY + PAUSE / RESUME */}
+              <div style={{ background: '#ffffff', padding: '12px 20px', borderRadius: '18px', textAlign: 'center', border: '1px solid rgba(0,0,0,0.05)' }}>
+                <span style={{ fontSize: '10px', fontWeight: '800', color: '#657166', display: 'block' }}>THỜI GIAN HỌC HÔM NAY</span>
+                <div style={{ fontSize: '18px', fontWeight: '800', color: '#0f172a', margin: '4px 0' }}>{formatTime(savedData.studyTime)}</div>
+                <button 
+                  onClick={() => setIsTimerRunning(!isTimerRunning)}
+                  style={{ backgroundColor: isTimerRunning ? '#F3C3B2' : '#99CDD8', border: 'none', padding: '4px 12px', borderRadius: '8px', fontSize: '11px', fontWeight: 'bold', cursor: 'pointer', color: '#1e293b' }}
+                >
+                  {isTimerRunning ? '⏸️ Tạm dừng' : '▶️ Tiếp tục'}
+                </button>
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
+              <div style={{ background: '#FDE8D3', padding: '24px', borderRadius: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
+                <span style={{ fontSize: '11px', fontWeight: '800', color: '#9a3412' }}>TIẾN ĐỘ NHIỆM VỤ</span>
+                <h2 style={{ fontSize: '32px', fontWeight: '800', margin: '8px 0', color: '#7c2d12' }}>{completedTaskCount} / {savedData.tasks.length}</h2>
+                <p style={{ fontSize: '12px', color: '#9a3412', margin: 0 }}>Hoàn thành ô nhiệm vụ hằng ngày để tích lũy điểm.</p>
+              </div>
+
+              <div style={{ background: '#DAEBE3', padding: '24px', borderRadius: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
+                <span style={{ fontSize: '11px', fontWeight: '800', color: '#065f46' }}>ĐIỂM SỐ KINH NGHIỆM</span>
+                <h2 style={{ fontSize: '32px', fontWeight: '800', margin: '8px 0', color: '#064e3b' }}>{savedData.score} XP</h2>
+                <p style={{ fontSize: '12px', color: '#065f46', margin: 0 }}>Hạng: Học viên chuyên chăm chỉ.</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* --- TAB 2: NHIỆM VỤ HẰNG NGÀY --- */}
+        {activeTab === 'tasks' && (
+          <div style={{ background: '#DAEBE3', padding: '30px', borderRadius: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)', maxWidth: '650px' }}>
+            <h2 style={{ fontSize: '20px', fontWeight: '800', marginBottom: '8px', color: '#1e293b' }}>Nhiệm Vụ Hằng Ngày</h2>
+            <p style={{ fontSize: '13px', color: '#657166', marginBottom: '20px' }}>Tích chọn vào ô vuông bên dưới để ghi nhận tiến độ theo thời gian thực.</p>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {savedData.tasks.map(task => (
+                <label 
+                  key={task.id} 
+                  style={{ display: 'flex', alignItems: 'center', gap: '14px', background: '#ffffff', padding: '16px 20px', borderRadius: '16px', cursor: 'pointer', border: '1px solid rgba(0,0,0,0.04)', transition: 'all 0.2s' }}
+                >
+                  {/* Ô vuông checkbox tùy chỉnh giao diện */}
+                  <input 
+                    type="checkbox" 
+                    checked={task.completed} 
+                    onChange={() => toggleTask(task.id)}
+                    style={{ width: '20px', height: '20px', accentColor: '#657166', cursor: 'pointer', borderRadius: '6px' }}
+                  />
+                  <span style={{ fontSize: '14px', fontWeight: '600', textDecoration: task.completed ? 'line-through' : 'none', color: task.completed ? '#94a3b8' : '#1e293b' }}>
+                    {task.text}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* --- TAB 3: KHO TỪ VỰNG --- */}
+        {activeTab === 'vocab' && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <h2 style={{ fontSize: '22px', fontWeight: '800', color: '#1e293b' }}>Kho Từ Vựng Tiêu Chuẩn Oxford (60 Units)</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+              {VOCABULARY_UNITS.map(unit => (
+                <div key={unit.unit} style={{ background: '#FDE8D3', padding: '20px', borderRadius: '24px', boxShadow: '0 8px 24px rgba(0,0,0,0.03)' }}>
+                  <h3 style={{ fontSize: '15px', fontWeight: '800', color: '#9a3412', marginBottom: '12px' }}>{unit.title}</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {unit.words.map((w, idx) => (
+                      <div key={idx} style={{ background: '#ffffff', padding: '10px 14px', borderRadius: '12px', fontSize: '13px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div>
+                          <strong>{w.word}</strong> <span style={{ color: '#657166', fontSize: '11px' }}>{w.ipa}</span>
+                        </div>
+                        <span style={{ color: '#0f766e', fontWeight: '600' }}>{w.meaning}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* --- TAB 4: SỬA LỖI NGỮ PHÁP --- */}
+        {activeTab === 'grammar' && (
+          <div style={{ background: '#DAEBE3', padding: '30px', borderRadius: '24px', maxWidth: '750px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
+            <h2 style={{ fontSize: '20px', fontWeight: '800', marginBottom: '8px', color: '#1e293b' }}>Mẫu Câu Sửa Lỗi Ngữ Pháp</h2>
+            <p style={{ fontSize: '13px', color: '#657166', marginBottom: '20px' }}>Nghiên cứu các cấu trúc sửa lỗi thường gặp giúp nâng band điểm Writing.</p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {GRAMMAR_CORRECTIONS.map((item, idx) => (
+                <div key={idx} style={{ background: '#ffffff', padding: '20px', borderRadius: '18px', borderLeft: '6px solid #F3C3B2' }}>
+                  <div style={{ color: '#ef4444', textDecoration: 'line-through', fontSize: '14px', fontWeight: '600' }}>❌ {item.error_sentence}</div>
+                  <div style={{ color: '#10b981', fontSize: '15px', fontWeight: '700', margin: '6px 0' }}>✅ {item.correct_sentence}</div>
+                  <div style={{ fontSize: '12px', color: '#657166', marginTop: '6px', fontStyle: 'italic' }}>💡 Giải thích: {item.explanation}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* --- TAB 5: HỆ THỐNG 3 MINI GAMES --- */}
+        {activeTab === 'minigames' && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <h2 style={{ fontSize: '22px', fontWeight: '800', color: '#1e293b' }}>Khu Vực Luyện Tập Mini Games</h2>
+
+            {/* --- GAME 1: ĐIỀN TỪ / TRẮC NGHIỆM 3 TIM --- */}
+            <div style={{ background: '#DAEBE3', padding: '24px', borderRadius: '24px', boxShadow: '0 8px 24px rgba(0,0,0,0.03)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+                <h3 style={{ fontSize: '16px', fontWeight: '800', color: '#1e293b', margin: 0 }}>🎮 Game 1: Trắc nghiệm phản xạ & 3 Trái Tim</h3>
+                <div style={{ fontSize: '18px' }}>{"❤️".repeat(g1Hearts)}{"🤍".repeat(3 - g1Hearts)}</div>
+              </div>
+              
+              <p style={{ fontSize: '14px', fontWeight: '700', color: '#334155' }}>{RPG_QUESTS[g1Index].q}</p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginTop: '14px' }}>
+                {RPG_QUESTS[g1Index].options.map((opt, i) => (
+                  <button 
+                    key={i} 
+                    onClick={() => handleG1Answer(i)}
+                    style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', padding: '12px', borderRadius: '12px', fontWeight: '700', fontSize: '13px', cursor: 'pointer', textAlign: 'left' }}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+              {g1Message && <p style={{ fontWeight: 'bold', marginTop: '10px', fontSize: '13px' }}>{g1Message}</p>}
+            </div>
+
+            {/* --- GAME 2: GHÉP CẶP ANH - VIỆT (ĐỎ / XANH TỰ RESET) --- */}
+            <div style={{ background: '#FDE8D3', padding: '24px', borderRadius: '24px', boxShadow: '0 8px 24px rgba(0,0,0,0.03)' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: '800', color: '#9a3412', marginBottom: '14px' }}>🧩 Game 2: Ghép cặp Anh - Việt (Phản xạ nghĩa)</h3>
+              <p style={{ fontSize: '12px', color: '#9a3412', marginBottom: '12px' }}>Chọn từ Tiếng Anh và nghĩa Tiếng Việt tương ứng. Sai sẽ báo Đỏ và tự reset sau 1 giây.</p>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {g2Pairs.map(item => {
+                    const isMatched = matchedIds.includes(item.id);
+                    const isSelected = selectedEn?.id === item.id;
+                    return (
+                      <button 
+                        key={item.id} 
+                        disabled={isMatched}
+                        onClick={() => handleCardClick(item, 'en')}
+                        style={{
+                          padding: '12px',
+                          borderRadius: '12px',
+                          border: 'none',
+                          fontWeight: 'bold',
+                          cursor: isMatched ? 'default' : 'pointer',
+                          backgroundColor: isMatched ? '#10b981' : isSelected ? '#3b82f6' : mismatchState && isSelected ? '#ef4444' : '#ffffff',
+                          color: isMatched || isSelected ? '#ffffff' : '#1e293b',
+                          opacity: isMatched ? 0.6 : 1
+                        }}
+                      >
+                        {item.en}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {g2Pairs.map(item => {
+                    const isMatched = matchedIds.includes(item.id);
+                    const isSelected = selectedVi?.id === item.id;
+                    return (
+                      <button 
+                        key={item.id} 
+                        disabled={isMatched}
+                        onClick={() => handleCardClick(item, 'vi')}
+                        style={{
+                          padding: '12px',
+                          borderRadius: '12px',
+                          border: 'none',
+                          fontWeight: 'bold',
+                          cursor: isMatched ? 'default' : 'pointer',
+                          backgroundColor: isMatched ? '#10b981' : isSelected ? '#3b82f6' : mismatchState && isSelected ? '#ef4444' : '#ffffff',
+                          color: isMatched || isSelected ? '#ffffff' : '#1e293b',
+                          opacity: isMatched ? 0.6 : 1
+                        }}
+                      >
+                        {item.vi}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* --- GAME 3: ETHANE RPG (PIXEL & LOADING & MULTI AUDIO LOGIC) --- */}
+            <div style={{ background: '#0f172a', color: '#f8fafc', padding: '24px', borderRadius: '24px', border: '3px solid #334155' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: '800', color: '#ef4444', marginBottom: '14px', fontFamily: "'Press Start 2P', monospace" }}>
+                ⚔️ Game 3: Ethane - Hành trình giải mã (RPG)
+              </h3>
+
+              {rpgState === 'loading' && (
+                <div style={{ textAlign: 'center', padding: '30px' }}>
+                  <p style={{ fontSize: '12px', marginBottom: '15px' }}>LOADING GAME ASSETS...</p>
+                  <div style={{ width: '100%', background: '#1e293b', height: '24px', borderRadius: '8px', overflow: 'hidden', border: '2px solid #475569' }}>
+                    <div style={{ width: `${loadPercent}%`, background: '#38bdf8', height: '100%', transition: 'width 0.05s linear' }}></div>
+                  </div>
+                  <span style={{ fontSize: '12px', fontWeight: 'bold', marginTop: '8px', display: 'block' }}>{loadPercent}%</span>
+                </div>
+              )}
+
+              {rpgState === 'story' && (
+                <div>
+                  <div style={{ background: '#1e293b', padding: '20px', borderRadius: '12px', fontStyle: 'italic', fontSize: '13px', lineHeight: '1.8', borderLeft: '5px solid #ef4444', marginBottom: '20px' }}>
+                    "{RPG_STORY}"
+                  </div>
+                  <button 
+                    onClick={() => setRpgState('combat')}
+                    style={{ width: '100%', padding: '14px', background: '#ef4444', color: '#ffffff', border: 'none', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer' }}
+                  >
+                    ▶ BẮT ĐẦU CHIẾN ĐẤU (CHUYỂN NHẠC CHIẾN ĐẤU)
+                  </button>
+                </div>
+              )}
+
+              {rpgState === 'combat' && (
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '14px', fontSize: '14px', fontWeight: 'bold' }}>
+                    <span>Đang đối đầu: {RPG_QUESTS[rpgIndex].name} {RPG_QUESTS[rpgIndex].emoji}</span>
+                    <span style={{ color: '#ef4444' }}>{"❤️".repeat(rpgHearts)}</span>
+                  </div>
+
+                  <p style={{ fontSize: '15px', fontWeight: '700', margin: '14px 0' }}>{RPG_QUESTS[rpgIndex].q}</p>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                    {RPG_QUESTS[rpgIndex].options.map((opt, i) => (
+                      <button 
+                        key={i} 
+                        onClick={() => handleRpgAnswer(i)}
+                        style={{ background: '#1e293b', color: '#f8fafc', border: '1px solid #475569', padding: '12px', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer', textAlign: 'left' }}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                  <p style={{ marginTop: '14px', fontSize: '13px', color: '#cbd5e1' }}>{rpgLog}</p>
+                </div>
+              )}
+
+              {rpgState === 'victory' && (
+                <div style={{ textAlign: 'center', padding: '30px' }}>
+                  <h2 style={{ color: '#10b981', fontSize: '22px', marginBottom: '10px' }}>🏆 VICTORY! CHIẾN THẮNG HUYỀN THOẠI</h2>
+                  <p style={{ fontSize: '13px', color: '#94a3b8' }}>Bạn đã đánh bại Chúa tể rồng Arthur và giải mã toàn bộ hòn đảo Lizzert!</p>
+                </div>
+              )}
+
+              {rpgState === 'gameover' && (
+                <div style={{ textAlign: 'center', padding: '30px' }}>
+                  <h2 style={{ color: '#ef4444', fontSize: '22px', marginBottom: '10px' }}>💀 GAME OVER</h2>
+                  <p style={{ fontSize: '13px', color: '#94a3b8' }}>Ethane đã ngã xuống. Hãy thử lại để chinh phục kho báu!</p>
+                  <button onClick={() => { setRpgState('combat'); setRpgHearts(3); setRpgIndex(0); }} style={{ marginTop: '15px', padding: '10px 20px', background: '#38bdf8', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer' }}>Chơi lại</button>
+                </div>
+              )}
+            </div>
+
+          </div>
+        )}
+
+      </main>
+    </div>
+  );
+}
