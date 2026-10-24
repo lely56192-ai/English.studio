@@ -41,10 +41,10 @@
     <audio id="game3PlayAudio" loop preload="auto" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
 
     <!-- MOBILE BACKDROP OVERLAY -->
-    <div id="mobileBackdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/40 z-40 hidden md:hidden"></div>
+    <div id="mobileBackdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity"></div>
 
     <!-- SIDEBAR / NAVIGATION -->
-    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 transform -translate-x-full md:translate-x-0 md:static transition-all duration-300 w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 shadow-2xl md:shadow-none">
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 transform -translate-x-full md:translate-x-0 md:static transition-transform duration-300 w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 shadow-2xl md:shadow-none">
         <div>
             <!-- Header Logo -->
             <div id="sidebarHeader" class="p-4 md:p-5 flex items-center justify-between border-b border-gray-100">
@@ -216,10 +216,10 @@
                         <table class="w-full text-left border-collapse min-w-[500px]">
                             <thead>
                                 <tr class="bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase">
-                                    <th class="p-3 md:p-4 w-12">STT</th>
+                                    <th class="p-3 md:p-4 w-16 text-center">STT</th>
                                     <th class="p-3 md:p-4">Từ vựng (Word)</th>
-                                    <th class="p-3 md:p-4 w-20">Loại từ</th>
-                                    <th class="p-3 md:p-4 w-28">Phiên âm</th>
+                                    <th class="p-3 md:p-4 w-24">Loại từ</th>
+                                    <th class="p-3 md:p-4 w-32">Phiên âm</th>
                                     <th class="p-3 md:p-4">Nghĩa Tiếng Việt</th>
                                 </tr>
                             </thead>
@@ -594,7 +594,7 @@
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-violet-50/50 transition";
                 tr.innerHTML = `
-                    <td class="p-3 md:p-4 font-semibold text-gray-400">${index + 1}</td>
+                    <td class="p-3 md:p-4 font-semibold text-gray-400 text-center">${index + 1}</td>
                     <td class="p-3 md:p-4 font-bold text-violet-700">${w.word}</td>
                     <td class="p-3 md:p-4"><span class="px-2 py-1 bg-gray-100 rounded text-xs text-gray-600 font-semibold">${w.type}</span></td>
                     <td class="p-3 md:p-4 font-mono text-gray-500 text-xs">${w.pronounce}</td>
@@ -678,7 +678,12 @@
         }
 
         function startMinigame(gameId) {
-            document.getElementById('gameArena').classList.remove('hidden');
+            const arena = document.getElementById('gameArena');
+            arena.classList.remove('hidden');
+            
+            // Tự động cuộn mượt mà thẳng xuống khu vực game
+            arena.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
             const content = document.getElementById('gameContent');
             const title = document.getElementById('gameTitle');
 
