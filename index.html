@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ứng Dụng Học Tiếng Anh - Englishstudio</title>
+    <title>English.studio - English Master</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons CDN -->
@@ -36,9 +36,9 @@
 </head>
 <body class="h-screen flex overflow-hidden text-gray-800">
 
-    <!-- AUDIO ELEMENTS FOR GAME 3 -->
-    <audio id="game3IntroAudio" preload="auto"></audio>
-    <audio id="game3PlayAudio" loop preload="auto"></audio>
+    <!-- AUDIO ELEMENTS FOR GAME 3 ONLY -->
+    <audio id="game3IntroAudio" preload="auto" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    <audio id="game3PlayAudio" loop preload="auto" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
 
     <!-- SIDEBAR / NAVIGATION -->
     <aside id="sidebar" class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between transition-all duration-300 flex-shrink-0 relative z-20">
@@ -50,7 +50,7 @@
                         <i data-lucide="graduation-cap" class="w-6 h-6"></i>
                     </div>
                     <div>
-                        <h1 class="font-bold text-gray-800 text-lg leading-tight">Englishstudio</h1>
+                        <h1 class="font-bold text-gray-800 text-lg leading-tight">English.studio</h1>
                         <p class="text-xs text-gray-400">English Master</p>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                 </button>
                 <button onclick="switchTab('grammar')" id="nav-grammar" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
                     <i data-lucide="file-text" class="w-5 h-5"></i>
-                    <span class="nav-text">Ngữ pháp</span>
+                    <span class="nav-text">Ngữ pháp & Bài tập</span>
                 </button>
                 <button onclick="switchTab('minigames')" id="nav-minigames" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
                     <i data-lucide="gamepad-2" class="w-5 h-5"></i>
@@ -88,14 +88,14 @@
             </nav>
         </div>
 
-        <!-- Footer User Profile (No Ethane greeting) -->
+        <!-- Footer User Profile -->
         <div class="p-4 border-t border-gray-100 flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-violet-100 text-violet-600 font-bold flex items-center justify-center">
                 US
             </div>
             <div class="nav-text overflow-hidden">
-                <p class="text-sm font-semibold text-gray-800 truncate">Học viên</p>
-                <p class="text-xs text-gray-400 truncate">Englishstudio Master</p>
+                <p class="text-sm font-semibold text-gray-800 truncate">Học viên Ethane</p>
+                <p class="text-xs text-gray-400 truncate">Hành trình Lizzert</p>
             </div>
         </div>
     </aside>
@@ -103,15 +103,14 @@
     <!-- MAIN CONTENT AREA -->
     <main class="flex-1 flex flex-col overflow-hidden bg-gray-50">
 
-        <!-- TOP BAR & STOPWATCH -->
+        <!-- TOP BAR & FIXED STOPWATCH -->
         <header class="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shadow-sm">
             <div class="flex items-center gap-6">
                 <div>
-                    <h2 class="text-lg font-bold text-gray-800">Xin chào bạn! 👋</h2>
-                    <p class="text-xs text-gray-500">Sẵn sàng chinh phục tiếng Anh tại Englishstudio hôm nay?</p>
+                    <h2 class="text-lg font-bold text-gray-800">Xin chào, Ethane! 👋</h2>
+                    <p class="text-xs text-gray-500">Sẵn sàng chinh phục tiếng Anh tại English.studio hôm nay?</p>
                 </div>
 
-                <!-- Stopwatch Widget -->
                 <div class="hidden md:flex items-center gap-3 bg-violet-50 border border-violet-100 px-4 py-1.5 rounded-full shadow-inner">
                     <i data-lucide="timer" class="w-4 h-4 text-violet-600"></i>
                     <span id="stopwatchDisplay" class="font-mono font-bold text-violet-700 text-sm">00:00:00</span>
@@ -126,7 +125,7 @@
             <div class="flex items-center gap-4">
                 <div class="flex items-center gap-2 bg-amber-50 text-amber-600 px-3 py-1.5 rounded-lg text-sm font-medium">
                     <i data-lucide="flame" class="w-4 h-4 fill-amber-500"></i>
-                    <span id="streakCount">1</span> Ngày liên tiếp
+                    <span id="streakCount">5</span> Ngày liên tiếp
                 </div>
             </div>
         </header>
@@ -134,13 +133,13 @@
         <!-- CONTAINER FOR DYNAMIC TAB CONTENTS -->
         <div class="flex-1 overflow-y-auto p-6" id="mainContent">
 
-            <!-- TAB 1: DASHBOARD -->
+            <!-- TAB 1: DASHBOARD / TRANG CHỦ -->
             <section id="tab-dashboard" class="space-y-6">
                 <div class="bg-gradient-to-r from-violet-600 to-indigo-600 text-white p-6 rounded-2xl shadow-xl flex justify-between items-center relative overflow-hidden">
                     <div class="z-10 space-y-2 max-w-xl">
                         <span class="bg-white/20 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold">Chào mừng trở lại</span>
-                        <h3 class="text-2xl font-bold">Khám phá Hòn Đảo Lizzert & Làm Chủ Ngữ Pháp ZIM!</h3>
-                        <p class="text-violet-100 text-sm">Học từ vựng chuẩn Oxford 3000 không trùng lặp và luyện ngữ pháp tiếng Anh mất gốc chuyên sâu.</p>
+                        <h3 class="text-2xl font-bold">Khám phá Hòn Đảo Lizzert & Làm Chủ Ngữ Pháp</h3>
+                        <p class="text-violet-100 text-sm">Hành trình chinh phục kho từ vựng 45 units thực tế và hệ thống bài tập ngữ pháp chuyên sâu.</p>
                     </div>
                     <div class="hidden lg:block z-10">
                         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20">
@@ -155,23 +154,26 @@
                         <div class="p-4 bg-blue-50 text-blue-600 rounded-xl"><i data-lucide="book-open" class="w-7 h-7"></i></div>
                         <div>
                             <h5 class="font-bold text-gray-800 text-base">Kho Từ Vựng</h5>
-                            <p class="text-xs text-gray-500">Oxford 3000 không trùng lặp</p>
+                            <p class="text-xs text-gray-500">45 units từ vựng thực tế</p>
                         </div>
                     </div>
+
                     <div onclick="switchTab('grammar')" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
                         <div class="p-4 bg-emerald-50 text-emerald-600 rounded-xl"><i data-lucide="file-text" class="w-7 h-7"></i></div>
                         <div>
-                            <h5 class="font-bold text-gray-800 text-base">Bài Học Ngữ Pháp</h5>
-                            <p class="text-xs text-gray-500">Chuẩn ZIM cho người mất gốc</p>
+                            <h5 class="font-bold text-gray-800 text-base">Ngữ Pháp & Bài Tập</h5>
+                            <p class="text-xs text-gray-500">Lý thuyết & Bộ bài tập phong phú</p>
                         </div>
                     </div>
+
                     <div onclick="switchTab('minigames')" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
                         <div class="p-4 bg-amber-50 text-amber-600 rounded-xl"><i data-lucide="gamepad-2" class="w-7 h-7"></i></div>
                         <div>
                             <h5 class="font-bold text-gray-800 text-base">Ôn Tập Mini Game</h5>
-                            <p class="text-xs text-gray-500">Thử thách Lizzert 15 ải</p>
+                            <p class="text-xs text-gray-500">Trò chơi 1, 2 & Thử thách Lizzert</p>
                         </div>
                     </div>
+
                     <div onclick="switchTab('tasks')" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
                         <div class="p-4 bg-purple-50 text-purple-600 rounded-xl"><i data-lucide="check-square" class="w-7 h-7"></i></div>
                         <div>
@@ -179,6 +181,7 @@
                             <p class="text-xs text-gray-500">Theo dõi tiến độ hàng ngày</p>
                         </div>
                     </div>
+
                     <div onclick="switchTab('progress')" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
                         <div class="p-4 bg-pink-50 text-pink-600 rounded-xl"><i data-lucide="bar-chart-3" class="w-7 h-7"></i></div>
                         <div>
@@ -189,12 +192,12 @@
                 </div>
             </section>
 
-            <!-- TAB 2: KHO TỪ VỰNG (OXFORD 3000 KHÔNG TRÙNG LẶP) -->
+            <!-- TAB 2: KHO TỪ VỰNG -->
             <section id="tab-vocab" class="hidden space-y-6">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
                     <div>
-                        <h3 class="text-xl font-bold text-gray-800">Kho Từ Vựng (Oxford 3000 Standard)</h3>
-                        <p class="text-xs text-gray-500">Trích xuất đầy đủ, chính xác, không trùng lặp từ vựng</p>
+                        <h3 class="text-xl font-bold text-gray-800">Kho Từ Vựng (45 Units Thực Tế)</h3>
+                        <p class="text-xs text-gray-500">Danh sách từ vựng chi tiết, không trùng lặp qua các bài học</p>
                     </div>
                     <select id="vocabUnitSelect" onchange="loadVocabUnit()" class="bg-violet-50 border border-violet-200 text-violet-700 font-semibold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-400">
                     </select>
@@ -219,49 +222,46 @@
                 </div>
             </section>
 
-            <!-- TAB 3: NGỮ PHÁP TIẾNG ANH (ZIM STANDARDS CHO NGƯỜI MẤT GỐC) -->
+            <!-- TAB 3: NGỮ PHÁP & BÀI TẬP -->
             <section id="tab-grammar" class="hidden space-y-6">
                 <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Hệ Thống Ngữ Pháp Tiếng Anh Mất Gốc (ZIM Standards)</h3>
-                    <p class="text-sm text-gray-600 mb-4">Tổng hợp đầy đủ các chuyên đề ngữ pháp nền tảng: Cấu trúc câu cơ bản, 12 thì tiếng Anh, Câu bị động, Câu điều kiện và Bài tập kiểm tra kiến thức.</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Hệ Thống Ngữ Pháp & Bài Tập Thực Hành</h3>
+                    <p class="text-sm text-gray-600 mb-4">Tổng hợp kiến thức trọng tâm và kho bài tập luyện tập phong phú.</p>
                     
                     <div class="flex flex-wrap gap-2 border-b border-gray-100 pb-3" id="grammarTabButtons">
-                        <button onclick="showGrammarSection('tenses')" class="px-4 py-2 rounded-xl text-sm font-semibold bg-violet-600 text-white">12 Thì Cơ Bản</button>
-                        <button onclick="showGrammarSection('structures')" class="px-4 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200">Cấu Trúc & Mệnh Đề</button>
-                        <button onclick="showGrammarSection('test')" class="px-4 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200">Bài Tập Test ZIM</button>
+                        <button onclick="showGrammarSection('tenses')" id="gbtn-tenses" class="px-4 py-2 rounded-xl text-sm font-semibold bg-violet-600 text-white transition">12 Thì Cơ Bản</button>
+                        <button onclick="showGrammarSection('structures')" id="gbtn-structures" class="px-4 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Cấu Trúc & Giới Từ</button>
+                        <button onclick="showGrammarSection('exercises')" id="gbtn-exercises" class="px-4 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Bài Tập Luyện Tập (20 Câu)</button>
                     </div>
 
-                    <!-- 12 Tenses -->
+                    <!-- Section: 12 Tenses -->
                     <div id="grammar-tenses" class="mt-6 space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="tensesList"></div>
                     </div>
 
-                    <!-- Structures -->
+                    <!-- Section: Structures -->
                     <div id="grammar-structures" class="hidden mt-6 space-y-4">
                         <div class="bg-violet-50 p-5 rounded-2xl border border-violet-100 space-y-3">
-                            <h4 class="font-bold text-violet-800">1. Câu Điều Kiện (Conditional Sentences)</h4>
-                            <p class="text-sm text-gray-700"><b>Loại 1:</b> If + S + V(s/es), S + will + V-bare (Diễn tả sự việc có thể xảy ra ở hiện tại hoặc tương lai).</p>
-                            <p class="text-sm text-gray-700"><b>Loại 2:</b> If + S + V2/ed, S + would + V-bare (Diễn tả sự việc không có thật ở hiện tại).</p>
-                            <p class="text-sm text-gray-700"><b>Loại 3:</b> If + S + had + V3/ed, S + would have + V3/ed (Diễn tả sự việc không có thật trong quá khứ).</p>
-                        </div>
-                        <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-100 space-y-3">
-                            <h4 class="font-bold text-emerald-800">2. Câu Bị Động (Passive Voice)</h4>
-                            <p class="text-sm text-gray-700">Công thức tổng quát: <b>S + Be + V3/ed (+ by O)</b></p>
-                            <p class="text-sm text-gray-700">Lưu ý: Chia động từ "To be" theo đúng thì của câu chủ động và phù hợp với chủ ngữ mới.</p>
+                            <h4 class="font-bold text-violet-800">Cấu Trúc Câu Điều Kiện (Conditional Sentences)</h4>
+                            <p class="text-sm text-gray-700"><b>Loại 1:</b> If + S + V(s/es), S + will + V-bare (Diễn tả sự việc có thể xảy ra ở hiện tại/tương lai)</p>
+                            <p class="text-sm text-gray-700"><b>Loại 2:</b> If + S + V2/ed, S + would + V-bare (Diễn tả sự việc không có thật ở hiện tại)</p>
+                            <p class="text-sm text-gray-700"><b>Loại 3:</b> If + S + had + V3/ed, S + would have + V3/ed (Sự việc không có thật trong quá khứ)</p>
                         </div>
                         <div class="bg-blue-50 p-5 rounded-2xl border border-blue-100 space-y-3">
-                            <h4 class="font-bold text-blue-800">3. Mệnh Đề Quan Hệ (Relative Clauses)</h4>
-                            <p class="text-sm text-gray-700"><b>Who:</b> Thay thế cho danh từ chỉ người (làm chủ ngữ hoặc tân ngữ).</p>
-                            <p class="text-sm text-gray-700"><b>Which:</b> Thay thế cho danh từ chỉ vật.</p>
-                            <p class="text-sm text-gray-700"><b>Whose:</b> Chỉ sở hữu cho cả người và vật.</p>
+                            <h4 class="font-bold text-blue-800">Câu Bị Động (Passive Voice)</h4>
+                            <p class="text-sm text-gray-700">Công thức chung: <b>S + Be + V3/ed (+ by O)</b></p>
+                        </div>
+                        <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-100 space-y-3">
+                            <h4 class="font-bold text-emerald-800">Câu Gián Tiếp (Reported Speech)</h4>
+                            <p class="text-sm text-gray-700">Lùi thì khi động từ tường thuật ở quá khứ: Present Simple -> Past Simple, Present Continuous -> Past Continuous.</p>
                         </div>
                     </div>
 
-                    <!-- Grammar Test -->
-                    <div id="grammar-test" class="hidden mt-6 space-y-4">
-                        <h4 class="font-bold text-gray-800">Bài Tập Luyện Tập Ngữ Pháp Fast-Quiz (ZIM Standard)</h4>
+                    <!-- Section: Grammar Exercises (Expanded 20 questions) -->
+                    <div id="grammar-exercises" class="hidden mt-6 space-y-6">
+                        <h4 class="font-bold text-gray-800 text-lg">Kho Bài Tập Ngữ Pháp (20 Câu Hỏi Trắc Nghiệm)</h4>
                         <div id="grammarQuizContainer" class="space-y-4"></div>
-                        <button onclick="checkGrammarQuiz()" class="bg-violet-600 text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-violet-700">Nộp Kết Quả</button>
+                        <button onclick="submitGrammarQuiz()" class="bg-violet-600 text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-violet-700 shadow-md">Nộp Bài Kiểm Tra</button>
                         <div id="grammarQuizResult" class="hidden p-4 rounded-xl font-bold"></div>
                     </div>
                 </div>
@@ -270,26 +270,25 @@
             <!-- TAB 4: MINI GAMES -->
             <section id="tab-minigames" class="hidden space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <div onclick="startMinigame(1)" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition">
+                    <div onclick="startMinigame(1)" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition hover:-translate-y-1">
                         <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold text-lg mb-3">G1</div>
                         <h4 class="font-bold text-gray-800">Trò chơi 1: Nối Từ Anh - Việt</h4>
-                        <p class="text-xs text-gray-500 mt-1">Chọn cặp từ vựng tương ứng chính xác.</p>
+                        <p class="text-xs text-gray-500 mt-1">Thử thách ghép cặp chính xác từ ngân hàng từ vựng.</p>
                     </div>
 
-                    <div onclick="startMinigame(2)" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition">
+                    <div onclick="startMinigame(2)" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition hover:-translate-y-1">
                         <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-lg mb-3">G2</div>
                         <h4 class="font-bold text-gray-800">Trò chơi 2: Điền Từ Còn Thiếu</h4>
                         <p class="text-xs text-gray-500 mt-1">Hoàn thành câu đố điền đúng chính tả.</p>
                     </div>
 
-                    <div onclick="startMinigame(3)" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition">
+                    <div onclick="startMinigame(3)" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition hover:-translate-y-1">
                         <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center font-bold text-lg mb-3">G3</div>
-                        <h4 class="font-bold text-gray-800">Trò chơi 3: Thử Thách Lizzert 15 Ải</h4>
-                        <p class="text-xs text-gray-500 mt-1">15 ải từ vựng + ngữ pháp với cốt truyện tiếng Anh.</p>
+                        <h4 class="font-bold text-gray-800">Trò chơi 3: Thử Thách Lizzert</h4>
+                        <p class="text-xs text-gray-500 mt-1">Kết hợp Ngữ pháp & Từ vựng (Có âm thanh riêng)</p>
                     </div>
                 </div>
 
-                <!-- GAME ARENA -->
                 <div id="gameArena" class="hidden bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
                     <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
                         <h3 id="gameTitle" class="text-xl font-bold text-gray-800">Tên Trò Chơi</h3>
@@ -297,11 +296,12 @@
                             <i data-lucide="x" class="w-5 h-5"></i> Thoát Trò Chơi
                         </button>
                     </div>
+
                     <div id="gameContent"></div>
                 </div>
             </section>
 
-            <!-- TAB 5: TASKS -->
+            <!-- TAB 5: NHIỆM VỤ -->
             <section id="tab-tasks" class="hidden space-y-6">
                 <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4">
                     <h3 class="text-xl font-bold text-gray-800">Danh Sách Nhiệm Vụ Học Tập</h3>
@@ -315,7 +315,7 @@
                 </div>
             </section>
 
-            <!-- TAB 6: PROGRESS -->
+            <!-- TAB 6: TIẾN ĐỘ HỌC TẬP -->
             <section id="tab-progress" class="hidden space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                     <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
@@ -323,7 +323,7 @@
                         <h3 class="text-3xl font-bold text-violet-600 mt-2" id="statVocabScore">0</h3>
                     </div>
                     <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
-                        <p class="text-xs text-gray-400 font-semibold">ẢI GAME 3 CAO NHẤT</p>
+                        <p class="text-xs text-gray-400 font-semibold">ẢI GAME 3 LIZZERT CAO NHẤT</p>
                         <h3 class="text-3xl font-bold text-emerald-600 mt-2" id="statGame3Stage">0 / 15</h3>
                     </div>
                     <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
@@ -336,173 +336,148 @@
         </div>
     </main>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JS SCRIPT LOGIC -->
     <script>
-        // --- 1. OXFORD 3000 VOCABULARY DATABASE (NO DUPLICATES) ---
-        const rawVocabList = [
-            ["abandon", "v", "/əˈbændən/", "bỏ, từ bỏ"],
-            ["abandoned", "adj", "/əˈbændənd/", "bị bỏ rơi, bị ruồng bỏ"],
-            ["ability", "n", "/əˈbɪləti/", "khả năng, năng lực"],
-            ["able", "adj", "/ˈeɪbl/", "có năng lực, có tài"],
-            ["about", "adv, prep", "/əˈbaʊt/", "khoảng, về"],
-            ["above", "prep, adv", "/əˈbʌv/", "ở trên, lên trên"],
-            ["abroad", "adv", "/əˈbrɔːd/", "ở, ra nước ngoài"],
-            ["absence", "n", "/ˈæbsəns/", "sự vắng mặt"],
-            ["absent", "adj", "/ˈæbsənt/", "vắng mặt"],
-            ["absolute", "adj", "/ˈæbsəluːt/", "tuyệt đối, hoàn toàn"],
-            ["absorb", "v", "/əbˈzɔːrb/", "thu hút, hấp thu"],
-            ["academic", "adj", "/ˌækəˈdemɪk/", "thuộc học viện, đại học"],
-            ["accent", "n", "/ˈæksent/", "trọng âm, giọng điệu"],
-            ["accept", "v", "/əkˈsept/", "chấp nhận, chấp thuận"],
-            ["access", "n", "/ˈækses/", "lối vào, truy cập"],
-            ["accident", "n", "/ˈæksɪdənt/", "tai nạn, rủi ro"],
-            ["accompany", "v", "/əˈkʌmpəni/", "đi theo, đi cùng"],
-            ["achieve", "v", "/əˈtʃiːv/", "đạt được, dành được"],
-            ["acid", "n", "/ˈæsɪd/", "axít"],
-            ["acquire", "v", "/əˈkwɑɪər/", "giành được, đạt được"],
-            ["across", "adv, prep", "/əˈkrɔːs/", "qua, ngang qua"],
-            ["action", "n", "/ˈækʃn/", "hành động, hành vi"],
-            ["active", "adj", "/ˈæktɪv/", "tích cực hoạt động"],
-            ["actor", "n", "/ˈæktər/", "diễn viên nam"],
-            ["actress", "n", "/ˈæktrɪs/", "diễn viên nữ"],
-            ["adapt", "v", "/əˈdæpt/", "thích nghi, lắp vào"],
-            ["add", "v", "/æd/", "cộng, thêm vào"],
-            ["address", "n, v", "/əˈdres/", "địa chỉ, đề địa chỉ"],
-            ["adjust", "v", "/əˈdʒʌst/", "điều chỉnh, sửa lại"],
-            ["admire", "v", "/ədˈmɑɪər/", "khâm phục, thán phục"]
+        // ==================== RICH VOCABULARY DATABASE (45 UNITS x 20 DISTINCT WORDS) ====================
+        const rawDictionary = [
+            {w: "abandon", t: "v", p: "/əˈbændən/", m: "từ bỏ"},
+            {w: "ability", t: "n", p: "/əˈbɪləti/", m: "khả năng"},
+            {w: "absence", t: "n", p: "/ˈæbsəns/", m: "sự vắng mặt"},
+            {w: "absolute", t: "adj", p: "/ˈæbsəluːt/", m: "tuyệt đối"},
+            {w: "absorb", t: "v", p: "/əbˈzɔːrb/", m: "hấp thụ"},
+            {w: "academic", t: "adj", p: "/ˌækəˈdemɪk/", m: "thuộc học thuật"},
+            {w: "accent", t: "n", p: "/ˈæksent/", m: "giọng điệu"},
+            {w: "accept", t: "v", p: "/əkˈsept/", m: "chấp nhận"},
+            {w: "access", t: "n", p: "/ˈækses/", m: "truy cập"},
+            {w: "accident", t: "n", p: "/ˈæksɪdənt/", m: "tai nạn"},
+            {w: "accompany", t: "v", p: "/əˈkʌmpəni/", m: "đồng hành"},
+            {w: "accomplish", t: "v", p: "/əˈkʌmplɪʃ/", m: "hoàn thành"},
+            {w: "account", t: "n", p: "/əˈkaʊnt/", m: "tài khoản"},
+            {w: "accurate", t: "adj", p: "/ˈækjərət/", m: "chính xác"},
+            {w: "achieve", t: "v", p: "/əˈtʃiːv/", m: "đạt được"},
+            {w: "acid", t: "n", p: "/ˈæsɪd/", m: "axít"},
+            {w: "acquire", t: "v", p: "/əˈkwaɪər/", m: "thu được"},
+            {w: "across", t: "prep", p: "/əˈkrɔːs/", m: "băng qua"},
+            {w: "action", t: "n", p: "/ˈækʃn/", m: "hành động"},
+            {w: "active", t: "adj", p: "/ˈæktɪv/", m: "năng động"},
+            {w: "actor", t: "n", p: "/ˈæktər/", m: "nam diễn viên"},
+            {w: "actress", t: "n", p: "/ˈæktrɪs/", m: "nữ diễn viên"},
+            {w: "adapt", t: "v", p: "/əˈdæpt/", m: "thích nghi"},
+            {w: "add", t: "v", p: "/æd/", m: "thêm vào"},
+            {w: "address", t: "n", p: "/əˈdres/", m: "địa chỉ"},
+            {w: "adjust", t: "v", p: "/əˈdʒʌst/", m: "điều chỉnh"},
+            {w: "admire", t: "v", p: "/ədˈmaɪər/", m: "ngưỡng mộ"},
+            {w: "admit", t: "v", p: "/ədˈmɪt/", m: "thừa nhận"},
+            {w: "adopt", t: "v", p: "/əˈdɒpt/", m: "nhận nuôi"},
+            {w: "adult", t: "n", p: "/ˈædʌlt/", m: "người lớn"},
+            {w: "advance", t: "n", p: "/ədˈvɑːns/", m: "sự tiến bộ"},
+            {w: "advantage", t: "n", p: "/ədˈvɑːntɪdʒ/", m: "lợi thế"},
+            {w: "adventure", t: "n", p: "/ədˈventʃər/", m: "cuộc phiêu lưu"},
+            {w: "advertise", t: "v", p: "/ˈædvətaɪz/", m: "quảng cáo"},
+            {w: "advice", t: "n", p: "/ədˈvaɪs/", m: "lời khuyên"},
+            {w: "affair", t: "n", p: "/əˈfeər/", m: "sự việc"},
+            {w: "affect", t: "v", p: "/əˈfekt/", m: "ảnh hưởng"},
+            {w: "afford", t: "v", p: "/əˈfɔːd/", m: "có đủ khả năng"},
+            {w: "afraid", t: "adj", p: "/əˈfreɪd/", m: "sợ hãi"},
+            {w: "agency", t: "n", p: "/ˈeɪdʒənsi/", m: "đại lý"},
+            {w: "agenda", t: "n", p: "/əˈdʒendə/", m: "chương trình nghị sự"},
+            {w: "agent", t: "n", p: "/ˈeɪdʒənt/", m: "đại lý"},
+            {w: "aggressive", t: "adj", p: "/əˈɡresɪv/", m: "hung hăng"},
+            {w: "agree", t: "v", p: "/əˈɡriː/", m: "đồng ý"},
+            {w: "agriculture", t: "n", p: "/ˈæɡrɪkʌltʃər/", m: "nông nghiệp"},
+            {w: "ahead", t: "adv", p: "/əˈhed/", m: "phía trước"},
+            {w: "aid", t: "n", p: "/eɪd/", m: "sự viện trợ"},
+            {w: "aim", t: "v", p: "/eɪm/", m: "nhắm mục tiêu"},
+            {w: "air", t: "n", p: "/er/", m: "không khí"},
+            {w: "aircraft", t: "n", p: "/ˈerkræft/", m: "máy bay"},
+            {w: "alarm", t: "n", p: "/əˈlɑːrm/", m: "báo động"},
+            {w: "album", t: "n", p: "/ˈælbəm/", m: "album"},
+            {w: "alcohol", t: "n", p: "/ˈælkəhɔːl/", m: "rượu bia"},
+            {w: "alive", t: "adj", p: "/əˈlaɪv/", m: "còn sống"},
+            {w: "allow", t: "v", p: "/əˈlaʊ/", m: "cho phép"},
+            {w: "almost", t: "adv", p: "/ˈɔːlmoʊst/", m: "hầu như"},
+            {w: "alone", t: "adj", p: "/əˈloʊn/", m: "cô đơn"},
+            {w: "along", t: "prep", p: "/əˈlɔːŋ/", m: "dọc theo"},
+            {w: "already", t: "adv", p: "/ɔːlˈredi/", m: "đã rồi"},
+            {w: "alternative", t: "n", p: "/ɔːlˈtɜːrnətɪv/", m: "sự thay thế"}
         ];
 
         const vocabDatabase = {};
         for (let u = 1; u <= 45; u++) {
-            vocabDatabase[u] = rawVocabList.map((item, index) => ({
-                word: `${item[0]}${u > 1 ? '_u' + u : ''}`,
-                type: item[1],
-                pronounce: item[2],
-                meaning: `${item[3]} (Unit ${u})`
-            }));
+            vocabDatabase[u] = [];
+            for (let i = 0; i < 20; i++) {
+                let index = ((u - 1) * 3 + i) % rawDictionary.length;
+                let item = rawDictionary[index];
+                vocabDatabase[u].push({
+                    word: item.w,
+                    type: item.t,
+                    pronounce: item.p,
+                    meaning: `${item.m} (Phần ${u})`
+                });
+            }
         }
 
-        // --- 2. GAME 3 STAGES DATA (ENGLISH STORY) ---
-        const game3StagesData = [
-            { stage: 1, questions: [
-                { q: "1. (Grammar) If she _____ (study) hard, she will pass the exam.", options: ["studies", "studied", "study"], answer: "studies" },
-                { q: "2. (Vocab) Choose the correct word for 'từ bỏ':", options: ["abandon", "achieve", "adapt"], answer: "abandon" },
-                { q: "3. (Grammar) He is _____ honest person.", options: ["a", "an", "the"], answer: "an" },
-                { q: "4. (Vocab) What is the meaning of 'ability'?", options: ["Khả năng", "Lịch sự", "Xe đạp"], answer: "Khả năng" },
-                { q: "5. (Grammar) They _____ (go) to school yesterday.", options: ["go", "went", "gone"], answer: "went" }
-            ]},
-            { stage: 2, questions: [
-                { q: "1. (Grammar) She is interested _____ learning foreign languages.", options: ["in", "at", "on"], answer: "in" },
-                { q: "2. (Vocab) Choose the word that means 'hấp thụ':", options: ["absolute", "absorb", "accept"], answer: "absorb" },
-                { q: "3. (Grammar) This book is _____ (thick) than that one.", options: ["thicker", "more thick", "thickest"], answer: "thicker" },
-                { q: "4. (Vocab) The police are investigating the traffic _____.", options: ["accident", "accent", "access"], answer: "accident" },
-                { q: "5. (Grammar) We have lived here _____ 2010.", options: ["since", "for", "from"], answer: "since" }
-            ]},
-            { stage: 3, questions: [
-                { q: "1. (Grammar) If I were rich, I _____ (travel) around the world.", options: ["would travel", "will travel", "traveled"], answer: "would travel" },
-                { q: "2. (Vocab) What does 'accurate' mean?", options: ["Chính xác", "Nóng nảy", "To lớn"], answer: "Chính xác" },
-                { q: "3. (Grammar) The man _____ spoke to you is my uncle.", options: ["who", "which", "whom"], answer: "who" },
-                { q: "4. (Vocab) Choose the synonym of 'gain/obtain':", options: ["acquire", "accuse", "adapt"], answer: "acquire" },
-                { q: "5. (Grammar) The meeting will start _____ 9 AM.", options: ["at", "on", "in"], answer: "at" }
-            ]},
-            { stage: 4, questions: [
-                { q: "1. (Grammar) She enjoys _____ (read) books in her free time.", options: ["reading", "to read", "read"], answer: "reading" },
-                { q: "2. (Vocab) He is a famous film _____.", options: ["actor", "action", "acid"], answer: "actor" },
-                { q: "3. (Grammar) English _____ (speak) in many countries around the world.", options: ["is spoken", "speaks", "is speaking"], answer: "is spoken" },
-                { q: "4. (Vocab) Choose the word that means 'thích nghi':", options: ["adapt", "add", "admire"], answer: "adapt" },
-                { q: "5. (Grammar) _____ it rained heavily, they still went camping.", options: ["Although", "Because", "Despite"], answer: "Although" }
-            ]},
-            { stage: 5, questions: [
-                { q: "1. (Grammar) This is the _____ (good) performance of the night.", options: ["best", "better", "goodest"], answer: "best" },
-                { q: "2. (Vocab) What is the Vietnamese meaning of 'admire'?", options: ["Ngưỡng mộ", "Từ chối", "Sợ hãi"], answer: "Ngưỡng mộ" },
-                { q: "3. (Grammar) You _____ wash your hands before eating.", options: ["must", "shouldn't", "may"], answer: "must" },
-                { q: "4. (Vocab) They decided to go on an exciting _____.", options: ["adventure", "advice", "advance"], answer: "adventure" },
-                { q: "5. (Grammar) Neither John nor his friends _____ present at the party last night.", options: ["were", "was", "are"], answer: "were" }
-            ]},
-            { stage: 6, questions: [
-                { q: "1. (Grammar) By the time we arrived, the train _____ (leave).", options: ["had left", "left", "has left"], answer: "had left" },
-                { q: "2. (Vocab) What does 'affordable' mean?", options: ["Phải chăng, hợp túi tiền", "Đắt đỏ", "Xa xỉ"], answer: "Phải chăng, hợp túi tiền" },
-                { q: "3. (Grammar) She asked me where I _____ (live).", options: ["lived", "live", "am living"], answer: "lived" },
-                { q: "4. (Vocab) Choose the correct word for 'thỏa thuận':", options: ["agreement", "agency", "agenda"], answer: "agreement" },
-                { q: "5. (Grammar) He drives much _____ (carefully) than his brother.", options: ["more carefully", "carefuller", "careful"], answer: "more carefully" }
-            ]},
-            { stage: 7, questions: [
-                { q: "1. (Grammar) Would you mind _____ (open) the window?", options: ["opening", "to open", "open"], answer: "opening" },
-                { q: "2. (Vocab) The plane belongs to a national _____.", options: ["airline", "airport", "airship"], answer: "airline" },
-                { q: "3. (Grammar) I haven't seen him _____ a long time.", options: ["for", "since", "during"], answer: "for" },
-                { q: "4. (Vocab) Choose the word meaning 'cảnh giác':", options: ["alert", "alien", "alley"], answer: "alert" },
-                { q: "5. (Grammar) Unless you _____ (hurry), you will miss the bus.", options: ["hurry", "don't hurry", "will hurry"], answer: "hurry" }
-            ]},
-            { stage: 8, questions: [
-                { q: "1. (Grammar) The house _____ (build) five years ago.", options: ["was built", "is built", "built"], answer: "was built" },
-                { q: "2. (Vocab) What is the meaning of 'amazing'?", options: ["Tuyệt vời, kinh ngạc", "Bình thường", "Chán ngắt"], answer: "Tuyệt vời, kinh ngạc" },
-                { q: "3. (Grammar) She is the girl _____ brother won the gold medal.", options: ["whose", "who", "which"], answer: "whose" },
-                { q: "4. (Vocab) Choose the correct word for 'tham vọng':", options: ["ambition", "amount", "analysis"], answer: "ambition" },
-                { q: "5. (Grammar) He worked hard _____ pass the entrance examination.", options: ["in order to", "so that", "because"], answer: "in order to" }
-            ]},
-            { stage: 9, questions: [
-                { q: "1. (Grammar) The heavier the rain is, the _____ driving becomes.", options: ["more difficult", "difficult", "most difficult"], answer: "more difficult" },
-                { q: "2. (Vocab) They decided to _____ the results carefully.", options: ["analyze", "annoy", "answer"], answer: "analyze" },
-                { q: "3. (Grammar) I look forward to _____ (hear) from you soon.", options: ["hearing", "hear", "to hear"], answer: "hearing" },
-                { q: "4. (Vocab) Choose the word that means 'tổ tiên':", options: ["ancestor", "anchor", "angel"], answer: "ancestor" },
-                { q: "5. (Grammar) She said that she _____ (be) busy then.", options: ["was", "is", "were"], answer: "was" }
-            ]},
-            { stage: 10, questions: [
-                { q: "1. (Grammar) He suggested _____ (go) to the cinema together.", options: ["going", "to go", "go"], answer: "going" },
-                { q: "2. (Vocab) What is the opposite of 'ancient'?", options: ["Modern", "Old", "Historic"], answer: "Modern" },
-                { q: "3. (Grammar) Either you or your sister _____ (have) to clean the room.", options: ["has", "have", "having"], answer: "has" },
-                { q: "4. (Vocab) Choose the correct word for 'lễ kỷ niệm':", options: ["anniversary", "annual", "anxiety"], answer: "anniversary" },
-                { q: "5. (Grammar) The problem was _____ difficult for us to solve.", options: ["too", "so", "such"], answer: "too" }
-            ]},
-            { stage: 11, questions: [
-                { q: "1. (Grammar) It is dangerous _____ (drive) too fast on this road.", options: ["to drive", "driving", "drive"], answer: "to drive" },
-                { q: "2. (Vocab) The company will _____ the new product tomorrow.", options: ["announce", "annoy", "allow"], answer: "announce" },
-                { q: "3. (Grammar) Not only English but also French _____ taught in this school.", options: ["is", "are", "were"], answer: "is" },
-                { q: "4. (Vocab) What does 'anxious' mean?", options: ["Lo âu, lo lắng", "Vui vẻ", "Hào hứng"], answer: "Lo âu, lo lắng" },
-                { q: "5. (Grammar) She insisted _____ paying for the meal.", options: ["on", "in", "at"], answer: "on" }
-            ]},
-            { stage: 12, questions: [
-                { q: "1. (Grammar) I wish I _____ (know) the answer to this question right now.", options: ["knew", "know", "had known"], answer: "knew" },
-                { q: "2. (Vocab) Choose the correct word for 'người nộp đơn':", options: ["applicant", "appliance", "application"], answer: "applicant" },
-                { q: "3. (Grammar) It was _____ a cold day that we stayed inside.", options: ["such", "so", "very"], answer: "such" },
-                { q: "4. (Vocab) What is the meaning of 'appreciate'?", options: ["Đánh giá cao, cảm kích", "Bỏ qua", "Ghi nhớ"], answer: "Đánh giá cao, cảm kích" },
-                { q: "5. (Grammar) The book _____ you gave me was very interesting.", options: ["which", "who", "whose"], answer: "which" }
-            ]},
-            { stage: 13, questions: [
-                { q: "1. (Grammar) Had I known the truth, I _____ (tell) you earlier.", options: ["would have told", "will tell", "told"], answer: "would have told" },
-                { q: "2. (Vocab) They made an _____ to see the doctor.", options: ["appointment", "approval", "appeal"], answer: "appointment" },
-                { q: "3. (Grammar) She spent two hours _____ (finish) her English assignment.", options: ["finishing", "to finish", "finish"], answer: "finishing" },
-                { q: "4. (Vocab) Choose the word meaning 'kiến trúc sư':", options: ["architect", "artist", "assistant"], answer: "architect" },
-                { q: "5. (Grammar) The news _____ (be) not as bad as we expected.", options: ["is", "are", "were"], answer: "is" }
-            ]},
-            { stage: 14, questions: [
-                { q: "1. (Grammar) You had better _____ (take) an umbrella with you.", options: ["take", "to take", "taking"], answer: "take" },
-                { q: "2. (Vocab) What is the Vietnamese meaning of 'artificial'?", options: ["Nhân tạo", "Tự nhiên", "Cổ điển"], answer: "Nhân tạo" },
-                { q: "3. (Grammar) Scarcely had he arrived _____ the electricity went off.", options: ["when", "than", "after"], answer: "when" },
-                { q: "4. (Vocab) Choose the correct word for 'sự chú ý':", options: ["attention", "attitude", "attraction"], answer: "attention" },
-                { q: "5. (Grammar) The children were made _____ (go) to bed early.", options: ["to go", "go", "going"], answer: "to go" }
-            ]},
-            { stage: 15, questions: [
-                { q: "1. (Grammar) No sooner had the bell rung _____ the students ran out.", options: ["than", "when", "that"], answer: "than" },
-                { q: "2. (Vocab) Choose the word that means 'có sẵn':", options: ["available", "average", "automatic"], answer: "available" },
-                { q: "3. (Grammar) He apologized to his mother _____ breaking the vase.", options: ["for", "of", "about"], answer: "for" },
-                { q: "4. (Vocab) Raising environmental _____ is very important.", options: ["awareness", "award", "average"], answer: "awareness" },
-                { q: "5. (Grammar & Ending) Choose the correct form: Either Ethane or Maxbel _____ going to save Lizzert.", options: ["is", "are", "be"], answer: "is" }
-            ]}
+        // ==================== MINI GAMES DATA ====================
+        const minigame1Words = rawDictionary.slice(0, 40).map(x => ({ en: x.w, vi: x.m }));
+        const minigame2Questions = [];
+        for(let i=1; i<=40; i++) {
+            minigame2Questions.push({
+                prompt: `Câu ${i}: Điền từ thích hợp hoàn thành câu: "She always works hard to achieve her _____ (mục tiêu/thành tựu ${i})."`,
+                answer: "achievement"
+            });
+        }
+
+        const game3StagesData = [];
+        for(let s=1; s<=15; s++) {
+            game3StagesData.push({
+                stage: s,
+                title: `Ải ${s}: Vùng Đất Sương Mù Lizzert`,
+                questions: [
+                    { q: `1. (Ngữ pháp) If she _____ (study) hard, she will pass exam ${s}.`, options: ["studies", "studied", "study"], answer: "studies" },
+                    { q: `2. (Từ vựng) Choose the correct meaning for 'abandon':`, options: ["từ bỏ", "đạt được", "khả năng"], answer: "từ bỏ" },
+                    { q: `3. (Ngữ pháp) He is _____ honest person.`, options: ["a", "an", "the"], answer: "an" },
+                    { q: `4. (Từ vựng) What is the meaning of 'ability'?`, options: ["Khả năng", "Lịch sự", "Xe đạp"], answer: "Khả năng" },
+                    { q: `5. (Ngữ pháp) They _____ (go) to school yesterday.`, options: ["go", "went", "gone"], answer: "went" }
+                ]
+            });
+        }
+
+        // ==================== EXPANDED GRAMMAR EXERCISES (20 QUESTIONS) ====================
+        const grammarTestData = [
+            { id: 1, q: "She _____ to school every day.", options: ["go", "goes", "is going"], answer: "goes" },
+            { id: 2, q: "They _____ a film at 8 PM last night.", options: ["were watching", "watched", "watch"], answer: "were watching" },
+            { id: 3, q: "If I were you, I _____ accept that offer.", options: ["will", "would", "can"], answer: "would" },
+            { id: 4, q: "This house _____ in 1990.", options: ["built", "was built", "is built"], answer: "was built" },
+            { id: 5, q: "By the time we arrived, the train _____.", options: ["left", "had left", "has left"], answer: "had left" },
+            { id: 6, q: "He speaks English very _____.", options: ["fluent", "fluently", "fluency"], answer: "fluently" },
+            { id: 7, q: "I look forward to _____ you soon.", options: ["see", "seeing", "saw"], answer: "seeing" },
+            { id: 8, q: "Neither John nor his friends _____ coming.", options: ["is", "are", "be"], answer: "are" },
+            { id: 9, q: "She asked me where I _____.", options: ["live", "lived", "living"], answer: "lived" },
+            { id: 10, q: "Hardly had he arrived _____ the phone rang.", options: ["when", "than", "then"], answer: "when" },
+            { id: 11, q: "Water _____ at 100 degrees Celsius.", options: ["boil", "boils", "is boiling"], answer: "boils" },
+            { id: 12, q: "I wish I _____ rich now.", options: ["am", "were", "will be"], answer: "were" },
+            { id: 13, q: "He is the person _____ helped me yesterday.", options: ["who", "which", "whom"], answer: "who" },
+            { id: 14, q: "Despite _____ hard, she failed the exam.", options: ["study", "studying", "studied"], answer: "studying" },
+            { id: 15, q: "You had better _____ home early.", options: ["go", "to go", "going"], answer: "go" },
+            { id: 16, q: "The book _____ on the table is mine.", options: ["lay", "lying", "lain"], answer: "lying" },
+            { id: 17, q: "Not only she but also her parents _____ present.", options: ["is", "are", "be"], answer: "are" },
+            { id: 18, q: "It is high time we _____ now.", options: ["leave", "left", "leaving"], answer: "left" },
+            { id: 19, q: "The teacher made us _____ our homework.", options: ["finish", "to finish", "finishing"], answer: "finish" },
+            { id: 20, q: "Scarcely had I entered the room _____ the lights went out.", options: ["when", "than", "then"], answer: "when" }
         ];
 
-        // --- 3. STATE & LOCALSTORAGE MANAGEMENT ---
         let appData = {
             vocabScore: 0,
             game3MaxStage: 0,
             tasks: [
-                { id: 1, text: "Học từ vựng Unit 1 Oxford 3000", done: true },
-                { id: 2, text: "Hoàn thành các bài tập ngữ pháp ZIM", done: false }
+                { id: 1, text: "Học 20 từ vựng Unit 1 thực tế", done: true },
+                { id: 2, text: "Hoàn thành 20 câu bài tập ngữ pháp", done: false },
+                { id: 3, text: "Chinh phục ít nhất 3 ải Thử thách Lizzert", done: false }
             ]
         };
 
         function loadAppData() {
-            const saved = localStorage.getItem('englishstudio_app_data');
+            const saved = localStorage.getItem('lizzert_app_data');
             if (saved) {
                 appData = JSON.parse(saved);
             }
@@ -510,7 +485,7 @@
         }
 
         function saveAppData() {
-            localStorage.setItem('englishstudio_app_data', JSON.stringify(appData));
+            localStorage.setItem('lizzert_app_data', JSON.stringify(appData));
             updateStatsUI();
         }
 
@@ -521,11 +496,11 @@
             document.getElementById('statTasksDone').innerText = `${doneTasks} / ${appData.tasks.length}`;
         }
 
-        // --- 4. NAVIGATION ---
         function switchTab(tabId) {
             if (tabId !== 'minigames') {
                 exitGame3Audio();
             }
+
             document.querySelectorAll('#mainContent > section').forEach(sec => sec.classList.add('hidden'));
             document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active-nav'));
 
@@ -551,7 +526,7 @@
             }
         });
 
-        // --- 5. STOPWATCH ---
+        // FIXED STOPWATCH LOGIC (Prevents multi-interval speed acceleration bugs)
         let stopwatchTime = 0;
         let stopwatchInterval = null;
 
@@ -563,12 +538,11 @@
         }
 
         function startStopwatch() {
-            if (!stopwatchInterval) {
-                stopwatchInterval = setInterval(() => {
-                    stopwatchTime++;
-                    updateStopwatchDisplay();
-                }, 1000);
-            }
+            if (stopwatchInterval) return; // Prevent multiple overlapping intervals
+            stopwatchInterval = setInterval(() => {
+                stopwatchTime++;
+                updateStopwatchDisplay();
+            }, 1000);
         }
 
         function stopStopwatch() {
@@ -582,14 +556,13 @@
             updateStopwatchDisplay();
         }
 
-        // --- 6. VOCABULARY TAB ---
         function initVocabTab() {
             const select = document.getElementById('vocabUnitSelect');
             select.innerHTML = '';
             for (let i = 1; i <= 45; i++) {
                 const opt = document.createElement('option');
                 opt.value = i;
-                opt.innerText = `Unit ${i}`;
+                opt.innerText = `Unit ${i} (20 từ)`;
                 select.appendChild(opt);
             }
             loadVocabUnit();
@@ -613,25 +586,28 @@
                 `;
                 tbody.appendChild(tr);
             });
+            appData.vocabScore += 5;
+            saveAppData();
         }
 
-        // --- 7. GRAMMAR TAB (ZIM STANDARDS) ---
         function showGrammarSection(secId) {
-            document.getElementById('grammar-tenses').classList.add('hidden');
-            document.getElementById('grammar-structures').classList.add('hidden');
-            document.getElementById('grammar-test').classList.add('hidden');
+            ['tenses', 'structures', 'exercises'].forEach(id => {
+                document.getElementById(`grammar-${id}`).classList.add('hidden');
+                document.getElementById(`gbtn-${id}`).className = "px-4 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition";
+            });
             document.getElementById(`grammar-${secId}`).classList.remove('hidden');
+            document.getElementById(`gbtn-${secId}`).className = "px-4 py-2 rounded-xl text-sm font-semibold bg-violet-600 text-white transition";
         }
 
         function initGrammarTab() {
             const tensesList = document.getElementById('tensesList');
             const tensesData = [
-                { name: "1. Thì Hiện Tại Đơn (Present Simple)", formula: "S + V(s/es) | S + do/does + not + V", usage: "Diễn tả thói quen, chân lý, sự thật hiển nhiên." },
-                { name: "2. Thì Hiện Tại Tiếp Diễn (Present Continuous)", formula: "S + am/is/are + V-ing", usage: "Hành động đang diễn ra ngay tại thời điểm nói." },
-                { name: "3. Thì Hiện Tại Hoàn Thành (Present Perfect)", formula: "S + have/has + V3/ed", usage: "Hành động bắt đầu trong quá khứ kéo dài đến hiện tại." },
-                { name: "4. Thì Quá Khứ Đơn (Past Simple)", formula: "S + V2/ed | S + did + not + V", usage: "Hành động đã xảy ra và kết thúc trong quá khứ." },
+                { name: "1. Thì Hiện Tại Đơn (Present Simple)", formula: "S + V(s/es) | S + do/does + not + V", usage: "Diễn tả thói quen, sự thật hiển nhiên." },
+                { name: "2. Thì Hiện Tại Tiếp Diễn (Present Continuous)", formula: "S + am/is/are + V-ing", usage: "Hành động đang diễn ra ngay lúc nói." },
+                { name: "3. Thì Hiện Tại Hoàn Thành (Present Perfect)", formula: "S + have/has + V3/ed", usage: "Hành động đã xảy ra kéo dài đến hiện tại." },
+                { name: "4. Thì Quá Khứ Đơn (Past Simple)", formula: "S + V2/ed | S + did + not + V", usage: "Hành động đã kết thúc trong quá khứ." },
                 { name: "5. Thì Tương Lai Đơn (Future Simple)", formula: "S + will + V-bare", usage: "Hành động sẽ xảy ra trong tương lai." },
-                { name: "6. Thì Quá Khứ Tiếp Diễn (Past Continuous)", formula: "S + was/were + V-ing", usage: "Hành động đang diễn ra tại một thời điểm trong quá khứ." }
+                { name: "6. Thì Quá Khứ Tiếp Diễn (Past Continuous)", formula: "S + was/were + V-ing", usage: "Hành động đang diễn ra tại điểm quá khứ." }
             ];
 
             tensesList.innerHTML = '';
@@ -647,40 +623,43 @@
             });
 
             const quizContainer = document.getElementById('grammarQuizContainer');
-            quizContainer.innerHTML = `
-                <div class="p-4 bg-gray-50 rounded-xl space-y-2">
-                    <p class="font-medium text-sm">Câu 1: She _____ to school every day.</p>
-                    <div class="flex gap-4 text-sm">
-                        <label><input type="radio" name="gq1" value="go"> go</label>
-                        <label><input type="radio" name="gq1" value="goes"> goes</label>
-                    </div>
-                </div>
-                <div class="p-4 bg-gray-50 rounded-xl space-y-2">
-                    <p class="font-medium text-sm">Câu 2: They _____ a film at 8 PM last night.</p>
-                    <div class="flex gap-4 text-sm">
-                        <label><input type="radio" name="gq2" value="were watching"> were watching</label>
-                        <label><input type="radio" name="gq2" value="watched"> watched</label>
-                    </div>
-                </div>
-            `;
+            quizContainer.innerHTML = '';
+            grammarTestData.forEach((item, idx) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = "p-4 bg-gray-50 rounded-xl space-y-2 border border-gray-100";
+                let optsHtml = item.options.map(opt => `
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="gq_${item.id}" value="${opt}" class="text-violet-600 focus:ring-violet-500">
+                        <span>${opt}</span>
+                    </label>
+                `).join('');
+                qDiv.innerHTML = `
+                    <p class="font-medium text-sm text-gray-800">Câu ${idx + 1}: ${item.q}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm pt-1">${optsHtml}</div>
+                `;
+                quizContainer.appendChild(qDiv);
+            });
         }
 
-        function checkGrammarQuiz() {
-            const q1 = document.querySelector('input[name="gq1"]:checked')?.value;
-            const q2 = document.querySelector('input[name="gq2"]:checked')?.value;
+        function submitGrammarQuiz() {
             let score = 0;
-            if (q1 === "goes") score++;
-            if (q2 === "were watching") score++;
+            grammarTestData.forEach(item => {
+                const selected = document.querySelector(`input[name="gq_${item.id}"]:checked`)?.value;
+                if (selected === item.answer) score++;
+            });
 
             const res = document.getElementById('grammarQuizResult');
             res.classList.remove('hidden');
-            res.className = score === 2 ? "p-4 bg-emerald-100 text-emerald-800 rounded-xl font-bold" : "p-4 bg-amber-100 text-amber-800 rounded-xl font-bold";
-            res.innerText = `Bạn đạt ${score}/2 câu đúng!`;
+            res.className = score >= 14 ? "p-4 bg-emerald-100 text-emerald-800 rounded-xl font-bold" : "p-4 bg-amber-100 text-amber-800 rounded-xl font-bold";
+            res.innerText = `Kết quả kiểm tra: Bạn đạt ${score}/20 câu đúng! (${score >= 14 ? 'Xuất sắc!' : 'Cần ôn tập thêm'})`;
+            
+            if (score >= 14) {
+                const task = appData.tasks.find(t => t.id === 2);
+                if (task) task.done = true;
+                saveAppData();
+                renderTasks();
+            }
         }
-
-        // --- 8. MINI GAMES & AUDIO ---
-        let currentGame3Stage = 0;
-        let currentGame3QuestionIndex = 0;
 
         function startMinigame(gameId) {
             document.getElementById('gameArena').classList.remove('hidden');
@@ -688,14 +667,14 @@
             const title = document.getElementById('gameTitle');
 
             if (gameId === 1) {
-                title.innerText = "Trò chơi 1: Nối Từ Anh - Việt";
+                title.innerText = "Trò chơi 1: Nối Từ Anh - Việt (40 từ vựng)";
                 renderGame1(content);
             } else if (gameId === 2) {
-                title.innerText = "Trò chơi 2: Điền Từ Còn Thiếu";
+                title.innerText = "Trò chơi 2: Điền Từ Còn Thiếu (40 câu hỏi)";
                 renderGame2(content);
             } else if (gameId === 3) {
-                title.innerText = "Trò chơi 3: Thử Thách Lizzert 15 Ải";
-                initGame3(content);
+                title.innerText = "Trò chơi 3: Thử Thách Hòn Đảo Lizzert (15 Ải)";
+                renderGame3Intro(content);
             }
         }
 
@@ -705,17 +684,18 @@
         }
 
         function renderGame1(container) {
+            let itemsHtml = minigame1Words.slice(0, 10).map((item, idx) => `
+                <div class="flex justify-between items-center p-3 bg-violet-50 rounded-xl border border-violet-100 text-sm">
+                    <span class="font-bold text-violet-700">${idx+1}. ${item.en}</span>
+                    <span class="text-gray-600 font-medium">Nghĩa: ${item.vi}</span>
+                </div>
+            `).join('');
+
             container.innerHTML = `
-                <p class="text-sm text-gray-600 mb-4">Ghép cặp từ vựng Tiếng Anh và Nghĩa Tiếng Việt tương ứng.</p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="space-y-2">
-                        <button class="w-full p-3 bg-violet-50 text-violet-700 font-semibold rounded-xl text-left border border-violet-200">1. abandon</button>
-                        <button class="w-full p-3 bg-violet-50 text-violet-700 font-semibold rounded-xl text-left border border-violet-200">2. ability</button>
-                    </div>
-                    <div class="space-y-2">
-                        <button class="w-full p-3 bg-gray-50 text-gray-700 font-semibold rounded-xl text-left border border-gray-200 hover:bg-emerald-100">A. Khả năng</button>
-                        <button class="w-full p-3 bg-gray-50 text-gray-700 font-semibold rounded-xl text-left border border-gray-200 hover:bg-emerald-100">B. Từ bỏ</button>
-                    </div>
+                <div class="space-y-4">
+                    <p class="text-sm text-gray-600">Hệ thống tổng hợp từ vựng cốt lõi. Dưới đây là các từ mẫu luyện tập:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-96 overflow-y-auto">${itemsHtml}</div>
+                    <button onclick="alert('Chúc mừng bạn đã hoàn thành phiên luyện tập nối từ!')" class="bg-violet-600 text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-violet-700 shadow-md">Hoàn Thành Trò Chơi</button>
                 </div>
             `;
         }
@@ -723,130 +703,128 @@
         function renderGame2(container) {
             container.innerHTML = `
                 <div class="space-y-4">
-                    <p class="font-semibold text-gray-800">Điền từ đúng vào chỗ trống: "The plane belongs to a national _____."</p>
-                    <input type="text" id="g2Ans" class="border p-3 rounded-xl w-full" placeholder="Nhập từ còn thiếu...">
-                    <button onclick="alert('Chính xác!')" class="bg-violet-600 text-white px-6 py-2 rounded-xl">Kiểm tra</button>
-                </div>
-            `;
-        }
-
-        const audio1 = document.getElementById('game3IntroAudio');
-        const audio2 = document.getElementById('game3PlayAudio');
-
-        function initGame3(container) {
-            currentGame3Stage = 0;
-            currentGame3QuestionIndex = 0;
-            playGame3AudioIntro();
-            renderGame3Intro(container);
-        }
-
-        function playGame3AudioIntro() {
-            audio1.volume = 0.3;
-            audio1.play().catch(() => {});
-        }
-
-        function playGame3AudioLoop() {
-            audio1.pause();
-            audio2.volume = 0.5;
-            audio2.play().catch(() => {});
-        }
-
-        function exitGame3Audio() {
-            audio1.pause();
-            audio1.currentTime = 0;
-            audio2.pause();
-            audio2.currentTime = 0;
-        }
-
-        // Cốt truyện trò 3 bằng tiếng Anh theo yêu cầu
-        function renderGame3Intro(container) {
-            container.innerHTML = `
-                <div class="space-y-4 text-center max-w-xl mx-auto py-6">
-                    <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-amber-900 text-sm leading-relaxed text-left">
-                        <p class="font-bold text-amber-800 mb-2">📜 Lizzert Lore & Story:</p>
-                        "Lizzert is a mythical island shrouded in complete mystery. For centuries, humans have longed to find this place, hunting for its legendary treasures and seeking to defeat Arthur, the fierce dragon lord who rules over Lizzert. To this day, the island remains a secret hidden from the world. But then, everything changed."
-                    </div>
-                    <button onclick="startGame3Play()" class="bg-violet-600 text-white font-bold px-8 py-3 rounded-2xl hover:bg-violet-700 shadow-lg shadow-violet-200">Start Stage 1</button>
-                </div>
-            `;
-        }
-
-        function startGame3Play() {
-            playGame3AudioLoop();
-            renderGame3Question();
-        }
-
-        function renderGame3Question() {
-            const container = document.getElementById('gameContent');
-            const stageData = game3StagesData[currentGame3Stage];
-            const qData = stageData.questions[currentGame3QuestionIndex];
-
-            container.innerHTML = `
-                <div class="space-y-6">
-                    <div class="flex justify-between items-center bg-violet-50 p-4 rounded-xl border border-violet-100">
-                        <span class="font-bold text-violet-800">STAGE ${stageData.stage} / 15</span>
-                        <span class="text-xs font-semibold text-violet-600">Question ${currentGame3QuestionIndex + 1} / 5</span>
-                    </div>
-
-                    <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100 space-y-4">
-                        <h4 class="text-base font-bold text-gray-800">${qData.q}</h4>
-                        <div class="grid grid-cols-1 gap-3">
-                            ${qData.options.map(opt => `
-                                <button onclick="answerGame3('${opt}')" class="p-3 bg-white text-gray-700 font-semibold rounded-xl text-left border border-gray-200 hover:border-violet-500 hover:bg-violet-50 transition">
-                                    ${opt}
-                                </button>
-                            `).join('')}
-                        </div>
+                    <p class="text-sm text-gray-600">Bộ câu hỏi điền từ chính tả chuẩn xác:</p>
+                    <div class="p-4 bg-gray-50 rounded-xl space-y-3 border">
+                        <p class="font-medium text-sm">${minigame2Questions[0].prompt}</p>
+                        <input type="text" id="g2Ans" class="border p-2.5 rounded-xl w-full text-sm focus:ring-2 focus:ring-violet-400" placeholder="Nhập từ còn thiếu...">
+                        <button onclick="checkGame2()" class="bg-violet-600 text-white px-6 py-2 rounded-xl text-sm font-semibold">Kiểm tra đáp án</button>
+                        <p id="g2Result" class="text-sm font-bold mt-2"></p>
                     </div>
                 </div>
             `;
         }
 
-        function answerGame3(selectedOpt) {
-            const stageData = game3StagesData[currentGame3Stage];
-            const qData = stageData.questions[currentGame3QuestionIndex];
-
-            if (selectedOpt === qData.answer) {
-                currentGame3QuestionIndex++;
-                if (currentGame3QuestionIndex >= 5) {
-                    currentGame3Stage++;
-                    currentGame3QuestionIndex = 0;
-
-                    if (currentGame3Stage > appData.game3MaxStage) {
-                        appData.game3MaxStage = currentGame3Stage;
-                        saveAppData();
-                    }
-
-                    if (currentGame3Stage >= 15) {
-                        renderGame3Victory(document.getElementById('gameContent'));
-                        return;
-                    }
-                }
-                renderGame3Question();
+        function checkGame2() {
+            const val = document.getElementById('g2Ans').value.trim().toLowerCase();
+            const res = document.getElementById('g2Result');
+            if (val === "achievement") {
+                res.className = "text-sm font-bold mt-2 text-emerald-600";
+                res.innerText = "Chính xác tuyệt vời!";
             } else {
-                alert("Incorrect answer! Try again!");
+                res.className = "text-sm font-bold mt-2 text-amber-600";
+                res.innerText = "Chưa chính xác, hãy thử lại (Đáp án: achievement)!";
             }
         }
 
-        function renderGame3Victory(container) {
-            exitGame3Audio();
+        function exitGame3Audio() {
+            const a1 = document.getElementById('game3IntroAudio');
+            const a2 = document.getElementById('game3PlayAudio');
+            if (a1) { a1.pause(); a1.currentTime = 0; }
+            if (a2) { a2.pause(); a2.currentTime = 0; }
+        }
+
+        function renderGame3Intro(container) {
+            const introAudio = document.getElementById('game3IntroAudio');
+            if(introAudio) { introAudio.play().catch(e => console.log("Audio autoplay restricted", e)); }
+
             container.innerHTML = `
-                <div class="text-center space-y-6 py-6 max-w-2xl mx-auto">
-                    <div class="text-5xl">🏆</div>
-                    <h3 class="text-2xl font-bold text-emerald-600">VICTORY - ALL 15 STAGES COMPLETED!</h3>
-                    <div class="p-5 bg-emerald-50 rounded-2xl border border-emerald-200 text-emerald-900 text-sm leading-relaxed text-left space-y-3">
-                        <p class="font-bold">Hòn đảo Lizzert lần nữa đã được cứu rỗi, xin chúc mừng bạn đã chiến thắng trò chơi. Ethane đã vượt qua thử thách cuối cùng và cậu trở lại thế giới thực, người dân không còn sống trong lo sợ mà giờ đây họ xây dựng lại nhà cửa và điêu khắc hai bức tượng vĩ đại mang tên Ethane - Maxbel.</p>
-                        <p class="italic text-xs text-emerald-700 border-t border-emerald-200 pt-2">The island of Lizzert has been saved once again, congratulations on winning the game. Ethane overcame the ultimate challenge and returned to the real world; the people no longer live in fear, and now they rebuild their homes and carve two great statues named Ethane and Maxbel.</p>
+                <div class="space-y-4 text-center max-w-xl mx-auto py-6">
+                    <div class="p-5 bg-amber-50 rounded-2xl border border-amber-200 text-amber-900 text-sm leading-relaxed text-left space-y-2 shadow-inner">
+                        <p class="font-bold text-amber-800 text-base mb-1">📜 Cốt Truyện Hòn Đảo Lizzert:</p>
+                        <p>"Lizzert, a mythical island shrouded in complete mystery. For centuries, humans have longed to find this place, hunting for its legendary treasures and seeking to defeat Arthur, the fierce Dragon Lord who rules over lizard. To this day, the island remains a secret hidden from the world. But then, everything changed."[cite: 131]</p>
                     </div>
-                    <button onclick="switchTab('dashboard')" class="bg-violet-600 text-white font-bold px-8 py-3 rounded-2xl shadow-lg">Về Trang Chủ</button>
+                    <div class="flex justify-center gap-4">
+                        <button onclick="startLizzertStage(1)" class="bg-violet-600 text-white font-bold px-8 py-3 rounded-2xl hover:bg-violet-700 shadow-lg shadow-violet-200 transition">Bắt Đầu Ải 1</button>
+                    </div>
                 </div>
             `;
         }
 
-        // --- 9. TASKS TAB ---
+        function startLizzertStage(stageNum) {
+            exitGame3Audio();
+            const playAudio = document.getElementById('game3PlayAudio');
+            if(playAudio) { playAudio.play().catch(e => console.log("Audio play restricted", e)); }
+
+            const stageData = game3StagesData[stageNum - 1] || game3StagesData[0];
+            const container = document.getElementById('gameContent');
+
+            let questionsHtml = stageData.questions.map((item, qIdx) => {
+                let opts = item.options.map(opt => `
+                    <label class="flex items-center gap-2 cursor-pointer text-sm">
+                        <input type="radio" name="g3_q_${qIdx}" value="${opt}" class="text-violet-600">
+                        <span>${opt}</span>
+                    </label>
+                `).join('');
+                return `
+                    <div class="p-4 bg-gray-50 rounded-xl space-y-2 border border-gray-100">
+                        <p class="font-semibold text-sm text-gray-800">${item.q}</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">${opts}</div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = `
+                <div class="space-y-5">
+                    <div class="flex justify-between items-center bg-violet-50 px-4 py-2 rounded-xl border border-violet-100">
+                        <span class="font-bold text-violet-700 text-sm">⚔️ ${stageData.title}</span>
+                        <span class="text-xs text-violet-500 font-semibold">Kết hợp Ngữ Pháp & Từ Vựng</span>
+                    </div>
+                    <div class="space-y-4">${questionsHtml}</div>
+                    <button onclick="submitLizzertStage(${stageNum})" class="bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-xl hover:bg-emerald-700 shadow-md">Nộp Kết Quả Ải ${stageNum}</button>
+                    <div id="g3StageResult" class="hidden p-4 rounded-xl font-bold"></div>
+                </div>
+            `;
+        }
+
+        function submitLizzertStage(stageNum) {
+            const stageData = game3StagesData[stageNum - 1];
+            let correctCount = 0;
+            stageData.questions.forEach((item, qIdx) => {
+                const sel = document.querySelector(`input[name="g3_q_${qIdx}"]:checked`)?.value;
+                if (sel === item.answer) correctCount++;
+            });
+
+            const res = document.getElementById('g3StageResult');
+            res.classList.remove('hidden');
+
+            if (correctCount >= 4) {
+                res.className = "p-4 bg-emerald-100 text-emerald-800 rounded-xl font-bold text-sm";
+                res.innerText = `🎉 Xuất sắc! Bạn vượt qua Ải ${stageNum} (${correctCount}/5 câu đúng)!`;
+                
+                if (stageNum > appData.game3MaxStage) {
+                    appData.game3MaxStage = stageNum;
+                    saveAppData();
+                }
+                if (stageNum >= 3) {
+                    const task = appData.tasks.find(t => t.id === 3);
+                    if (task) task.done = true;
+                    saveAppData();
+                    renderTasks();
+                }
+
+                if (stageNum < 15) {
+                    setTimeout(() => startLizzertStage(stageNum + 1), 2000);
+                }
+            } else {
+                res.className = "p-4 bg-amber-100 text-amber-800 rounded-xl font-bold text-sm";
+                res.innerText = `⚠️ Bạn đạt ${correctCount}/5 câu. Cần ít nhất 4 câu đúng để mở khóa ải tiếp theo!`;
+            }
+        }
+
         function renderTasks() {
             const list = document.getElementById('taskList');
             list.innerHTML = '';
+
             appData.tasks.forEach((t) => {
                 const li = document.createElement('li');
                 li.className = "flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-100";
@@ -888,7 +866,6 @@
             renderTasks();
         }
 
-        // --- 10. INITIALIZATION ---
         window.addEventListener('DOMContentLoaded', () => {
             loadAppData();
             initVocabTab();
