@@ -34,62 +34,62 @@
         }
     </style>
 </head>
-<body class="h-screen flex overflow-hidden text-gray-800">
+<body class="h-screen flex flex-col md:flex-row overflow-hidden text-gray-800">
 
     <!-- AUDIO ELEMENTS FOR GAME 3 ONLY -->
     <audio id="game3IntroAudio" preload="auto" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
     <audio id="game3PlayAudio" loop preload="auto" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
 
     <!-- SIDEBAR / NAVIGATION -->
-    <aside id="sidebar" class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between transition-all duration-300 flex-shrink-0 relative z-20">
+    <aside id="sidebar" class="w-full md:w-64 bg-white border-r border-gray-200 flex flex-col justify-between transition-all duration-300 flex-shrink-0 z-20 shadow-md md:shadow-none">
         <div>
             <!-- Header Logo -->
-            <div class="p-5 flex items-center justify-between border-b border-gray-100">
+            <div class="p-4 md:p-5 flex items-center justify-between border-b border-gray-100">
                 <div class="flex items-center gap-3">
                     <div class="bg-violet-600 text-white p-2 rounded-xl shadow-lg shadow-violet-200">
-                        <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                        <i data-lucide="graduation-cap" class="w-5 h-5 md:w-6 md:h-6"></i>
                     </div>
                     <div>
-                        <h1 class="font-bold text-gray-800 text-lg leading-tight">English.studio</h1>
+                        <h1 class="font-bold text-gray-800 text-base md:text-lg leading-tight">English.studio</h1>
                         <p class="text-xs text-gray-400">English Master</p>
                     </div>
                 </div>
-                <button id="toggleSidebar" class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                <button id="toggleSidebar" class="hidden md:block text-gray-400 hover:text-gray-600 focus:outline-none">
                     <i data-lucide="chevron-left" id="sidebarIcon" class="w-5 h-5"></i>
                 </button>
             </div>
 
             <!-- Navigation Links -->
-            <nav class="p-4 space-y-1">
-                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-item active-nav w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+            <nav class="p-2 md:p-4 flex md:block overflow-x-auto md:overflow-visible space-x-2 md:space-x-0 md:space-y-1">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-item active-nav flex-shrink-0 flex items-center gap-3 px-3 md:px-4 py-2.5 md:py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600 text-sm md:text-base">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4 md:w-5 md:h-5"></i>
                     <span class="nav-text">Trang chủ</span>
                 </button>
-                <button onclick="switchTab('vocab')" id="nav-vocab" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
-                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                <button onclick="switchTab('vocab')" id="nav-vocab" class="nav-item flex-shrink-0 flex items-center gap-3 px-3 md:px-4 py-2.5 md:py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600 text-sm md:text-base">
+                    <i data-lucide="book-open" class="w-4 h-4 md:w-5 md:h-5"></i>
                     <span class="nav-text">Kho từ vựng</span>
                 </button>
-                <button onclick="switchTab('grammar')" id="nav-grammar" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
-                    <i data-lucide="file-text" class="w-5 h-5"></i>
-                    <span class="nav-text">Ngữ pháp & Bài tập</span>
+                <button onclick="switchTab('grammar')" id="nav-grammar" class="nav-item flex-shrink-0 flex items-center gap-3 px-3 md:px-4 py-2.5 md:py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600 text-sm md:text-base">
+                    <i data-lucide="file-text" class="w-4 h-4 md:w-5 md:h-5"></i>
+                    <span class="nav-text">Ngữ pháp</span>
                 </button>
-                <button onclick="switchTab('minigames')" id="nav-minigames" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
-                    <i data-lucide="gamepad-2" class="w-5 h-5"></i>
+                <button onclick="switchTab('minigames')" id="nav-minigames" class="nav-item flex-shrink-0 flex items-center gap-3 px-3 md:px-4 py-2.5 md:py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600 text-sm md:text-base">
+                    <i data-lucide="gamepad-2" class="w-4 h-4 md:w-5 md:h-5"></i>
                     <span class="nav-text">Mini Game</span>
                 </button>
-                <button onclick="switchTab('tasks')" id="nav-tasks" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
-                    <i data-lucide="check-square" class="w-5 h-5"></i>
+                <button onclick="switchTab('tasks')" id="nav-tasks" class="nav-item flex-shrink-0 flex items-center gap-3 px-3 md:px-4 py-2.5 md:py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600 text-sm md:text-base">
+                    <i data-lucide="check-square" class="w-4 h-4 md:w-5 md:h-5"></i>
                     <span class="nav-text">Nhiệm vụ</span>
                 </button>
-                <button onclick="switchTab('progress')" id="nav-progress" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
-                    <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
-                    <span class="nav-text">Tiến độ học tập</span>
+                <button onclick="switchTab('progress')" id="nav-progress" class="nav-item flex-shrink-0 flex items-center gap-3 px-3 md:px-4 py-2.5 md:py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600 text-sm md:text-base">
+                    <i data-lucide="bar-chart-3" class="w-4 h-4 md:w-5 md:h-5"></i>
+                    <span class="nav-text">Tiến độ</span>
                 </button>
             </nav>
         </div>
 
-        <!-- Footer User Profile -->
-        <div class="p-4 border-t border-gray-100 flex items-center gap-3">
+        <!-- Footer User Profile (Hidden on mobile to save space) -->
+        <div class="hidden md:flex p-4 border-t border-gray-100 items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-violet-100 text-violet-600 font-bold flex items-center justify-center">
                 US
             </div>
@@ -104,42 +104,42 @@
     <main class="flex-1 flex flex-col overflow-hidden bg-gray-50">
 
         <!-- TOP BAR & FIXED STOPWATCH -->
-        <header class="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shadow-sm">
-            <div class="flex items-center gap-6">
+        <header class="bg-white border-b border-gray-200 px-4 md:px-6 py-3 flex items-center justify-between shadow-sm">
+            <div class="flex items-center gap-4">
                 <div>
-                    <h2 class="text-lg font-bold text-gray-800">Xin chào, Ethane! 👋</h2>
-                    <p class="text-xs text-gray-500">Sẵn sàng chinh phục tiếng Anh tại English.studio hôm nay?</p>
+                    <h2 class="text-sm md:text-lg font-bold text-gray-800">Xin chào, Ethane! 👋</h2>
+                    <p class="text-[11px] md:text-xs text-gray-500">Sẵn sàng học tập tại English.studio?</p>
                 </div>
 
-                <div class="hidden md:flex items-center gap-3 bg-violet-50 border border-violet-100 px-4 py-1.5 rounded-full shadow-inner">
-                    <i data-lucide="timer" class="w-4 h-4 text-violet-600"></i>
-                    <span id="stopwatchDisplay" class="font-mono font-bold text-violet-700 text-sm">00:00:00</span>
-                    <div class="flex items-center gap-1 border-l border-violet-200 pl-2">
-                        <button onclick="startStopwatch()" class="p-1 hover:bg-violet-200 rounded text-violet-700" title="Bắt đầu"><i data-lucide="play" class="w-3.5 h-3.5"></i></button>
-                        <button onclick="stopStopwatch()" class="p-1 hover:bg-violet-200 rounded text-violet-700" title="Tạm dừng"><i data-lucide="pause" class="w-3.5 h-3.5"></i></button>
-                        <button onclick="resetStopwatch()" class="p-1 hover:bg-violet-200 rounded text-violet-700" title="Đặt lại"><i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i></button>
+                <div class="flex items-center gap-2 bg-violet-50 border border-violet-100 px-3 py-1 rounded-full shadow-inner">
+                    <i data-lucide="timer" class="w-3.5 h-3.5 text-violet-600"></i>
+                    <span id="stopwatchDisplay" class="font-mono font-bold text-violet-700 text-xs md:text-sm">00:00:00</span>
+                    <div class="flex items-center gap-0.5 border-l border-violet-200 pl-1.5">
+                        <button onclick="startStopwatch()" class="p-0.5 hover:bg-violet-200 rounded text-violet-700" title="Bắt đầu"><i data-lucide="play" class="w-3 h-3"></i></button>
+                        <button onclick="stopStopwatch()" class="p-0.5 hover:bg-violet-200 rounded text-violet-700" title="Tạm dừng"><i data-lucide="pause" class="w-3 h-3"></i></button>
+                        <button onclick="resetStopwatch()" class="p-0.5 hover:bg-violet-200 rounded text-violet-700" title="Đặt lại"><i data-lucide="rotate-ccw" class="w-3 h-3"></i></button>
                     </div>
                 </div>
             </div>
 
-            <div class="flex items-center gap-4">
-                <div class="flex items-center gap-2 bg-amber-50 text-amber-600 px-3 py-1.5 rounded-lg text-sm font-medium">
-                    <i data-lucide="flame" class="w-4 h-4 fill-amber-500"></i>
-                    <span id="streakCount">5</span> Ngày liên tiếp
+            <div class="flex items-center gap-2">
+                <div class="flex items-center gap-1.5 bg-amber-50 text-amber-600 px-2.5 py-1 rounded-lg text-xs font-medium">
+                    <i data-lucide="flame" class="w-3.5 h-3.5 fill-amber-500"></i>
+                    <span id="streakCount">5</span>
                 </div>
             </div>
         </header>
 
         <!-- CONTAINER FOR DYNAMIC TAB CONTENTS -->
-        <div class="flex-1 overflow-y-auto p-6" id="mainContent">
+        <div class="flex-1 overflow-y-auto p-4 md:p-6" id="mainContent">
 
             <!-- TAB 1: DASHBOARD / TRANG CHỦ -->
             <section id="tab-dashboard" class="space-y-6">
-                <div class="bg-gradient-to-r from-violet-600 to-indigo-600 text-white p-6 rounded-2xl shadow-xl flex justify-between items-center relative overflow-hidden">
+                <div class="bg-gradient-to-r from-violet-600 to-indigo-600 text-white p-5 md:p-6 rounded-2xl shadow-xl flex justify-between items-center relative overflow-hidden">
                     <div class="z-10 space-y-2 max-w-xl">
-                        <span class="bg-white/20 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold">Chào mừng trở lại</span>
-                        <h3 class="text-2xl font-bold">Khám phá Hòn Đảo Lizzert & Làm Chủ Ngữ Pháp</h3>
-                        <p class="text-violet-100 text-sm">Hành trình chinh phục kho từ vựng 45 units thực tế và hệ thống bài tập ngữ pháp chuyên sâu.</p>
+                        <span class="bg-white/20 text-[10px] md:text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold">Chào mừng trở lại</span>
+                        <h3 class="text-xl md:text-2xl font-bold">Khám phá Hòn Đảo Lizzert & Làm Chủ Ngữ Pháp</h3>
+                        <p class="text-violet-100 text-xs md:text-sm">Hành trình chinh phục kho từ vựng 45 units thực tế và hệ thống bài tập ngữ pháp chuyên sâu.</p>
                     </div>
                     <div class="hidden lg:block z-10">
                         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20">
@@ -149,43 +149,43 @@
                 </div>
 
                 <h4 class="text-base font-semibold text-gray-700">Lối Tắt Nhanh Học Tập</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <div onclick="switchTab('vocab')" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
-                        <div class="p-4 bg-blue-50 text-blue-600 rounded-xl"><i data-lucide="book-open" class="w-7 h-7"></i></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+                    <div onclick="switchTab('vocab')" class="cursor-pointer bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
+                        <div class="p-3 md:p-4 bg-blue-50 text-blue-600 rounded-xl"><i data-lucide="book-open" class="w-6 h-6 md:w-7 md:h-7"></i></div>
                         <div>
-                            <h5 class="font-bold text-gray-800 text-base">Kho Từ Vựng</h5>
+                            <h5 class="font-bold text-gray-800 text-sm md:text-base">Kho Từ Vựng</h5>
                             <p class="text-xs text-gray-500">45 units từ vựng thực tế</p>
                         </div>
                     </div>
 
-                    <div onclick="switchTab('grammar')" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
-                        <div class="p-4 bg-emerald-50 text-emerald-600 rounded-xl"><i data-lucide="file-text" class="w-7 h-7"></i></div>
+                    <div onclick="switchTab('grammar')" class="cursor-pointer bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
+                        <div class="p-3 md:p-4 bg-emerald-50 text-emerald-600 rounded-xl"><i data-lucide="file-text" class="w-6 h-6 md:w-7 md:h-7"></i></div>
                         <div>
-                            <h5 class="font-bold text-gray-800 text-base">Ngữ Pháp & Bài Tập</h5>
+                            <h5 class="font-bold text-gray-800 text-sm md:text-base">Ngữ Pháp & Bài Tập</h5>
                             <p class="text-xs text-gray-500">Lý thuyết & Bộ bài tập phong phú</p>
                         </div>
                     </div>
 
-                    <div onclick="switchTab('minigames')" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
-                        <div class="p-4 bg-amber-50 text-amber-600 rounded-xl"><i data-lucide="gamepad-2" class="w-7 h-7"></i></div>
+                    <div onclick="switchTab('minigames')" class="cursor-pointer bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
+                        <div class="p-3 md:p-4 bg-amber-50 text-amber-600 rounded-xl"><i data-lucide="gamepad-2" class="w-6 h-6 md:w-7 md:h-7"></i></div>
                         <div>
-                            <h5 class="font-bold text-gray-800 text-base">Ôn Tập Mini Game</h5>
+                            <h5 class="font-bold text-gray-800 text-sm md:text-base">Ôn Tập Mini Game</h5>
                             <p class="text-xs text-gray-500">Trò chơi 1, 2 & Thử thách Lizzert</p>
                         </div>
                     </div>
 
-                    <div onclick="switchTab('tasks')" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
-                        <div class="p-4 bg-purple-50 text-purple-600 rounded-xl"><i data-lucide="check-square" class="w-7 h-7"></i></div>
+                    <div onclick="switchTab('tasks')" class="cursor-pointer bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
+                        <div class="p-3 md:p-4 bg-purple-50 text-purple-600 rounded-xl"><i data-lucide="check-square" class="w-6 h-6 md:w-7 md:h-7"></i></div>
                         <div>
-                            <h5 class="font-bold text-gray-800 text-base">Nhiệm Vụ Học Tập</h5>
+                            <h5 class="font-bold text-gray-800 text-sm md:text-base">Nhiệm Vụ Học Tập</h5>
                             <p class="text-xs text-gray-500">Theo dõi tiến độ hàng ngày</p>
                         </div>
                     </div>
 
-                    <div onclick="switchTab('progress')" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
-                        <div class="p-4 bg-pink-50 text-pink-600 rounded-xl"><i data-lucide="bar-chart-3" class="w-7 h-7"></i></div>
+                    <div onclick="switchTab('progress')" class="cursor-pointer bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-200 flex items-center gap-4">
+                        <div class="p-3 md:p-4 bg-pink-50 text-pink-600 rounded-xl"><i data-lucide="bar-chart-3" class="w-6 h-6 md:w-7 md:h-7"></i></div>
                         <div>
-                            <h5 class="font-bold text-gray-800 text-base">Tiến Độ Học Tập</h5>
+                            <h5 class="font-bold text-gray-800 text-sm md:text-base">Tiến Độ Học Tập</h5>
                             <p class="text-xs text-gray-500">Thống kê điểm số & thành tựu</p>
                         </div>
                     </div>
@@ -194,12 +194,12 @@
 
             <!-- TAB 2: KHO TỪ VỰNG -->
             <section id="tab-vocab" class="hidden space-y-6">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm">
                     <div>
-                        <h3 class="text-xl font-bold text-gray-800">Kho Từ Vựng (45 Units Thực Tế)</h3>
-                        <p class="text-xs text-gray-500">Danh sách từ vựng chi tiết, không trùng lặp qua các bài học</p>
+                        <h3 class="text-lg md:text-xl font-bold text-gray-800">Kho Từ Vựng (45 Units Thực Tế)</h3>
+                        <p class="text-xs text-gray-500">Danh sách từ vựng chi tiết qua các bài học</p>
                     </div>
-                    <select id="vocabUnitSelect" onchange="loadVocabUnit()" class="bg-violet-50 border border-violet-200 text-violet-700 font-semibold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-400">
+                    <select id="vocabUnitSelect" onchange="loadVocabUnit()" class="bg-violet-50 border border-violet-200 text-violet-700 font-semibold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-400 text-sm">
                     </select>
                 </div>
 
@@ -208,11 +208,11 @@
                         <table class="w-full text-left border-collapse">
                             <thead>
                                 <tr class="bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase">
-                                    <th class="p-4">STT</th>
-                                    <th class="p-4">Từ vựng (Word)</th>
-                                    <th class="p-4">Loại từ</th>
-                                    <th class="p-4">Phiên âm</th>
-                                    <th class="p-4">Nghĩa Tiếng Việt</th>
+                                    <th class="p-3 md:p-4">STT</th>
+                                    <th class="p-3 md:p-4">Từ vựng (Word)</th>
+                                    <th class="p-3 md:p-4">Loại từ</th>
+                                    <th class="p-3 md:p-4">Phiên âm</th>
+                                    <th class="p-3 md:p-4">Nghĩa Tiếng Việt</th>
                                 </tr>
                             </thead>
                             <tbody id="vocabTableBody" class="divide-y divide-gray-100 text-sm">
@@ -224,14 +224,14 @@
 
             <!-- TAB 3: NGỮ PHÁP & BÀI TẬP -->
             <section id="tab-grammar" class="hidden space-y-6">
-                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Hệ Thống Ngữ Pháp & Bài Tập Thực Hành</h3>
-                    <p class="text-sm text-gray-600 mb-4">Tổng hợp kiến thức trọng tâm và kho bài tập luyện tập phong phú.</p>
+                <div class="bg-white p-4 md:p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">Hệ Thống Ngữ Pháp & Bài Tập Thực Hành</h3>
+                    <p class="text-xs md:text-sm text-gray-600 mb-4">Tổng hợp kiến thức trọng tâm và kho bài tập luyện tập phong phú.</p>
                     
                     <div class="flex flex-wrap gap-2 border-b border-gray-100 pb-3" id="grammarTabButtons">
-                        <button onclick="showGrammarSection('tenses')" id="gbtn-tenses" class="px-4 py-2 rounded-xl text-sm font-semibold bg-violet-600 text-white transition">12 Thì Cơ Bản</button>
-                        <button onclick="showGrammarSection('structures')" id="gbtn-structures" class="px-4 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Cấu Trúc & Giới Từ</button>
-                        <button onclick="showGrammarSection('exercises')" id="gbtn-exercises" class="px-4 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Bài Tập Luyện Tập (20 Câu)</button>
+                        <button onclick="showGrammarSection('tenses')" id="gbtn-tenses" class="px-3 md:px-4 py-2 rounded-xl text-xs md:text-sm font-semibold bg-violet-600 text-white transition">12 Thì Cơ Bản</button>
+                        <button onclick="showGrammarSection('structures')" id="gbtn-structures" class="px-3 md:px-4 py-2 rounded-xl text-xs md:text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Cấu Trúc & Giới Từ</button>
+                        <button onclick="showGrammarSection('exercises')" id="gbtn-exercises" class="px-3 md:px-4 py-2 rounded-xl text-xs md:text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Bài Tập (20 Câu)</button>
                     </div>
 
                     <!-- Section: 12 Tenses -->
@@ -241,59 +241,59 @@
 
                     <!-- Section: Structures -->
                     <div id="grammar-structures" class="hidden mt-6 space-y-4">
-                        <div class="bg-violet-50 p-5 rounded-2xl border border-violet-100 space-y-3">
-                            <h4 class="font-bold text-violet-800">Cấu Trúc Câu Điều Kiện (Conditional Sentences)</h4>
-                            <p class="text-sm text-gray-700"><b>Loại 1:</b> If + S + V(s/es), S + will + V-bare (Diễn tả sự việc có thể xảy ra ở hiện tại/tương lai)</p>
-                            <p class="text-sm text-gray-700"><b>Loại 2:</b> If + S + V2/ed, S + would + V-bare (Diễn tả sự việc không có thật ở hiện tại)</p>
-                            <p class="text-sm text-gray-700"><b>Loại 3:</b> If + S + had + V3/ed, S + would have + V3/ed (Sự việc không có thật trong quá khứ)</p>
+                        <div class="bg-violet-50 p-4 md:p-5 rounded-2xl border border-violet-100 space-y-3">
+                            <h4 class="font-bold text-violet-800 text-sm md:text-base">Cấu Trúc Câu Điều Kiện (Conditional Sentences)</h4>
+                            <p class="text-xs md:text-sm text-gray-700"><b>Loại 1:</b> If + S + V(s/es), S + will + V-bare</p>
+                            <p class="text-xs md:text-sm text-gray-700"><b>Loại 2:</b> If + S + V2/ed, S + would + V-bare</p>
+                            <p class="text-xs md:text-sm text-gray-700"><b>Loại 3:</b> If + S + had + V3/ed, S + would have + V3/ed</p>
                         </div>
-                        <div class="bg-blue-50 p-5 rounded-2xl border border-blue-100 space-y-3">
-                            <h4 class="font-bold text-blue-800">Câu Bị Động (Passive Voice)</h4>
-                            <p class="text-sm text-gray-700">Công thức chung: <b>S + Be + V3/ed (+ by O)</b></p>
+                        <div class="bg-blue-50 p-4 md:p-5 rounded-2xl border border-blue-100 space-y-3">
+                            <h4 class="font-bold text-blue-800 text-sm md:text-base">Câu Bị Động (Passive Voice)</h4>
+                            <p class="text-xs md:text-sm text-gray-700">Công thức chung: <b>S + Be + V3/ed (+ by O)</b></p>
                         </div>
-                        <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-100 space-y-3">
-                            <h4 class="font-bold text-emerald-800">Câu Gián Tiếp (Reported Speech)</h4>
-                            <p class="text-sm text-gray-700">Lùi thì khi động từ tường thuật ở quá khứ: Present Simple -> Past Simple, Present Continuous -> Past Continuous.</p>
+                        <div class="bg-emerald-50 p-4 md:p-5 rounded-2xl border border-emerald-100 space-y-3">
+                            <h4 class="font-bold text-emerald-800 text-sm md:text-base">Câu Gián Tiếp (Reported Speech)</h4>
+                            <p class="text-xs md:text-sm text-gray-700">Lùi thì khi động từ tường thuật ở quá khứ.</p>
                         </div>
                     </div>
 
-                    <!-- Section: Grammar Exercises (Expanded 20 questions) -->
+                    <!-- Section: Grammar Exercises -->
                     <div id="grammar-exercises" class="hidden mt-6 space-y-6">
-                        <h4 class="font-bold text-gray-800 text-lg">Kho Bài Tập Ngữ Pháp (20 Câu Hỏi Trắc Nghiệm)</h4>
+                        <h4 class="font-bold text-gray-800 text-base md:text-lg">Kho Bài Tập Ngữ Pháp (20 Câu Hỏi)</h4>
                         <div id="grammarQuizContainer" class="space-y-4"></div>
-                        <button onclick="submitGrammarQuiz()" class="bg-violet-600 text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-violet-700 shadow-md">Nộp Bài Kiểm Tra</button>
-                        <div id="grammarQuizResult" class="hidden p-4 rounded-xl font-bold"></div>
+                        <button onclick="submitGrammarQuiz()" class="bg-violet-600 text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-violet-700 shadow-md text-sm">Nộp Bài Kiểm Tra</button>
+                        <div id="grammarQuizResult" class="hidden p-4 rounded-xl font-bold text-sm"></div>
                     </div>
                 </div>
             </section>
 
             <!-- TAB 4: MINI GAMES -->
             <section id="tab-minigames" class="hidden space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <div onclick="startMinigame(1)" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition hover:-translate-y-1">
-                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold text-lg mb-3">G1</div>
-                        <h4 class="font-bold text-gray-800">Trò chơi 1: Nối Từ Anh - Việt</h4>
-                        <p class="text-xs text-gray-500 mt-1">Thử thách ghép cặp chính xác từ ngân hàng từ vựng.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+                    <div onclick="startMinigame(1)" class="cursor-pointer bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition hover:-translate-y-1">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold text-base md:text-lg mb-3">G1</div>
+                        <h4 class="font-bold text-gray-800 text-sm md:text-base">Trò chơi 1: Nối Từ Anh - Việt</h4>
+                        <p class="text-xs text-gray-500 mt-1">Ghép cặp chính xác từ vựng.</p>
                     </div>
 
-                    <div onclick="startMinigame(2)" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition hover:-translate-y-1">
-                        <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-lg mb-3">G2</div>
-                        <h4 class="font-bold text-gray-800">Trò chơi 2: Điền Từ Còn Thiếu</h4>
-                        <p class="text-xs text-gray-500 mt-1">Hoàn thành câu đố điền đúng chính tả.</p>
+                    <div onclick="startMinigame(2)" class="cursor-pointer bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition hover:-translate-y-1">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-base md:text-lg mb-3">G2</div>
+                        <h4 class="font-bold text-gray-800 text-sm md:text-base">Trò chơi 2: Điền Từ Còn Thiếu</h4>
+                        <p class="text-xs text-gray-500 mt-1">Hoàn thành câu đố chính tả.</p>
                     </div>
 
-                    <div onclick="startMinigame(3)" class="cursor-pointer bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition hover:-translate-y-1">
-                        <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center font-bold text-lg mb-3">G3</div>
-                        <h4 class="font-bold text-gray-800">Trò chơi 3: Thử Thách Lizzert</h4>
-                        <p class="text-xs text-gray-500 mt-1">Kết hợp Ngữ pháp & Từ vựng (Có âm thanh riêng)</p>
+                    <div onclick="startMinigame(3)" class="cursor-pointer bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition hover:-translate-y-1">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center font-bold text-base md:text-lg mb-3">G3</div>
+                        <h4 class="font-bold text-gray-800 text-sm md:text-base">Trò chơi 3: Thử Thách Lizzert</h4>
+                        <p class="text-xs text-gray-500 mt-1">Kết hợp Ngữ pháp & Từ vựng</p>
                     </div>
                 </div>
 
-                <div id="gameArena" class="hidden bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                    <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
-                        <h3 id="gameTitle" class="text-xl font-bold text-gray-800">Tên Trò Chơi</h3>
-                        <button onclick="exitGame()" class="text-gray-400 hover:text-red-500 font-semibold text-sm flex items-center gap-1">
-                            <i data-lucide="x" class="w-5 h-5"></i> Thoát Trò Chơi
+                <div id="gameArena" class="hidden bg-white p-4 md:p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <div class="flex justify-between items-center mb-4 md:mb-6 border-b border-gray-100 pb-3">
+                        <h3 id="gameTitle" class="text-lg md:text-xl font-bold text-gray-800">Tên Trò Chơi</h3>
+                        <button onclick="exitGame()" class="text-gray-400 hover:text-red-500 font-semibold text-xs md:text-sm flex items-center gap-1">
+                            <i data-lucide="x" class="w-4 h-4 md:w-5 md:h-5"></i> Thoát
                         </button>
                     </div>
 
@@ -303,12 +303,12 @@
 
             <!-- TAB 5: NHIỆM VỤ -->
             <section id="tab-tasks" class="hidden space-y-6">
-                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4">
-                    <h3 class="text-xl font-bold text-gray-800">Danh Sách Nhiệm Vụ Học Tập</h3>
-                    <div class="flex gap-3">
-                        <input type="text" id="newTaskInput" placeholder="Nhập nhiệm vụ mới cần hoàn thành..." class="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-violet-400 text-sm">
-                        <button onclick="addTask()" class="bg-violet-600 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-violet-700 flex items-center gap-2 text-sm">
-                            <i data-lucide="plus" class="w-4 h-4"></i> Thêm Nhiệm Vụ
+                <div class="bg-white p-4 md:p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4">
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800">Danh Sách Nhiệm Vụ Học Tập</h3>
+                    <div class="flex gap-2 md:gap-3">
+                        <input type="text" id="newTaskInput" placeholder="Nhập nhiệm vụ mới..." class="flex-1 border border-gray-200 rounded-xl px-3 md:px-4 py-2 md:py-2.5 focus:outline-none focus:ring-2 focus:ring-violet-400 text-xs md:text-sm">
+                        <button onclick="addTask()" class="bg-violet-600 text-white font-semibold px-4 md:px-5 py-2 md:py-2.5 rounded-xl hover:bg-violet-700 flex items-center gap-1.5 text-xs md:text-sm">
+                            <i data-lucide="plus" class="w-4 h-4"></i> Thêm
                         </button>
                     </div>
                     <ul id="taskList" class="space-y-2 mt-4"></ul>
@@ -317,18 +317,18 @@
 
             <!-- TAB 6: TIẾN ĐỘ HỌC TẬP -->
             <section id="tab-progress" class="hidden space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+                    <div class="bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm">
                         <p class="text-xs text-gray-400 font-semibold">TỔNG ĐIỂM TỪ VỰNG</p>
-                        <h3 class="text-3xl font-bold text-violet-600 mt-2" id="statVocabScore">0</h3>
+                        <h3 class="text-2xl md:text-3xl font-bold text-violet-600 mt-2" id="statVocabScore">0</h3>
                     </div>
-                    <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
+                    <div class="bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm">
                         <p class="text-xs text-gray-400 font-semibold">ẢI GAME 3 LIZZERT CAO NHẤT</p>
-                        <h3 class="text-3xl font-bold text-emerald-600 mt-2" id="statGame3Stage">0 / 15</h3>
+                        <h3 class="text-2xl md:text-3xl font-bold text-emerald-600 mt-2" id="statGame3Stage">0 / 15</h3>
                     </div>
-                    <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
+                    <div class="bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm">
                         <p class="text-xs text-gray-400 font-semibold">NHIỆM VỤ HOÀN THÀNH</p>
-                        <h3 class="text-3xl font-bold text-amber-600 mt-2" id="statTasksDone">0</h3>
+                        <h3 class="text-2xl md:text-3xl font-bold text-amber-600 mt-2" id="statTasksDone">0</h3>
                     </div>
                 </div>
             </section>
@@ -338,7 +338,6 @@
 
     <!-- JS SCRIPT LOGIC -->
     <script>
-        // ==================== RICH VOCABULARY DATABASE (45 UNITS x 20 DISTINCT WORDS) ====================
         const rawDictionary = [
             {w: "abandon", t: "v", p: "/əˈbændən/", m: "từ bỏ"},
             {w: "ability", t: "n", p: "/əˈbɪləti/", m: "khả năng"},
@@ -417,7 +416,6 @@
             }
         }
 
-        // ==================== MINI GAMES DATA ====================
         const minigame1Words = rawDictionary.slice(0, 40).map(x => ({ en: x.w, vi: x.m }));
         const minigame2Questions = [];
         for(let i=1; i<=40; i++) {
@@ -442,7 +440,6 @@
             });
         }
 
-        // ==================== EXPANDED GRAMMAR EXERCISES (20 QUESTIONS) ====================
         const grammarTestData = [
             { id: 1, q: "She _____ to school every day.", options: ["go", "goes", "is going"], answer: "goes" },
             { id: 2, q: "They _____ a film at 8 PM last night.", options: ["were watching", "watched", "watch"], answer: "were watching" },
@@ -516,17 +513,16 @@
         toggleSidebar.addEventListener('click', () => {
             isCollapsed = !isCollapsed;
             if (isCollapsed) {
-                sidebar.classList.remove('w-64');
-                sidebar.classList.add('w-20');
+                sidebar.classList.remove('md:w-64');
+                sidebar.classList.add('md:w-20');
                 document.querySelectorAll('.nav-text').forEach(el => el.classList.add('hidden'));
             } else {
-                sidebar.classList.remove('w-20');
-                sidebar.classList.add('w-64');
+                sidebar.classList.remove('md:w-20');
+                sidebar.classList.add('md:w-64');
                 document.querySelectorAll('.nav-text').forEach(el => el.classList.remove('hidden'));
             }
         });
 
-        // FIXED STOPWATCH LOGIC (Prevents multi-interval speed acceleration bugs)
         let stopwatchTime = 0;
         let stopwatchInterval = null;
 
@@ -538,7 +534,7 @@
         }
 
         function startStopwatch() {
-            if (stopwatchInterval) return; // Prevent multiple overlapping intervals
+            if (stopwatchInterval) return;
             stopwatchInterval = setInterval(() => {
                 stopwatchTime++;
                 updateStopwatchDisplay();
@@ -578,11 +574,11 @@
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-violet-50/50 transition";
                 tr.innerHTML = `
-                    <td class="p-4 font-semibold text-gray-400">${index + 1}</td>
-                    <td class="p-4 font-bold text-violet-700">${w.word}</td>
-                    <td class="p-4"><span class="px-2 py-1 bg-gray-100 rounded text-xs text-gray-600 font-semibold">${w.type}</span></td>
-                    <td class="p-4 font-mono text-gray-500 text-xs">${w.pronounce}</td>
-                    <td class="p-4 text-gray-700 font-medium">${w.meaning}</td>
+                    <td class="p-3 md:p-4 font-semibold text-gray-400">${index + 1}</td>
+                    <td class="p-3 md:p-4 font-bold text-violet-700">${w.word}</td>
+                    <td class="p-3 md:p-4"><span class="px-2 py-1 bg-gray-100 rounded text-xs text-gray-600 font-semibold">${w.type}</span></td>
+                    <td class="p-3 md:p-4 font-mono text-gray-500 text-xs">${w.pronounce}</td>
+                    <td class="p-3 md:p-4 text-gray-700 font-medium">${w.meaning}</td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -593,10 +589,10 @@
         function showGrammarSection(secId) {
             ['tenses', 'structures', 'exercises'].forEach(id => {
                 document.getElementById(`grammar-${id}`).classList.add('hidden');
-                document.getElementById(`gbtn-${id}`).className = "px-4 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition";
+                document.getElementById(`gbtn-${id}`).className = "px-3 md:px-4 py-2 rounded-xl text-xs md:text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition";
             });
             document.getElementById(`grammar-${secId}`).classList.remove('hidden');
-            document.getElementById(`gbtn-${secId}`).className = "px-4 py-2 rounded-xl text-sm font-semibold bg-violet-600 text-white transition";
+            document.getElementById(`gbtn-${secId}`).className = "px-3 md:px-4 py-2 rounded-xl text-xs md:text-sm font-semibold bg-violet-600 text-white transition";
         }
 
         function initGrammarTab() {
@@ -615,7 +611,7 @@
                 const div = document.createElement('div');
                 div.className = "p-4 bg-gray-50 border border-gray-100 rounded-xl space-y-2";
                 div.innerHTML = `
-                    <h5 class="font-bold text-violet-700">${t.name}</h5>
+                    <h5 class="font-bold text-violet-700 text-sm md:text-base">${t.name}</h5>
                     <p class="text-xs text-gray-600"><b>Công thức:</b> ${t.formula}</p>
                     <p class="text-xs text-gray-500"><b>Cách dùng:</b> ${t.usage}</p>
                 `;
@@ -630,11 +626,11 @@
                 let optsHtml = item.options.map(opt => `
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="radio" name="gq_${item.id}" value="${opt}" class="text-violet-600 focus:ring-violet-500">
-                        <span>${opt}</span>
+                        <span class="text-xs md:text-sm">${opt}</span>
                     </label>
                 `).join('');
                 qDiv.innerHTML = `
-                    <p class="font-medium text-sm text-gray-800">Câu ${idx + 1}: ${item.q}</p>
+                    <p class="font-medium text-xs md:text-sm text-gray-800">Câu ${idx + 1}: ${item.q}</p>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm pt-1">${optsHtml}</div>
                 `;
                 quizContainer.appendChild(qDiv);
@@ -685,7 +681,7 @@
 
         function renderGame1(container) {
             let itemsHtml = minigame1Words.slice(0, 10).map((item, idx) => `
-                <div class="flex justify-between items-center p-3 bg-violet-50 rounded-xl border border-violet-100 text-sm">
+                <div class="flex justify-between items-center p-3 bg-violet-50 rounded-xl border border-violet-100 text-xs md:text-sm">
                     <span class="font-bold text-violet-700">${idx+1}. ${item.en}</span>
                     <span class="text-gray-600 font-medium">Nghĩa: ${item.vi}</span>
                 </div>
@@ -693,9 +689,9 @@
 
             container.innerHTML = `
                 <div class="space-y-4">
-                    <p class="text-sm text-gray-600">Hệ thống tổng hợp từ vựng cốt lõi. Dưới đây là các từ mẫu luyện tập:</p>
+                    <p class="text-xs md:text-sm text-gray-600">Hệ thống tổng hợp từ vựng cốt lõi:</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-96 overflow-y-auto">${itemsHtml}</div>
-                    <button onclick="alert('Chúc mừng bạn đã hoàn thành phiên luyện tập nối từ!')" class="bg-violet-600 text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-violet-700 shadow-md">Hoàn Thành Trò Chơi</button>
+                    <button onclick="alert('Chúc mừng bạn đã hoàn thành phiên luyện tập nối từ!')" class="bg-violet-600 text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-violet-700 shadow-md text-xs md:text-sm">Hoàn Thành</button>
                 </div>
             `;
         }
@@ -703,12 +699,12 @@
         function renderGame2(container) {
             container.innerHTML = `
                 <div class="space-y-4">
-                    <p class="text-sm text-gray-600">Bộ câu hỏi điền từ chính tả chuẩn xác:</p>
+                    <p class="text-xs md:text-sm text-gray-600">Bộ câu hỏi điền từ chính tả chuẩn xác:</p>
                     <div class="p-4 bg-gray-50 rounded-xl space-y-3 border">
-                        <p class="font-medium text-sm">${minigame2Questions[0].prompt}</p>
-                        <input type="text" id="g2Ans" class="border p-2.5 rounded-xl w-full text-sm focus:ring-2 focus:ring-violet-400" placeholder="Nhập từ còn thiếu...">
-                        <button onclick="checkGame2()" class="bg-violet-600 text-white px-6 py-2 rounded-xl text-sm font-semibold">Kiểm tra đáp án</button>
-                        <p id="g2Result" class="text-sm font-bold mt-2"></p>
+                        <p class="font-medium text-xs md:text-sm">${minigame2Questions[0].prompt}</p>
+                        <input type="text" id="g2Ans" class="border p-2.5 rounded-xl w-full text-xs md:text-sm focus:ring-2 focus:ring-violet-400" placeholder="Nhập từ...">
+                        <button onclick="checkGame2()" class="bg-violet-600 text-white px-6 py-2 rounded-xl text-xs md:text-sm font-semibold">Kiểm tra</button>
+                        <p id="g2Result" class="text-xs md:text-sm font-bold mt-2"></p>
                     </div>
                 </div>
             `;
@@ -718,11 +714,11 @@
             const val = document.getElementById('g2Ans').value.trim().toLowerCase();
             const res = document.getElementById('g2Result');
             if (val === "achievement") {
-                res.className = "text-sm font-bold mt-2 text-emerald-600";
+                res.className = "text-xs md:text-sm font-bold mt-2 text-emerald-600";
                 res.innerText = "Chính xác tuyệt vời!";
             } else {
-                res.className = "text-sm font-bold mt-2 text-amber-600";
-                res.innerText = "Chưa chính xác, hãy thử lại (Đáp án: achievement)!";
+                res.className = "text-xs md:text-sm font-bold mt-2 text-amber-600";
+                res.innerText = "Chưa chính xác (Đáp án: achievement)!";
             }
         }
 
@@ -738,13 +734,13 @@
             if(introAudio) { introAudio.play().catch(e => console.log("Audio autoplay restricted", e)); }
 
             container.innerHTML = `
-                <div class="space-y-4 text-center max-w-xl mx-auto py-6">
-                    <div class="p-5 bg-amber-50 rounded-2xl border border-amber-200 text-amber-900 text-sm leading-relaxed text-left space-y-2 shadow-inner">
-                        <p class="font-bold text-amber-800 text-base mb-1">📜 Cốt Truyện Hòn Đảo Lizzert:</p>
+                <div class="space-y-4 text-center max-w-xl mx-auto py-4">
+                    <div class="p-4 md:p-5 bg-amber-50 rounded-2xl border border-amber-200 text-amber-900 text-xs md:text-sm leading-relaxed text-left space-y-2 shadow-inner">
+                        <p class="font-bold text-amber-800 text-sm md:text-base mb-1">📜 Cốt Truyện Hòn Đảo Lizzert:</p>
                         <p>"Lizzert, a mythical island shrouded in complete mystery. For centuries, humans have longed to find this place, hunting for its legendary treasures and seeking to defeat Arthur, the fierce Dragon Lord who rules over lizard. To this day, the island remains a secret hidden from the world. But then, everything changed."[cite: 131]</p>
                     </div>
                     <div class="flex justify-center gap-4">
-                        <button onclick="startLizzertStage(1)" class="bg-violet-600 text-white font-bold px-8 py-3 rounded-2xl hover:bg-violet-700 shadow-lg shadow-violet-200 transition">Bắt Đầu Ải 1</button>
+                        <button onclick="startLizzertStage(1)" class="bg-violet-600 text-white font-bold px-6 md:px-8 py-2.5 md:py-3 rounded-2xl hover:bg-violet-700 shadow-lg text-xs md:text-sm transition">Bắt Đầu Ải 1</button>
                     </div>
                 </div>
             `;
@@ -760,28 +756,27 @@
 
             let questionsHtml = stageData.questions.map((item, qIdx) => {
                 let opts = item.options.map(opt => `
-                    <label class="flex items-center gap-2 cursor-pointer text-sm">
+                    <label class="flex items-center gap-2 cursor-pointer text-xs md:text-sm">
                         <input type="radio" name="g3_q_${qIdx}" value="${opt}" class="text-violet-600">
                         <span>${opt}</span>
                     </label>
                 `).join('');
                 return `
-                    <div class="p-4 bg-gray-50 rounded-xl space-y-2 border border-gray-100">
-                        <p class="font-semibold text-sm text-gray-800">${item.q}</p>
+                    <div class="p-3 md:p-4 bg-gray-50 rounded-xl space-y-2 border border-gray-100">
+                        <p class="font-semibold text-xs md:text-sm text-gray-800">${item.q}</p>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">${opts}</div>
                     </div>
                 `;
             }).join('');
 
             container.innerHTML = `
-                <div class="space-y-5">
-                    <div class="flex justify-between items-center bg-violet-50 px-4 py-2 rounded-xl border border-violet-100">
-                        <span class="font-bold text-violet-700 text-sm">⚔️ ${stageData.title}</span>
-                        <span class="text-xs text-violet-500 font-semibold">Kết hợp Ngữ Pháp & Từ Vựng</span>
+                <div class="space-y-4 md:space-y-5">
+                    <div class="flex justify-between items-center bg-violet-50 px-3 md:px-4 py-2 rounded-xl border border-violet-100">
+                        <span class="font-bold text-violet-700 text-xs md:text-sm">⚔️ ${stageData.title}</span>
                     </div>
-                    <div class="space-y-4">${questionsHtml}</div>
-                    <button onclick="submitLizzertStage(${stageNum})" class="bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-xl hover:bg-emerald-700 shadow-md">Nộp Kết Quả Ải ${stageNum}</button>
-                    <div id="g3StageResult" class="hidden p-4 rounded-xl font-bold"></div>
+                    <div class="space-y-3">${questionsHtml}</div>
+                    <button onclick="submitLizzertStage(${stageNum})" class="bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-xl hover:bg-emerald-700 shadow-md text-xs md:text-sm">Nộp Kết Quả</button>
+                    <div id="g3StageResult" class="hidden p-4 rounded-xl font-bold text-xs md:text-sm"></div>
                 </div>
             `;
         }
@@ -798,8 +793,8 @@
             res.classList.remove('hidden');
 
             if (correctCount >= 4) {
-                res.className = "p-4 bg-emerald-100 text-emerald-800 rounded-xl font-bold text-sm";
-                res.innerText = `🎉 Xuất sắc! Bạn vượt qua Ải ${stageNum} (${correctCount}/5 câu đúng)!`;
+                res.className = "p-4 bg-emerald-100 text-emerald-800 rounded-xl font-bold text-xs md:text-sm";
+                res.innerText = `🎉 Xuất sắc! Vượt qua Ải ${stageNum} (${correctCount}/5 câu đúng)!`;
                 
                 if (stageNum > appData.game3MaxStage) {
                     appData.game3MaxStage = stageNum;
@@ -816,8 +811,8 @@
                     setTimeout(() => startLizzertStage(stageNum + 1), 2000);
                 }
             } else {
-                res.className = "p-4 bg-amber-100 text-amber-800 rounded-xl font-bold text-sm";
-                res.innerText = `⚠️ Bạn đạt ${correctCount}/5 câu. Cần ít nhất 4 câu đúng để mở khóa ải tiếp theo!`;
+                res.className = "p-4 bg-amber-100 text-amber-800 rounded-xl font-bold text-xs md:text-sm";
+                res.innerText = `⚠️ Đạt ${correctCount}/5 câu. Cần ít nhất 4 câu đúng!`;
             }
         }
 
@@ -831,7 +826,7 @@
                 li.innerHTML = `
                     <div class="flex items-center gap-3">
                         <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTask(${t.id})" class="w-4 h-4 text-violet-600 rounded border-gray-300 focus:ring-violet-500">
-                        <span class="${t.done ? 'line-through text-gray-400' : 'text-gray-700 font-medium'} text-sm">${t.text}</span>
+                        <span class="${t.done ? 'line-through text-gray-400' : 'text-gray-700 font-medium'} text-xs md:text-sm">${t.text}</span>
                     </div>
                     <button onclick="deleteTask(${t.id})" class="text-gray-400 hover:text-red-500"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                 `;
