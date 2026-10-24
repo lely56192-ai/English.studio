@@ -47,7 +47,7 @@
     <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 transform -translate-x-full md:translate-x-0 md:static transition-all duration-300 w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 shadow-2xl md:shadow-none">
         <div>
             <!-- Header Logo -->
-            <div class="p-5 flex items-center justify-between border-b border-gray-100">
+            <div class="p-4 md:p-5 flex items-center justify-between border-b border-gray-100">
                 <div class="flex items-center gap-3 overflow-hidden">
                     <div class="bg-violet-600 text-white p-2 rounded-xl shadow-lg shadow-violet-200 flex-shrink-0">
                         <i data-lucide="graduation-cap" class="w-6 h-6"></i>
@@ -63,7 +63,7 @@
             </div>
 
             <!-- Navigation Links -->
-            <nav class="p-4 space-y-1">
+            <nav class="p-3 md:p-4 space-y-1">
                 <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-item active-nav w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
                     <i data-lucide="layout-dashboard" class="w-5 h-5 flex-shrink-0"></i>
                     <span class="nav-text whitespace-nowrap">Trang chủ</span>
@@ -107,19 +107,19 @@
     <main class="flex-1 flex flex-col overflow-hidden bg-gray-50 min-w-0">
 
         <!-- TOP BAR & FIXED STOPWATCH -->
-        <header class="bg-white border-b border-gray-200 px-4 md:px-6 py-3 flex items-center justify-between shadow-sm flex-shrink-0">
-            <div class="flex items-center gap-3 md:gap-6">
+        <header class="bg-white border-b border-gray-200 px-3 md:px-6 py-3 flex items-center justify-between shadow-sm flex-shrink-0">
+            <div class="flex items-center gap-2 md:gap-6 min-w-0">
                 <!-- Mobile Menu Toggle Button -->
-                <button onclick="toggleMobileSidebar()" class="md:hidden text-gray-600 hover:text-violet-600 p-1 focus:outline-none">
+                <button onclick="toggleMobileSidebar()" class="md:hidden text-gray-600 hover:text-violet-600 p-1 focus:outline-none flex-shrink-0">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
 
-                <div>
-                    <h2 class="text-sm md:text-lg font-bold text-gray-800">Xin chào, Ethane! 👋</h2>
-                    <p class="text-[11px] md:text-xs text-gray-500">Sẵn sàng học tập tại English.studio?</p>
+                <div class="min-w-0 truncate">
+                    <h2 class="text-xs sm:text-sm md:text-lg font-bold text-gray-800 truncate">Xin chào, Ethane! 👋</h2>
+                    <p class="text-[10px] md:text-xs text-gray-500 truncate">Sẵn sàng học tập tại English.studio?</p>
                 </div>
 
-                <div class="hidden sm:flex items-center gap-2 bg-violet-50 border border-violet-100 px-3 py-1 rounded-full shadow-inner">
+                <div class="hidden sm:flex items-center gap-2 bg-violet-50 border border-violet-100 px-3 py-1 rounded-full shadow-inner flex-shrink-0">
                     <i data-lucide="timer" class="w-3.5 h-3.5 text-violet-600"></i>
                     <span id="stopwatchDisplay" class="font-mono font-bold text-violet-700 text-xs md:text-sm">00:00:00</span>
                     <div class="flex items-center gap-0.5 border-l border-violet-200 pl-1.5">
@@ -130,7 +130,7 @@
                 </div>
             </div>
 
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 flex-shrink-0">
                 <div class="flex items-center gap-1.5 bg-amber-50 text-amber-600 px-2.5 py-1 rounded-lg text-xs font-medium">
                     <i data-lucide="flame" class="w-3.5 h-3.5 fill-amber-500"></i>
                     <span id="streakCount">5</span> Ngày
@@ -139,7 +139,7 @@
         </header>
 
         <!-- CONTAINER FOR DYNAMIC TAB CONTENTS -->
-        <div class="flex-1 overflow-y-auto p-4 md:p-6" id="mainContent">
+        <div class="flex-1 overflow-y-auto p-3 md:p-6" id="mainContent">
 
             <!-- TAB 1: DASHBOARD / TRANG CHỦ -->
             <section id="tab-dashboard" class="space-y-6">
@@ -207,19 +207,19 @@
                         <h3 class="text-lg md:text-xl font-bold text-gray-800">Kho Từ Vựng (45 Units Thực Tế)</h3>
                         <p class="text-xs text-gray-500">Danh sách từ vựng chi tiết qua các bài học</p>
                     </div>
-                    <select id="vocabUnitSelect" onchange="loadVocabUnit()" class="bg-violet-50 border border-violet-200 text-violet-700 font-semibold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-400 text-sm">
+                    <select id="vocabUnitSelect" onchange="loadVocabUnit()" class="bg-violet-50 border border-violet-200 text-violet-700 font-semibold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-400 text-sm w-full sm:w-auto">
                     </select>
                 </div>
 
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
+                    <div class="overflow-x-auto w-full">
+                        <table class="w-full text-left border-collapse min-w-[500px]">
                             <thead>
                                 <tr class="bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase">
-                                    <th class="p-3 md:p-4">STT</th>
+                                    <th class="p-3 md:p-4 w-12">STT</th>
                                     <th class="p-3 md:p-4">Từ vựng (Word)</th>
-                                    <th class="p-3 md:p-4">Loại từ</th>
-                                    <th class="p-3 md:p-4">Phiên âm</th>
+                                    <th class="p-3 md:p-4 w-20">Loại từ</th>
+                                    <th class="p-3 md:p-4 w-28">Phiên âm</th>
                                     <th class="p-3 md:p-4">Nghĩa Tiếng Việt</th>
                                 </tr>
                             </thead>
@@ -299,8 +299,8 @@
 
                 <div id="gameArena" class="hidden bg-white p-4 md:p-6 rounded-2xl border border-gray-100 shadow-sm">
                     <div class="flex justify-between items-center mb-4 md:mb-6 border-b border-gray-100 pb-3">
-                        <h3 id="gameTitle" class="text-lg md:text-xl font-bold text-gray-800">Tên Trò Chơi</h3>
-                        <button onclick="exitGame()" class="text-gray-400 hover:text-red-500 font-semibold text-xs md:text-sm flex items-center gap-1">
+                        <h3 id="gameTitle" class="text-base md:text-xl font-bold text-gray-800 truncate pr-2">Tên Trò Chơi</h3>
+                        <button onclick="exitGame()" class="text-gray-400 hover:text-red-500 font-semibold text-xs md:text-sm flex items-center gap-1 flex-shrink-0">
                             <i data-lucide="x" class="w-4 h-4 md:w-5 md:h-5"></i> Thoát
                         </button>
                     </div>
@@ -313,9 +313,9 @@
             <section id="tab-tasks" class="hidden space-y-6">
                 <div class="bg-white p-4 md:p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4">
                     <h3 class="text-lg md:text-xl font-bold text-gray-800">Danh Sách Nhiệm Vụ Học Tập</h3>
-                    <div class="flex gap-2 md:gap-3">
-                        <input type="text" id="newTaskInput" placeholder="Nhập nhiệm vụ mới..." class="flex-1 border border-gray-200 rounded-xl px-3 md:px-4 py-2 md:py-2.5 focus:outline-none focus:ring-2 focus:ring-violet-400 text-xs md:text-sm">
-                        <button onclick="addTask()" class="bg-violet-600 text-white font-semibold px-4 md:px-5 py-2 md:py-2.5 rounded-xl hover:bg-violet-700 flex items-center gap-1.5 text-xs md:text-sm">
+                    <div class="flex flex-col sm:flex-row gap-2 md:gap-3">
+                        <input type="text" id="newTaskInput" placeholder="Nhập nhiệm vụ mới..." class="flex-1 border border-gray-200 rounded-xl px-3 md:px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-violet-400 text-xs md:text-sm">
+                        <button onclick="addTask()" class="bg-violet-600 text-white font-semibold px-4 md:px-5 py-2.5 rounded-xl hover:bg-violet-700 flex items-center justify-center gap-1.5 text-xs md:text-sm flex-shrink-0">
                             <i data-lucide="plus" class="w-4 h-4"></i> Thêm
                         </button>
                     </div>
@@ -404,7 +404,6 @@
             }
         }
 
-        // Mini Game 1 Data: 5 pairs for interactive matching
         const minigame1Pool = [
             { en: "abandon", vi: "từ bỏ" },
             { en: "ability", vi: "khả năng" },
@@ -413,7 +412,6 @@
             { en: "accept", vi: "chấp nhận" }
         ];
 
-        // Mini Game 2 Data: Multiple fill-in-the-blank questions
         const minigame2Questions = [
             { prompt: "1. She always works hard to achieve her _____ (mục tiêu).", answer: "achievement" },
             { prompt: "2. We need to find an _____ (sự thay thế) for this plan.", answer: "alternative" },
@@ -694,7 +692,6 @@
             exitGame3Audio();
         }
 
-        // REBUILT GAME 1: Interactive Matching Game
         function renderGame1(container) {
             let shuffledVi = [...minigame1Pool].sort(() => Math.random() - 0.5);
 
@@ -708,7 +705,7 @@
                 <div class="flex items-center gap-2 p-2 bg-gray-50 rounded-xl border text-sm">
                     <span class="font-semibold text-gray-500">${String.fromCharCode(65 + idx)}.</span>
                     <select id="match_${idx}" class="flex-1 bg-white border rounded-lg p-1.5 text-sm focus:ring-2 focus:ring-violet-400">
-                        <option value="">-- Chọn từ tiếng Anh tương ứng --</option>
+                        <option value="">-- Chọn từ tiếng Anh --</option>
                         ${minigame1Pool.map(p => `<option value="${p.en}">${p.vi}</option>`).join('')}
                     </select>
                 </div>
@@ -731,7 +728,6 @@
             let correct = 0;
             minigame1Pool.forEach((item, idx) => {
                 const sel = document.getElementById(`match_${idx}`).value;
-                // Kiểm tra logic match đơn giản hoặc mapping
                 if (sel === item.en) correct++;
             });
             const res = document.getElementById('g1Result');
@@ -745,7 +741,6 @@
             }
         }
 
-        // REBUILT GAME 2: Multiple Questions Fill-in-the-blank
         function renderGame2(container) {
             let questionsHtml = minigame2Questions.map((q, idx) => `
                 <div class="p-3 bg-gray-50 rounded-xl space-y-2 border">
@@ -875,13 +870,13 @@
 
             appData.tasks.forEach((t) => {
                 const li = document.createElement('li');
-                li.className = "flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-100";
+                li.className = "flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-100 gap-2";
                 li.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTask(${t.id})" class="w-4 h-4 text-violet-600 rounded border-gray-300 focus:ring-violet-500">
-                        <span class="${t.done ? 'line-through text-gray-400' : 'text-gray-700 font-medium'} text-xs md:text-sm">${t.text}</span>
+                    <div class="flex items-center gap-3 min-w-0">
+                        <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTask(${t.id})" class="w-4 h-4 text-violet-600 rounded border-gray-300 focus:ring-violet-500 flex-shrink-0">
+                        <span class="${t.done ? 'line-through text-gray-400' : 'text-gray-700 font-medium'} text-xs md:text-sm truncate">${t.text}</span>
                     </div>
-                    <button onclick="deleteTask(${t.id})" class="text-gray-400 hover:text-red-500"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    <button onclick="deleteTask(${t.id})" class="text-gray-400 hover:text-red-500 flex-shrink-0"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                 `;
                 list.appendChild(li);
             });
