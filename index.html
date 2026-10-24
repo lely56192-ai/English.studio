@@ -97,7 +97,7 @@
                 US
             </div>
             <div class="nav-text overflow-hidden transition-opacity duration-200">
-                <p class="text-sm font-semibold text-gray-800 truncate">Học viên</p>
+                <p class="text-sm font-semibold text-gray-800 truncate">Học viên Ethane</p>
                 <p class="text-xs text-gray-400 truncate">Hành trình Lizzert</p>
             </div>
         </div>
@@ -115,7 +115,7 @@
                 </button>
 
                 <div class="min-w-0 truncate">
-                    <h2 class="text-xs sm:text-sm md:text-lg font-bold text-gray-800 truncate">Xin chào, bạn! 👋</h2>
+                    <h2 class="text-xs sm:text-sm md:text-lg font-bold text-gray-800 truncate">Xin chào, Ethane! 👋</h2>
                     <p class="text-[10px] md:text-xs text-gray-500 truncate">Sẵn sàng học tập tại English.studio?</p>
                 </div>
 
@@ -230,7 +230,7 @@
                 </div>
             </section>
 
-            <!-- TAB 3: NGỮ PHÁP  -->
+            <!-- TAB 3: NGỮ PHÁP & BÀI TẬP -->
             <section id="tab-grammar" class="hidden space-y-6">
                 <div class="bg-white p-4 md:p-6 rounded-2xl border border-gray-100 shadow-sm">
                     <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2">Hệ Thống Ngữ Pháp & Bài Tập Thực Hành</h3>
@@ -678,12 +678,7 @@
         }
 
         function startMinigame(gameId) {
-            const arena = document.getElementById('gameArena');
-            arena.classList.remove('hidden');
-            
-            // Tự động cuộn mượt mà thẳng xuống khu vực game
-            arena.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
+            document.getElementById('gameArena').classList.remove('hidden');
             const content = document.getElementById('gameContent');
             const title = document.getElementById('gameTitle');
 
