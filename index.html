@@ -47,7 +47,7 @@
     <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 transform -translate-x-full md:translate-x-0 md:static transition-all duration-300 w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 shadow-2xl md:shadow-none">
         <div>
             <!-- Header Logo -->
-            <div class="p-4 md:p-5 flex items-center justify-between border-b border-gray-100">
+            <div id="sidebarHeader" class="p-4 md:p-5 flex items-center justify-between border-b border-gray-100">
                 <div class="flex items-center gap-3 overflow-hidden">
                     <div class="bg-violet-600 text-white p-2 rounded-xl shadow-lg shadow-violet-200 flex-shrink-0">
                         <i data-lucide="graduation-cap" class="w-6 h-6"></i>
@@ -57,8 +57,8 @@
                         <p class="text-xs text-gray-400 whitespace-nowrap">English Master</p>
                     </div>
                 </div>
-                <button id="toggleSidebar" class="hidden md:block text-gray-400 hover:text-gray-600 focus:outline-none flex-shrink-0">
-                    <i data-lucide="chevron-left" id="sidebarIcon" class="w-5 h-5 transition-transform duration-300"></i>
+                <button id="toggleSidebar" class="hidden md:block text-gray-400 hover:text-gray-600 focus:outline-none flex-shrink-0 transition-transform duration-300">
+                    <i data-lucide="chevron-left" id="sidebarIcon" class="w-5 h-5"></i>
                 </button>
             </div>
 
@@ -519,6 +519,7 @@
 
         const sidebar = document.getElementById('sidebar');
         const toggleSidebar = document.getElementById('toggleSidebar');
+        const sidebarHeader = document.getElementById('sidebarHeader');
         let isCollapsed = false;
 
         if (toggleSidebar) {
@@ -527,10 +528,16 @@
                 if (isCollapsed) {
                     sidebar.classList.remove('md:w-64');
                     sidebar.classList.add('md:w-20');
+                    sidebarHeader.classList.remove('justify-between');
+                    sidebarHeader.classList.add('justify-center');
+                    toggleSidebar.style.display = 'none';
                     document.querySelectorAll('.nav-text, .logo-text').forEach(el => el.classList.add('hidden'));
                 } else {
                     sidebar.classList.remove('md:w-20');
                     sidebar.classList.add('md:w-64');
+                    sidebarHeader.classList.remove('justify-center');
+                    sidebarHeader.classList.add('justify-between');
+                    toggleSidebar.style.display = 'block';
                     document.querySelectorAll('.nav-text, .logo-text').forEach(el => el.classList.remove('hidden'));
                 }
             });
