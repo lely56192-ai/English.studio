@@ -43,60 +43,60 @@
     <!-- MOBILE BACKDROP OVERLAY -->
     <div id="mobileBackdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/40 z-40 hidden md:hidden"></div>
 
-    <!-- SIDEBAR / NAVIGATION (Responsive Drawer on Mobile) -->
-    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 transform -translate-x-full md:translate-x-0 md:static transition-transform duration-300 w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 shadow-2xl md:shadow-none">
+    <!-- SIDEBAR / NAVIGATION -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 transform -translate-x-full md:translate-x-0 md:static transition-all duration-300 w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 shadow-2xl md:shadow-none">
         <div>
             <!-- Header Logo -->
             <div class="p-5 flex items-center justify-between border-b border-gray-100">
-                <div class="flex items-center gap-3">
-                    <div class="bg-violet-600 text-white p-2 rounded-xl shadow-lg shadow-violet-200">
+                <div class="flex items-center gap-3 overflow-hidden">
+                    <div class="bg-violet-600 text-white p-2 rounded-xl shadow-lg shadow-violet-200 flex-shrink-0">
                         <i data-lucide="graduation-cap" class="w-6 h-6"></i>
                     </div>
-                    <div>
-                        <h1 class="font-bold text-gray-800 text-lg leading-tight">English.studio</h1>
-                        <p class="text-xs text-gray-400">English Master</p>
+                    <div class="overflow-hidden logo-text transition-opacity duration-200">
+                        <h1 class="font-bold text-gray-800 text-base leading-tight whitespace-nowrap">English.studio</h1>
+                        <p class="text-xs text-gray-400 whitespace-nowrap">English Master</p>
                     </div>
                 </div>
-                <button id="toggleSidebar" class="hidden md:block text-gray-400 hover:text-gray-600 focus:outline-none">
-                    <i data-lucide="chevron-left" id="sidebarIcon" class="w-5 h-5"></i>
+                <button id="toggleSidebar" class="hidden md:block text-gray-400 hover:text-gray-600 focus:outline-none flex-shrink-0">
+                    <i data-lucide="chevron-left" id="sidebarIcon" class="w-5 h-5 transition-transform duration-300"></i>
                 </button>
             </div>
 
             <!-- Navigation Links -->
             <nav class="p-4 space-y-1">
                 <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-item active-nav w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
-                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
-                    <span class="nav-text">Trang chủ</span>
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 flex-shrink-0"></i>
+                    <span class="nav-text whitespace-nowrap">Trang chủ</span>
                 </button>
                 <button onclick="switchTab('vocab')" id="nav-vocab" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
-                    <i data-lucide="book-open" class="w-5 h-5"></i>
-                    <span class="nav-text">Kho từ vựng</span>
+                    <i data-lucide="book-open" class="w-5 h-5 flex-shrink-0"></i>
+                    <span class="nav-text whitespace-nowrap">Kho từ vựng</span>
                 </button>
                 <button onclick="switchTab('grammar')" id="nav-grammar" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
-                    <i data-lucide="file-text" class="w-5 h-5"></i>
-                    <span class="nav-text">Ngữ pháp & Bài tập</span>
+                    <i data-lucide="file-text" class="w-5 h-5 flex-shrink-0"></i>
+                    <span class="nav-text whitespace-nowrap">Ngữ pháp & Bài tập</span>
                 </button>
                 <button onclick="switchTab('minigames')" id="nav-minigames" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
-                    <i data-lucide="gamepad-2" class="w-5 h-5"></i>
-                    <span class="nav-text">Mini Game</span>
+                    <i data-lucide="gamepad-2" class="w-5 h-5 flex-shrink-0"></i>
+                    <span class="nav-text whitespace-nowrap">Mini Game</span>
                 </button>
                 <button onclick="switchTab('tasks')" id="nav-tasks" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
-                    <i data-lucide="check-square" class="w-5 h-5"></i>
-                    <span class="nav-text">Nhiệm vụ</span>
+                    <i data-lucide="check-square" class="w-5 h-5 flex-shrink-0"></i>
+                    <span class="nav-text whitespace-nowrap">Nhiệm vụ</span>
                 </button>
                 <button onclick="switchTab('progress')" id="nav-progress" class="nav-item w-full flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl font-medium transition hover:bg-violet-50 hover:text-violet-600">
-                    <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
-                    <span class="nav-text">Tiến độ học tập</span>
+                    <i data-lucide="bar-chart-3" class="w-5 h-5 flex-shrink-0"></i>
+                    <span class="nav-text whitespace-nowrap">Tiến độ học tập</span>
                 </button>
             </nav>
         </div>
 
         <!-- Footer User Profile -->
-        <div class="p-4 border-t border-gray-100 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-violet-100 text-violet-600 font-bold flex items-center justify-center">
+        <div class="p-4 border-t border-gray-100 flex items-center gap-3 overflow-hidden">
+            <div class="w-10 h-10 rounded-full bg-violet-100 text-violet-600 font-bold flex items-center justify-center flex-shrink-0">
                 US
             </div>
-            <div class="nav-text overflow-hidden">
+            <div class="nav-text overflow-hidden transition-opacity duration-200">
                 <p class="text-sm font-semibold text-gray-800 truncate">Học viên Ethane</p>
                 <p class="text-xs text-gray-400 truncate">Hành trình Lizzert</p>
             </div>
@@ -104,10 +104,10 @@
     </aside>
 
     <!-- MAIN CONTENT AREA -->
-    <main class="flex-1 flex flex-col overflow-hidden bg-gray-50">
+    <main class="flex-1 flex flex-col overflow-hidden bg-gray-50 min-w-0">
 
         <!-- TOP BAR & FIXED STOPWATCH -->
-        <header class="bg-white border-b border-gray-200 px-4 md:px-6 py-3 flex items-center justify-between shadow-sm">
+        <header class="bg-white border-b border-gray-200 px-4 md:px-6 py-3 flex items-center justify-between shadow-sm flex-shrink-0">
             <div class="flex items-center gap-3 md:gap-6">
                 <!-- Mobile Menu Toggle Button -->
                 <button onclick="toggleMobileSidebar()" class="md:hidden text-gray-600 hover:text-violet-600 p-1 focus:outline-none">
@@ -287,7 +287,7 @@
                     <div onclick="startMinigame(2)" class="cursor-pointer bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition hover:-translate-y-1">
                         <div class="w-10 h-10 md:w-12 md:h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-base md:text-lg mb-3">G2</div>
                         <h4 class="font-bold text-gray-800 text-sm md:text-base">Trò chơi 2: Điền Từ Còn Thiếu</h4>
-                        <p class="text-xs text-gray-500 mt-1">Hoàn thành câu đố chính tả.</p>
+                        <p class="text-xs text-gray-500 mt-1">Hoàn thành các câu đố chính tả.</p>
                     </div>
 
                     <div onclick="startMinigame(3)" class="cursor-pointer bg-white p-4 md:p-5 rounded-2xl border border-gray-100 shadow-sm hover:border-violet-300 transition hover:-translate-y-1">
@@ -386,27 +386,7 @@
             {w: "affect", t: "v", p: "/əˈfekt/", m: "ảnh hưởng"},
             {w: "afford", t: "v", p: "/əˈfɔːd/", m: "có đủ khả năng"},
             {w: "afraid", t: "adj", p: "/əˈfreɪd/", m: "sợ hãi"},
-            {w: "agency", t: "n", p: "/ˈeɪdʒənsi/", m: "đại lý"},
-            {w: "agenda", t: "n", p: "/əˈdʒendə/", m: "chương trình nghị sự"},
-            {w: "agent", t: "n", p: "/ˈeɪdʒənt/", m: "đại lý"},
-            {w: "aggressive", t: "adj", p: "/əˈɡresɪv/", m: "hung hăng"},
-            {w: "agree", t: "v", p: "/əˈɡriː/", m: "đồng ý"},
-            {w: "agriculture", t: "n", p: "/ˈæɡrɪkʌltʃər/", m: "nông nghiệp"},
-            {w: "ahead", t: "adv", p: "/əˈhed/", m: "phía trước"},
-            {w: "aid", t: "n", p: "/eɪd/", m: "sự viện trợ"},
-            {w: "aim", t: "v", p: "/eɪm/", m: "nhắm mục tiêu"},
-            {w: "air", t: "n", p: "/er/", m: "không khí"},
-            {w: "aircraft", t: "n", p: "/ˈerkræft/", m: "máy bay"},
-            {w: "alarm", t: "n", p: "/əˈlɑːrm/", m: "báo động"},
-            {w: "album", t: "n", p: "/ˈælbəm/", m: "album"},
-            {w: "alcohol", t: "n", p: "/ˈælkəhɔːl/", m: "rượu bia"},
-            {w: "alive", t: "adj", p: "/əˈlaɪv/", m: "còn sống"},
-            {w: "allow", t: "v", p: "/əˈlaʊ/", m: "cho phép"},
-            {w: "almost", t: "adv", p: "/ˈɔːlmoʊst/", m: "hầu như"},
-            {w: "alone", t: "adj", p: "/əˈloʊn/", m: "cô đơn"},
-            {w: "along", t: "prep", p: "/əˈlɔːŋ/", m: "dọc theo"},
-            {w: "already", t: "adv", p: "/ɔːlˈredi/", m: "đã rồi"},
-            {w: "alternative", t: "n", p: "/ɔːlˈtɜːrnətɪv/", m: "sự thay thế"}
+            {w: "agency", t: "n", p: "/ˈeɪdʒənsi/", m: "đại lý"}
         ];
 
         const vocabDatabase = {};
@@ -424,14 +404,23 @@
             }
         }
 
-        const minigame1Words = rawDictionary.slice(0, 40).map(x => ({ en: x.w, vi: x.m }));
-        const minigame2Questions = [];
-        for(let i=1; i<=40; i++) {
-            minigame2Questions.push({
-                prompt: `Câu ${i}: Điền từ thích hợp hoàn thành câu: "She always works hard to achieve her _____ (mục tiêu/thành tựu ${i})."`,
-                answer: "achievement"
-            });
-        }
+        // Mini Game 1 Data: 5 pairs for interactive matching
+        const minigame1Pool = [
+            { en: "abandon", vi: "từ bỏ" },
+            { en: "ability", vi: "khả năng" },
+            { en: "absolute", vi: "tuyệt đối" },
+            { en: "absorb", vi: "hấp thụ" },
+            { en: "accept", vi: "chấp nhận" }
+        ];
+
+        // Mini Game 2 Data: Multiple fill-in-the-blank questions
+        const minigame2Questions = [
+            { prompt: "1. She always works hard to achieve her _____ (mục tiêu).", answer: "achievement" },
+            { prompt: "2. We need to find an _____ (sự thay thế) for this plan.", answer: "alternative" },
+            { prompt: "3. He made a sudden _____ (hành động) to save the cat.", answer: "action" },
+            { prompt: "4. It is an _____ (thực tế) situation we are facing.", answer: "actual" },
+            { prompt: "5. She gave me useful _____ (lời khuyên) for my study.", answer: "advice" }
+        ];
 
         const game3StagesData = [];
         for(let s=1; s<=15; s++) {
@@ -520,7 +509,6 @@
             const navBtn = document.getElementById(`nav-${tabId}`);
             if (navBtn) navBtn.classList.add('active-nav');
 
-            // Auto close mobile sidebar after navigation
             if (window.innerWidth < 768) {
                 const sidebar = document.getElementById('sidebar');
                 const backdrop = document.getElementById('mobileBackdrop');
@@ -541,11 +529,11 @@
                 if (isCollapsed) {
                     sidebar.classList.remove('md:w-64');
                     sidebar.classList.add('md:w-20');
-                    document.querySelectorAll('.nav-text').forEach(el => el.classList.add('hidden'));
+                    document.querySelectorAll('.nav-text, .logo-text').forEach(el => el.classList.add('hidden'));
                 } else {
                     sidebar.classList.remove('md:w-20');
                     sidebar.classList.add('md:w-64');
-                    document.querySelectorAll('.nav-text').forEach(el => el.classList.remove('hidden'));
+                    document.querySelectorAll('.nav-text, .logo-text').forEach(el => el.classList.remove('hidden'));
                 }
             });
         }
@@ -690,10 +678,10 @@
             const title = document.getElementById('gameTitle');
 
             if (gameId === 1) {
-                title.innerText = "Trò chơi 1: Nối Từ Anh - Việt (40 từ vựng)";
+                title.innerText = "Trò chơi 1: Ghép Cặp Từ Vựng Anh - Việt";
                 renderGame1(content);
             } else if (gameId === 2) {
-                title.innerText = "Trò chơi 2: Điền Từ Còn Thiếu (40 câu hỏi)";
+                title.innerText = "Trò chơi 2: Điền Từ Còn Thiếu (Nhiều câu)";
                 renderGame2(content);
             } else if (gameId === 3) {
                 title.innerText = "Trò chơi 3: Thử Thách Hòn Đảo Lizzert (15 Ải)";
@@ -706,47 +694,85 @@
             exitGame3Audio();
         }
 
+        // REBUILT GAME 1: Interactive Matching Game
         function renderGame1(container) {
-            let itemsHtml = minigame1Words.slice(0, 10).map((item, idx) => `
-                <div class="flex justify-between items-center p-3 bg-violet-50 rounded-xl border border-violet-100 text-xs md:text-sm">
-                    <span class="font-bold text-violet-700">${idx+1}. ${item.en}</span>
-                    <span class="text-gray-600 font-medium">Nghĩa: ${item.vi}</span>
+            let shuffledVi = [...minigame1Pool].sort(() => Math.random() - 0.5);
+
+            let enHtml = minigame1Pool.map((item, idx) => `
+                <div class="p-3 bg-violet-50 rounded-xl border border-violet-100 font-bold text-violet-700 text-sm">
+                    ${idx + 1}. ${item.en}
+                </div>
+            `).join('');
+
+            let viHtml = shuffledVi.map((item, idx) => `
+                <div class="flex items-center gap-2 p-2 bg-gray-50 rounded-xl border text-sm">
+                    <span class="font-semibold text-gray-500">${String.fromCharCode(65 + idx)}.</span>
+                    <select id="match_${idx}" class="flex-1 bg-white border rounded-lg p-1.5 text-sm focus:ring-2 focus:ring-violet-400">
+                        <option value="">-- Chọn từ tiếng Anh tương ứng --</option>
+                        ${minigame1Pool.map(p => `<option value="${p.en}">${p.vi}</option>`).join('')}
+                    </select>
                 </div>
             `).join('');
 
             container.innerHTML = `
                 <div class="space-y-4">
-                    <p class="text-xs md:text-sm text-gray-600">Hệ thống tổng hợp từ vựng cốt lõi:</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-96 overflow-y-auto">${itemsHtml}</div>
-                    <button onclick="alert('Chúc mừng bạn đã hoàn thành phiên luyện tập nối từ!')" class="bg-violet-600 text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-violet-700 shadow-md text-xs md:text-sm">Hoàn Thành</button>
+                    <p class="text-xs md:text-sm text-gray-600">Hãy chọn từ tiếng Anh tương ứng với mỗi nghĩa tiếng Việt bên dưới:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-2"><h5 class="font-bold text-xs text-gray-400 uppercase">Danh sách từ Anh</h5>${enHtml}</div>
+                        <div class="space-y-2"><h5 class="font-bold text-xs text-gray-400 uppercase">Chọn nghĩa Việt tương ứng</h5>${viHtml}</div>
+                    </div>
+                    <button onclick="checkGame1()" class="bg-violet-600 text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-violet-700 shadow-md text-xs md:text-sm">Kiểm Tra Đáp Án</button>
+                    <p id="g1Result" class="text-sm font-bold mt-2"></p>
                 </div>
             `;
         }
 
+        function checkGame1() {
+            let correct = 0;
+            minigame1Pool.forEach((item, idx) => {
+                const sel = document.getElementById(`match_${idx}`).value;
+                // Kiểm tra logic match đơn giản hoặc mapping
+                if (sel === item.en) correct++;
+            });
+            const res = document.getElementById('g1Result');
+            res.classList.remove('hidden');
+            if (correct === minigame1Pool.length) {
+                res.className = "text-sm font-bold mt-2 text-emerald-600";
+                res.innerText = `🎉 Chính xác tuyệt vời! Bạn đã nối đúng ${correct}/${minigame1Pool.length} cặp từ.`;
+            } else {
+                res.className = "text-sm font-bold mt-2 text-amber-600";
+                res.innerText = `⚠️ Bạn nối đúng ${correct}/${minigame1Pool.length} cặp. Hãy thử kiểm tra lại nhé!`;
+            }
+        }
+
+        // REBUILT GAME 2: Multiple Questions Fill-in-the-blank
         function renderGame2(container) {
+            let questionsHtml = minigame2Questions.map((q, idx) => `
+                <div class="p-3 bg-gray-50 rounded-xl space-y-2 border">
+                    <p class="font-medium text-xs md:text-sm text-gray-800">${q.prompt}</p>
+                    <input type="text" id="g2_ans_${idx}" class="border p-2 rounded-xl w-full text-xs md:text-sm focus:ring-2 focus:ring-violet-400" placeholder="Nhập từ tiếng Anh...">
+                </div>
+            `).join('');
+
             container.innerHTML = `
                 <div class="space-y-4">
-                    <p class="text-xs md:text-sm text-gray-600">Bộ câu hỏi điền từ chính tả chuẩn xác:</p>
-                    <div class="p-4 bg-gray-50 rounded-xl space-y-3 border">
-                        <p class="font-medium text-xs md:text-sm">${minigame2Questions[0].prompt}</p>
-                        <input type="text" id="g2Ans" class="border p-2.5 rounded-xl w-full text-xs md:text-sm focus:ring-2 focus:ring-violet-400" placeholder="Nhập từ...">
-                        <button onclick="checkGame2()" class="bg-violet-600 text-white px-6 py-2 rounded-xl text-xs md:text-sm font-semibold">Kiểm tra</button>
-                        <p id="g2Result" class="text-xs md:text-sm font-bold mt-2"></p>
-                    </div>
+                    <p class="text-xs md:text-sm text-gray-600">Hoàn thành các câu hỏi điền từ vựng dưới đây:</p>
+                    <div class="space-y-3 max-h-80 overflow-y-auto pr-2">${questionsHtml}</div>
+                    <button onclick="checkGame2()" class="bg-violet-600 text-white px-6 py-2 rounded-xl text-xs md:text-sm font-semibold">Nộp Bài Trò Chơi 2</button>
+                    <p id="g2Result" class="text-xs md:text-sm font-bold mt-2"></p>
                 </div>
             `;
         }
 
         function checkGame2() {
-            const val = document.getElementById('g2Ans').value.trim().toLowerCase();
+            let score = 0;
+            minigame2Questions.forEach((q, idx) => {
+                const val = document.getElementById(`g2_ans_${idx}`).value.trim().toLowerCase();
+                if (val === q.answer) score++;
+            });
             const res = document.getElementById('g2Result');
-            if (val === "achievement") {
-                res.className = "text-xs md:text-sm font-bold mt-2 text-emerald-600";
-                res.innerText = "Chính xác tuyệt vời!";
-            } else {
-                res.className = "text-xs md:text-sm font-bold mt-2 text-amber-600";
-                res.innerText = "Chưa chính xác (Đáp án: achievement)!";
-            }
+            res.className = score >= 3 ? "text-xs md:text-sm font-bold mt-2 text-emerald-600" : "text-xs md:text-sm font-bold mt-2 text-amber-600";
+            res.innerText = `Kết quả: Bạn trả lời đúng ${score}/${minigame2Questions.length} câu!`;
         }
 
         function exitGame3Audio() {
