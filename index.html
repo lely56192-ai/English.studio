@@ -2008,179 +2008,175 @@
     { prompt: "19. The team reached an important _____ (thỏa thuận) yesterday.", answer: "agreement" },
     { prompt: "20. Learning a new language requires time and _____ (sự nỗ lực).", answer: "effort" }
         ];
-
-        const game3StagesData = [];
-        for(let s=1; s<=15; s++) {
-            game3StagesData.push({
-                stage: s,
-                title: `Ải ${s}: Vùng Đất Sương Mù Lizzert`,
+        const game3StagesData = [
+            {
+                stage: 1,
+                title: "Ải 1(s): Vùng Đất Sương Mù Lizzert",
                 questions: [
-                    { q: `1. (Ngữ pháp) If she _____ (study) hard, she will pass exam ${s}.`, options: ["studies", "studied", "study"], answer: "studies" },
-                    { q: `2. (Từ vựng) Choose the correct meaning for 'abandon':`, options: ["từ bỏ", "đạt được", "khả năng"], answer: "từ bỏ" },
-                    { q: `3. (Ngữ pháp) He is _____ honest person.`, options: ["a", "an", "the"], answer: "an" },
-                    { q: `4. (Từ vựng) What is the meaning of 'ability'?`, options: ["Khả năng", "Lịch sự", "Xe đạp"], answer: "Khả năng" },
-                    { q: `5. (Ngữ pháp) They _____ (go) to school yesterday.`, options: ["go", "went", "gone"], answer: "went" },
-                     ]
-  },
-  {
-                    
-    stage: 2,
-    title: "Ải 2(s): Vùng Đất Gió Hú",
-    questions: [
-      { q: "1. (Ngữ pháp) She usually _____ to work by bus.", options: ["go", "goes", "going"], answer: "goes" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'confess':", options: ["thú nhận", "che giấu", "từ chối"], answer: "thú nhận" },
-      { q: "3. (Ng ngữ pháp) I have _____ English for 3 years.", options: ["learn", "learning", "learned"], answer: "learned" },
-      { q: "4. (Từ vựng) What is the meaning of 'confident'?", options: ["tự tin", "lo lắng", "buồn bã"], answer: "tự tin" },
-      { q: "5. (Ngữ pháp) They _____ football when it started to rain.", options: ["played", "were playing", "play"], answer: "were playing" },
-    ]
-  },
-  {
-    stage: 3,
-    title: "Ải 3(s): Thung Lũng Băng Giá",
-    questions: [
-      { q: "1. (Ngữ pháp) If it doesn't rain, we _____ go on a picnic.", options: ["will", "would", "did"], answer: "will" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'brilliant':", options: ["xuất sắc, rực rỡ", "tối tăm", "chậm chạp"], answer: "xuất sắc, rực rỡ" },
-      { q: "3. (Ngữ pháp) He is taller _____ his brother.", options: ["as", "than", "more"], answer: "than" },
-      { q: "4. (Từ vựng) What is the meaning of 'generous'?", options: ["hào phóng", "keo kiệt", "ích kỷ"], answer: "hào phóng" },
-      { q: "5. (Ngữ pháp) This book is _____ than that one.", options: ["interesting", "more interesting", "most interesting"], answer: "more interesting" },
-    ]
-  },
-  {
-    stage: 4,
-    title: "Ải 4(s): Rừng Sương Mờ",
-    questions: [
-      { q: "1. (Ngữ pháp) Look at the clouds! It _____ rain.", options: ["is going to", "will", "shall"], answer: "is going to" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'curious':", options: ["tò mò", "dửng dưng", "buồn chán"], answer: "tò mò" },
-      { q: "3. (Ng ngữ pháp) Have you _____ been to Japan?", options: ["ever", "never", "always"], answer: "ever" },
-      { q: "4. (Từ vựng) What is the meaning of 'ancient'?", options: ["cổ xưa", "hiện đại", "mới mẻ"], answer: "cổ xưa" },
-      { q: "5. (Ngữ pháp) She asked me where I _____.", options: ["live", "lived", "living"], answer: "lived" }
-    ]
-  },
-  {
-    stage: 5,
-    title: "Ải 5(s): Đền Cổ Lãng Quên",
-    questions: [
-      { q: "1. (Ngữ pháp) The letter _____ yesterday.", options: ["was sent", "sent", "is sent"], answer: "was sent" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'gather':", options: ["tập hợp", "phân tán", "phá hủy"], answer: "tập hợp" },
-      { q: "3. (Ng ngữ pháp) I wish I _____ a lot of money.", options: ["have", "had", "will have"], answer: "had" },
-      { q: "4. (Từ vựng) What is the meaning of 'patient'?", options: ["kiên nhẫn", "nóng vội", "lười biếng"], answer: "kiên nhẫn" },
-      { q: "5. (Ngữ pháp) He drives much _____ than his friend.", options: ["careful", "more carefully", "carefully"], answer: "more carefully" },
-    ]
-  },
-  {
-    stage: 6,
-    title: "Ải 6(s): Hang Động Pha Lê",
-    questions: [
-      { q: "1. (Ngữ pháp) Neither John nor his friends _____ coming.", options: ["is", "are", "be"], answer: "are" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'achieve':", options: ["đạt được", "thất bại", "bỏ cuộc"], answer: "đạt được" },
-      { q: "3. (Ng ngữ pháp) By the time we arrived, the train _____.", options: ["left", "had left", "has left"], answer: "had left" },
-      { q: "4. (Từ vựng) What is the meaning of 'fragile'?", options: ["dễ vỡ", "cứng cáp", "nặng nề"], answer: "dễ vỡ" },
-      { q: "5. (Ngữ pháp) She suggested _____ to the cinema.", options: ["go", "to go", "going"], answer: "going" },
-    ]
-  },
-  {
-    stage: 7,
-    title: "Ải 7(s): Thác Nước Ánh Trăng",
-    questions: [
-      { q: "1. (Ngữ pháp) I look forward to _____ you soon.", options: ["see", "seeing", "saw"], answer: "seeing" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'observe':", options: ["quan sát", "bỏ qua", "lắng nghe"], answer: "quan sát" },
-      { q: "3. (Ng ngữ pháp) This house _____ in 1990.", options: ["built", "was built", "is built"], answer: "was built" },
-      { q: "4. (Từ vựng) What is the meaning of 'solution'?", options: ["giải pháp", "vấn đề", "câu hỏi"], answer: "giải pháp" },
-      { q: "5. (Ngữ pháp) Unless you study hard, you _____ pass the exam.", options: ["will", "won't", "would"], answer: "won't" },
-    ]
-  },
-  {
-    stage: 8,
-    title: "Ải 8(s): Vực Thẳm Tăm Tối",
-    questions: [
-      { q: "1. (Ngữ pháp) He speaks English very _____.", options: ["fluent", "fluently", "fluency"], answer: "fluently" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'predict':", options: ["dự đoán", "nhớ lại", "quên mất"], answer: "dự đoán" },
-      { q: "3. (Ng ngữ pháp) While I _____ TV, the phone rang.", options: ["watched", "was watching", "watch"], answer: "was watching" },
-      { q: "4. (Từ vựng) What is the meaning of 'greedy'?", options: ["tham lam", "rộng lượng", "khiêm tốn"], answer: "tham lam" },
-      { q: "5. (Ngữ pháp) My father makes me _____ my homework.", options: ["do", "to do", "doing"], answer: "do" },
-    ]
-  },
-  {
-    stage: 9,
-    title: "Ải 9(s): Cổng Thành Thời Gian",
-    questions: [
-      { q: "1. (Ngữ pháp) I've known him _____ five years.", options: ["since", "for", "in"], answer: "for" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'flexible':", options: ["linh hoạt", "cứng nhắc", "chậm chạp"], answer: "linh hoạt" },
-      { q: "3. (Ng ngữ pháp) If I were you, I _____ accept that offer.", options: ["will", "would", "can"], answer: "would" },
-      { q: "4. (Từ vựng) What is the meaning of 'release'?", options: ["phát hành, thả ra", "giữ lại", "ngăn chặn"], answer: "phát hành, thả ra" },
-      { q: "5. (Ngữ pháp) She is the girl _____ helped me yesterday.", options: ["who", "which", "whose"], answer: "who" },
-    ]
-  },
-  {
-    stage: 10,
-    title: "Ải 10(s): Đỉnh Núi Gió Thét",
-    questions: [
-      { q: "1. (Ngữ pháp) They _____ English since 2018.", options: ["learn", "learned", "have learned"], answer: "have learned" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'efficient':", options: ["có hiệu quả", "lãng phí", "vô dụng"], answer: "có hiệu quả" },
-      { q: "3. (Ng ngữ pháp) Do you mind _____ the window?", options: ["open", "to open", "opening"], answer: "opening" },
-      { q: "4. (Từ vựng) What is the meaning of 'hostile'?", options: ["thù địch", "thân thiện", "hiếu khách"], answer: "thù địch" },
-      { q: "5. (Ngữ pháp) He didn't come to the party, _____ made me sad.", options: ["which", "that", "who"], answer: "which" },
-    ]
-  },
-  {
-    stage: 11,
-    title: "Ải 11(s): Thành Phố Ngầm",
-    questions: [
-      { q: "1. (Ngữ pháp) The car needs _____.", options: ["repair", "to repair", "repairing"], answer: "repairing" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'abundant':", options: ["phong phú, dồi dào", "khan hiếm", "nhỏ bé"], answer: "phong phú, dồi dào" },
-      { q: "3. (Ng ngữ pháp) Hard _____ he worked, he failed the exam.", options: ["although", "as", "despite"], answer: "as" },
-      { q: "4. (Từ vựng) What is the meaning of 'reluctant'?", options: ["miễn cưỡng", "hào hứng", "tự nguyện"], answer: "miễn cưỡng" },
-      { q: "5. (Ngữ pháp) It is high time we _____ home.", options: ["go", "went", "gone"], answer: "went" },
-    ]
-  },
-  {
-    stage: 12,
-    title: "Ải 12(s): Lâu Đài Hoàng Hôn",
-    questions: [
-      { q: "1. (Ngữ pháp) Not only _____ late, but he also forgot his book.", options: ["he was", "was he", "is he"], answer: "was he" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'superficial':", options: ["nông cạn, bề ngoài", "sâu sắc", "quan trọng"], answer: "nông cạn, bề ngoài" },
-      { q: "3. (Ng ngữ pháp) No sooner had I arrived home _____ the phone rang.", options: ["when", "than", "then"], answer: "than" },
-      { q: "4. (Từ vựng) What is the meaning of 'melancholy'?", options: ["u sầu, buồn bã", "vui vẻ", "hào hứng"], answer: "u sầu, buồn bã" },
-      { q: "5. (Ngữ pháp) Supposing you _____ a lot of money, what would you do?", options: ["win", "won", "had won"], answer: "won" },
-    ]
-  },
-  {
-    stage: 13,
-    title: "Ải 13(s): Vùng Đất Tận Cùng",
-    questions: [
-      { q: "1. (Ngữ pháp) I'd rather you _____ me the truth.", options: ["tell", "told", "telling"], answer: "told" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'mitigate':", options: ["làm dịu bớt", "làm tồi tệ hơn", "phá hủy"], answer: "làm dịu bớt" },
-      { q: "3. (Ng ngữ pháp) Scarcely had we stepped outside _____ it started to rain.", options: ["when", "than", "then"], answer: "when" },
-      { q: "4. (Từ vựng) What is the meaning of 'ambiguous'?", options: ["mơ hồ, đa nghĩa", "rõ ràng", "chính xác"], answer: "mơ hồ, đa nghĩa" },
-      { q: "5. (Ngữ pháp) He spoke as if he _____ everything about it.", options: ["know", "knew", "had known"], answer: "knew" },
-    ]
-  },
-  {
-    stage: 14,
-    title: "Ải 14(s): Cung Điện Ánh Sáng",
-    questions: [
-      { q: "1. (Ngữ pháp) It's essential that every student _____ on time.", options: ["comes", "come", "came"], answer: "come" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'ubiquitous':", options: ["có mặt ở khắp mọi nơi", "hiếm có", "duy nhất"], answer: "có mặt ở khắp mọi nơi" },
-      { q: "3. (Ng ngữ pháp) Little _____ about the danger ahead.", options: ["he knew", "did he know", "knew he"], answer: "did he know" },
-      { q: "4. (Từ vựng) What is the meaning of 'meticulous'?", options: ["tỉ mỉ, cẩn thận", "cẩu thả", "vội vàng"], answer: "tỉ mỉ, cẩn thận" },
-      { q: "5. (Ngữ pháp) Had I known the truth, I _____ differently.", options: ["will act", "would have acted", "acted"], answer: "would have acted" },
-    ]
-  },
-  {
-    stage: 15,
-    title: "Ải 15(s): Đỉnh Vinh Quang",
-    questions: [
-      { q: "1. (Ngữ pháp) So difficult _____ that few students passed.", options: ["the exam was", "was the exam", "did the exam be"], answer: "was the exam" },
-      { q: "2. (Từ vựng) Choose the correct meaning for 'ephemeral':", options: ["phù du, ngắn ngủi", "vĩnh cửu", "lâu dài"], answer: "phù du, ngắn ngủi" },
-      { q: "3. (Ng ngữ pháp) Only by working hard _____ succeed.", options: ["you can", "can you", "you will"], answer: "can you" },
-      { q: "4. (Từ vựng) What is the meaning of 'pragmatic'?", options: ["thực tế, thực dụng", "mơ mộng", "lý thuyết"], answer: "thực tế, thực dụng" },
-      { q: "5. (Ngữ pháp) Were _____ about your decision, let me know.", options: ["you to change your mind", "you change your mind", "to change your mind"], answer: "you to change your mind" },
-    ]
-  }
+                    { q: "1. (Ngữ pháp) If she _____ (study) hard, she will pass exam 1.", options: ["studies", "studied", "study"], answer: "studies" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'abandon':", options: ["từ bỏ", "đạt được", "khả năng"], answer: "từ bỏ" },
+                    { q: "3. (Ngữ pháp) He is _____ honest person.", options: ["a", "an", "the"], answer: "an" },
+                    { q: "4. (Từ vựng) What is the meaning of 'ability'?", options: ["Khả năng", "Lịch sự", "Xe đạp"], answer: "Khả năng" },
+                    { q: "5. (Ngữ pháp) They _____ (go) to school yesterday.", options: ["go", "went", "gone"], answer: "went" }
                 ]
-            });
-        }
+            },
+            {
+                stage: 2,
+                title: "Ải 2(s): Vùng Đất Gió Hú",
+                questions: [
+                    { q: "1. (Ngữ pháp) She usually _____ to work by bus.", options: ["go", "goes", "going"], answer: "goes" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'confess':", options: ["thú nhận", "che giấu", "từ chối"], answer: "thú nhận" },
+                    { q: "3. (Ngữ pháp) I have _____ English for 3 years.", options: ["learn", "learning", "learned"], answer: "learned" },
+                    { q: "4. (Từ vựng) What is the meaning of 'confident'?", options: ["tự tin", "lo lắng", "buồn bã"], answer: "tự tin" },
+                    { q: "5. (Ngữ pháp) They _____ football when it started to rain.", options: ["played", "were playing", "play"], answer: "were playing" }
+                ]
+            },
+            {
+                stage: 3,
+                title: "Ải 3(s): Thung Lũng Băng Giá",
+                questions: [
+                    { q: "1. (Ngữ pháp) If it doesn't rain, we _____ go on a picnic.", options: ["will", "would", "did"], answer: "will" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'brilliant':", options: ["xuất sắc, rực rỡ", "tối tăm", "chậm chạp"], answer: "xuất sắc, rực rỡ" },
+                    { q: "3. (Ngữ pháp) He is taller _____ his brother.", options: ["as", "than", "more"], answer: "than" },
+                    { q: "4. (Từ vựng) What is the meaning of 'generous'?", options: ["hào phóng", "keo kiệt", "ích kỷ"], answer: "hào phóng" },
+                    { q: "5. (Ngữ pháp) This book is _____ than that one.", options: ["interesting", "more interesting", "most interesting"], answer: "more interesting" }
+                ]
+            },
+            {
+                stage: 4,
+                title: "Ải 4(s): Rừng Sương Mờ",
+                questions: [
+                    { q: "1. (Ngữ pháp) Look at the clouds! It _____ rain.", options: ["is going to", "will", "shall"], answer: "is going to" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'curious':", options: ["tò mò", "dửng dưng", "buồn chán"], answer: "tò mò" },
+                    { q: "3. (Ngữ pháp) Have you _____ been to Japan?", options: ["ever", "never", "always"], answer: "ever" },
+                    { q: "4. (Từ vựng) What is the meaning of 'ancient'?", options: ["cổ xưa", "hiện đại", "mới mẻ"], answer: "cổ xưa" },
+                    { q: "5. (Ngữ pháp) She asked me where I _____.", options: ["live", "lived", "living"], answer: "lived" }
+                ]
+            },
+            {
+                stage: 5,
+                title: "Ải 5(s): Đền Cổ Lãng Quên",
+                questions: [
+                    { q: "1. (Ngữ pháp) The letter _____ yesterday.", options: ["was sent", "sent", "is sent"], answer: "was sent" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'gather':", options: ["tập hợp", "phân tán", "phá hủy"], answer: "tập hợp" },
+                    { q: "3. (Ngữ pháp) I wish I _____ a lot of money.", options: ["have", "had", "will have"], answer: "had" },
+                    { q: "4. (Từ vựng) What is the meaning of 'patient'?", options: ["kiên nhẫn", "nóng vội", "lười biếng"], answer: "kiên nhẫn" },
+                    { q: "5. (Ngữ pháp) He drives much _____ than his friend.", options: ["careful", "more carefully", "carefully"], answer: "more carefully" }
+                ]
+            },
+            {
+                stage: 6,
+                title: "Ải 6(s): Hang Động Pha Lê",
+                questions: [
+                    { q: "1. (Ngữ pháp) Neither John nor his friends _____ coming.", options: ["is", "are", "be"], answer: "are" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'achieve':", options: ["đạt được", "thất bại", "bỏ cuộc"], answer: "đạt được" },
+                    { q: "3. (Ngữ pháp) By the time we arrived, the train _____.", options: ["left", "had left", "has left"], answer: "had left" },
+                    { q: "4. (Từ vựng) What is the meaning of 'fragile'?", options: ["dễ vỡ", "cứng cáp", "nặng nề"], answer: "dễ vỡ" },
+                    { q: "5. (Ngữ pháp) She suggested _____ to the cinema.", options: ["go", "to go", "going"], answer: "going" }
+                ]
+            },
+            {
+                stage: 7,
+                title: "Ải 7(s): Thác Nước Ánh Trăng",
+                questions: [
+                    { q: "1. (Ngữ pháp) I look forward to _____ you soon.", options: ["see", "seeing", "saw"], answer: "seeing" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'observe':", options: ["quan sát", "bỏ qua", "lắng nghe"], answer: "quan sát" },
+                    { q: "3. (Ngữ pháp) This house _____ in 1990.", options: ["built", "was built", "is built"], answer: "was built" },
+                    { q: "4. (Từ vựng) What is the meaning of 'solution'?", options: ["giải pháp", "vấn đề", "câu hỏi"], answer: "giải pháp" },
+                    { q: "5. (Ngữ pháp) Unless you study hard, you _____ pass the exam.", options: ["will", "won't", "would"], answer: "won't" }
+                ]
+            },
+            {
+                stage: 8,
+                title: "Ải 8(s): Vực Thẳm Tăm Tối",
+                questions: [
+                    { q: "1. (Ngữ pháp) He speaks English very _____.", options: ["fluent", "fluently", "fluency"], answer: "fluently" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'predict':", options: ["dự đoán", "nhớ lại", "quên mất"], answer: "dự đoán" },
+                    { q: "3. (Ngữ pháp) While I _____ TV, the phone rang.", options: ["watched", "was watching", "watch"], answer: "was watching" },
+                    { q: "4. (Từ vựng) What is the meaning of 'greedy'?", options: ["tham lam", "rộng lượng", "khiêm tốn"], answer: "tham lam" },
+                    { q: "5. (Ngữ pháp) My father makes me _____ my homework.", options: ["do", "to do", "doing"], answer: "do" }
+                ]
+            },
+            {
+                stage: 9,
+                title: "Ải 9(s): Cổng Thành Thời Gian",
+                questions: [
+                    { q: "1. (Ngữ pháp) I've known him _____ five years.", options: ["since", "for", "in"], answer: "for" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'flexible':", options: ["linh hoạt", "cứng nhắc", "chậm chạp"], answer: "linh hoạt" },
+                    { q: "3. (Ngữ pháp) If I were you, I _____ accept that offer.", options: ["will", "would", "can"], answer: "would" },
+                    { q: "4. (Từ vựng) What is the meaning of 'release'?", options: ["phát hành, thả ra", "giữ lại", "ngăn chặn"], answer: "phát hành, thả ra" },
+                    { q: "5. (Ngữ pháp) She is the girl _____ helped me yesterday.", options: ["who", "which", "whose"], answer: "who" }
+                ]
+            },
+            {
+                stage: 10,
+                title: "Ải 10(s): Đỉnh Núi Gió Thét",
+                questions: [
+                    { q: "1. (Ngữ pháp) They _____ English since 2018.", options: ["learn", "learned", "have learned"], answer: "have learned" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'efficient':", options: ["có hiệu quả", "lãng phí", "vô dụng"], answer: "có hiệu quả" },
+                    { q: "3. (Ngữ pháp) Do you mind _____ the window?", options: ["open", "to open", "opening"], answer: "opening" },
+                    { q: "4. (Từ vựng) What is the meaning of 'hostile'?", options: ["thù địch", "thân thiện", "hiếu khách"], answer: "thù địch" },
+                    { q: "5. (Ngữ pháp) He didn't come to the party, _____ made me sad.", options: ["which", "that", "who"], answer: "which" }
+                ]
+            },
+            {
+                stage: 11,
+                title: "Ải 11(s): Thành Phố Ngầm",
+                questions: [
+                    { q: "1. (Ngữ pháp) The car needs _____.", options: ["repair", "to repair", "repairing"], answer: "repairing" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'abundant':", options: ["phong phú, dồi dào", "khan hiếm", "nhỏ bé"], answer: "phong phú, dồi dào" },
+                    { q: "3. (Ngữ pháp) Hard _____ he worked, he failed the exam.", options: ["although", "as", "despite"], answer: "as" },
+                    { q: "4. (Từ vựng) What is the meaning of 'reluctant'?", options: ["miễn cưỡng", "hào hứng", "tự nguyện"], answer: "miễn cưỡng" },
+                    { q: "5. (Ngữ pháp) It is high time we _____ home.", options: ["go", "went", "gone"], answer: "went" }
+                ]
+            },
+            {
+                stage: 12,
+                title: "Ải 12(s): Lâu Đài Hoàng Hôn",
+                questions: [
+                    { q: "1. (Ngữ pháp) Not only _____ late, but he also forgot his book.", options: ["he was", "was he", "is he"], answer: "was he" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'superficial':", options: ["nông cạn, bề ngoài", "sâu sắc", "quan trọng"], answer: "nông cạn, bề ngoài" },
+                    { q: "3. (Ngữ pháp) No sooner had I arrived home _____ the phone rang.", options: ["when", "than", "then"], answer: "than" },
+                    { q: "4. (Từ vựng) What is the meaning of 'melancholy'?", options: ["u sầu, buồn bã", "vui vẻ", "hào hứng"], answer: "u sầu, buồn bã" },
+                    { q: "5. (Ngữ pháp) Supposing you _____ a lot of money, what would you do?", options: ["win", "won", "had won"], answer: "won" }
+                ]
+            },
+            {
+                stage: 13,
+                title: "Ải 13(s): Vùng Đất Tận Cùng",
+                questions: [
+                    { q: "1. (Ngữ pháp) I'd rather you _____ me the truth.", options: ["tell", "told", "telling"], answer: "told" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'mitigate':", options: ["làm dịu bớt", "làm tồi tệ hơn", "phá hủy"], answer: "làm dịu bớt" },
+                    { q: "3. (Ngữ pháp) Scarcely had we stepped outside _____ it started to rain.", options: ["when", "than", "then"], answer: "when" },
+                    { q: "4. (Từ vựng) What is the meaning of 'ambiguous'?", options: ["mơ hồ, đa nghĩa", "rõ ràng", "chính xác"], answer: "mơ hồ, đa nghĩa" },
+                    { q: "5. (Ngữ pháp) He spoke as if he _____ everything about it.", options: ["know", "knew", "had known"], answer: "knew" }
+                ]
+            },
+            {
+                stage: 14,
+                title: "Ải 14(s): Cung Điện Ánh Sáng",
+                questions: [
+                    { q: "1. (Ngữ pháp) It's essential that every student _____ on time.", options: ["comes", "come", "came"], answer: "come" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'ubiquitous':", options: ["có mặt ở khắp mọi nơi", "hiếm có", "duy nhất"], answer: "có mặt ở khắp mọi nơi" },
+                    { q: "3. (Ngữ pháp) Little _____ about the danger ahead.", options: ["he knew", "did he know", "knew he"], answer: "did he know" },
+                    { q: "4. (Từ vựng) What is the meaning of 'meticulous'?", options: ["tỉ mỉ, cẩn thận", "cẩu thả", "vội vàng"], answer: "tỉ mỉ, cẩn thận" },
+                    { q: "5. (Ngữ pháp) Had I known the truth, I _____ differently.", options: ["will act", "would have acted", "acted"], answer: "would have acted" }
+                ]
+            },
+            {
+                stage: 15,
+                title: "Ải 15(s): Đỉnh Vinh Quang",
+                questions: [
+                    { q: "1. (Ngữ pháp) So difficult _____ that few students passed.", options: ["the exam was", "was the exam", "did the exam be"], answer: "was the exam" },
+                    { q: "2. (Từ vựng) Choose the correct meaning for 'ephemeral':", options: ["phù du, ngắn ngủi", "vĩnh cửu", "lâu dài"], answer: "phù du, ngắn ngủi" },
+                    { q: "3. (Ngữ pháp) Only by working hard _____ succeed.", options: ["you can", "can you", "you will"], answer: "can you" },
+                    { q: "4. (Từ vựng) What is the meaning of 'pragmatic'?", options: ["thực tế, thực dụng", "mơ mộng", "lý thuyết"], answer: "thực tế, thực dụng" },
+                    { q: "5. (Ngữ pháp) Were _____ about your decision, let me know.", options: ["you to change your mind", "you change your mind", "to change your mind"], answer: "you to change your mind" }
+                ]
+            }
+        ];
 
+       
         const grammarTestData = [
             { id: 1, q: "She _____ to school every day.", options: ["go", "goes", "is going"], answer: "goes" },
             { id: 2, q: "They _____ a film at 8 PM last night.", options: ["were watching", "watched", "watch"], answer: "were watching" },
